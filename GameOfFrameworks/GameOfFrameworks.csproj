@@ -1,0 +1,207 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Images\battlescenes\scene1.jpg" />
+    <None Remove="Data\Images\battlescenes\scene10.jpg" />
+    <None Remove="Data\Images\battlescenes\scene11.jpg" />
+    <None Remove="Data\Images\battlescenes\scene12.jpg" />
+    <None Remove="Data\Images\battlescenes\scene13.jpg" />
+    <None Remove="Data\Images\battlescenes\scene14.jpg" />
+    <None Remove="Data\Images\battlescenes\scene15.jpg" />
+    <None Remove="Data\Images\battlescenes\scene16.jpg" />
+    <None Remove="Data\Images\battlescenes\scene17.jpg" />
+    <None Remove="Data\Images\battlescenes\scene18.jpg" />
+    <None Remove="Data\Images\battlescenes\scene19.jpg" />
+    <None Remove="Data\Images\battlescenes\scene2.jpg" />
+    <None Remove="Data\Images\battlescenes\scene3.jpg" />
+    <None Remove="Data\Images\battlescenes\scene4.jpg" />
+    <None Remove="Data\Images\battlescenes\scene5.jpg" />
+    <None Remove="Data\Images\battlescenes\scene6.jpg" />
+    <None Remove="Data\Images\battlescenes\scene7.jpg" />
+    <None Remove="Data\Images\battlescenes\scene8.jpg" />
+    <None Remove="Data\Images\battlescenes\scene9.jpg" />
+    <None Remove="Data\Images\combatText\attack.jpg" />
+    <None Remove="Data\Images\combatText\attack.png" />
+    <None Remove="Data\Images\combatText\block.jpg" />
+    <None Remove="Data\Images\combatText\cooldown.jpg" />
+    <None Remove="Data\Images\combatText\crit.jpg" />
+    <None Remove="Data\Images\combatText\devastation.jpg" />
+    <None Remove="Data\Images\combatText\dodge.jpg" />
+    <None Remove="Data\Images\combatText\finishEnemy.jpg" />
+    <None Remove="Data\Images\combatText\gameOver.jpg" />
+    <None Remove="Data\Images\combatText\noEnergy.jpg" />
+    <None Remove="Data\Images\combatText\noMana.jpg" />
+    <None Remove="Data\Images\combatText\parry.jpg" />
+    <None Remove="Data\Images\combatText\resist.jpg" />
+    <None Remove="Data\Images\skills\mage\1.jpg" />
+    <None Remove="Data\Images\skills\mage\relButton\1.jpg" />
+    <None Remove="Data\Images\skills\mage\relButton\2.jpg" />
+    <None Remove="Data\Images\skills\mage\relButton\3.jpg" />
+    <None Remove="Data\Images\skills\mage\relButton\4.jpg" />
+    <None Remove="Data\Images\skills\mage\relButton\5.jpg" />
+    <None Remove="Scenes\avatarImage.jpg" />
+    <None Remove="Scenes\background2.jpg" />
+    <None Remove="Scenes\combatTextBar.png" />
+    <None Remove="Scenes\Images\Buttons\buttonTexture.png" />
+    <None Remove="Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
+    <None Remove="Scenes\Images\VisualElements\combatTextPanel.png" />
+    <None Remove="Scenes\Images\VisualElements\NPCBar.png" />
+    <None Remove="Scenes\Images\VisualElements\PlayerBar.png" />
+    <None Remove="Scenes\indicatorBar.png" />
+    <None Remove="Scenes\inventoryBackground2.png" />
+    <None Remove="Scenes\inventoryItemframe.png" />
+    <None Remove="Scenes\leather_texture351.jpg" />
+    <None Remove="Scenes\scene19.jpg" />
+    <None Remove="Scenes\SkillsBarVar2.png" />
+    <None Remove="Scenes\titileBar.png" />
+    <None Remove="Scenes\titileBarVar3.png" />
+    <None Remove="Scenes\UserControls\inventoryItemframe.png" />
+    <None Remove="Scenes\xpBarEmpty.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\Images\battlescenes\scene1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene10.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene11.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene12.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene13.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene14.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene15.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene16.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene17.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene18.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene19.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene6.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene8.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\battlescenes\scene9.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\attack.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\attack.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\block.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\cooldown.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\crit.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\devastation.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\dodge.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\finishEnemy.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\gameOver.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\noEnergy.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\noMana.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\parry.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\combatText\resist.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\relButton\1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\relButton\2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\relButton\3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\relButton\4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\skills\mage\relButton\5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Scenes\Images\avatarPlug.jpg" />
+    <Resource Include="Scenes\Images\Buttons\buttonTexture.png" />
+    <Resource Include="Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Scenes\Images\VisualElements\combatTextPanel.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Scenes\Images\VisualElements\ElementCover.png" />
+    <Resource Include="Scenes\Images\VisualElements\NPCBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Scenes\Images\VisualElements\PlayerBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Scenes\UserControls\Images\inventoryBackground.png" />
+    <Resource Include="Scenes\Images\inventoryItemframe.png" />
+    <Resource Include="Scenes\Images\ScenesBackground\ArmoryBG.jpg" />
+    <Resource Include="Scenes\Images\ScenesBackground\RunGameBG.jpg" />
+    <Resource Include="Scenes\Images\VisualElements\NameInputBar.png" />
+    <Resource Include="Scenes\Images\ScenesBackground\NewGameBG.jpg" />
+    <Resource Include="Scenes\UserControls\Images\inventoryItemframe.png" />
+  </ItemGroup>
+
+</Project>
