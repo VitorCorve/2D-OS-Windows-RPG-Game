@@ -53,7 +53,7 @@ namespace GameOfFrameworks.Scenes.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GameOfFrameworks;component/scenes/usercontrols/equipmentcontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GameOfFrameworks;V1.0.0.0;component/scenes/usercontrols/equipmentcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Scenes\UserControls\EquipmentControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

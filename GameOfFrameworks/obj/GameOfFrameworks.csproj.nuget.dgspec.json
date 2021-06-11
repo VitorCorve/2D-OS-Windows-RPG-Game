@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Vs Projects\\GameOfFrameworks\\GameOfFrameworks\\GameOfFrameworks.csproj": {}
+    "E:\\GitProjects\\dev\\practic\\GameOfFrameworks\\GameOfFrameworks.csproj": {}
   },
   "projects": {
-    "E:\\Vs Projects\\GameOfFrameworks\\GameOfFrameworks\\GameOfFrameworks.csproj": {
+    "E:\\GitProjects\\dev\\practic\\GameOfFrameworks\\GameOfFrameworks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Vs Projects\\GameOfFrameworks\\GameOfFrameworks\\GameOfFrameworks.csproj",
+        "projectUniqueName": "E:\\GitProjects\\dev\\practic\\GameOfFrameworks\\GameOfFrameworks.csproj",
         "projectName": "GameOfFrameworks",
-        "projectPath": "E:\\Vs Projects\\GameOfFrameworks\\GameOfFrameworks\\GameOfFrameworks.csproj",
+        "projectPath": "E:\\GitProjects\\dev\\practic\\GameOfFrameworks\\GameOfFrameworks.csproj",
         "packagesPath": "C:\\Users\\Anatoly\\.nuget\\packages\\",
-        "outputPath": "E:\\Vs Projects\\GameOfFrameworks\\GameOfFrameworks\\obj\\",
+        "outputPath": "E:\\GitProjects\\dev\\practic\\GameOfFrameworks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Vs\\Shared\\NuGetPackages"
