@@ -53,7 +53,7 @@ namespace GameOfFrameworks.Scenes {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GameOfFrameworks;V1.0.0.0;component/scenes/loadgame.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GameOfFrameworks;component/scenes/loadgame.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Scenes\LoadGame.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

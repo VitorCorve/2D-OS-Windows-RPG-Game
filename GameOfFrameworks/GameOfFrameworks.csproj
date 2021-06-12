@@ -26,6 +26,26 @@
     <None Remove="Data\Images\battlescenes\scene7.jpg" />
     <None Remove="Data\Images\battlescenes\scene8.jpg" />
     <None Remove="Data\Images\battlescenes\scene9.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\1.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\10.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\2.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\3.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\4.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\5.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\6.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\7.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\8.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\9.jpg" />
+    <None Remove="Data\Images\characters\mageFemale\avatar1.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar10.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar2.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar3.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar4.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar5.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar6.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar7.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar8.png" />
+    <None Remove="Data\Images\characters\mageFemale\avatar9.png" />
     <None Remove="Data\Images\combatText\attack.jpg" />
     <None Remove="Data\Images\combatText\attack.png" />
     <None Remove="Data\Images\combatText\block.jpg" />
@@ -45,6 +65,22 @@
     <None Remove="Data\Images\skills\mage\relButton\3.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\4.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\5.jpg" />
+    <None Remove="Data\Images\source\coolDownBarBG.png" />
+    <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
+    <None Remove="Data\Images\textures\combatTextBar.png" />
+    <None Remove="Data\Images\textures\combatTextBarVar6.png" />
+    <None Remove="Data\Images\textures\dragon1.png" />
+    <None Remove="Data\Images\textures\indicatorBar.png" />
+    <None Remove="Data\Images\textures\inventoryBackground.png" />
+    <None Remove="Data\Images\textures\inventoryBackground2.png" />
+    <None Remove="Data\Images\textures\inventoryBackground3.png" />
+    <None Remove="Data\Images\textures\inventoryItemframe.png" />
+    <None Remove="Data\Images\textures\inventoryItemframe2.png" />
+    <None Remove="Data\Images\textures\inventoryItemframe3.png" />
+    <None Remove="Data\Images\textures\SkillsBar.png" />
+    <None Remove="Data\Images\textures\SkillsBarVar2.png" />
+    <None Remove="Data\Images\textures\xpBarEmptyIcon.png" />
+    <None Remove="Data\Images\textures\xpBarFilledIcon.png" />
     <None Remove="Scenes\avatarImage.jpg" />
     <None Remove="Scenes\background2.jpg" />
     <None Remove="Scenes\combatTextBar.png" />
@@ -123,6 +159,66 @@
     <Resource Include="Data\Images\battlescenes\scene9.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\10.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\6.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\8.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\9.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar10.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\characters\mageFemale\avatar9.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Images\combatText\attack.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -178,6 +274,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\skills\mage\relButton\5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\source\coolDownBarBG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\source\coolDownsTextSourceFormVar3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\combatTextBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\combatTextBarVar6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\dragon1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\indicatorBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryBackground.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryBackground2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryBackground3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryItemframe.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryItemframe2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\inventoryItemframe3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\SkillsBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\SkillsBarVar2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\xpBarEmptyIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\xpBarFilledIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Scenes\Images\avatarPlug.jpg" />

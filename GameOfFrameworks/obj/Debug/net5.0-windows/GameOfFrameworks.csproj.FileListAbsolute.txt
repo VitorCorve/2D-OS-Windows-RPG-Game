@@ -41,3 +41,46 @@ E:\Vs Projects\GameOfFrameworks\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes
 E:\Vs Projects\GameOfFrameworks\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\BattleWindow.g.cs
 E:\Vs Projects\GameOfFrameworks\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\BattleWindow.baml
 E:\Vs Projects\GameOfFrameworks\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.csprojAssemblyReference.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.exe
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.deps.json
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.runtimeconfig.json
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.runtimeconfig.dev.json
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.dll
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\ref\GameOfFrameworks.dll
+E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.pdb
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.csprojAssemblyReference.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\MainWindow.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\ApplyCharacterCreation.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\Armory.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\BattleWindow.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\LoadGame.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\NewGame.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\RunGame.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\AttributesControl.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\EquipmentControl.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\InventoryControl.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\OptionsControl.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\App.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks_MarkupCompile.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks_MarkupCompile.lref
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\MainWindow.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\ApplyCharacterCreation.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\Armory.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\BattleWindow.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\LoadGame.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\NewGame.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\RunGame.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\AttributesControl.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\EquipmentControl.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\InventoryControl.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\OptionsControl.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.g.resources
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.GeneratedMSBuildEditorConfig.editorconfig
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.AssemblyInfoInputs.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.AssemblyInfo.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.csproj.CoreCompileInputs.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.dll
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\ref\GameOfFrameworks.dll
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.pdb
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.genruntimeconfig.cache
