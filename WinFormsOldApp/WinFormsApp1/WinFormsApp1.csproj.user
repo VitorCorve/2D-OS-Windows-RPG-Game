@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="ApplyCharacterCreationChoise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BattleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BattleWindowForms\LootMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CharacterCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CharacterLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenuForms\Attributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenuForms\Equipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenuForms\GameMenuLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenuForms\GameMenuOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GameMenuForms\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LevelUpMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RunGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

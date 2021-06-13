@@ -1,0 +1,1 @@
+Blinds enemy and make them unable to hit and use skills for 3 second.

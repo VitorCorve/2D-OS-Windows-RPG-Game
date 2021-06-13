@@ -1,0 +1,1 @@
+Finds target weakpoints. Has little chanse to devastate enemy health to 10%. Also, when target affected, increases Backstabs damage.

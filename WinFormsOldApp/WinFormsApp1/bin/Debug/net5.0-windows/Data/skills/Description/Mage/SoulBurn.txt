@@ -1,0 +1,1 @@
+Burns target soul and deals damage every 3 sec, based on skill level. Duration 10 sec. Costs 20 mana.
