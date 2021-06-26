@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 E:\GitProjects\dev\practic\GameOfFrameworks\App.xaml
-11-57837203
+181486530286
 
-13-1924534955
+20-716514223
 193-1891726104
-MainWindow.xaml;Scenes\ApplyCharacterCreation.xaml;Scenes\Armory.xaml;Scenes\BattleWindow.xaml;Scenes\LoadGame.xaml;Scenes\NewGame.xaml;Scenes\RunGame.xaml;Scenes\UserControls\AttributesControl.xaml;Scenes\UserControls\EquipmentControl.xaml;Scenes\UserControls\InventoryControl.xaml;Scenes\UserControls\OptionsControl.xaml;
+MainWindow.xaml;Scenes\ApplyCharacterCreation.xaml;Scenes\Armory.xaml;Scenes\BattleWindow.xaml;Scenes\LoadGame.xaml;Scenes\NewGame.xaml;Scenes\RunGame.xaml;Scenes\UserControls\AttributesControl.xaml;Scenes\UserControls\CombatTextBar.xaml;Scenes\UserControls\EquipmentControl.xaml;Scenes\UserControls\InventoryControl.xaml;Scenes\UserControls\ItemDescriptionControl.xaml;Scenes\UserControls\LootBar.xaml;Scenes\UserControls\NPCBar.xaml;Scenes\UserControls\OptionsControl.xaml;Scenes\UserControls\PlayerBar.xaml;Scenes\UserControls\SkillDescriptionBar.xaml;Scenes\UserControls\SkillsBar.xaml;
 
 False
 

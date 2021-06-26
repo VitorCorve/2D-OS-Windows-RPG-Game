@@ -182,7 +182,7 @@
 
             </Grid>
 
-            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="Stranger from the Lonesome road" TextWrapping="Wrap" TextAlignment="Center" Foreground="Black">
+            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="Stranger from the Lonesome road" TextWrapping="Wrap" TextAlignment="Center" Foreground="White">
             </TextBlock>
 
             <StackPanel Grid.Column="1" Grid.Row="2">
@@ -194,11 +194,11 @@
 
             <Viewbox Grid.Row="4" Panel.ZIndex="2">
                 <StackPanel Grid.Row="4" Panel.ZIndex="1" Margin="20" VerticalAlignment="Center">
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Enemies killed: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="Black">
+                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Enemies killed: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
                     </TextBlock>
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="Black">
+                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
                     </TextBlock>
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="Black">
+                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
                     </TextBlock>
                 </StackPanel>
             </Viewbox>

@@ -1,0 +1,1 @@
+Inflicts surrounding wound on the enemy and makes them bleed. Deals damage every 3 sec.

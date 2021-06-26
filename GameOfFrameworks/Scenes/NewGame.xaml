@@ -161,7 +161,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBox BorderThickness="0" Background="Transparent" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road..."/>
+                        <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... "/>
                     </Border>
                 </Grid>
                 
@@ -238,7 +238,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBlock HorizontalAlignment="Center" Foreground="Black" Text="Here is description about choosen class" VerticalAlignment="Center" TextWrapping="Wrap" Padding="23"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="Here is description about choosen class" VerticalAlignment="Center" TextWrapping="Wrap" Padding="23"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Row="5" >
@@ -334,7 +334,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBlock Text="Attribute Description" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="4" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="Attribute Description" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="4" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Border>
                 </Grid>
             </Grid>

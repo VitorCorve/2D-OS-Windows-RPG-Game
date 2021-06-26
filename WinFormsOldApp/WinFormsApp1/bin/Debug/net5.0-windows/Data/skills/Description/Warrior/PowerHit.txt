@@ -1,1 +1,0 @@
-Hits the target and deals damage based on skill level.

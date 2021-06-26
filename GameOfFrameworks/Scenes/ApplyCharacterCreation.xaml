@@ -197,7 +197,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                     </Border.Background>
-                    <TextBox BorderThickness="0" Background="Transparent" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Here is description about choosen class" Margin="15,15,15,15"/>
+                    <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Here is description about choosen class" Margin="15,15,15,15"/>
                 </Border>
             </Grid>
 
@@ -220,7 +220,7 @@
                 <Border.Background>
                     <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
-                <TextBox BorderThickness="0" Background="Transparent" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road..." Margin="15,15,15,15"/>
+                <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road..." Margin="15,15,15,15"/>
             </Border>
 
             <Border Margin="15,0,15,0" Grid.Row="1">
@@ -268,7 +268,7 @@
                 <Border.Background>
                     <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
-                <TextBox BorderThickness="0" Background="Transparent" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="here is skill description" Margin="15,15,15,15"/>
+                <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="here is skill description" Margin="15,15,15,15"/>
             </Border>
         </Grid>
         <Grid  Grid.Row="0" Grid.Column="5">

@@ -1,1 +1,0 @@
-The more stamina, the more health points character has. Also, stamina affects to chance to immune to incoming damage.

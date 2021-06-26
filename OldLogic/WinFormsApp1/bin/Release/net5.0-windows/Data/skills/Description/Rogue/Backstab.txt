@@ -1,0 +1,1 @@
+Backstabs enemy and deals additional damage, if target affected by Find the Weakness.

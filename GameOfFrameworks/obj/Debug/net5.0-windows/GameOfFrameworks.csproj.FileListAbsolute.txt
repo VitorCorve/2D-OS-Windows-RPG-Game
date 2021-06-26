@@ -48,7 +48,6 @@ E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrame
 E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.dll
 E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\ref\GameOfFrameworks.dll
 E:\GitProjects\dev\practic\GameOfFrameworks\bin\Debug\net5.0-windows\GameOfFrameworks.pdb
-E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.csprojAssemblyReference.cache
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\MainWindow.g.cs
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\ApplyCharacterCreation.g.cs
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\Armory.g.cs
@@ -84,3 +83,17 @@ E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrame
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\ref\GameOfFrameworks.dll
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.pdb
 E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\GameOfFrameworks.genruntimeconfig.cache
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\PlayerBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\PlayerBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\NPCBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\NPCBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\CombatTextBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\CombatTextBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\SkillsBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\SkillsBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\SkillDescriptionBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\SkillDescriptionBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\LootBar.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\LootBar.baml
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\ItemDescriptionControl.g.cs
+E:\GitProjects\dev\practic\GameOfFrameworks\obj\Debug\net5.0-windows\Scenes\UserControls\ItemDescriptionControl.baml

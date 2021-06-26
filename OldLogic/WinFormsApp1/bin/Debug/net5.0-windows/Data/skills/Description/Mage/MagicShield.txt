@@ -1,0 +1,1 @@
+Conjures magic shield to absorb damage. Duration 20 sec. Costs 20 mana.

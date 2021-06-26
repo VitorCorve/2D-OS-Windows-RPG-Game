@@ -1,1 +1,0 @@
-Character strength directly affects to attack power.

@@ -1,0 +1,1 @@
+Flames enemy with fireboll. Deals damage based on skill level. Default - 15. Costs 8 mana.

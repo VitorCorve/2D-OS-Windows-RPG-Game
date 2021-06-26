@@ -59,6 +59,9 @@
     <None Remove="Data\Images\combatText\noMana.jpg" />
     <None Remove="Data\Images\combatText\parry.jpg" />
     <None Remove="Data\Images\combatText\resist.jpg" />
+    <None Remove="Data\Images\items\shoulder.png" />
+    <None Remove="Data\Images\items\sword.png" />
+    <None Remove="Data\Images\items\warglaive.png" />
     <None Remove="Data\Images\skills\mage\1.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\1.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\2.jpg" />
@@ -67,9 +70,12 @@
     <None Remove="Data\Images\skills\mage\relButton\5.jpg" />
     <None Remove="Data\Images\source\coolDownBarBG.png" />
     <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
+    <None Remove="Data\Images\system\combatReward.png" />
     <None Remove="Data\Images\textures\combatTextBar.png" />
     <None Remove="Data\Images\textures\combatTextBarVar6.png" />
     <None Remove="Data\Images\textures\dragon1.png" />
+    <None Remove="Data\Images\textures\energyIndicator\energyBar.png" />
+    <None Remove="Data\Images\textures\healthIndicator\healthBar.png" />
     <None Remove="Data\Images\textures\indicatorBar.png" />
     <None Remove="Data\Images\textures\inventoryBackground.png" />
     <None Remove="Data\Images\textures\inventoryBackground2.png" />
@@ -77,6 +83,7 @@
     <None Remove="Data\Images\textures\inventoryItemframe.png" />
     <None Remove="Data\Images\textures\inventoryItemframe2.png" />
     <None Remove="Data\Images\textures\inventoryItemframe3.png" />
+    <None Remove="Data\Images\textures\manaIndicator\manaBar.png" />
     <None Remove="Data\Images\textures\SkillsBar.png" />
     <None Remove="Data\Images\textures\SkillsBarVar2.png" />
     <None Remove="Data\Images\textures\xpBarEmptyIcon.png" />
@@ -97,6 +104,7 @@
     <None Remove="Scenes\SkillsBarVar2.png" />
     <None Remove="Scenes\titileBar.png" />
     <None Remove="Scenes\titileBarVar3.png" />
+    <None Remove="Scenes\UserControls\Images\SkillsBar.png" />
     <None Remove="Scenes\UserControls\inventoryItemframe.png" />
     <None Remove="Scenes\xpBarEmpty.png" />
   </ItemGroup>
@@ -258,6 +266,15 @@
     <Resource Include="Data\Images\combatText\resist.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\items\shoulder.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\items\sword.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\items\warglaive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Images\skills\mage\1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -282,6 +299,9 @@
     <Resource Include="Data\Images\source\coolDownsTextSourceFormVar3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\system\combatReward.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Images\textures\combatTextBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -289,6 +309,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\textures\dragon1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\energyIndicator\energyBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\healthIndicator\healthBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\textures\indicatorBar.png">
@@ -310,6 +336,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\textures\inventoryItemframe3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\manaIndicator\manaBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\textures\SkillsBar.png">
@@ -346,6 +375,9 @@
     <Resource Include="Scenes\Images\VisualElements\NameInputBar.png" />
     <Resource Include="Scenes\Images\ScenesBackground\NewGameBG.jpg" />
     <Resource Include="Scenes\UserControls\Images\inventoryItemframe.png" />
+    <Resource Include="Scenes\UserControls\Images\SkillsBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

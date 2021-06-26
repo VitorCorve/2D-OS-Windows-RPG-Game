@@ -28,13 +28,34 @@
     <Compile Update="Scenes\UserControls\AttributesControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Scenes\UserControls\CombatTextBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Scenes\UserControls\EquipmentControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Scenes\UserControls\InventoryControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Scenes\UserControls\ItemDescriptionControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Scenes\UserControls\LootBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Scenes\UserControls\NPCBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Scenes\UserControls\OptionsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Scenes\UserControls\PlayerBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Scenes\UserControls\SkillDescriptionBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Scenes\UserControls\SkillsBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -63,13 +84,34 @@
     <Page Update="Scenes\UserControls\AttributesControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Scenes\UserControls\CombatTextBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Scenes\UserControls\EquipmentControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Scenes\UserControls\InventoryControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Scenes\UserControls\ItemDescriptionControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Scenes\UserControls\LootBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Scenes\UserControls\NPCBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Scenes\UserControls\OptionsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Scenes\UserControls\PlayerBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Scenes\UserControls\SkillDescriptionBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Scenes\UserControls\SkillsBar.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

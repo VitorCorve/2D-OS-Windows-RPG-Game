@@ -1,1 +1,0 @@
-Enters into the Deep defense stance. Higly increases chance to block. Reducess all incoming damage to 30% and also reduces all dealing damage to 50% for 10 sec.

@@ -1,0 +1,1 @@
+Smashes targets body, deals damage and reduces his health regeneration to 90%. Duration 10 sec.
