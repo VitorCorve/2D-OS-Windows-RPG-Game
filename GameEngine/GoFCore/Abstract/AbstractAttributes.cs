@@ -8,12 +8,12 @@ namespace GameEngine.Player.Abstract
 {
     public abstract class AbstractAttributes
     {
-        public uint Strength { get; protected set; }
-        public uint Stamina { get; protected set; }
-        public uint Intellect { get; protected set; }
-        public uint Agility { get; protected set; }
-        public uint Endurance { get; protected set; }
-        public uint WeaponDamageValue { get; protected set; }
-        public uint ArmorValue { get; protected set; }
+        public uint Strength { get; set; }
+        public uint Stamina { get; set; }
+        public uint Intellect { get; set; }
+        public uint Agility { get; set; }
+        public uint Endurance { get; set; }
+        public uint WeaponDamageValue { get; set; }
+        public uint ArmorValue { get; set; }
     }
 }

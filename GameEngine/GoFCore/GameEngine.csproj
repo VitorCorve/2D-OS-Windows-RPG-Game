@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EquipmentManagement\Types\Weapon\" />
+    <Folder Include="CombatEngine\" />
     <Folder Include="Player\Specializatons\NPCs\" />
   </ItemGroup>
 

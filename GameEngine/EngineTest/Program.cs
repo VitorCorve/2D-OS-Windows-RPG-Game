@@ -5,6 +5,7 @@ using GameEngine.Specializatons;
 using System;
 using GameEngine.EquipmentManagement;
 using GameEngine.Player.Specializatons.Mage;
+using GameEngine.Equipment;
 
 namespace EngineTest
 {
@@ -20,11 +21,12 @@ namespace EngineTest
 
             var specialization = new Mage();
             var specializationAttributes = new MageBasicAttributes();
-            var equipmentvalues = new EquipmentInstance();
+            var wearedEquipment = new WearedEquipment(1);
+            var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var playerEntity = playerEntityConstructor.CreatePlayer(new PlayerMeta(specialization, gender, characterName, level), specializationAttributes, equipmentvalues);
+            var playerEntity = playerEntityConstructor.CreatePlayer(new PlayerMeta(specialization, gender, characterName, level), specializationAttributes, equipmentValues);
 
-            Console.WriteLine(playerEntity.AttackPower);
+            Console.WriteLine(playerEntity.HealthPoints);
         }
     }
 }
