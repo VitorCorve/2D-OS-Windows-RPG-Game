@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Anatoly\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Anatoly\\.nuget\\packages",
+      "E:\\Vs\\Shared\\NuGetPackages"
+    ]
+  }
+}
