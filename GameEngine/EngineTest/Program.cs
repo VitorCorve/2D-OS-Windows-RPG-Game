@@ -6,6 +6,9 @@ using System;
 using GameEngine.EquipmentManagement;
 using GameEngine.Player.Specializatons.Mage;
 using GameEngine.Equipment;
+using GameEngine.SpecializationMechanics.Mage;
+using GameEngine.SpecializationMechanics.Mage.Skills;
+using GameEngine.SpecializationMechanics.GlobalSkills;
 
 namespace EngineTest
 {
@@ -27,16 +30,25 @@ namespace EngineTest
             var playerEntity = playerEntityConstructor.CreatePlayer(new PlayerGlobal(specialization, gender, characterName, level), specializationAttributes, equipmentValues);
             var playerEntity2 = playerEntityConstructor.CreatePlayer(new PlayerGlobal(specialization, gender, characterName, level), specializationAttributes, equipmentValues);
 
-            Console.WriteLine(" player1 hp: " + playerEntity.HealthPoints);
+            Console.WriteLine("player1 hp: " + playerEntity.HealthPoints);
 
-            Console.WriteLine(" player2 attackPower: " + playerEntity2.AttackPower);
+            Console.WriteLine("player2 attackPower: " + playerEntity2.AttackPower);
 
             var player1CombatService = new CombatServiсe(playerEntity);
 
-            player1CombatService.Prepare(() => player1CombatService.Execute(playerEntity2));
-           
-            Console.WriteLine(" player1 hp after attack: " + playerEntity2.HealthPoints );
+            player1CombatService.Message += Notification;
+
+            player1CombatService.Prepare((new RegularAttack()), () => player1CombatService.Execute(playerEntity2));
+            player1CombatService.Prepare((new Fireball(3)), () => player1CombatService.Execute(playerEntity2));
+     
+            Console.WriteLine("player1 hp after attack: " + playerEntity2.HealthPoints );
 
         }
+
+        private static void Notification(string message)
+        {
+            Console.WriteLine(message);
+        }
+
     }
 }
