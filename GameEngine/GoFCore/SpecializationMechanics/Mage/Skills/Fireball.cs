@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine;
+using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.Player.ConditionResources;
 using System;
@@ -22,12 +23,12 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public bool SkillAffectedOnEnemy { get ; private set; }
         public uint Cost { get ; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
+        public IAttackType Type { get; set; } = new Magic();
         public uint DamageValue { get; private set; }
 
         public void Use(PlayerEntity target)
         {
             target.ReceiveDamage(DamageValue + target.AttackPower);
-            target.ReduceMana(Cost);
         }
 
         public Fireball(uint skillLevel)

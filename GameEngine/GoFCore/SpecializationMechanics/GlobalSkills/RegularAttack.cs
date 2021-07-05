@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine;
+using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.Player.ConditionResources;
 using System;
@@ -23,6 +24,7 @@ namespace GameEngine.SpecializationMechanics.GlobalSkills
         public uint Cost { get; private set; }
         public uint DamageValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Energy();
+        public IAttackType Type { get; set; } = new Melee();
 
         public void Use(PlayerEntity target)
         {

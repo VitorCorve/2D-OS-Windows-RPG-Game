@@ -20,6 +20,7 @@ namespace GameEngine.CombatEngine.Interfaces
         uint Cost { get; }
         uint DamageValue { get; }
         IResourceType ResourceType { get; set; }
+        IAttackType Type { get; set; }
         void Use(PlayerEntity target);
     }
 }

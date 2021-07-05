@@ -35,9 +35,19 @@ namespace GameEngine.CombatEngine
             HealthPoints += healAmount;
         }
 
-        public void ReduceMana(uint cost)
+        public void ReduceResource(ISkill skill)
         {
-            ManaPoints.Value -= cost;
+            switch (skill.ResourceType)
+            {
+                case Mana:
+                    ManaPoints.Value -= skill.Cost;
+                    return;
+                case Energy:
+                    EnergyPoints.Value -= skill.Cost;
+                    return;
+                default:
+                    break;
+            }
         }
 
     }
