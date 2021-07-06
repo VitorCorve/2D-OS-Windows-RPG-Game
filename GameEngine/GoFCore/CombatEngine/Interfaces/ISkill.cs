@@ -12,15 +12,15 @@ namespace GameEngine.CombatEngine.Interfaces
         string SkillName { get; }
         uint SkillLevel { get; }
         Timer CoolDownTimer { get; }
-        Timer DurationTimer { get; }
         uint Duration { get; }
         uint CoolDown { get; }
         bool ReadyToUse { get; }
         bool SkillAffectedOnEnemy { get; }
         uint Cost { get; }
-        uint DamageValue { get; }
+        uint SkillDamageValue { get; }
         IResourceType ResourceType { get; set; }
         IAttackType Type { get; set; }
-        void Use(PlayerEntity target);
+        IValueType ValueType { get; set; }
+        void Use(uint dealerAttackPower, PlayerEntity target);
     }
 }

@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
-    public class Fireball : ISkill
+    public class Fireball : IDamageSkill
     {
         public string SkillName { get ; private set; }
         public uint SkillLevel { get ; private set; }
@@ -24,18 +24,19 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public uint Cost { get ; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
-        public uint DamageValue { get; private set; }
+        public uint SkillDamageValue { get; private set; }
+        public IValueType ValueType { get; set; }
 
-        public void Use(PlayerEntity target)
+        public void Use(uint dealerAttackPower, PlayerEntity target)
         {
-            target.ReceiveDamage(DamageValue + target.AttackPower);
+            target.ReceiveDamage(dealerAttackPower + SkillDamageValue);
         }
 
         public Fireball(uint skillLevel)
         {
             SkillName = "Fireball";
             SkillLevel = skillLevel;
-            DamageValue = SkillLevel * 5;
+            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
         }
 

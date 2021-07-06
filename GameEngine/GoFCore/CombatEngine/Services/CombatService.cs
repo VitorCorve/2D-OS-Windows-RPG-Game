@@ -13,11 +13,8 @@ namespace GameEngine.CombatEngine
     {
         public delegate void ExecuteAction();
         public delegate bool CheckAction();
-
         public uint DamageValue { get; private set; }
         public bool OutOfControl { get; set; } = false;
-
-        public List<Action> ActionList;
         public CombatServiсe(PlayerEntity dealer)
         {
             DamageValue = dealer.AttackPower;
@@ -25,36 +22,35 @@ namespace GameEngine.CombatEngine
 
         public void Execute(PlayerEntity target)
         {
-            target.ReceiveDamage(DamageValue - target.ArmorPoints);
+            target.ReceiveDamage(DamageValue - target.ArmorPoints.Value);
         }
         public void Execute(PlayerEntity target, ISkill skill)
         {
-            skill.Use(target);
+            skill.Use(DamageValue, target);
         }
 
 
-        public void Prepare(CheckAction readyToAttackFunction, ExecuteAction reduceResourceFunction, CheckAction defenseFunction, ExecuteAction executeFunction)
+/*        public void Prepare(CheckAction readyFunc, ExecuteAction reduceResourceFunc, CheckAction defenseFunc, ExecuteAction executeFunc)
         {
-            switch (readyToAttackFunction?.Invoke())
+            switch (readyFunc?.Invoke())
             {
                 case true:
-                    reduceResourceFunction?.Invoke();
+                    reduceResourceFunc?.Invoke();
                     break;
                 default:
                     return;
             }
 
-            switch (defenseFunction?.Invoke())
+            switch (defenseFunc?.Invoke())
             {
                 case true:
-                    executeFunction?.Invoke();
+                    executeFunc?.Invoke();
                     break;
                 default:
                     break;
             }
 
-        }
+        }*/
        
-
     }
 }

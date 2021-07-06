@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace GameEngine.SpecializationMechanics.GlobalSkills
+namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
-    public class RegularAttack : IDamageSkill
+    public class Heal : IBuffSkill
     {
+
         public string SkillName { get; private set; }
         public uint SkillLevel { get; private set; }
         public Timer CoolDownTimer { get; private set; }
@@ -22,14 +23,23 @@ namespace GameEngine.SpecializationMechanics.GlobalSkills
         public bool ReadyToUse { get; private set; }
         public bool SkillAffectedOnEnemy { get; private set; }
         public uint Cost { get; private set; }
+        public IResourceType ResourceType { get; set; } = new Mana();
+        public IAttackType Type { get; set; } = new Magic();
         public uint SkillDamageValue { get; private set; }
-        public IResourceType ResourceType { get; set; } = new Energy();
-        public IAttackType Type { get; set; } = new Melee();
         public IValueType ValueType { get; set; }
 
         public void Use(uint dealerAttackPower, PlayerEntity target)
         {
-            target.ReceiveDamage(dealerAttackPower);
+            target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
         }
+
+        public Heal(uint skillLevel)
+        {
+            SkillName = "Heal";
+            SkillLevel = skillLevel;
+            SkillDamageValue = SkillLevel * 5;
+            Cost = SkillLevel * 3;
+        }
+
     }
 }

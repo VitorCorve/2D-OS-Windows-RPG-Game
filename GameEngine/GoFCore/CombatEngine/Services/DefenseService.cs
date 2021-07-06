@@ -11,6 +11,7 @@ namespace GameEngine.CombatEngine
     public class DefenseService : IDefense
     {
         public delegate void Notifications(string message);
+        public event Notifications Log;
 
         public double BlockChance { get; private set; }
 
@@ -34,12 +35,10 @@ namespace GameEngine.CombatEngine
             {
                 case Melee:
                     return
-                        Chance() > BlockChance &&
-                        Chance() > DodgeChance &&
-                        Chance() > ParryChance;
+                        TryMeleeDefense();
                 case Magic:
                     return
-                        Chance() > ResistChance;
+                        TryMagicDefense();
                 default:
                     break;
             }
@@ -53,5 +52,38 @@ namespace GameEngine.CombatEngine
             return randomValue;
         }
 
+        private bool TryMeleeDefense()
+        {
+            if (Chance() < BlockChance)
+            {
+                //Log("Attack blocked.");
+                return false;
+            }
+                
+
+            if (Chance() < DodgeChance)
+            {
+                //Log("Attack dodged.");
+                return false;
+            }
+                
+
+            if (Chance() < ParryChance)
+            {
+                //Log("Attack parried.");
+                return false;
+            }
+            return true;
+        }
+
+        private bool TryMagicDefense()
+        {
+            if (Chance() < ResistChance)
+            {
+                //Log("Magic resisted.");
+                return false;
+            }
+            return true;
+        }
     }
 }

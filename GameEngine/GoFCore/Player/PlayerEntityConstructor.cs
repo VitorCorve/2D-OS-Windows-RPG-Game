@@ -14,7 +14,7 @@ namespace GameEngine.CombatEngine
     public class PlayerEntityConstructor
     {
 
-        public PlayerEntity CreatePlayer(PlayerGlobal metaData, IAttributes specializationAttributes, IAttributes equipmentValues)
+        public PlayerEntity CreatePlayer(PlayerGlobalData metaData, IAttributes specializationAttributes, IAttributes equipmentValues)
         {
             var playerEntity = new PlayerEntity
             {
@@ -22,7 +22,7 @@ namespace GameEngine.CombatEngine
                 ManaPoints      = new Mana((specializationAttributes.Intellect      + equipmentValues.Intellect) * 10),
                 EnergyPoints    = new Energy((specializationAttributes.Agility      + equipmentValues.Agility) * 10),
                 AttackPower     = (specializationAttributes.Strength                + equipmentValues.Strength * 10)       + equipmentValues.WeaponDamageValue,
-                ArmorPoints     = equipmentValues.ArmorValue * 10,
+                ArmorPoints     = new Armor(equipmentValues.ArmorValue              * 10),
                 DodgeChance     = ((specializationAttributes.Agility / 2)           + metaData.Level),
                 ParryChange     = ((specializationAttributes.Agility / 2.2)         + metaData.Level),
                 BlockChance     = ((specializationAttributes.Agility / 1.8)         + metaData.Level),

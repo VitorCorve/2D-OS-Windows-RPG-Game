@@ -17,14 +17,13 @@ namespace GameEngine.CombatEngine
         public Mana ManaPoints { get; set; }
         public Energy EnergyPoints { get; set; }
         public uint AttackPower { get; set; }
-        public uint ArmorPoints { get; set; }
+        public Armor ArmorPoints { get; set; }
         public double CriticalHitChance { get; set; }
         public double DodgeChance { get; set; }
         public double BlockChance { get; set; }
         public double ParryChange { get; set; }
         public double ResistChance { get; set; }
         public bool OutOfControl { get; set; } = false;
-
         public void ReceiveDamage(uint incomingDamage)
         {
             HealthPoints -= incomingDamage;
@@ -33,6 +32,30 @@ namespace GameEngine.CombatEngine
         public void ReceiveHeal(uint healAmount)
         {
             HealthPoints += healAmount;
+        }
+
+        public void IncreaseValue(IValueType valueType, uint value)
+        {
+            switch (valueType)
+            {
+                case Armor:
+                    ArmorPoints.Value += value;
+                    return;
+                default:
+                    break;
+            }
+        }
+
+        public void DecreaseValue(IValueType valueType, uint value)
+        {
+            switch (valueType)
+            {
+                case Armor:
+                    ArmorPoints.Value -= value;
+                    return;
+                default:
+                    break;
+            }
         }
 
         public void ReduceResource(ISkill skill)
