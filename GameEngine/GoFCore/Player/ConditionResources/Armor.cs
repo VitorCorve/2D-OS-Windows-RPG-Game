@@ -9,14 +9,27 @@ namespace GameEngine.Player.ConditionResources
 {
     public class Armor : IValueType
     {
-        public uint Value { get; set; }
-        public Armor(uint value)
+        private int _value;
+        public int Value
+        {
+            get { return _value; }
+            set { _value = Set(value); }
+        }
+        public ResourceName Name { get; private set; } = ResourceName.Armor;
+        public Armor(int value)
         {
             Value = value;
         }
         public Armor()
         {
+        }
 
+        private int Set(int value)
+        {
+            if (value < 0)
+                return 0;
+            else
+                return value;
         }
     }
 }

@@ -9,8 +9,8 @@ namespace GameEngine.CombatEngine
 {
     public class ReadyToAttackService : IReadyToAttack
     {
-        public delegate void Notifications(string message);
-        public event Notifications Log;
+        public delegate void NotifyMaster(string message);
+        public event NotifyMaster Log;
         public bool OutOfControl { get; set; }
         public ISkill SkillToUse { get; private set; }
         public List<IResourceType> Resources { get; private set; } = new List<IResourceType> { };
@@ -24,13 +24,13 @@ namespace GameEngine.CombatEngine
         {
             if (OutOfControl)
             {
-                //Log("Out of control");
+                Log("Out of control");
                 return false;
             }
 
             if (skill?.CoolDown > 0)
             {
-                //Log($"{skill.SkillName} cooldown {skill.CoolDown} sec.");
+                Log($"{skill.SkillName} on cooldown. Cooldown {skill.CoolDown}");
                 return false;
             }
 
@@ -40,7 +40,7 @@ namespace GameEngine.CombatEngine
                 {
                     if (skill?.Cost > resource.Value)
                     {
-                        //Log("Not enough mana");
+                        Log($"Not enought {resource.Name}");
                         return false;
                     }
                     break;

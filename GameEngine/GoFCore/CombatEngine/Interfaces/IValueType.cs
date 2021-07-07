@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameEngine.Player.ConditionResources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace GameEngine.CombatEngine.Interfaces
 {
     public interface IValueType
     {
-        uint Value { get; }
+        int Value { get; }
+        ResourceName Name { get; }
     }
 }

@@ -11,6 +11,6 @@ namespace GameEngine.Equipment
         public readonly uint ID;
         public readonly string ItemName;
         public readonly string Quality;
-        public readonly string WearType;
+        public readonly EquipmentTypes WearType;
     }
 }

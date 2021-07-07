@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameEngine.Player.ConditionResources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace GameEngine.CombatEngine.Interfaces
 {
     public interface IResourceType
     {
-        uint Value { get; }
+        int Value { get; }
+        int MaxValue { get; }
+        ResourceName Name { get; }
     }
 }

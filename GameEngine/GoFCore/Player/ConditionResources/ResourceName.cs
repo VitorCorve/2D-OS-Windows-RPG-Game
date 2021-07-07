@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.CombatEngine.Actions
+namespace GameEngine.Player.ConditionResources
 {
-    public interface IBlock
+    public enum ResourceName
     {
+        Armor,
+        Energy,
+        Health,
+        Mana
     }
 }

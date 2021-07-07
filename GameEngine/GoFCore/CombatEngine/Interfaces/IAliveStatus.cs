@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IReceiveHeal
+    public interface IAliveStatus
     {
-        void ReceiveHeal(int healAmount);
+        bool Alive { get; }
     }
 }

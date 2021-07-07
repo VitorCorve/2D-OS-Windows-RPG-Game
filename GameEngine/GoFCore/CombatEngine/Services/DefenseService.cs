@@ -10,17 +10,12 @@ namespace GameEngine.CombatEngine
 {
     public class DefenseService : IDefense
     {
-        public delegate void Notifications(string message);
-        public event Notifications Log;
-
+        public delegate void NotifyMaster(string message);
+        public event NotifyMaster Log;
         public double BlockChance { get; private set; }
-
         public double DodgeChance { get; private set; }
-
         public double ParryChance { get; private set; }
-
         public double ResistChance { get; private set; }
-
         public DefenseService(PlayerEntity player)
         {
             BlockChance = player.BlockChance;
@@ -54,23 +49,26 @@ namespace GameEngine.CombatEngine
 
         private bool TryMeleeDefense()
         {
-            if (Chance() < BlockChance)
+            double chance = Chance();
+
+            if (chance < BlockChance)
             {
-                //Log("Attack blocked.");
+                Log("Attack blocked");
                 return false;
             }
                 
 
-            if (Chance() < DodgeChance)
+            if (chance < DodgeChance)
             {
-                //Log("Attack dodged.");
+                throw new Exception("attack dodged");
+                Log("Attack dodged");
                 return false;
             }
                 
 
-            if (Chance() < ParryChance)
+            if (chance < ParryChance)
             {
-                //Log("Attack parried.");
+                Log("Attack parried");
                 return false;
             }
             return true;
@@ -80,7 +78,7 @@ namespace GameEngine.CombatEngine
         {
             if (Chance() < ResistChance)
             {
-                //Log("Magic resisted.");
+                Log("Attack resisted");
                 return false;
             }
             return true;

@@ -9,7 +9,7 @@ namespace GameEngine.CombatEngine.Actions
 {
     public interface IWeaponAttack
     {
-        uint DamageValue { get; }
+        int DamageValue { get; }
         public void Execute(PlayerEntity player);
     }
 }

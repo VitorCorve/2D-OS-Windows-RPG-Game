@@ -8,7 +8,7 @@ namespace GameEngine.Equipment
 {
     public class ItemAttributesConstructor
     {
-        public ItemAttributes CreateItem(uint ID)
+        public ItemAttributes CreateItem(int ID)
         {
             var item = ItemsList.GetAttributes(ID);
             return item;

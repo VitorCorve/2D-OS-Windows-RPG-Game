@@ -12,8 +12,8 @@ namespace GameEngine.CombatEngine.Interfaces
         PlayerEntity Target { get; }
         ISkill Buff { get; }
         Timer BuffTimer { get; }
-        uint BuffValue { get; }
-        uint Duration { get; }
+        int BuffValue { get; }
+        int Duration { get; }
         IValueType Type { get; }
         void Cancel();
     }

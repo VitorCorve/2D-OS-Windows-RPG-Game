@@ -9,13 +9,13 @@ namespace GameEngine.Equipment
     public class WearedEquipment
     {
         public List<ItemAttributes> ItemsList = new List<ItemAttributes> { };
-        public WearedEquipment(params uint[] id)
+        public WearedEquipment(params int[] id)
         {
             var itemConstructor = new ItemAttributesConstructor();
 
-            for (uint i = 1; i <= id.Length; i++)
+            for (int i = 0; i < id.Length; i++)
             {
-                ItemsList.Add(itemConstructor.CreateItem(i));
+                ItemsList.Add(itemConstructor.CreateItem(id[i]));
             }
 
         }

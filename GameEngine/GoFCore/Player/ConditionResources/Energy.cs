@@ -9,14 +9,35 @@ namespace GameEngine.Player.ConditionResources
 {
     public class Energy : IResourceType
     {
-        public uint Value { get; set; }
-        public Energy(uint value)
+        private int _value;
+        public int Value 
         {
+            get { return _value; } 
+            set { _value = Set(value);}
+        }
+        public int MaxValue { get; private set; }
+        public ResourceName Name { get; private set; } = ResourceName.Energy;
+
+        public Energy(int value)
+        {
+            MaxValue = value;
             Value = value;
         }
         public Energy()
         {
 
+        }
+
+        private int Set(int value)
+        {
+            if (value < 0)
+                return 0;
+
+            if (value > MaxValue)
+                return MaxValue;
+
+            else
+                return value;
         }
     }
 }

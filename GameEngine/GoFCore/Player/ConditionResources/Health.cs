@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.ConditionResources
 {
-    public class Mana : IResourceType
+    public class Health : IResourceType
     {
         private int _value;
-        public int Value
+        public int Value 
         {
             get { return _value; }
             set { _value = Set(value); }
         }
         public int MaxValue { get; private set; }
-        public ResourceName Name { get; private set; } = ResourceName.Mana;
-        public Mana(int value)
+        public ResourceName Name { get; private set; } = ResourceName.Health;
+
+        public Health(int value)
         {
             MaxValue = value;
             Value = value;
         }
-        public Mana()
+        public Health()
         {
 
         }

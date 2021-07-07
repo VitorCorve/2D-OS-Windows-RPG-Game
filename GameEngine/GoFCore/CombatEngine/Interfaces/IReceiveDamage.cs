@@ -8,6 +8,6 @@ namespace GameEngine.CombatEngine.Interfaces
 {
     public interface IReceiveDamage
     {
-        void ReceiveDamage(uint incomingDamage);
+        void ReceiveDamage(int incomingDamage);
     }
 }

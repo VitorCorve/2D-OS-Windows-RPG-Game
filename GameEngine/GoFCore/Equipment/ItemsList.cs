@@ -8,12 +8,14 @@ namespace GameEngine.Equipment
 {
     public static class ItemsList
     {
-        public static ItemAttributes GetAttributes(uint ID)
+        public static ItemAttributes GetAttributes(int ID)
         {
             switch (ID)
             {
                 case 1:
                     return ID1();
+                case 2:
+                    return ID2();
                 default:
                     throw new Exception($"Item with ID {ID} no exists.");
             }
@@ -24,8 +26,21 @@ namespace GameEngine.Equipment
             var itemAttributes = new ItemAttributes();
 
             itemAttributes.Stamina = 27;
+            itemAttributes.Agility = 127;
             itemAttributes.Intellect = 34;
             itemAttributes.WeaponDamageValue = 35;
+            itemAttributes.Strength = 4;
+
+            return itemAttributes;
+        }
+
+        public static ItemAttributes ID2()
+        {
+            var itemAttributes = new ItemAttributes();
+
+            itemAttributes.Stamina = 27;
+            itemAttributes.Intellect = 34;
+            itemAttributes.WeaponDamageValue = 135;
             itemAttributes.Strength = 4;
 
             return itemAttributes;

@@ -8,12 +8,12 @@ namespace GameEngine.Player.Abstract
 {
     public interface IAttributes
     {
-        uint Strength { get; set; }
-        uint Stamina { get; set; }
-        uint Intellect { get; set; }
-        uint Agility { get; set; }
-        uint Endurance { get; set; }
-        uint WeaponDamageValue { get; set; }
-        uint ArmorValue { get; set; }
+        int Strength { get; set; }
+        int Stamina { get; set; }
+        int Intellect { get; set; }
+        int Agility { get; set; }
+        int Endurance { get; set; }
+        int WeaponDamageValue { get; set; }
+        int ArmorValue { get; set; }
     }
 }

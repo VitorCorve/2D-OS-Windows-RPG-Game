@@ -13,10 +13,10 @@ namespace GameEngine.CombatEngine
 {
     public class PlayerEntity : IReceiveDamage, IReceiveHeal
     {
-        public uint HealthPoints { get; set; }
+        public Health HealthPoints { get; set; }
         public Mana ManaPoints { get; set; }
         public Energy EnergyPoints { get; set; }
-        public uint AttackPower { get; set; }
+        public int AttackPower { get; set; }
         public Armor ArmorPoints { get; set; }
         public double CriticalHitChance { get; set; }
         public double DodgeChance { get; set; }
@@ -24,17 +24,17 @@ namespace GameEngine.CombatEngine
         public double ParryChange { get; set; }
         public double ResistChance { get; set; }
         public bool OutOfControl { get; set; } = false;
-        public void ReceiveDamage(uint incomingDamage)
+        public void ReceiveDamage(int incomingDamage)
         {
-            HealthPoints -= incomingDamage;
+            HealthPoints.Value -= incomingDamage;
         }
 
-        public void ReceiveHeal(uint healAmount)
+        public void ReceiveHeal(int healAmount)
         {
-            HealthPoints += healAmount;
+            HealthPoints.Value += healAmount;
         }
 
-        public void IncreaseValue(IValueType valueType, uint value)
+        public void IncreaseValue(IValueType valueType, int value)
         {
             switch (valueType)
             {
@@ -46,7 +46,7 @@ namespace GameEngine.CombatEngine
             }
         }
 
-        public void DecreaseValue(IValueType valueType, uint value)
+        public void DecreaseValue(IValueType valueType, int value)
         {
             switch (valueType)
             {

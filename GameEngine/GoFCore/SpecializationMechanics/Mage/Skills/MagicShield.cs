@@ -15,21 +15,21 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
     public class MagicShield : IBuffSkill
     {
         public string SkillName { get; private set; }
-        public uint SkillLevel { get; private set; }
+        public int SkillLevel { get; private set; }
         public Timer CoolDownTimer { get; private set; }
-        public uint Duration { get; private set; }
-        public uint CoolDown { get; private set; }
+        public int Duration { get; private set; }
+        public int CoolDown { get; private set; }
         public bool ReadyToUse { get; private set; }
         public bool SkillAffectedOnEnemy { get; private set; }
-        public uint Cost { get; private set; }
-        public uint SkillDamageValue { get; private set; }
+        public int Cost { get; private set; }
+        public int SkillDamageValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
         public IValueType ValueType { get; set; } = new Armor();
 
-        public void Use(uint dealerAttackPower, PlayerEntity target)
+        public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            uint buffValue = SkillDamageValue + dealerAttackPower;
+            int buffValue = SkillDamageValue + dealerAttackPower;
 
             var buffService = new BuffsService(this, target, Duration, buffValue, ValueType);
 
@@ -37,7 +37,7 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         }
 
 
-        public MagicShield(uint skillLevel)
+        public MagicShield(int skillLevel)
         {
             SkillName = "Magic Shield";
             SkillLevel = skillLevel;

@@ -14,10 +14,10 @@ namespace GameEngine.CombatEngine.Services
         public PlayerEntity Target { get; set; }
         public ISkill Buff { get; set; } 
         public Timer BuffTimer { get; set; }
-        public uint BuffValue { get; private set; }
-        public uint Duration { get; private set; }
+        public int BuffValue { get; private set; }
+        public int Duration { get; private set; }
         public IValueType Type { get; private set; }
-        public BuffsService(ISkill buff, PlayerEntity target, uint duration, uint buffValue, IValueType valueType)
+        public BuffsService(ISkill buff, PlayerEntity target, int duration, int buffValue, IValueType valueType)
         {
             Buff = buff;
             Target = target;
