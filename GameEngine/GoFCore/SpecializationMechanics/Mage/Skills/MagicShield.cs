@@ -23,6 +23,7 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public bool SkillAffectedOnEnemy { get; private set; }
         public int Cost { get; private set; }
         public int SkillDamageValue { get; private set; }
+        public int AmountOfDamage { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
         public IValueType ValueType { get; set; } = new Armor();

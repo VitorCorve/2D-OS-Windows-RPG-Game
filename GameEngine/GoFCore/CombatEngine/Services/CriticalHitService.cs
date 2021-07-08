@@ -14,7 +14,7 @@ namespace GameEngine.CombatEngine.Services
         {
             Random rand = new Random();
 
-            if (criticalChance < rand.Next(0, 100))
+            if (rand.Next(0, 100) < criticalChance)
                 Critical = true;
         }
     }

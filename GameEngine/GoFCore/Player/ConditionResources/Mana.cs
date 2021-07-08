@@ -13,7 +13,7 @@ namespace GameEngine.Player.ConditionResources
         public int Value
         {
             get { return _value; }
-            set { _value = Set(value); }
+            set { _value = ValidateValue(value); }
         }
         public int MaxValue { get; private set; }
         public ResourceName Name { get; private set; } = ResourceName.Mana;
@@ -27,7 +27,7 @@ namespace GameEngine.Player.ConditionResources
 
         }
 
-        private int Set(int value)
+        private int ValidateValue(int value)
         {
             if (value < 0)
                 return 0;

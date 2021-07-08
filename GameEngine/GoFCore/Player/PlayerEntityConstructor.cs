@@ -26,7 +26,7 @@ namespace GameEngine.CombatEngine
                 DodgeChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2)   + metaData.Level),
                 ParryChange     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2.2) + metaData.Level),
                 BlockChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 1.8) + metaData.Level),
-                ResistChance    = (((specializationAttributes.Intellect             + equipmentValues.Intellect) / 2)   + metaData.Level),
+                ResistChance    = ((specializationAttributes.Intellect / 2)         + metaData.Level),
             };
 
             switch (specializationAttributes)

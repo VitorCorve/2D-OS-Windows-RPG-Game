@@ -9,11 +9,13 @@ namespace GameEngine.Player.ConditionResources
 {
     public class Health : IResourceType
     {
+        public delegate void Death();
+        public event Death StopCombat;
         private int _value;
         public int Value 
         {
             get { return _value; }
-            set { _value = Set(value); }
+            set { _value = ValidateValue(value); }
         }
         public int MaxValue { get; private set; }
         public ResourceName Name { get; private set; } = ResourceName.Health;
@@ -28,10 +30,14 @@ namespace GameEngine.Player.ConditionResources
 
         }
 
-        private int Set(int value)
+        private int ValidateValue(int value)
         {
-            if (value < 0)
+            if (value <= 0)
+            {
+                StopCombat();
                 return 0;
+            }
+
 
             if (value > MaxValue)
                 return MaxValue;

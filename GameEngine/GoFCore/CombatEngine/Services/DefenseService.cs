@@ -53,22 +53,21 @@ namespace GameEngine.CombatEngine
 
             if (chance < BlockChance)
             {
-                Log("Attack blocked");
+                Log("blocked attack");
                 return false;
             }
                 
 
             if (chance < DodgeChance)
             {
-                throw new Exception("attack dodged");
-                Log("Attack dodged");
+                Log("dodged attack");
                 return false;
             }
                 
 
             if (chance < ParryChance)
             {
-                Log("Attack parried");
+                Log("parried attack");
                 return false;
             }
             return true;
@@ -78,7 +77,7 @@ namespace GameEngine.CombatEngine
         {
             if (Chance() < ResistChance)
             {
-                Log("Attack resisted");
+                Log("resisted attack");
                 return false;
             }
             return true;

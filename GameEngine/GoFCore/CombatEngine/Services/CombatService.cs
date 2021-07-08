@@ -13,7 +13,8 @@ namespace GameEngine.CombatEngine
     public class CombatServiсe : IWeaponAttack, ILooseControl
     {
         public delegate void NotifyMaster(string message);
-        public event NotifyMaster Log;
+        public event NotifyMaster LogDamage;
+        public event NotifyMaster LogBuff;
         public delegate void ExecuteAction();
         public delegate bool CheckAction();
         public int DamageValue { get; private set; }
@@ -34,8 +35,21 @@ namespace GameEngine.CombatEngine
             if (new CriticalHitService(CriticalChance).Critical)
             {
                 DamageValue *= 3;
-                Log("Critical hit");
+                LogDamage("does Critical by " + skill.SkillName + " for " + skill.AmountOfDamage);
             }
+            else
+                switch (skill)
+                {
+                    case IDamageSkill:
+                        LogDamage($"deals {skill.AmountOfDamage} damage by {skill.SkillName}");
+                        break;
+                    case IBuffSkill:
+                        LogBuff($"uses {skill.SkillName} for {skill.AmountOfDamage} value");
+                        break;
+                    default:
+                        break;
+                }
+
             skill.Use(DamageValue, target);
         }
     }

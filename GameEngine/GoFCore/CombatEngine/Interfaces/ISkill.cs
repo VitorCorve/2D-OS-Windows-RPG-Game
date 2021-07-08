@@ -18,6 +18,7 @@ namespace GameEngine.CombatEngine.Interfaces
         bool SkillAffectedOnEnemy { get; }
         int Cost { get; }
         int SkillDamageValue { get; }
+        int AmountOfDamage { get; }
         IResourceType ResourceType { get; set; }
         IAttackType Type { get; set; }
         IValueType ValueType { get; set; }

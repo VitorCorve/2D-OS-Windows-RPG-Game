@@ -26,9 +26,9 @@ namespace GameEngine.Equipment
             var itemAttributes = new ItemAttributes();
 
             itemAttributes.Stamina = 27;
-            itemAttributes.Agility = 127;
+            itemAttributes.Agility = 32;
             itemAttributes.Intellect = 34;
-            itemAttributes.WeaponDamageValue = 35;
+            itemAttributes.WeaponDamageValue = 25;
             itemAttributes.Strength = 4;
 
             return itemAttributes;
@@ -38,9 +38,9 @@ namespace GameEngine.Equipment
         {
             var itemAttributes = new ItemAttributes();
 
-            itemAttributes.Stamina = 27;
+            itemAttributes.Stamina = 3;
             itemAttributes.Intellect = 34;
-            itemAttributes.WeaponDamageValue = 135;
+            itemAttributes.WeaponDamageValue = 10;
             itemAttributes.Strength = 4;
 
             return itemAttributes;
