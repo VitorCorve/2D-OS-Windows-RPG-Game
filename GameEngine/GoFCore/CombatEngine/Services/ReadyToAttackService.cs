@@ -1,10 +1,6 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.CombatEngine.Services;
-using System;
+using GameEngine.Player.PlayerConditions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine
 {
@@ -12,13 +8,12 @@ namespace GameEngine.CombatEngine
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster Log;
-        public bool OutOfControl { get; set; }
+        public PlayerControl OutOfControl { get; set; } = new PlayerControl();
         public bool IsAlive { get; private set; } = true;
-        public ISkill SkillToUse { get; private set; }
         public List<IResourceType> Resources { get; private set; } = new List<IResourceType> { };
-
         public ReadyToAttackService(PlayerEntity dealer)
         {
+            OutOfControl = dealer.OutOfControl;
             dealer.HealthPoints.StopCombat += ValidateAliveStatus;
 
             Resources.Add(dealer.ManaPoints);
@@ -34,7 +29,7 @@ namespace GameEngine.CombatEngine
                 Log("is dead");
                 return false;
             }
-            if (OutOfControl)
+            if (OutOfControl.Value)
             {
                 Log("is out of control");
                 return false;
@@ -42,7 +37,7 @@ namespace GameEngine.CombatEngine
 
             if (skill?.CoolDown > 0)
             {
-                Log($"{skill.SkillName} on cooldown. Cooldown {skill.CoolDown}");
+                Log($"{skill.SkillName} on cooldown. Cooldown: {skill.CoolDown} s.");
                 return false;
             }
 

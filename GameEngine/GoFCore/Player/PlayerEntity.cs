@@ -8,10 +8,11 @@ using GameEngine.EquipmentManagement;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Actions;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.PlayerConditions;
 
 namespace GameEngine.CombatEngine
 {
-    public class PlayerEntity : IReceiveDamage, IReceiveHeal
+    public class PlayerEntity : IReceiveDamage, IReceiveHeal, IOutOfControl
     {
         public Health HealthPoints { get; set; }
         public Mana ManaPoints { get; set; }
@@ -23,7 +24,7 @@ namespace GameEngine.CombatEngine
         public double BlockChance { get; set; }
         public double ParryChange { get; set; }
         public double ResistChance { get; set; }
-        public bool OutOfControl { get; set; } = false;
+        public PlayerControl OutOfControl { get; set; } = new PlayerControl();
         public void ReceiveDamage(int incomingDamage)
         {
             HealthPoints.Value -= incomingDamage;
@@ -71,6 +72,16 @@ namespace GameEngine.CombatEngine
                 default:
                     break;
             }
+        }
+
+        public void LoseControl()
+        {
+            OutOfControl.Value = true;
+        }
+
+        public void ReturnControl()
+        {
+            OutOfControl.Value = false;
         }
 
     }

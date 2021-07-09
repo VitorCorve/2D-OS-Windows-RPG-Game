@@ -11,6 +11,7 @@ namespace GameEngine.CombatEngine.Services
 {
     public class BuffsService : IBuffService
     {
+        public delegate void SkillAction();
         public PlayerEntity Target { get; set; }
         public ISkill Buff { get; set; } 
         public Timer BuffTimer { get; set; }
@@ -28,15 +29,38 @@ namespace GameEngine.CombatEngine.Services
 
         public void Cancel()
         {
-            Target.DecreaseValue(Type, BuffValue);
+            switch (Buff)
+            {
+                case IBuffSkill:
+                    Target.DecreaseValue(Type, BuffValue);
+                    return;
+                case Polymorph:
+                    ReturnControl();
+                    return;
+                default:
+                    break;
+            }
+
         }
 
-        public void Activate()
+        public void Activate(SkillAction func = null)
         {
             BuffTimer = new Timer(1000);
             BuffTimer.Elapsed += Tick;
             BuffTimer.Start();
-            Target.IncreaseValue(Type, BuffValue);
+
+            switch (Buff)
+            {
+                case IBuffSkill:
+                    Target.IncreaseValue(Type, BuffValue);
+                    return;
+                case IDebuffSkill:
+                    func?.Invoke();
+                    return;
+                default:
+                    break;
+            }
+
         }
 
         private void Tick(object sender, ElapsedEventArgs e)
@@ -49,5 +73,11 @@ namespace GameEngine.CombatEngine.Services
                 Cancel();
             }
         }
+
+        private void ReturnControl()
+        {
+            Target.ReturnControl();
+        }
+
     }
 }

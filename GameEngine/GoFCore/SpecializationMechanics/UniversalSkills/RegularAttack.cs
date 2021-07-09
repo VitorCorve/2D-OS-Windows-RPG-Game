@@ -5,9 +5,9 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using System.Timers;
 
-namespace GameEngine.SpecializationMechanics.Mage.Skills
+namespace GameEngine.SpecializationMechanics.UniversalSkills
 {
-    public class Heal : IBuffSkill
+    public class RegularAttack : IDamageSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -27,9 +27,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             private set { _skillDamageValue = value; }
         }
         public int AmountOfDamage { get; private set; }
-        public IResourceType ResourceType { get; set; } = new Mana();
-        public IAttackType Type { get; set; } = new Magic();
+        public IResourceType ResourceType { get; set; } = new Energy();
+        public IAttackType Type { get; set; } = new Melee();
         public IValueType ValueType { get; set; }
+
         public int RandomizeDamageValue(int damageValue)
         {
             var skillValueValidation = new CalculateSkillValueService(CriticalChance, damageValue);
@@ -38,17 +39,14 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
+            SkillDamageValue = dealerAttackPower;
+            AmountOfDamage = (SkillDamageValue) - target.ArmorPoints.Value;
+            target.ReceiveDamage(AmountOfDamage);
         }
 
-        public Heal(int skillLevel)
+        public RegularAttack()
         {
-            SkillName = "Heal";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
-            Cost = SkillLevel * 3;
-            CoolDownDuration = 6;
+            SkillName = "melee attack";
         }
-
     }
 }

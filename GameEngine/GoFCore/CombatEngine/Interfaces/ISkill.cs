@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+﻿using System.Timers;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
@@ -12,10 +7,12 @@ namespace GameEngine.CombatEngine.Interfaces
         string SkillName { get; }
         int SkillLevel { get; }
         Timer CoolDownTimer { get; }
-        int Duration { get; }
-        int CoolDown { get; }
+        int Duration { get; set; }
+        int CoolDownDuration { get; set; }
+        int CoolDown { get; set; }
         bool ReadyToUse { get; }
         bool SkillAffectedOnEnemy { get; }
+        double CriticalChance { get; }
         int Cost { get; }
         int SkillDamageValue { get; }
         int AmountOfDamage { get; }
@@ -23,5 +20,6 @@ namespace GameEngine.CombatEngine.Interfaces
         IAttackType Type { get; set; }
         IValueType ValueType { get; set; }
         void Use(int dealerAttackPower, PlayerEntity target);
+        int RandomizeDamageValue(int damageValue);
     }
 }

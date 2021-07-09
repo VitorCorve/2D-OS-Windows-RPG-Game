@@ -17,3 +17,22 @@ E:\Vs Projects\GoFCore\EngineTest\obj\Debug\net5.0\EngineTest.dll
 E:\Vs Projects\GoFCore\EngineTest\obj\Debug\net5.0\ref\EngineTest.dll
 E:\Vs Projects\GoFCore\EngineTest\obj\Debug\net5.0\EngineTest.pdb
 E:\Vs Projects\GoFCore\EngineTest\obj\Debug\net5.0\EngineTest.genruntimeconfig.cache
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.exe
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.deps.json
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.runtimeconfig.json
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.runtimeconfig.dev.json
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.dll
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\ref\EngineTest.dll
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\EngineTest.pdb
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\GameEngine.dll
+E:\GitProjects\dev\practic\GameEngine\EngineTest\bin\Debug\net5.0\GameEngine.pdb
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.csprojAssemblyReference.cache
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.GeneratedMSBuildEditorConfig.editorconfig
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.AssemblyInfoInputs.cache
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.AssemblyInfo.cs
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.csproj.CoreCompileInputs.cache
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.csproj.CopyComplete
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.dll
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\ref\EngineTest.dll
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.pdb
+E:\GitProjects\dev\practic\GameEngine\EngineTest\obj\Debug\net5.0\EngineTest.genruntimeconfig.cache

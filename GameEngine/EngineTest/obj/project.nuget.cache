@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3kjMyS8LVZLRkb5M0gb+uR8lL8UndFhfl3HOHAHrnzuXg/no+kQ3j6lj+nXtvaSJd05lqGwz4PmWinGl3qakAA==",
+  "dgSpecHash": "W2X+lGt7VNeL2+DoRX+gxTqoJqWUdCZgRf1Hx9w/m0rSsKFQvSAXM/PylXKEO0RQk/MQE8nfdgGDilcgv4sH/A==",
   "success": true,
-  "projectFilePath": "E:\\Vs Projects\\GoFCore\\EngineTest\\EngineTest.csproj",
+  "projectFilePath": "E:\\GitProjects\\dev\\practic\\GameEngine\\EngineTest\\EngineTest.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

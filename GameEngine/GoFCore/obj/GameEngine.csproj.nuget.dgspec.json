@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj": {}
+    "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj": {}
   },
   "projects": {
-    "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj": {
+    "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj",
+        "projectUniqueName": "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj",
         "projectName": "GameEngine",
-        "projectPath": "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj",
+        "projectPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj",
         "packagesPath": "C:\\Users\\Anatoly\\.nuget\\packages\\",
-        "outputPath": "E:\\Vs Projects\\GoFCore\\GoFCore\\obj\\",
+        "outputPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Vs\\Shared\\NuGetPackages"

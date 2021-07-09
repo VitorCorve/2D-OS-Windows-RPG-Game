@@ -1,9 +1,4 @@
 ﻿using GameEngine.Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Services
 {
@@ -20,6 +15,7 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Defense.Log += ConstructDefenseNotification;
             player1Manager.Combat.LogDamage += ConstructCombatDamageNotification;
             player1Manager.Combat.LogBuff += ConstructCombatBuffNotification;
+            player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
 
             DealerName = player1Data.Name;
             TargetName = player2Data.Name;
@@ -42,6 +38,11 @@ namespace GameEngine.CombatEngine.Services
         private void ConstructCombatBuffNotification(string str)
         {
             Log(DealerName + $" {str}");
+        }
+
+        private void ConstructCombatDebuffNotification(string str)
+        {
+            Log(DealerName + $" {str} on " + TargetName);
         }
     }
 }

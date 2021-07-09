@@ -1,15 +1,7 @@
-﻿using GameEngine;
-using GameEngine.Player;
+﻿using GameEngine.Player;
 using GameEngine.CombatEngine;
 using System.Timers;
-using GameEngine.Specializatons;
 using System;
-using GameEngine.EquipmentManagement;
-using GameEngine.Player.Specializatons.Mage;
-using GameEngine.Equipment;
-using GameEngine.SpecializationMechanics.Mage;
-using GameEngine.SpecializationMechanics.Mage.Skills;
-using GameEngine.SpecializationMechanics.GlobalSkills;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 
@@ -18,8 +10,9 @@ namespace EngineTest
     public class TestCombatServices
     {
         public static decimal benchmarkCount = 0;
-        public void Run(PlayerGlobalData player1Data, PlayerGlobalData player2Data, PlayerEntity player1, PlayerEntity player2, ISkill skill1, ISkill skill2, int cyclesCount)
+        public void Run(PlayerGlobalData player1Data, PlayerGlobalData player2Data, PlayerEntity player1, PlayerEntity player2, ISkill skill1, ISkill skill2, int cyclesCount, double iterationsInterval)
         {
+            double _iterationsInterval = 1000 * iterationsInterval;
             var player1CombatManager = new CombatManager(dealer: player1, target: player2);
             var player2CombatManager = new CombatManager(dealer: player2, target: player1);
 
@@ -36,36 +29,48 @@ namespace EngineTest
 
             for (int i = 1; i <= cyclesCount; i++)
             {
+                System.Threading.Thread.Sleep((int)_iterationsInterval);
                 Console.Write("\nCycle ");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(i);
+                Console.WriteLine(i + "\n");
                 Console.ForegroundColor = ConsoleColor.White;
+
+                // player 1 action
+
+                Console.Write($"{player2Data.Name} 1 hp before ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(skill2.SkillName);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($": {player2.HealthPoints.Value}");
 
                 player1CombatManager.Action(skill1);
 
-                Console.Write($"\nplayer 1 hp after ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write(skill1.SkillName);
+                Console.Write($"{player2Data.Name} 1 hp after ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(skill2.SkillName);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($": {player2.HealthPoints.Value}");
+
+
+
+                Console.Write($"{player2Data.Name} 1 armor ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(skill2.SkillName);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($": {player2.ArmorPoints.Value}");
+
+
+                // player 2 action
+
+                Console.Write($"{player1Data.Name} 1 hp before ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(skill2.SkillName);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($": {player1.HealthPoints.Value}");
 
-                Console.Write($"player 1 mp after ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write(skill1.SkillName);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($": {player1.ManaPoints.Value}");
-
-
-
-                Console.Write($"player 2 attack power before ");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write(skill1.SkillName);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($": {player1.AttackPower}");
-
                 player2CombatManager.Action(skill2);
 
-                Console.Write($"player 1 hp after ");
+                Console.Write($"{player1Data.Name} 1 hp after ");
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(skill2.SkillName);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -73,7 +78,7 @@ namespace EngineTest
 
 
 
-                Console.Write($"player 1 armor ");
+                Console.Write($"{player1Data.Name} 1 armor ");
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(skill2.SkillName);
                 Console.ForegroundColor = ConsoleColor.White;

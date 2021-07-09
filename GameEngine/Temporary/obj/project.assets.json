@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Vs Projects\\GoFCore\\Temporary\\Temporary.csproj",
+      "projectUniqueName": "E:\\GitProjects\\dev\\practic\\GameEngine\\Temporary\\Temporary.csproj",
       "projectName": "Temporary",
-      "projectPath": "E:\\Vs Projects\\GoFCore\\Temporary\\Temporary.csproj",
+      "projectPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\Temporary\\Temporary.csproj",
       "packagesPath": "C:\\Users\\Anatoly\\.nuget\\packages\\",
-      "outputPath": "E:\\Vs Projects\\GoFCore\\Temporary\\obj\\",
+      "outputPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\Temporary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\Vs\\Shared\\NuGetPackages"

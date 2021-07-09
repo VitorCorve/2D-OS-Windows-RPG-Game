@@ -19,7 +19,6 @@ namespace GameEngine.CombatEngine
         {
             Dealer = dealer;
             Target = target;
-
             Defense = new DefenseService(Target);
             Ready = new ReadyToAttackService(Dealer);
             Combat = new CombatServiсe(Dealer);
@@ -28,40 +27,46 @@ namespace GameEngine.CombatEngine
 
         public void Action(ISkill skill)
         {
-            switch (skill)
+            if (Ready.CheckStatement(skill))
             {
-                case IDamageSkill:
-                    Damage(skill);
-                    return;
+                switch (skill)
+                {
+                    case IDamageSkill:
+                        Damage(skill);
+                        return;
 
-                case IBuffSkill:
-                    Buff(skill);
-                    return;
-
-                default:
-                    break;
+                    case IBuffSkill:
+                        Buff(skill);
+                        return;
+                    case IDebuffSkill:
+                        Debuff(skill);
+                        return;
+                    default:
+                        break;
+                }
             }
         }
 
         private void Damage(ISkill skill)
         {
-            if (Ready.CheckStatement(skill))
-            {
-                Dealer.ReduceResource(skill);
-                if (Defense.DefenseCheck(skill))
-                    Combat.Execute(Target, skill);
-            }
+            Dealer.ReduceResource(skill);
+
+            if (Defense.DefenseCheck(skill))
+                Combat.Execute(Target, skill);
             else
                 return;
         }
 
         private void Buff(ISkill skill)
         {
-            if (Ready.CheckStatement(skill))
-            {
-                Dealer.ReduceResource(skill);
-                Combat.Execute(Dealer, skill);
-            }
+            Dealer.ReduceResource(skill);
+            Combat.Execute(Dealer, skill);
+        }
+
+        private void Debuff(ISkill skill)
+        {
+            Dealer.ReduceResource(skill);
+            Combat.Execute(Target, skill);
         }
     }
 }

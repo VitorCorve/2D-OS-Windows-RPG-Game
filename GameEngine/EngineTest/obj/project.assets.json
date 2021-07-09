@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Vs Projects\\GoFCore\\EngineTest\\EngineTest.csproj",
+      "projectUniqueName": "E:\\GitProjects\\dev\\practic\\GameEngine\\EngineTest\\EngineTest.csproj",
       "projectName": "EngineTest",
-      "projectPath": "E:\\Vs Projects\\GoFCore\\EngineTest\\EngineTest.csproj",
+      "projectPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\EngineTest\\EngineTest.csproj",
       "packagesPath": "C:\\Users\\Anatoly\\.nuget\\packages\\",
-      "outputPath": "E:\\Vs Projects\\GoFCore\\EngineTest\\obj\\",
+      "outputPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\EngineTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\Vs\\Shared\\NuGetPackages"
@@ -58,8 +58,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj": {
-              "projectPath": "E:\\Vs Projects\\GoFCore\\GoFCore\\GameEngine.csproj"
+            "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj": {
+              "projectPath": "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj"
             }
           }
         }

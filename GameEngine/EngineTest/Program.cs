@@ -9,7 +9,7 @@ using GameEngine.Player.Specializatons.Mage;
 using GameEngine.Equipment;
 using GameEngine.SpecializationMechanics.Mage;
 using GameEngine.SpecializationMechanics.Mage.Skills;
-using GameEngine.SpecializationMechanics.GlobalSkills;
+using GameEngine.SpecializationMechanics.UniversalSkills;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 
@@ -25,6 +25,8 @@ namespace EngineTest
             var fireball = new Fireball(3);
             var heal = new Heal(3);
             var magicShield = new MagicShield(5);
+            var polymorph = new Polymorph(1);
+            var polymorph2 = new Polymorph(1);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -40,7 +42,7 @@ namespace EngineTest
             var player2= playerEntityConstructor.CreatePlayer(player1GlobalData, specializationAttributes, equipmentValues);
 
 
-            test.Run(player1GlobalData, player2GlobalData, player1, player2, skill1: heal, skill2: fireball, cyclesCount: 100);
+            test.Run(player1GlobalData, player2GlobalData, player1, player2, skill1: polymorph, skill2: polymorph2, cyclesCount: 100, iterationsInterval: 1);
         }
 
 
