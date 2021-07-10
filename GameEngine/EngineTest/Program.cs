@@ -27,6 +27,7 @@ namespace EngineTest
             var magicShield = new MagicShield(5);
             var polymorph = new Polymorph(1);
             var polymorph2 = new Polymorph(1);
+            var soulburn = new Soulburn(1);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -42,7 +43,7 @@ namespace EngineTest
             var player2= playerEntityConstructor.CreatePlayer(player1GlobalData, specializationAttributes, equipmentValues);
 
 
-            test.Run(player1GlobalData, player2GlobalData, player1, player2, skill1: polymorph, skill2: polymorph2, cyclesCount: 100, iterationsInterval: 1);
+            test.Run(player1GlobalData, player2GlobalData, player1, player2, skill1: soulburn, skill2: soulburn, cyclesCount: 100, iterationsInterval: 0.1);
         }
 
 
