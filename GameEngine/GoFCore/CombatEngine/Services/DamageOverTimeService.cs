@@ -20,6 +20,7 @@ namespace GameEngine.CombatEngine.Services
 
         public DamageOverTimeService(PlayerEntity target, IDamageOverTimeSkill debuff)
         {
+            Debuff = debuff;
             DamageValue = debuff.SkillDamageValue;
             Duration = debuff.Duration;
             CriticalChance = target.CriticalHitChance;
@@ -43,7 +44,7 @@ namespace GameEngine.CombatEngine.Services
             }
 
             int skillValueValidation = new CalculateSkillValueService(CriticalChance, DamageValue).SkillValue;
-            Target.ReceiveDamage(skillValueValidation);
+            Target.ReceiveDamgeOverTime(Debuff, skillValueValidation - Target.ArmorPoints.Value);
 
             Duration -= 1;
         }

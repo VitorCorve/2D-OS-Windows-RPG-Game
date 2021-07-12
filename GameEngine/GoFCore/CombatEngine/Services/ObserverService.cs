@@ -16,6 +16,7 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Combat.LogDamage += ConstructCombatDamageNotification;
             player1Manager.Combat.LogBuff += ConstructCombatBuffNotification;
             player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
+            player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
 
             DealerName = player1Data.Name;
             TargetName = player2Data.Name;
@@ -43,6 +44,11 @@ namespace GameEngine.CombatEngine.Services
         private void ConstructCombatDebuffNotification(string str)
         {
             Log(DealerName + $" {str} on " + TargetName);
+        }
+
+        private void ConstructCombatDoTNotification(string str)
+        {
+            Log(DealerName + $"'s {str} to " + TargetName);
         }
     }
 }

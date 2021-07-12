@@ -5,9 +5,9 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using System.Timers;
 
-namespace GameEngine.SpecializationMechanics.UniversalSkills
+namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
-    public class RegularAttack : IDamageSkill
+    public class Backstab : IDamageSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -36,21 +36,26 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
             var skillValueValidation = new CalculateSkillValueService(CriticalChance, damageValue);
             return skillValueValidation.SkillValue;
         }
-
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            SkillDamageValue = dealerAttackPower;
-            AmountOfDamage = (SkillDamageValue) - target.ArmorPoints.Value;
+            CriticalChance = target.CriticalHitChance;
+            AmountOfDamage = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
 
             if (AmountOfDamage < (target.ArmorPoints.Value / 10))
                 AmountOfDamage = target.ArmorPoints.Value / 10;
 
             target.ReceiveDamage(AmountOfDamage);
+            var coolDown = new CoolDownService(this);
+            coolDown.Activate();
         }
 
-        public RegularAttack()
+        public Backstab(int skillLevel)
         {
-            SkillName = "melee attack";
+            SkillName = "Backstab";
+            SkillLevel = skillLevel;
+            SkillDamageValue = SkillLevel * 5;
+            Cost = SkillLevel * 3;
+            CoolDownDuration = 3;
         }
     }
 }

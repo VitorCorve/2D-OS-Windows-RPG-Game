@@ -21,8 +21,7 @@ namespace GameEngine.CombatEngine
                 HealthPoints    = new Health((specializationAttributes.Stamina      + equipmentValues.Stamina) * 10),
                 ManaPoints      = new Mana((specializationAttributes.Intellect      + equipmentValues.Intellect) * 10),
                 EnergyPoints    = new Energy((specializationAttributes.Agility      + equipmentValues.Agility) * 10),
-                AttackPower     = (specializationAttributes.Strength                + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue,
-                ArmorPoints     = new Armor(equipmentValues.ArmorValue * 10),
+                ArmorPoints     = new Armor(equipmentValues.ArmorValue),
                 DodgeChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2)   + metaData.Level),
                 ParryChange     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2.2) + metaData.Level),
                 BlockChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 1.8) + metaData.Level),
@@ -32,12 +31,12 @@ namespace GameEngine.CombatEngine
             switch (specializationAttributes)
             {
                 case MageBasicAttributes:
-                    playerEntity.CriticalHitChance = 
-                        (specializationAttributes.Intellect + metaData.Level);
+                    playerEntity.CriticalHitChance = (specializationAttributes.Intellect + metaData.Level);
+                    playerEntity.AttackPower = (specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue;
                     break;
                 default:
-                    playerEntity.CriticalHitChance = 
-                        (specializationAttributes.Agility + metaData.Level);
+                    playerEntity.CriticalHitChance = (specializationAttributes.Agility + metaData.Level);
+                    playerEntity.AttackPower = (specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue;
                     break;
             }
 

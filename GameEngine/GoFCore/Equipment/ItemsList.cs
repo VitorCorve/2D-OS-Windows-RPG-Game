@@ -38,10 +38,11 @@ namespace GameEngine.Equipment
         {
             var itemAttributes = new ItemAttributes();
 
-            itemAttributes.Stamina = 3;
-            itemAttributes.Intellect = 34;
-            itemAttributes.WeaponDamageValue = 10;
-            itemAttributes.Strength = 4;
+            itemAttributes.Stamina = 30;
+            itemAttributes.Intellect = 4;
+            itemAttributes.WeaponDamageValue = 3;
+            itemAttributes.Strength = 5;
+            itemAttributes.ArmorValue = 40;
 
             return itemAttributes;
         }

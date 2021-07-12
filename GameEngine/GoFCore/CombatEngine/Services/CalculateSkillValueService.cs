@@ -16,7 +16,7 @@ namespace GameEngine.CombatEngine.Services
             if (randomize.Next(0, 100) < criticalHitChance)
                 basicSkillValue *= 3;
 
-            SkillValue = basicSkillValue * 10 / randomize.Next(6, 13);
+            SkillValue = basicSkillValue * 10 / randomize.Next(9, 12);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace GameEngine.CombatEngine
 {
     public class PlayerEntity : IReceiveDamage, IReceiveHeal, IOutOfControl
     {
+        public delegate void NotifyMaster(string message);
+        public event NotifyMaster LogDotDamage;
         public Health HealthPoints { get; set; }
         public Mana ManaPoints { get; set; }
         public Energy EnergyPoints { get; set; }
@@ -84,5 +86,10 @@ namespace GameEngine.CombatEngine
             OutOfControl.Value = false;
         }
 
+        public void ReceiveDamgeOverTime(ISkill skill, int incomingDamage)
+        {
+            LogDotDamage($"{skill.SkillName} deals {incomingDamage} damage");
+            HealthPoints.Value -= incomingDamage;
+        }
     }
 }
