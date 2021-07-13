@@ -1,13 +1,8 @@
-﻿using GameEngine.EquipmentManagement;
-using GameEngine.Player;
+﻿using GameEngine.Player;
 using GameEngine.Player.Abstract;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.DefenseResources;
 using GameEngine.Player.Specializatons.Mage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine
 {
@@ -18,14 +13,14 @@ namespace GameEngine.CombatEngine
         {
             var playerEntity = new PlayerEntity
             {
-                HealthPoints    = new Health((specializationAttributes.Stamina      + equipmentValues.Stamina) * 10),
-                ManaPoints      = new Mana((specializationAttributes.Intellect      + equipmentValues.Intellect) * 10),
-                EnergyPoints    = new Energy((specializationAttributes.Agility      + equipmentValues.Agility) * 10),
+                HealthPoints    = new Health((specializationAttributes.Stamina          + equipmentValues.Stamina)   * 10),
+                ManaPoints      = new Mana((specializationAttributes.Intellect          + equipmentValues.Intellect) * 10),
+                EnergyPoints    = new Energy((specializationAttributes.Agility          + equipmentValues.Agility)   * 10),
                 ArmorPoints     = new Armor(equipmentValues.ArmorValue),
-                DodgeChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2)   + metaData.Level),
-                ParryChange     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 2.2) + metaData.Level),
-                BlockChance     = (((specializationAttributes.Agility               + equipmentValues.Agility)   / 1.8) + metaData.Level),
-                ResistChance    = ((specializationAttributes.Intellect / 2)         + metaData.Level),
+                DodgeChance     = new Dodge(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2)   + metaData.Level),
+                ParryChance     = new Parry(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2.2) + metaData.Level),
+                BlockChance     = new Block(((specializationAttributes.Agility          + equipmentValues.Agility)   / 1.8) + metaData.Level),
+                ResistChance    = new Resist((specializationAttributes.Intellect / 2)   + metaData.Level),
             };
 
             switch (specializationAttributes)
@@ -39,7 +34,6 @@ namespace GameEngine.CombatEngine
                     playerEntity.AttackPower = (specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue;
                     break;
             }
-
             return playerEntity;
         }
     }

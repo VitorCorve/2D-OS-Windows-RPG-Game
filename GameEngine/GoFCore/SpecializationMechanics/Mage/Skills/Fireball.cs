@@ -26,10 +26,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             get { return RandomizeDamageValue(_skillDamageValue); }
             private set { _skillDamageValue = value; }
         }
-        public int AmountOfDamage { get; private set; }
+        public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
-        public IValueType ValueType { get; set; }
+        public IResourceType ValueType { get; set; }
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -39,8 +39,8 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalHitChance;
-            AmountOfDamage = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
-            target.ReceiveDamage(AmountOfDamage);
+            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
+            target.ReceiveDamage(AmountOfValue);
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }

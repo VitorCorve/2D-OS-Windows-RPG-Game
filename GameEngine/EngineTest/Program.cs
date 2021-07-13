@@ -24,6 +24,8 @@ namespace EngineTest
             var test = new TestCombatServices();
 
             var regularAttack = new RegularAttack();
+
+            // mage skills. Every players entity must have their own skill exemplar
             var fireball = new Fireball(3);
             var heal = new Heal(3);
             var magicShield = new MagicShield(5);
@@ -31,7 +33,11 @@ namespace EngineTest
             var polymorph2 = new Polymorph(1);
             var soulburn = new Soulburn(1);
             var soulburn2 = new Soulburn(1);
+
+            // rogue skills
             var backstab = new Backstab(1);
+            var dissapearIntoTheShadows = new DissapearIntoTheShadows(1);
+            var findTheWeakness = new FindTheWeakness(1);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -48,7 +54,15 @@ namespace EngineTest
             var player2= playerEntityConstructor.CreatePlayer(player2GlobalData, specializationAttributes2, equipmentValues);
 
 
-            test.Run(player1GlobalData, player2GlobalData, player1: player1, player2: player2, skill1: fireball, skill2: backstab, cyclesCount: 1000, iterationsInterval: 1);
+            test.Run(
+                player1GlobalData, 
+                player2GlobalData, 
+                player1: player1, 
+                player2: player2, 
+                skill1: backstab, 
+                skill2: regularAttack, 
+                cyclesCount: 1000, 
+                iterationsInterval: 2);
         }
 
 

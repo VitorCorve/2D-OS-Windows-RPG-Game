@@ -19,17 +19,11 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public bool SkillAffectedOnEnemy { get; private set; }
         public double CriticalChance { get; private set; }
         public int Cost { get; private set; }
-
-        private int _skillDamageValue;
-        public int SkillDamageValue
-        {
-            get { return RandomizeDamageValue(_skillDamageValue); }
-            private set { _skillDamageValue = value; }
-        }
-        public int AmountOfDamage { get; private set; }
+        public int SkillDamageValue { get; set; }
+        public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
-        public IValueType ValueType { get; set; }
+        public IResourceType ValueType { get; set; }
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -37,12 +31,8 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         }
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            int buffValue = SkillDamageValue + dealerAttackPower;
-
-            var buffService = new BuffsService(this, target, Duration, buffValue, ValueType);
-
+            var buffService = new BuffsService(this, target);
             var coolDown = new CoolDownService(this);
-
             buffService.Activate(() => target.LoseControl());
             coolDown.Activate();
         }

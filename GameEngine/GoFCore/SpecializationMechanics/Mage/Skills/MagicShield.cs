@@ -20,16 +20,16 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public double CriticalChance { get; private set; }
         public int Cost { get; private set; }
         public int SkillDamageValue { get; private set; }
-        public int AmountOfDamage { get; private set; }
+        public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
-        public IValueType ValueType { get; set; } = new Armor();
+        public IResourceType ValueType { get; set; } = new Armor();
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            int buffValue = SkillDamageValue + dealerAttackPower;
+            AmountOfValue = SkillDamageValue + dealerAttackPower;
 
-            var buffService = new BuffsService(this, target, Duration, buffValue, ValueType);
+            var buffService = new BuffsService(this, target);
 
             buffService.Activate();
 

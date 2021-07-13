@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.ConditionResources
 {
-    public class Armor : IValueType
+    public class Armor : IArmorResourceType
     {
         private int _value;
         public int Value

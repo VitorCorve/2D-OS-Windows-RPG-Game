@@ -1,5 +1,4 @@
-﻿using GameEngine.Player.ConditionResources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IValueType
+    public interface IConditionResourceType : IResourceType
     {
         int Value { get; }
-        ResourceName Name { get; }
+        int MaxValue { get; }
     }
 }

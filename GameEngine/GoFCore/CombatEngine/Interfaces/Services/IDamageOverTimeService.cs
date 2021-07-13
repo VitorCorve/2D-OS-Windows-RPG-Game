@@ -4,7 +4,7 @@ using System.Timers;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IDamageOverTime
+    public interface IDamageOverTimeService
     {
         int DamageValue { get; }
         int Duration { get; }

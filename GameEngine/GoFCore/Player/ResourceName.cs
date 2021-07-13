@@ -4,13 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.Player.ConditionResources
+namespace GameEngine.Player
 {
     public enum ResourceName
     {
         Armor,
         Energy,
         Health,
-        Mana
+        Mana,
+        Dodge,
+        Block,
+        Parry,
+        Resist
     }
 }

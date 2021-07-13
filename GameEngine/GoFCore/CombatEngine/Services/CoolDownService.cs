@@ -3,7 +3,7 @@ using System.Timers;
 
 namespace GameEngine.CombatEngine.Services
 {
-    public class CoolDownService : ICoolDown
+    public class CoolDownService : ICoolDownService
     {
         public int CoolDown { get; private set; }
         public Timer CoolDownTimer { get; private set; }

@@ -3,6 +3,7 @@ using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.PlayerConditions;
 using System.Timers;
 
 namespace GameEngine.SpecializationMechanics.Rogue.Skills
@@ -26,10 +27,10 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             get { return RandomizeDamageValue(_skillDamageValue); }
             private set { _skillDamageValue = value; }
         }
-        public int AmountOfDamage { get; private set; }
+        public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Energy();
         public IAttackType Type { get; set; } = new Melee();
-        public IValueType ValueType { get; set; }
+        public IResourceType ValueType { get; set; }
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -39,12 +40,21 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalHitChance;
-            AmountOfDamage = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
+            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
 
-            if (AmountOfDamage < (target.ArmorPoints.Value / 10))
-                AmountOfDamage = target.ArmorPoints.Value / 10;
+            if (AmountOfValue < (target.ArmorPoints.Value / 10))
+                AmountOfValue = target.ArmorPoints.Value / 10;
 
-            target.ReceiveDamage(AmountOfDamage);
+            foreach (var debuff in target.Debuffs)
+            {
+                if (debuff == PlayerDebuff.FindTheWeakness)
+                {
+                    AmountOfValue *= 120 / 100;
+                    break;
+                }
+            }
+
+            target.ReceiveDamage(AmountOfValue);
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }

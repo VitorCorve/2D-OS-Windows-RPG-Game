@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.ConditionResources
 {
-    public class Health : IResourceType
+    public class Health : IConditionResourceType
     {
         public delegate void Death();
         public event Death StopCombat;

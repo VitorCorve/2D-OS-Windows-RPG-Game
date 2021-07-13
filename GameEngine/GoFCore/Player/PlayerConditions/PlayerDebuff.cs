@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.SpecializationMechanics
+namespace GameEngine.Player.PlayerConditions
 {
-    public class CharacterSkillsList
+    public enum PlayerDebuff
     {
-        void Validate()
-        {
-
-        }
+        FindTheWeakness
     }
 }

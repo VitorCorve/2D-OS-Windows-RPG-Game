@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace GameEngine.CombatEngine
 {
-    public class ReadyToAttackService : IReadyToAttack
+    public class ReadyToAttackService : IReadyToAttackService
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster Log;
         public PlayerControl OutOfControl { get; set; } = new PlayerControl();
         public bool IsAlive { get; private set; } = true;
-        public List<IResourceType> Resources { get; private set; } = new List<IResourceType> { };
+        public List<IConditionResourceType> Resources { get; private set; } = new List<IConditionResourceType> { };
         public ReadyToAttackService(PlayerEntity dealer)
         {
             OutOfControl = dealer.OutOfControl;

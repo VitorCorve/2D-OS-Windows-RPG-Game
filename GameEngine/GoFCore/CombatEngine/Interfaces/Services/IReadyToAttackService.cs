@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IReadyToAttack
+    public interface IReadyToAttackService
     {
         PlayerControl OutOfControl { get; }
-        List<IResourceType> Resources { get; }
+        List<IConditionResourceType> Resources { get; }
     }
 }

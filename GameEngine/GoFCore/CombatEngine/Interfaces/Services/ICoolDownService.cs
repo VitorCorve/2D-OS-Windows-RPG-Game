@@ -2,7 +2,7 @@
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface ICoolDown
+    public interface ICoolDownService
     {
         int CoolDown { get; }
         Timer CoolDownTimer { get; }

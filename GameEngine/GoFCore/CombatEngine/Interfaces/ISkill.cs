@@ -15,10 +15,10 @@ namespace GameEngine.CombatEngine.Interfaces
         double CriticalChance { get; }
         int Cost { get; }
         int SkillDamageValue { get; }
-        int AmountOfDamage { get; }
+        int AmountOfValue { get; }
         IResourceType ResourceType { get; set; }
         IAttackType Type { get; set; }
-        IValueType ValueType { get; set; }
+        IResourceType ValueType { get; set; }
         void Use(int dealerAttackPower, PlayerEntity target);
         int RandomizeDamageValue(int damageValue);
     }

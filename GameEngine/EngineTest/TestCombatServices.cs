@@ -26,6 +26,8 @@ namespace EngineTest
             benchmarkTimer.Elapsed += BenchmarkTick;
             benchmarkTimer.Start();
 
+            var findTheWeakness = new GameEngine.SpecializationMechanics.Rogue.Skills.FindTheWeakness(1);
+            player1CombatManager.Action(findTheWeakness);
 
             for (int i = 1; i <= cyclesCount; i++)
             {

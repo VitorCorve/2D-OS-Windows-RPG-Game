@@ -8,7 +8,7 @@ using System.Timers;
 
 namespace GameEngine.CombatEngine.Services
 {
-    public class DamageOverTimeService : IDamageOverTime
+    public class DamageOverTimeService : IDamageOverTimeService
     {
         public int DamageValue { get; private set; }
         public int Duration { get; private set; }
@@ -30,7 +30,7 @@ namespace GameEngine.CombatEngine.Services
 
         public void Activate()
         {
-            DurationTimer = new Timer(1000 * Intervals);
+            DurationTimer = new Timer(1000);
             DurationTimer.Elapsed += Tick;
             DurationTimer.Start();
         }
@@ -43,10 +43,13 @@ namespace GameEngine.CombatEngine.Services
                 return;
             }
 
-            int skillValueValidation = new CalculateSkillValueService(CriticalChance, DamageValue).SkillValue;
-            Target.ReceiveDamgeOverTime(Debuff, skillValueValidation - Target.ArmorPoints.Value);
-
             Duration -= 1;
+
+            if (Duration % Intervals == 0)
+            { 
+                int skillValueValidation = new CalculateSkillValueService(CriticalChance, DamageValue).SkillValue; 
+                Target.ReceiveDamgeOverTime(Debuff, skillValueValidation - Target.ArmorPoints.Value);
+            }
         }
 
         private void Cancel()

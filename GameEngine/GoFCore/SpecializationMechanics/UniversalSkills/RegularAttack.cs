@@ -26,10 +26,10 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
             get { return RandomizeDamageValue(_skillDamageValue); }
             private set { _skillDamageValue = value; }
         }
-        public int AmountOfDamage { get; private set; }
+        public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Energy();
         public IAttackType Type { get; set; } = new Melee();
-        public IValueType ValueType { get; set; }
+        public IResourceType ValueType { get; set; }
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -40,12 +40,12 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             SkillDamageValue = dealerAttackPower;
-            AmountOfDamage = (SkillDamageValue) - target.ArmorPoints.Value;
+            AmountOfValue = (SkillDamageValue) - target.ArmorPoints.Value;
 
-            if (AmountOfDamage < (target.ArmorPoints.Value / 10))
-                AmountOfDamage = target.ArmorPoints.Value / 10;
+            if (AmountOfValue < (target.ArmorPoints.Value / 10))
+                AmountOfValue = target.ArmorPoints.Value / 10;
 
-            target.ReceiveDamage(AmountOfDamage);
+            target.ReceiveDamage(AmountOfValue);
         }
 
         public RegularAttack()

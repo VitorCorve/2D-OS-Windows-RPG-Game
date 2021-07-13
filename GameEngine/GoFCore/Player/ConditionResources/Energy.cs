@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.ConditionResources
 {
-    public class Energy : IResourceType
+    public class Energy : IConditionResourceType
     {
         private int _value;
         public int Value 

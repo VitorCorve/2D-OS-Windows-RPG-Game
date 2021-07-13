@@ -1,5 +1,7 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
+using GameEngine.Player.PlayerConditions;
 using GameEngine.SpecializationMechanics.Mage.Skills;
+using GameEngine.SpecializationMechanics.Rogue.Skills;
 using System.Timers;
 
 namespace GameEngine.CombatEngine.Services
@@ -12,14 +14,14 @@ namespace GameEngine.CombatEngine.Services
         public Timer BuffTimer { get; set; }
         public int BuffValue { get; private set; }
         public int Duration { get; private set; }
-        public IValueType Type { get; private set; }
-        public BuffsService(ISkill buff, PlayerEntity target, int duration, int buffValue, IValueType valueType)
+        public IResourceType Type { get; private set; }
+        public BuffsService(ISkill buff, PlayerEntity target)
         {
             Buff = buff;
             Target = target;
-            Duration = duration;
-            BuffValue = buffValue;
-            Type = valueType;
+            Duration = buff.Duration;
+            BuffValue = buff.AmountOfValue;
+            Type = buff.ValueType;
         }
 
         public void Cancel()
@@ -30,7 +32,10 @@ namespace GameEngine.CombatEngine.Services
                     Target.DecreaseValue(Type, BuffValue);
                     return;
                 case Polymorph:
-                    ReturnControl();
+                    Target.ReturnControl();
+                    return;
+                case FindTheWeakness:
+                    Target.RemoveDebuff(PlayerDebuff.FindTheWeakness);
                     return;
                 default:
                     break;
@@ -68,11 +73,5 @@ namespace GameEngine.CombatEngine.Services
                 Cancel();
             }
         }
-
-        private void ReturnControl()
-        {
-            Target.ReturnControl();
-        }
-
     }
 }

@@ -1,26 +1,24 @@
 ﻿using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
+using GameEngine.Player.DefenseResources;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GameEngine.CombatEngine
 {
-    public class DefenseService : IDefense
+    public class DefenseService : IDefenseService
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster Log;
-        public double BlockChance { get; private set; }
-        public double DodgeChance { get; private set; }
-        public double ParryChance { get; private set; }
-        public double ResistChance { get; private set; }
+        public Block BlockChance { get; private set; }
+        public Dodge DodgeChance { get; private set; } = new Dodge();
+        public Parry ParryChance { get; private set; }
+        public Resist ResistChance { get; private set; }
         public DefenseService(PlayerEntity player)
         {
             BlockChance = player.BlockChance;
             DodgeChance = player.DodgeChance;
-            ParryChance = player.ParryChange;
+            ParryChance = player.ParryChance;
             ResistChance = player.ResistChance;
         }
 
@@ -51,21 +49,21 @@ namespace GameEngine.CombatEngine
         {
             double chance = Chance();
 
-            if (chance < BlockChance)
+            if (chance < BlockChance.Value)
             {
                 Log("blocked attack");
                 return false;
             }
                 
 
-            if (chance < DodgeChance)
+            if (chance < DodgeChance.Value)
             {
                 Log("dodged attack");
                 return false;
             }
                 
 
-            if (chance < ParryChance)
+            if (chance < ParryChance.Value)
             {
                 Log("parried attack");
                 return false;
@@ -75,7 +73,7 @@ namespace GameEngine.CombatEngine
 
         private bool TryMagicDefense()
         {
-            if (Chance() < ResistChance)
+            if (Chance() < ResistChance.Value)
             {
                 Log("resisted attack");
                 return false;

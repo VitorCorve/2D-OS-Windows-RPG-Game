@@ -3,11 +3,12 @@ using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.DefenseResources;
 using System.Timers;
 
-namespace GameEngine.SpecializationMechanics.Mage.Skills
+namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
-    public class Heal : IBuffSkill
+    public class DissapearIntoTheShadows : IBuffSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -19,36 +20,37 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public bool SkillAffectedOnEnemy { get; private set; }
         public double CriticalChance { get; private set; }
         public int Cost { get; private set; }
-
-        private int _skillDamageValue;
-        public int SkillDamageValue
-        {
-            get { return RandomizeDamageValue(_skillDamageValue); }
-            private set { _skillDamageValue = value; }
-        }
+        public int SkillDamageValue { get; private set; }
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
-        public IResourceType ValueType { get; set; }
-        public int RandomizeDamageValue(int damageValue)
-        {
-            var skillValueValidation = new CalculateSkillValueService(CriticalChance, damageValue);
-            return skillValueValidation.SkillValue;
-        }
+        public IResourceType ValueType { get; set; } = new Dodge();
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
+            AmountOfValue = 100;
+
+            var buffService = new BuffsService(this, target);
+
+            buffService.Activate();
+
+            var coolDown = new CoolDownService(this);
+            coolDown.Activate();
         }
 
-        public Heal(int skillLevel)
+        public int RandomizeDamageValue(int damageValue)
         {
-            SkillName = "Heal";
+            return damageValue;
+        }
+
+        public DissapearIntoTheShadows(int skillLevel)
+        {
+            SkillName = "Dissapear into the Shadows";
             SkillLevel = skillLevel;
             SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 6;
+            Duration = 5;
+            CoolDownDuration = 20;
         }
-
     }
 }

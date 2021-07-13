@@ -28,10 +28,10 @@ namespace GameEngine.CombatEngine
             switch (skill)
             {
                 case IDamageSkill:
-                    LogDamage($"deals {skill.AmountOfDamage} damage by {skill.SkillName}");
+                    LogDamage($"deals {skill.AmountOfValue} damage by {skill.SkillName}");
                     return;
                 case IBuffSkill:
-                    LogBuff($"uses {skill.SkillName} for {skill.AmountOfDamage} value");
+                    LogBuff($"uses {skill.SkillName} for {skill.AmountOfValue} value");
                     return;
                 case IDebuffSkill:
                     LogDebuff($"uses {skill.SkillName} for {skill.Duration} second");

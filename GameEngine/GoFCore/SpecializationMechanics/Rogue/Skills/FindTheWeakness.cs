@@ -3,11 +3,13 @@ using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.PlayerConditions;
+using System;
 using System.Timers;
 
-namespace GameEngine.SpecializationMechanics.Mage.Skills
+namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
-    public class Heal : IBuffSkill
+    public class FindTheWeakness : IDebuffSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -19,36 +21,40 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public bool SkillAffectedOnEnemy { get; private set; }
         public double CriticalChance { get; private set; }
         public int Cost { get; private set; }
-
-        private int _skillDamageValue;
-        public int SkillDamageValue
-        {
-            get { return RandomizeDamageValue(_skillDamageValue); }
-            private set { _skillDamageValue = value; }
-        }
+        public int Intervals { get; private set; }
+        public int SkillDamageValue { get; set; }
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IAttackType Type { get; set; } = new Magic();
         public IResourceType ValueType { get; set; }
+
         public int RandomizeDamageValue(int damageValue)
         {
-            var skillValueValidation = new CalculateSkillValueService(CriticalChance, damageValue);
-            return skillValueValidation.SkillValue;
+            return damageValue;
         }
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
+            Random chanceOfLethalDamage = new Random();
+
+            if (chanceOfLethalDamage.Next(0, 100) < 10)
+                target.ReceivePercentOfDamage(90, SkillName);
+
+            var buffService = new BuffsService(this, target);
+            var coolDown = new CoolDownService(this);
+
+            buffService.Activate(() => target.ReceiveDebuff(PlayerDebuff.FindTheWeakness));
+            coolDown.Activate();
         }
 
-        public Heal(int skillLevel)
+        public FindTheWeakness(int skillLevel)
         {
-            SkillName = "Heal";
+            SkillName = "Find the weakness";
             SkillLevel = skillLevel;
             SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 6;
+            CoolDownDuration = 20;
+            Duration = 12;
         }
-
     }
 }

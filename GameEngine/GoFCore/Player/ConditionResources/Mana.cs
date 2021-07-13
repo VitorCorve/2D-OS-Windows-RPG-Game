@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.ConditionResources
 {
-    public class Mana : IResourceType
+    public class Mana : IConditionResourceType
     {
         private int _value;
         public int Value
