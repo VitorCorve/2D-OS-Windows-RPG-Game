@@ -4,9 +4,9 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 
-namespace GameEngine.SpecializationMechanics.Mage.Skills
+namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
-    public class Polymorph : IDebuffSkill
+    public class Stun : IDebuffSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -15,8 +15,8 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
-        public IResourceType ResourceType { get; set; } = new Mana();
-        public IUseType Type { get; set; } = new Magic();
+        public IResourceType ResourceType { get; set; } = new Energy();
+        public IUseType Type { get; set; } = new Melee();
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
@@ -26,14 +26,15 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             coolDown.Activate();
         }
 
-        public Polymorph(int skillLevel)
+        public Stun(int skillLevel)
         {
-            SkillName = "Polymorph";
+            SkillName = "Stun";
             SkillLevel = skillLevel;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 30;
-            Duration = 6;
+            CoolDownDuration = 10;
+            Duration = 4;
         }
 
     }
 }
+

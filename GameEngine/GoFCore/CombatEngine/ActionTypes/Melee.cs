@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.ActionTypes
 {
-    public class Melee : IAttackType
+    public class Melee : IUseType
     {
     }
 }

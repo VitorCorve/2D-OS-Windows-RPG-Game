@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IDebuffSkill : ISkill
+    public interface IUseType
     {
     }
 }

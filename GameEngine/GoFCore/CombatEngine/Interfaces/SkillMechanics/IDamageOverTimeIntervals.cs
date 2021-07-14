@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.CombatEngine.Interfaces
+namespace GameEngine.CombatEngine.Interfaces.SkillMechanics
 {
-    public interface IDamageOverTimeSkill : IDebuffSkill
+    public interface IDamageOverTimeIntervals
     {
         int Intervals { get; }
     }

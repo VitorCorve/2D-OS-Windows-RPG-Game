@@ -4,17 +4,26 @@ namespace GameEngine.Player.DefenseResources
 {
     public class Parry : IDefenseResourceType
     {
-        public double Value { get; set; }
-        public double MaxValue { get; private set; }
+        private double _value;
+        public double Value
+        {
+            get { return _value; }
+            set { _value = ValidateValue(value); }
+        }
         public ResourceName Name { get; private set; } = ResourceName.Parry;
         public Parry(double value)
         {
-            MaxValue = value;
             Value = value;
         }
         public Parry()
         {
 
+        }
+        public double ValidateValue(double value)
+        {
+            if (value > 100)
+                return 100;
+            return value;
         }
     }
 }

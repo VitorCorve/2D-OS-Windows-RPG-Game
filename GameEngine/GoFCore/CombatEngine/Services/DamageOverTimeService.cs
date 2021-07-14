@@ -48,7 +48,7 @@ namespace GameEngine.CombatEngine.Services
             if (Duration % Intervals == 0)
             { 
                 int skillValueValidation = new CalculateSkillValueService(CriticalChance, DamageValue).SkillValue; 
-                Target.ReceiveDamgeOverTime(Debuff, skillValueValidation - Target.ArmorPoints.Value);
+                Target.ReceiveDamgeOverTime(Debuff, skillValueValidation);
             }
         }
 

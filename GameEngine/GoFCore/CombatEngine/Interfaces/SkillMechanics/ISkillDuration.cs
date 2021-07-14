@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.CombatEngine.Interfaces
+namespace GameEngine.CombatEngine.Interfaces.SkillMechanics
 {
-    public interface IBuffSkill : ISkill
+    public interface ISkillDuration
     {
+        int Duration { get; set; }
     }
 }

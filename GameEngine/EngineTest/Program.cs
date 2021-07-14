@@ -34,10 +34,13 @@ namespace EngineTest
             var soulburn = new Soulburn(1);
             var soulburn2 = new Soulburn(1);
 
+
             // rogue skills
             var backstab = new Backstab(1);
             var dissapearIntoTheShadows = new DissapearIntoTheShadows(1);
             var findTheWeakness = new FindTheWeakness(1);
+            var rend = new Rend(1);
+            var stun = new Stun(1);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -59,7 +62,7 @@ namespace EngineTest
                 player2GlobalData, 
                 player1: player1, 
                 player2: player2, 
-                skill1: backstab, 
+                skill1: dissapearIntoTheShadows, 
                 skill2: regularAttack, 
                 cyclesCount: 1000, 
                 iterationsInterval: 2);

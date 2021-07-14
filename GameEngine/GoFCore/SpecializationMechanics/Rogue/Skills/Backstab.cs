@@ -1,23 +1,19 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.CombatEngine.ActionTypes;
 using GameEngine.CombatEngine.Interfaces;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.PlayerConditions;
-using System.Timers;
 
 namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
-    public class Backstab : IDamageSkill
+    public class Backstab : IDamageSkill, ISkillDamageValue
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
-        public Timer CoolDownTimer { get; private set; }
-        public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }
-        public bool ReadyToUse { get; private set; }
-        public bool SkillAffectedOnEnemy { get; private set; }
         public double CriticalChance { get; private set; }
         public int Cost { get; private set; }
 
@@ -29,8 +25,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         }
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Energy();
-        public IAttackType Type { get; set; } = new Melee();
-        public IResourceType ValueType { get; set; }
+        public IUseType Type { get; set; } = new Melee();
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -40,10 +35,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalHitChance;
-            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
-
-            if (AmountOfValue < (target.ArmorPoints.Value / 10))
-                AmountOfValue = target.ArmorPoints.Value / 10;
+            AmountOfValue += (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
 
             foreach (var debuff in target.Debuffs)
             {
@@ -54,6 +46,9 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
                 }
             }
 
+            if (AmountOfValue < (target.ArmorPoints.Value / 10))
+                AmountOfValue = target.ArmorPoints.Value / 10;
+
             target.ReceiveDamage(AmountOfValue);
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
@@ -63,7 +58,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         {
             SkillName = "Backstab";
             SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
+            AmountOfValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
             CoolDownDuration = 3;
         }

@@ -14,14 +14,23 @@ namespace GameEngine.CombatEngine.Services
         public Timer BuffTimer { get; set; }
         public int BuffValue { get; private set; }
         public int Duration { get; private set; }
-        public IResourceType Type { get; private set; }
-        public BuffsService(ISkill buff, PlayerEntity target)
+        public IResourceType BuffResourceType { get; private set; }
+
+        public BuffsService(IBuffSkill buff, PlayerEntity target)
         {
             Buff = buff;
             Target = target;
             Duration = buff.Duration;
             BuffValue = buff.AmountOfValue;
-            Type = buff.ValueType;
+            BuffResourceType = buff.BuffResourceType;
+        }
+
+        public BuffsService(IDebuffSkill buff, PlayerEntity target)
+        {
+            Buff = buff;
+            Target = target;
+            Duration = buff.Duration;
+            BuffValue = buff.AmountOfValue;
         }
 
         public void Cancel()
@@ -29,15 +38,13 @@ namespace GameEngine.CombatEngine.Services
             switch (Buff)
             {
                 case IBuffSkill:
-                    Target.DecreaseValue(Type, BuffValue);
-                    return;
-                case Polymorph:
-                    Target.ReturnControl();
+                    Target.DecreaseValue(BuffResourceType, BuffValue);
                     return;
                 case FindTheWeakness:
                     Target.RemoveDebuff(PlayerDebuff.FindTheWeakness);
                     return;
                 default:
+                    Target.ReturnControl();
                     break;
             }
 
@@ -52,7 +59,7 @@ namespace GameEngine.CombatEngine.Services
             switch (Buff)
             {
                 case IBuffSkill:
-                    Target.IncreaseValue(Type, BuffValue);
+                    Target.IncreaseValue(BuffResourceType, BuffValue);
                     return;
                 case IDebuffSkill:
                     func?.Invoke();
@@ -62,7 +69,6 @@ namespace GameEngine.CombatEngine.Services
             }
 
         }
-
         private void Tick(object sender, ElapsedEventArgs e)
         {
             Duration -= 1;

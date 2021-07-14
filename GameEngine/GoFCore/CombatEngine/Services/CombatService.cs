@@ -31,10 +31,10 @@ namespace GameEngine.CombatEngine
                     LogDamage($"deals {skill.AmountOfValue} damage by {skill.SkillName}");
                     return;
                 case IBuffSkill:
-                    LogBuff($"uses {skill.SkillName} for {skill.AmountOfValue} value");
+                    LogBuff($"uses {skill.SkillName} for {((IBuffSkill)skill).Duration} second");
                     return;
                 case IDebuffSkill:
-                    LogDebuff($"uses {skill.SkillName} for {skill.Duration} second");
+                    LogDebuff($"uses {skill.SkillName} for {((IDebuffSkill)skill).Duration} second");
                     return;
                 default:
                     return;

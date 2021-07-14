@@ -1,10 +1,5 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.CombatEngine.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 
 namespace GameEngine.CombatEngine
 {
@@ -34,12 +29,14 @@ namespace GameEngine.CombatEngine
                     case IDamageSkill:
                         Damage(skill);
                         return;
-
                     case IBuffSkill:
                         Buff(skill);
                         return;
                     case IDebuffSkill:
                         Debuff(skill);
+                        return;
+                    case IHealSkill:
+                        Buff(skill);
                         return;
                     default:
                         break;

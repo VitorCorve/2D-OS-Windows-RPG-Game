@@ -14,7 +14,7 @@ namespace GameEngine.CombatEngine.Interfaces
         Timer BuffTimer { get; }
         int BuffValue { get; }
         int Duration { get; }
-        IResourceType Type { get; }
+        IResourceType BuffResourceType { get; }
         void Cancel();
     }
 }

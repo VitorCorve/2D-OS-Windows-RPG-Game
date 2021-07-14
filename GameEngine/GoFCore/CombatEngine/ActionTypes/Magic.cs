@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.ActionTypes
 {
-    public class Magic : IAttackType
+    public class Magic : IUseType
     {
     }
 }

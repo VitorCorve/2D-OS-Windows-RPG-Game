@@ -4,17 +4,27 @@ namespace GameEngine.Player.DefenseResources
 {
     public class Block : IDefenseResourceType
     {
-        public double Value { get; set; }
-        public double MaxValue { get; private set; }
+        private double _value;
+        public double Value 
+        {
+            get { return _value; }
+            set { _value = ValidateValue(value); } 
+        }
         public ResourceName Name { get; private set; } = ResourceName.Parry;
         public Block(double value)
         {
-            MaxValue = value;
             Value = value;
         }
         public Block()
         {
 
+        }
+
+        public double ValidateValue(double value)
+        {
+            if (value > 100)
+                return 100;
+            return value;
         }
     }
 }

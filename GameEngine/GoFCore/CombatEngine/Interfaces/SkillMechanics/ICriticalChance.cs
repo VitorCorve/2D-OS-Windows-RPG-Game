@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.CombatEngine.Interfaces
+namespace GameEngine.CombatEngine.Interfaces.SkillMechanics
 {
-    interface ILooseControl
+    public interface ICriticalChance
     {
-        bool OutOfControl { get; }
+        double CriticalChance { get; }
     }
 }

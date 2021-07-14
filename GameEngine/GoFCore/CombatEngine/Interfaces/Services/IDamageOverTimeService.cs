@@ -1,15 +1,13 @@
-﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.SpecializationMechanics.Mage.Skills;
+﻿using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using System.Timers;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IDamageOverTimeService
+    public interface IDamageOverTimeService : IDamageOverTimeIntervals
     {
         int DamageValue { get; }
         int Duration { get; }
         double CriticalChance { get; }
-        int Intervals { get; }
         Timer DurationTimer { get; }
         PlayerEntity Target { get; }
         IDebuffSkill Debuff { get; }
