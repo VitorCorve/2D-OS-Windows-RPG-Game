@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace GameEngine.CombatEngine
 {
-    public class PlayerEntity : IReceiveDamage, IReceiveHeal, IOutOfControl
+    public partial class PlayerEntity : IReceiveDamage, IReceiveHeal, IOutOfControl
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster LogDotDamage;
@@ -14,9 +14,10 @@ namespace GameEngine.CombatEngine
         public Health HealthPoints { get; set; }
         public Mana ManaPoints { get; set; }
         public Energy EnergyPoints { get; set; }
-        public int AttackPower { get; set; }
+        public AttackPower Attack { get; set; }
+        public DefensePower Defense { get; set; } = new DefensePower();
         public Armor ArmorPoints { get; set; }
-        public double CriticalHitChance { get; set; }
+        public CriticalHitChance CriticalChance { get; set; }
         public Dodge DodgeChance { get; set; }
         public Block BlockChance { get; set; }
         public Parry ParryChance { get; set; }
@@ -33,48 +34,33 @@ namespace GameEngine.CombatEngine
             HealthPoints.Value += healAmount;
         }
 
-        public void IncreaseValue(IResourceType valueType, int value)
+        public void SetValue(IResourceType valueType, double value)
         {
             switch (valueType)
             {
+                case DefensePower:
+                    Defense.IncomingDamageDivider = value;
+                    return;
+                case AttackPower:
+                    Attack.OutcomingDamageMultiplier = value;
+                    return;
+                case CriticalHitChance:
+                    CriticalChance.Value = value;
+                    return;
                 case Armor:
-                    ArmorPoints.Value += value;
+                    ArmorPoints.Value = (int)value;
                     return;
                 case Dodge:
-                    DodgeChance.Value += value;
+                    DodgeChance.Value = value;
                     return;
                 case Block:
-                    BlockChance.Value += value;
+                    BlockChance.Value = value;
                     return;
                 case Parry:
-                    ParryChance.Value += value;
+                    ParryChance.Value = value;
                     return;
                 case Resist:
-                    ResistChance.Value += value;
-                    return;
-                default:
-                    break;
-            }
-        }
-
-        public void DecreaseValue(IResourceType valueType, int value)
-        {
-            switch (valueType)
-            {
-                case Armor:
-                    ArmorPoints.Value -= value;
-                    return;
-                case Dodge:
-                    DodgeChance.Value -= value;
-                    return;
-                case Block:
-                    BlockChance.Value -= value;
-                    return;
-                case Parry:
-                    ParryChance.Value -= value;
-                    return;
-                case Resist:
-                    ResistChance.Value -= value;
+                    ResistChance.Value = value;
                     return;
                 default:
                     break;
@@ -130,5 +116,6 @@ namespace GameEngine.CombatEngine
             health -= (health / 100 * percent);
             HealthPoints.Value = (int)health;
         }
+
     }
 }

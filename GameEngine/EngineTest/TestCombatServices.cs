@@ -4,6 +4,7 @@ using System.Timers;
 using System;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 
 namespace EngineTest
 {
@@ -19,6 +20,8 @@ namespace EngineTest
             var observerService = new ObserverService(player1CombatManager, player1Data, player2Data);
             var observerService2 = new ObserverService(player2CombatManager, player2Data, player1Data);
 
+            var specialAbilitiesObserver = new SpecialAbilitiesObserverService(player1, skill1);
+
             observerService.Log += Notification;
             observerService2.Log += Notification;
 
@@ -26,12 +29,11 @@ namespace EngineTest
             benchmarkTimer.Elapsed += BenchmarkTick;
             benchmarkTimer.Start();
 
-            var findTheWeakness = new GameEngine.SpecializationMechanics.Rogue.Skills.FindTheWeakness(1);
-            player1CombatManager.Action(findTheWeakness);
+/*            var findTheWeakness = new GameEngine.SpecializationMechanics.Rogue.Skills.FindTheWeakness(1);
+            player1CombatManager.Action(findTheWeakness);*/
 
             for (int i = 1; i <= cyclesCount; i++)
             {
-                System.Threading.Thread.Sleep((int)_iterationsInterval);
                 Console.Write("\nCycle ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(i + "\n");
@@ -53,7 +55,7 @@ namespace EngineTest
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($": {player2.HealthPoints.Value}");
 
-
+                Console.WriteLine(((ISkillDuration)skill1).Duration);
 
                 Console.Write($"{player2Data.Name} 1 armor ");
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -85,6 +87,8 @@ namespace EngineTest
                 Console.Write(skill2.SkillName);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($": {player1.ArmorPoints.Value}");
+
+                System.Threading.Thread.Sleep((int)_iterationsInterval);
             }
 
             benchmarkTimer.Stop();

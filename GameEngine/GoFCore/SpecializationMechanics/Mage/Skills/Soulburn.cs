@@ -13,7 +13,7 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public int Duration { get;  set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }
-        public double CriticalChance { get; private set; }
+        public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
         public int Intervals { get; private set; }
         public int SkillDamageValue { get; set; }
@@ -23,7 +23,7 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            CriticalChance = target.CriticalHitChance;
+            CriticalChance = target.CriticalChance;
             AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
 
             var damageOverTimeService = new DamageOverTimeService(target, this);

@@ -15,7 +15,7 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
         public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }
-        public double CriticalChance { get; private set; }
+        public CriticalHitChance CriticalChance { get; private set; } = new CriticalHitChance();
         public int Cost { get; private set; }
 
         private int _skillDamageValue;
@@ -37,8 +37,8 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             SkillDamageValue = dealerAttackPower;
-            AmountOfValue = (SkillDamageValue) - target.ArmorPoints.Value;
-
+            double incomingDamage = ((SkillDamageValue) - target.ArmorPoints.Value) * target.Defense.IncomingDamageDivider;
+            AmountOfValue = (int)incomingDamage;
             if (AmountOfValue < (target.ArmorPoints.Value / 10))
                 AmountOfValue = target.ArmorPoints.Value / 10;
 

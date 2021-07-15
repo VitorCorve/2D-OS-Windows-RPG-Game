@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameEngine.Player.ConditionResources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,11 @@ namespace GameEngine.CombatEngine.Services
     public class CalculateSkillValueService
     {
         public int SkillValue { get; private set; }
-        public CalculateSkillValueService(double criticalHitChance, int basicSkillValue)
+        public CalculateSkillValueService(CriticalHitChance criticalChance, int basicSkillValue)
         {
             Random randomize = new Random();
 
-            if (randomize.Next(0, 100) < criticalHitChance)
+            if (randomize.Next(0, 100) < criticalChance.Value)
                 basicSkillValue *= 3;
 
             SkillValue = basicSkillValue * 10 / randomize.Next(9, 12);

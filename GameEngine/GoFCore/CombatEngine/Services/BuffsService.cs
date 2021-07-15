@@ -1,12 +1,16 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+using GameEngine.Player.DefenseResources;
 using GameEngine.Player.PlayerConditions;
 using GameEngine.SpecializationMechanics.Mage.Skills;
 using GameEngine.SpecializationMechanics.Rogue.Skills;
+using GameEngine.SpecializationMechanics.Warrior.Skills;
+using System.Collections.Generic;
 using System.Timers;
 
 namespace GameEngine.CombatEngine.Services
 {
-    public class BuffsService : IBuffService
+    public class BuffsService : IBuffService, IBuffResourceType, IDefaultDebuffResourceValues, IBuffSecondResourceType
     {
         public delegate void SkillAction();
         public PlayerEntity Target { get; set; }
@@ -15,7 +19,8 @@ namespace GameEngine.CombatEngine.Services
         public int BuffValue { get; private set; }
         public int Duration { get; private set; }
         public IResourceType BuffResourceType { get; private set; }
-
+        public IResourceType BuffSecondResourceType { get; set; }
+        public double DefaultResourceValue { get; private set; }
         public BuffsService(IBuffSkill buff, PlayerEntity target)
         {
             Buff = buff;
@@ -23,6 +28,9 @@ namespace GameEngine.CombatEngine.Services
             Duration = buff.Duration;
             BuffValue = buff.AmountOfValue;
             BuffResourceType = buff.BuffResourceType;
+
+            if (buff is IBuffSecondResourceType)
+                BuffSecondResourceType = ((IBuffSecondResourceType)buff).BuffSecondResourceType;
         }
 
         public BuffsService(IDebuffSkill buff, PlayerEntity target)
@@ -31,17 +39,43 @@ namespace GameEngine.CombatEngine.Services
             Target = target;
             Duration = buff.Duration;
             BuffValue = buff.AmountOfValue;
+
+            if (buff is ISpecialSkill)
+            {
+                BuffResourceType = ((ISpecialSkill)buff).BuffResourceType;
+
+                switch (BuffResourceType)
+                {
+                    case Dodge:
+                        DefaultResourceValue = Target.DodgeChance.Value;
+                        return;
+                    default:
+                        break;
+                }
+            }
         }
 
         public void Cancel()
         {
             switch (Buff)
             {
-                case IBuffSkill:
-                    Target.DecreaseValue(BuffResourceType, BuffValue);
+                case DeepDefense:
+                    Target.SetValue(BuffResourceType, 1.0);
+                    Target.SetValue(BuffSecondResourceType, 1.0);
+                    return;
+                case CrushLegs:
+                    Target.SetValue(BuffResourceType, DefaultResourceValue);
                     return;
                 case FindTheWeakness:
                     Target.RemoveDebuff(PlayerDebuff.FindTheWeakness);
+                    return;
+                case IBuffSkill:
+                    // value decrases becase buff effect fades
+                    Target.SetValue(BuffResourceType, - BuffValue);
+                    return;
+                case IDebuffSkill:
+                    // value increases becase debuff effect fades
+                    Target.SetValue(BuffResourceType, + BuffValue);
                     return;
                 default:
                     Target.ReturnControl();
@@ -52,14 +86,20 @@ namespace GameEngine.CombatEngine.Services
 
         public void Activate(SkillAction func = null)
         {
-            BuffTimer = new Timer(1000);
-            BuffTimer.Elapsed += Tick;
-            BuffTimer.Start();
+            if (BuffTimer == null)
+            {
+                BuffTimer = new Timer(1000);
+                BuffTimer.Elapsed += Tick;
+                BuffTimer.Start();
+            }
 
             switch (Buff)
             {
+                case DeepDefense:
+                    func?.Invoke();
+                    return;
                 case IBuffSkill:
-                    Target.IncreaseValue(BuffResourceType, BuffValue);
+                    Target.SetValue(BuffResourceType, + BuffValue);
                     return;
                 case IDebuffSkill:
                     func?.Invoke();
@@ -75,6 +115,8 @@ namespace GameEngine.CombatEngine.Services
 
             if (Duration == 0)
             {
+                if (Buff is ISpecialSkill)
+                    ((ISpecialSkill)Buff).CancelEffect();
                 BuffTimer.Stop();
                 Cancel();
             }

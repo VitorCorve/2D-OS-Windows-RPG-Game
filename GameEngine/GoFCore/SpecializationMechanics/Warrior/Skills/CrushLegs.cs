@@ -1,49 +1,55 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.CombatEngine.ActionTypes;
+using GameEngine.CombatEngine.Delegates;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
+using GameEngine.Player.DefenseResources;
+using System;
 
-
-namespace GameEngine.SpecializationMechanics.Rogue.Skills
+namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
-    public class Rend : IDamageOverTimeSkill, IDamageOverTimeIntervals
+    public class CrushLegs : IDebuffSkill, ISpecialSkill
     {
+        public event SpecialAblitiesCallDelegate Buff;
+        public event SpecialAbilitiesFadeDelegate BuffFade;
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }
-        public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
-        public int Intervals { get; private set; }
-        public int SkillDamageValue { get; set; }
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Energy();
         public IUseType Type { get; set; } = new Melee();
+        public IResourceType BuffResourceType { get; set; } = new Dodge();
+        public IResourceType SpecialResource { get; set; } = new CriticalHitChance();
+        public int Duration { get; set; }
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
-            CriticalChance = target.CriticalChance;
-            AmountOfValue += (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
-
-            var damageOverTimeService = new DamageOverTimeService(target, this);
+            var buffService = new BuffsService(this, target);
             var coolDown = new CoolDownService(this);
 
-            damageOverTimeService.Activate();
+            buffService.Activate(() => target.SetValue(BuffResourceType, - 100));
             coolDown.Activate();
+
+            Buff(this, 100);
         }
 
-        public Rend(int skillLevel)
+        public CrushLegs(int skillLevel)
         {
-            SkillName = "Rend";
+            SkillName = "Crush legs";
             SkillLevel = skillLevel;
             AmountOfValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 12;
-            Duration = 6;
-            Intervals = 1;
+            CoolDownDuration = 10;
+            Duration = 2;
+        }
+
+        public void CancelEffect()
+        {
+            BuffFade(this);
         }
     }
 }

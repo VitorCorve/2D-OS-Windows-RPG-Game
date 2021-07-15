@@ -8,6 +8,9 @@ namespace GameEngine.Player
 {
     public enum ResourceName
     {
+        AttackPower,
+        DefensePower,
+        CriticalHitChance,
         Armor,
         Energy,
         Health,

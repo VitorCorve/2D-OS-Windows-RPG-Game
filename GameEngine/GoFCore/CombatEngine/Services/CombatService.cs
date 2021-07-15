@@ -14,7 +14,7 @@ namespace GameEngine.CombatEngine
         public int DamageValue { get; private set; }
         public CombatServiсe(PlayerEntity dealer)
         {
-            DamageValue = dealer.AttackPower;
+            DamageValue = dealer.Attack.Value;
         }
 
         public void Execute(PlayerEntity target)

@@ -14,6 +14,7 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.SpecializationMechanics.Rogue.Skills;
 using GameEngine.Player.Specializatons.Rogue;
+using GameEngine.SpecializationMechanics.Warrior.Skills;
 
 namespace EngineTest
 {
@@ -25,7 +26,7 @@ namespace EngineTest
 
             var regularAttack = new RegularAttack();
 
-            // mage skills. Every players entity must have their own skill exemplar
+            // mage skills. Every players entity must have their own skills exemplar
             var fireball = new Fireball(3);
             var heal = new Heal(3);
             var magicShield = new MagicShield(5);
@@ -41,6 +42,10 @@ namespace EngineTest
             var findTheWeakness = new FindTheWeakness(1);
             var rend = new Rend(1);
             var stun = new Stun(1);
+
+            // warrior skills
+            var crushLegs = new CrushLegs(1);
+            var deepDefense = new DeepDefense(8);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -62,10 +67,10 @@ namespace EngineTest
                 player2GlobalData, 
                 player1: player1, 
                 player2: player2, 
-                skill1: dissapearIntoTheShadows, 
+                skill1: deepDefense, 
                 skill2: regularAttack, 
                 cyclesCount: 1000, 
-                iterationsInterval: 2);
+                iterationsInterval: 1);
         }
 
 

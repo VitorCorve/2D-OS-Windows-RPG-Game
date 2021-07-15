@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IBuffSkill : ISkill, ISkillDuration
+    public interface IBuffSkill : ISkill, ISkillDuration, IBuffResourceType
     {
-        IResourceType BuffResourceType { get; }
+
     }
 }

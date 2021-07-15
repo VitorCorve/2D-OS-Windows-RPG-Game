@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameEngine.CombatEngine.Interfaces.Resources
 {
-    public interface IDefenseResourceType : IResourceType
+    public interface ICriticalHitResourceType : IResourceType
     {
-        double IncomingDamageDivider { get; }
+        double Value { get; }
     }
 }

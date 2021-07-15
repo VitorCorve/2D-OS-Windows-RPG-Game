@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+using GameEngine.Player.ConditionResources;
 using System.Timers;
 
 namespace GameEngine.CombatEngine.Interfaces
@@ -7,7 +8,7 @@ namespace GameEngine.CombatEngine.Interfaces
     {
         int DamageValue { get; }
         int Duration { get; }
-        double CriticalChance { get; }
+        CriticalHitChance CriticalChance { get; }
         Timer DurationTimer { get; }
         PlayerEntity Target { get; }
         IDebuffSkill Debuff { get; }

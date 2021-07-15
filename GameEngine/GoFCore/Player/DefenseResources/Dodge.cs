@@ -3,7 +3,7 @@
 
 namespace GameEngine.Player.DefenseResources
 {
-    public class Dodge : IDefenseResourceType
+    public class Dodge : IDefenseSkillsResourceType
     {
         private double _value;
         public double Value
@@ -22,6 +22,8 @@ namespace GameEngine.Player.DefenseResources
         }
         public double ValidateValue(double value)
         {
+            if (value < 0)
+                return 0;
             if (value > 100)
                 return 100;
             return value;

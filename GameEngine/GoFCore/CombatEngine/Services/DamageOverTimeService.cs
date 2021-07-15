@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
+using GameEngine.Player.ConditionResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace GameEngine.CombatEngine.Services
     {
         public int DamageValue { get; private set; }
         public int Duration { get; private set; }
-        public double CriticalChance { get; private set; }
+        public CriticalHitChance CriticalChance { get; private set; }
         public int Intervals { get; private set; }
         public Timer DurationTimer { get; private set; }
         public PlayerEntity Target { get; private set; }
@@ -23,7 +24,7 @@ namespace GameEngine.CombatEngine.Services
             Debuff = debuff;
             DamageValue = debuff.SkillDamageValue;
             Duration = debuff.Duration;
-            CriticalChance = target.CriticalHitChance;
+            CriticalChance = target.CriticalChance;
             Intervals = debuff.Intervals;
             Target = target;
         }

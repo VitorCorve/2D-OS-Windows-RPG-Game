@@ -26,12 +26,12 @@ namespace GameEngine.CombatEngine
             switch (specializationAttributes)
             {
                 case MageBasicAttributes:
-                    playerEntity.CriticalHitChance = (specializationAttributes.Intellect + metaData.Level);
-                    playerEntity.AttackPower = (specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue;
+                    playerEntity.CriticalChance = new CriticalHitChance(specializationAttributes.Intellect + metaData.Level);
+                    playerEntity.Attack = new AttackPower((specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue);
                     break;
                 default:
-                    playerEntity.CriticalHitChance = (specializationAttributes.Agility + metaData.Level);
-                    playerEntity.AttackPower = (specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue;
+                    playerEntity.CriticalChance = new CriticalHitChance(specializationAttributes.Agility + metaData.Level);
+                    playerEntity.Attack = new AttackPower((specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue);
                     break;
             }
             return playerEntity;
