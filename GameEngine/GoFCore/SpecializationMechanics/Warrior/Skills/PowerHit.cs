@@ -6,9 +6,9 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.PlayerConditions;
 
-namespace GameEngine.SpecializationMechanics.Rogue.Skills
+namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
-    public class Backstab : IDamageSkill, ISkillDamageValue
+    public class PowerHit : IDamageSkill, ISkillDamageValue
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
@@ -54,13 +54,13 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             coolDown.Activate();
         }
 
-        public Backstab(int skillLevel)
+        public PowerHit(int skillLevel)
         {
-            SkillName = "Backstab";
+            SkillName = "Power hit";
             SkillLevel = skillLevel;
             SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 2;
+            CoolDownDuration = 3;
         }
     }
 }

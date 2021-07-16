@@ -1,13 +1,16 @@
-﻿using GameEngine.Player;
+﻿using GameEngine.CombatEngine.Services;
+using GameEngine.Player;
 using GameEngine.Player.Abstract;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.DefenseResources;
 using GameEngine.Player.Specializatons.Mage;
+using GameEngine.SpecializationMechanics.UniversalSkills;
 
 namespace GameEngine.CombatEngine
 {
     public class PlayerEntityConstructor
     {
+        public object RecoverResources { get; private set; }
 
         public PlayerEntity CreatePlayer(PlayerGlobalData metaData, IAttributes specializationAttributes, IAttributes equipmentValues)
         {
@@ -26,14 +29,19 @@ namespace GameEngine.CombatEngine
             switch (specializationAttributes)
             {
                 case MageBasicAttributes:
-                    playerEntity.CriticalChance = new CriticalHitChance(specializationAttributes.Intellect + metaData.Level);
-                    playerEntity.Attack = new AttackPower((specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue);
+                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Intellect + metaData.Level);
+                    playerEntity.Attack =           new AttackPower((specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue);
                     break;
                 default:
-                    playerEntity.CriticalChance = new CriticalHitChance(specializationAttributes.Agility + metaData.Level);
-                    playerEntity.Attack = new AttackPower((specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue);
+                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Agility + metaData.Level);
+                    playerEntity.Attack =           new AttackPower((specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue);
                     break;
             }
+
+            var playerRecovery = new RecoveryService(playerEntity.HealthPoints, playerEntity.ManaPoints, playerEntity.EnergyPoints);
+
+            playerEntity.RecoverResources = playerRecovery;
+
             return playerEntity;
         }
     }

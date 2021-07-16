@@ -8,7 +8,7 @@ namespace GameEngine.CombatEngine.Interfaces
 {
     public interface IConditionResourceType : IResourceType
     {
-        int Value { get; }
+        int Value { get; set; }
         int MaxValue { get; }
     }
 }

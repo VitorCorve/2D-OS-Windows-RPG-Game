@@ -46,6 +46,9 @@ namespace EngineTest
             // warrior skills
             var crushLegs = new CrushLegs(1);
             var deepDefense = new DeepDefense(8);
+            var lastManStanding = new LastManStanding(5);
+            var powerHit = new PowerHit(1);
+            var wideBlow = new WideBlow(2);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -67,8 +70,8 @@ namespace EngineTest
                 player2GlobalData, 
                 player1: player1, 
                 player2: player2, 
-                skill1: deepDefense, 
-                skill2: regularAttack, 
+                skill1: wideBlow, 
+                skill2: powerHit, 
                 cyclesCount: 1000, 
                 iterationsInterval: 1);
         }

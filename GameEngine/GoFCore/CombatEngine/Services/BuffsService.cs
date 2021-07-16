@@ -59,6 +59,13 @@ namespace GameEngine.CombatEngine.Services
         {
             switch (Buff)
             {
+                case WideBlow:
+                    Target.RecoverResources.ContinueRecover(BuffResourceType);
+                    return;
+                case LastManStanding:
+                    Target.SetValue(BuffResourceType, 1.0);
+                    Target.SetValue(BuffSecondResourceType, 1.0);
+                    return;
                 case DeepDefense:
                     Target.SetValue(BuffResourceType, 1.0);
                     Target.SetValue(BuffSecondResourceType, 1.0);
@@ -95,6 +102,12 @@ namespace GameEngine.CombatEngine.Services
 
             switch (Buff)
             {
+                case WideBlow:
+                    func?.Invoke();
+                    return;
+                case LastManStanding:
+                    func?.Invoke();
+                    return;
                 case DeepDefense:
                     func?.Invoke();
                     return;

@@ -5,6 +5,8 @@ using System;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+using GameEngine.SpecializationMechanics.Warrior.Skills;
+using GameEngine.SpecializationMechanics.UniversalSkills;
 
 namespace EngineTest
 {
@@ -22,6 +24,8 @@ namespace EngineTest
 
             var specialAbilitiesObserver = new SpecialAbilitiesObserverService(player1, skill1);
 
+            var lastManStanding = new LastManStanding(5);
+
             observerService.Log += Notification;
             observerService2.Log += Notification;
 
@@ -29,8 +33,9 @@ namespace EngineTest
             benchmarkTimer.Elapsed += BenchmarkTick;
             benchmarkTimer.Start();
 
-/*            var findTheWeakness = new GameEngine.SpecializationMechanics.Rogue.Skills.FindTheWeakness(1);
-            player1CombatManager.Action(findTheWeakness);*/
+            /*            var findTheWeakness = new GameEngine.SpecializationMechanics.Rogue.Skills.FindTheWeakness(1);
+                        player1CombatManager.Action(findTheWeakness);*/
+
 
             for (int i = 1; i <= cyclesCount; i++)
             {
@@ -54,8 +59,6 @@ namespace EngineTest
                 Console.Write(skill2.SkillName);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($": {player2.HealthPoints.Value}");
-
-                Console.WriteLine(((ISkillDuration)skill1).Duration);
 
                 Console.Write($"{player2Data.Name} 1 armor ");
                 Console.ForegroundColor = ConsoleColor.DarkCyan;

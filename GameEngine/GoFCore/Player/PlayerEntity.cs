@@ -3,10 +3,11 @@ using GameEngine.Player.ConditionResources;
 using GameEngine.Player.PlayerConditions;
 using GameEngine.Player.DefenseResources;
 using System.Collections.Generic;
+using GameEngine.CombatEngine.Services;
 
 namespace GameEngine.CombatEngine
 {
-    public partial class PlayerEntity : IReceiveDamage, IReceiveHeal, IOutOfControl
+    public partial class PlayerEntity : IPlayerEntity, IReceiveDamage, IReceiveHeal, IOutOfControl
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster LogDotDamage;
@@ -23,7 +24,8 @@ namespace GameEngine.CombatEngine
         public Parry ParryChance { get; set; }
         public Resist ResistChance { get; set; }
         public PlayerControl OutOfControl { get; set; } = new PlayerControl();
-        public List<PlayerDebuff> Debuffs = new() { };
+        public List<PlayerDebuff> Debuffs { get; set; } = new List<PlayerDebuff> {};
+        public RecoveryService RecoverResources { get; set; }
         public void ReceiveDamage(int incomingDamage)
         {
             HealthPoints.Value -= incomingDamage;

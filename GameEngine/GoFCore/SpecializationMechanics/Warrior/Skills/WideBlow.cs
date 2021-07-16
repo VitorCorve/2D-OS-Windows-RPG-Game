@@ -6,26 +6,27 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.PlayerConditions;
 
-namespace GameEngine.SpecializationMechanics.Rogue.Skills
+namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
-    public class Backstab : IDamageSkill, ISkillDamageValue
+    public class WideBlow : IDamageSkill, ISkillDamageValue, IBuffSkill
     {
         public string SkillName { get; private set; }
         public int SkillLevel { get; private set; }
+        public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }
-        public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
-
-        private int _skillDamageValue;
+        public int AmountOfValue { get; private set; }
+        public IResourceType ResourceType { get; set; } = new Energy();
+        public IUseType Type { get; set; } = new Melee();
+        public IResourceType BuffResourceType { get; set; } = new Health();
+        public CriticalHitChance CriticalChance { get; private set; }
         public int SkillDamageValue
         {
             get { return RandomizeDamageValue(_skillDamageValue); }
             private set { _skillDamageValue = value; }
         }
-        public int AmountOfValue { get; private set; }
-        public IResourceType ResourceType { get; set; } = new Energy();
-        public IUseType Type { get; set; } = new Melee();
+        private int _skillDamageValue;
 
         public int RandomizeDamageValue(int damageValue)
         {
@@ -37,30 +38,26 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             CriticalChance = target.CriticalChance;
             AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
 
-            foreach (var debuff in target.Debuffs)
-            {
-                if (debuff == PlayerDebuff.FindTheWeakness)
-                {
-                    AmountOfValue *= 120 / 100;
-                    break;
-                }
-            }
-
             if (AmountOfValue < (target.ArmorPoints.Value / 10))
                 AmountOfValue = target.ArmorPoints.Value / 10;
 
-            target.ReceiveDamage(AmountOfValue);
+            var buffService = new BuffsService(this, target);
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
+
+            buffService.Activate(() => target.RecoverResources.StopRecover(BuffResourceType));
+
+            target.ReceiveDamage(AmountOfValue);
         }
 
-        public Backstab(int skillLevel)
+        public WideBlow(int skillLevel)
         {
-            SkillName = "Backstab";
+            SkillName = "Wide blow";
             SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
+            SkillDamageValue = SkillLevel * 10;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 2;
+            CoolDownDuration = 15;
+            Duration = 8;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GameEngine.CombatEngine.Actions;
 using GameEngine.CombatEngine.Interfaces;
+using GameEngine.Player.ConditionResources;
 
 namespace GameEngine.CombatEngine
 {
@@ -11,19 +12,19 @@ namespace GameEngine.CombatEngine
         public event NotifyMaster LogDebuff;
         public delegate void ExecuteAction();
         public delegate bool CheckAction();
-        public int DamageValue { get; private set; }
+        public AttackPower DamageValue { get; private set; }
         public CombatServiсe(PlayerEntity dealer)
         {
-            DamageValue = dealer.Attack.Value;
+            DamageValue = dealer.Attack;
         }
 
         public void Execute(PlayerEntity target)
         {
-            target.ReceiveDamage(DamageValue - target.ArmorPoints.Value);
+            target.ReceiveDamage(DamageValue.Value - target.ArmorPoints.Value);
         }
         public void Execute(PlayerEntity target, ISkill skill)
         {
-            skill.Use(DamageValue, target);
+            skill.Use(DamageValue.Value, target);
 
             switch (skill)
             {
