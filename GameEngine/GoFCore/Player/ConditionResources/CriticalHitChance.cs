@@ -17,7 +17,7 @@ namespace GameEngine.Player.ConditionResources
             set { _value = ValidateValue(value); }
         }
 
-        public ResourceName Name { get; private set; } = ResourceName.CriticalHitChance;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.CriticalHitChance;
         public CriticalHitChance(double value)
         {
             Value = value;

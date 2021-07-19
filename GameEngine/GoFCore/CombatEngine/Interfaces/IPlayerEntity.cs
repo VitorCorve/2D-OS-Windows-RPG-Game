@@ -24,7 +24,7 @@ namespace GameEngine.CombatEngine.Interfaces
         Parry ParryChance { get; }
         Resist ResistChance { get; }
         PlayerControl OutOfControl { get; }
-        List<PlayerDebuff> Debuffs { get; }
+        List<PLAYER_DEBUFF> Debuffs { get; }
         RecoveryService RecoverResources { get; }
         void ReceiveDamage(int incomingDamage);
         void ReceiveHeal(int healAmount);
@@ -33,8 +33,8 @@ namespace GameEngine.CombatEngine.Interfaces
         void LoseControl();
         void ReturnControl();
         void ReceiveDamgeOverTime(ISkill skill, int incomingDamage);
-        void ReceiveDebuff(PlayerDebuff debuff);
-        void RemoveDebuff(PlayerDebuff debuff);
+        void ReceiveDebuff(PLAYER_DEBUFF debuff);
+        void RemoveDebuff(PLAYER_DEBUFF debuff);
         void ReceivePercentOfDamage(int percent, string skillName);
     }
 }

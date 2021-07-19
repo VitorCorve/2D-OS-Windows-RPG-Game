@@ -18,7 +18,7 @@ namespace GameEngine.Player.ConditionResources
             set { _value = ValidateValue(value); }
         }
         public int MaxValue { get; private set; }
-        public ResourceName Name { get; private set; } = ResourceName.Health;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.Health;
 
         public Health(int value)
         {

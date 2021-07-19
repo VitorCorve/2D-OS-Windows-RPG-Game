@@ -74,7 +74,7 @@ namespace GameEngine.CombatEngine.Services
                     Target.SetValue(BuffResourceType, DefaultResourceValue);
                     return;
                 case FindTheWeakness:
-                    Target.RemoveDebuff(PlayerDebuff.FindTheWeakness);
+                    Target.RemoveDebuff(PLAYER_DEBUFF.FindTheWeakness);
                     return;
                 case IBuffSkill:
                     // value decrases becase buff effect fades

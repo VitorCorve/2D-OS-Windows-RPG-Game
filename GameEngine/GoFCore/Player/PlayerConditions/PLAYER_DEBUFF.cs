@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.PlayerConditions
 {
-    public enum PlayerDebuff
+    public enum PLAYER_DEBUFF
     {
         FindTheWeakness
     }

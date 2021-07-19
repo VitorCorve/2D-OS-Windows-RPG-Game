@@ -4,6 +4,6 @@ namespace GameEngine.CombatEngine.Interfaces
 {
     public interface IResourceType
     {
-        ResourceName Name { get; }
+        RESOURCE_NAME Name { get; }
     }
 }

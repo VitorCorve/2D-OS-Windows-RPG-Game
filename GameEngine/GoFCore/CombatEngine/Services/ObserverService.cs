@@ -9,7 +9,7 @@ namespace GameEngine.CombatEngine.Services
         public string DealerName { get; set; }
         public string TargetName { get; set; }
 
-        public ObserverService(CombatManager player1Manager, PlayerGlobalData player1Data, PlayerGlobalData player2Data)
+        public ObserverService(CombatManager player1Manager, PlayerModelData player1Data, PlayerModelData player2Data)
         {
             player1Manager.Ready.Log += ConstructReadyNotification;
             player1Manager.Defense.Log += ConstructDefenseNotification;

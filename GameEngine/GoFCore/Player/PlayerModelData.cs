@@ -8,7 +8,7 @@ using GameEngine.Abstract;
 
 namespace GameEngine.Player
 {
-    public class PlayerGlobalData
+    public class PlayerModelData
     {
         public readonly string Name;
 
@@ -18,7 +18,7 @@ namespace GameEngine.Player
 
         public readonly uint Level;
 
-        public PlayerGlobalData(AbstractPlayer player, string gender, string name, uint level)
+        public PlayerModelData(AbstractPlayer player, string gender, string name, uint level)
         {
             Name = name;
             Specialization = player.Specialization;

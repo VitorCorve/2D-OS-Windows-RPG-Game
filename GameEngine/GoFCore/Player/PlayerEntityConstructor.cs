@@ -12,7 +12,7 @@ namespace GameEngine.CombatEngine
     {
         public object RecoverResources { get; private set; }
 
-        public PlayerEntity CreatePlayer(PlayerGlobalData metaData, IAttributes specializationAttributes, IAttributes equipmentValues)
+        public PlayerEntity CreatePlayer(PlayerModelData modelData, IEntityAttributes specializationAttributes, IEntityAttributes equipmentValues)
         {
             var playerEntity = new PlayerEntity
             {
@@ -20,20 +20,20 @@ namespace GameEngine.CombatEngine
                 ManaPoints      = new Mana((specializationAttributes.Intellect          + equipmentValues.Intellect) * 10),
                 EnergyPoints    = new Energy((specializationAttributes.Agility          + equipmentValues.Agility)   * 10),
                 ArmorPoints     = new Armor(equipmentValues.ArmorValue),
-                DodgeChance     = new Dodge(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2)   + metaData.Level),
-                ParryChance     = new Parry(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2.2) + metaData.Level),
-                BlockChance     = new Block(((specializationAttributes.Agility          + equipmentValues.Agility)   / 1.8) + metaData.Level),
-                ResistChance    = new Resist((specializationAttributes.Intellect / 2)   + metaData.Level),
+                DodgeChance     = new Dodge(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2)   + modelData.Level),
+                ParryChance     = new Parry(((specializationAttributes.Agility          + equipmentValues.Agility)   / 2.2) + modelData.Level),
+                BlockChance     = new Block(((specializationAttributes.Agility          + equipmentValues.Agility)   / 1.8) + modelData.Level),
+                ResistChance    = new Resist((specializationAttributes.Intellect / 2)   + modelData.Level),
             };
 
             switch (specializationAttributes)
             {
-                case MageBasicAttributes:
-                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Intellect + metaData.Level);
+                case EntityModel_Mage:
+                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Intellect + modelData.Level);
                     playerEntity.Attack =           new AttackPower((specializationAttributes.Intellect + equipmentValues.Intellect * 10) + equipmentValues.WeaponDamageValue);
                     break;
                 default:
-                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Agility + metaData.Level);
+                    playerEntity.CriticalChance =   new CriticalHitChance(specializationAttributes.Agility + modelData.Level);
                     playerEntity.Attack =           new AttackPower((specializationAttributes.Strength + equipmentValues.Strength * 10) + equipmentValues.WeaponDamageValue);
                     break;
             }

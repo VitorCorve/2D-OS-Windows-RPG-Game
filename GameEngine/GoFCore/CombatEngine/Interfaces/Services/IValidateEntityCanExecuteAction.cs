@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GameEngine.CombatEngine.Interfaces
 {
-    public interface IReadyToAttackService
+    public interface IValidateEntityCanExecuteAction
     {
         PlayerControl OutOfControl { get; }
         List<IConditionResourceType> Resources { get; }

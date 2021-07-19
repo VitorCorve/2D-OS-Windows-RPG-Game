@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Equipment
 {
-    public class ItemGlobal
+    public class ItemModel
     {
         public readonly uint ID;
         public readonly string ItemName;

@@ -10,7 +10,7 @@ namespace GameEngine.Player.ConditionResources
     public class DefensePower : IDefenseResourceType
     {
         public double IncomingDamageDivider { get; set; }
-        public ResourceName Name { get; private set; } = ResourceName.DefensePower;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.DefensePower;
         public DefensePower()
         {
             IncomingDamageDivider = 1.0;

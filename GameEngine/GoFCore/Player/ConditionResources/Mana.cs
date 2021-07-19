@@ -16,7 +16,7 @@ namespace GameEngine.Player.ConditionResources
             set { _value = ValidateValue(value); }
         }
         public int MaxValue { get; private set; }
-        public ResourceName Name { get; private set; } = ResourceName.Mana;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.Mana;
         public Mana(int value)
         {
             MaxValue = value;

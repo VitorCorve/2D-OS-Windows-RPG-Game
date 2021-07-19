@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.EquipmentManagement
 {
-    public class EquipmentValue : IAttributes
+    public class EquipmentValue : IEntityAttributes
     {
         public int Strength { get; set; }
         public int Stamina { get; set; }

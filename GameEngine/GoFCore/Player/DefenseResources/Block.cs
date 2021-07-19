@@ -10,7 +10,7 @@ namespace GameEngine.Player.DefenseResources
             get { return _value; }
             set { _value = ValidateValue(value); } 
         }
-        public ResourceName Name { get; private set; } = ResourceName.Parry;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.Parry;
         public Block(double value)
         {
             Value = value;

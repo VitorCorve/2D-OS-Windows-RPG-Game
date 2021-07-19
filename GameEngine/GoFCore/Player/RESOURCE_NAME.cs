@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player
 {
-    public enum ResourceName
+    public enum RESOURCE_NAME
     {
         AttackPower,
         DefensePower,

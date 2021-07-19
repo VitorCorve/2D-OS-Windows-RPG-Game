@@ -39,7 +39,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 
             foreach (var debuff in target.Debuffs)
             {
-                if (debuff == PlayerDebuff.FindTheWeakness)
+                if (debuff == PLAYER_DEBUFF.FindTheWeakness)
                 {
                     AmountOfValue *= 120 / 100;
                     break;

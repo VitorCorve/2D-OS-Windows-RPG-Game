@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Equipment
 {
-    public class ItemAttributes : IAttributes
+    public class ItemAttributes : IEntityAttributes
     {
         public int Strength { get; set; }
         public int Stamina { get; set; }

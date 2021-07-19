@@ -16,7 +16,7 @@ namespace GameEngine.Player.ConditionResources
             get { return ValidateValue(_value); }
             set { _value = value; }
         }
-        public ResourceName Name { get; private set; } = ResourceName.AttackPower;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.AttackPower;
         public AttackPower(int value)
         {
             OutcomingDamageMultiplier = 1;

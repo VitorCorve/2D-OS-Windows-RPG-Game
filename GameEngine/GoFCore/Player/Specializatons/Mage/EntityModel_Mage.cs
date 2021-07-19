@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.Specializatons.Mage
 {
-    public class MageBasicAttributes : IAttributes
+    public class EntityModel_Mage : IEntityAttributes
     {
         public int Strength { get; set; }
         public int Stamina { get; set; }
@@ -16,7 +16,7 @@ namespace GameEngine.Player.Specializatons.Mage
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
-        public MageBasicAttributes()
+        public EntityModel_Mage()
         {
             Strength = 4;
             Stamina = 3;

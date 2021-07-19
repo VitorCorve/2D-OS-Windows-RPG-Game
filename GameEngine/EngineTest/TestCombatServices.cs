@@ -13,7 +13,7 @@ namespace EngineTest
     public class TestCombatServices
     {
         public static decimal benchmarkCount = 0;
-        public void Run(PlayerGlobalData player1Data, PlayerGlobalData player2Data, PlayerEntity player1, PlayerEntity player2, ISkill skill1, ISkill skill2, int cyclesCount, double iterationsInterval)
+        public void Run(PlayerModelData player1Data, PlayerModelData player2Data, PlayerEntity player1, PlayerEntity player2, ISkill skill1, ISkill skill2, int cyclesCount, double iterationsInterval)
         {
             double _iterationsInterval = 1000 * iterationsInterval;
             var player1CombatManager = new CombatManager(dealer: player1, target: player2);

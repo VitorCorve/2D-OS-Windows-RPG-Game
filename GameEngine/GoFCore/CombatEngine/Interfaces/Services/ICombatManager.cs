@@ -11,7 +11,7 @@ namespace GameEngine.CombatEngine.Interfaces
         PlayerEntity Dealer { get; }
         PlayerEntity Target { get; }
         DefenseService Defense { get; }
-        ReadyToAttackService Ready { get; }
+        ValidateEntityCanExecuteActionService Ready { get; }
         CombatServiсe Combat { get; }
         void Action(ISkill skill);
     }

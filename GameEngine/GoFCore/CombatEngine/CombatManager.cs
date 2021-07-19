@@ -8,14 +8,14 @@ namespace GameEngine.CombatEngine
         public PlayerEntity Dealer { get; private set; }
         public PlayerEntity Target { get; private set; }
         public DefenseService Defense { get; private set; }
-        public ReadyToAttackService Ready { get; private set; }
+        public ValidateEntityCanExecuteActionService Ready { get; private set; }
         public CombatServiсe Combat { get; private set; }
         public CombatManager(PlayerEntity dealer, PlayerEntity target)
         {
             Dealer = dealer;
             Target = target;
             Defense = new DefenseService(Target);
-            Ready = new ReadyToAttackService(Dealer);
+            Ready = new ValidateEntityCanExecuteActionService(Dealer);
             Combat = new CombatServiсe(Dealer);
 
         }

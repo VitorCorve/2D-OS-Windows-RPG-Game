@@ -53,13 +53,13 @@ namespace EngineTest
             var playerEntityConstructor = new PlayerEntityConstructor();
 
             var specialization = new Mage();
-            var specializationAttributes = new MageBasicAttributes();
-            var specializationAttributes2 = new RogueBasicAttributes();
+            var specializationAttributes = new EntityModel_Mage();
+            var specializationAttributes2 = new EntityModel_Rogue();
             var wearedEquipment = new WearedEquipment(2);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var player1GlobalData = new PlayerGlobalData(specialization, "male", "Gendalf_1", 1);
-            var player2GlobalData = new PlayerGlobalData(specialization, "male", "Ralof_2", 1);
+            var player1GlobalData = new PlayerModelData(specialization, "male", "Gendalf_1", 1);
+            var player2GlobalData = new PlayerModelData(specialization, "male", "Ralof_2", 1);
 
             var player1 = playerEntityConstructor.CreatePlayer(player1GlobalData, specializationAttributes, equipmentValues);
             var player2= playerEntityConstructor.CreatePlayer(player2GlobalData, specializationAttributes2, equipmentValues);

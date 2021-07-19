@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace GameEngine.CombatEngine
 {
-    public class ReadyToAttackService : IReadyToAttackService
+    public class ValidateEntityCanExecuteActionService : IValidateEntityCanExecuteAction
     {
         public delegate void NotifyMaster(string message);
         public event NotifyMaster Log;
         public PlayerControl OutOfControl { get; set; } = new PlayerControl();
         public bool IsAlive { get; private set; } = true;
         public List<IConditionResourceType> Resources { get; private set; } = new List<IConditionResourceType> { };
-        public ReadyToAttackService(PlayerEntity dealer)
+        public ValidateEntityCanExecuteActionService(PlayerEntity dealer)
         {
             OutOfControl = dealer.OutOfControl;
             dealer.HealthPoints.StopCombat += ValidateAliveStatus;

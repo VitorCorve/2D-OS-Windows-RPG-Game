@@ -15,7 +15,7 @@ namespace GameEngine.Player.ConditionResources
             get { return _value; }
             set { _value = ValidateValue(value); }
         }
-        public ResourceName Name { get; private set; } = ResourceName.Armor;
+        public RESOURCE_NAME Name { get; private set; } = RESOURCE_NAME.Armor;
         public Armor(int value)
         {
             Value = value;

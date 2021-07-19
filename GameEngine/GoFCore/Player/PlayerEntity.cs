@@ -24,7 +24,7 @@ namespace GameEngine.CombatEngine
         public Parry ParryChance { get; set; }
         public Resist ResistChance { get; set; }
         public PlayerControl OutOfControl { get; set; } = new PlayerControl();
-        public List<PlayerDebuff> Debuffs { get; set; } = new List<PlayerDebuff> {};
+        public List<PLAYER_DEBUFF> Debuffs { get; set; } = new List<PLAYER_DEBUFF> {};
         public RecoveryService RecoverResources { get; set; }
         public void ReceiveDamage(int incomingDamage)
         {
@@ -100,12 +100,12 @@ namespace GameEngine.CombatEngine
             HealthPoints.Value -= incomingDamage;
         }
 
-        public void ReceiveDebuff(PlayerDebuff debuff)
+        public void ReceiveDebuff(PLAYER_DEBUFF debuff)
         {
             Debuffs.Add(debuff);
         }
 
-        public void RemoveDebuff(PlayerDebuff debuff)
+        public void RemoveDebuff(PLAYER_DEBUFF debuff)
         {
             Debuffs.Remove(debuff);
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Player.Abstract
 {
-    public interface IAttributes
+    public interface IEntityAttributes
     {
         int Strength { get; set; }
         int Stamina { get; set; }

@@ -30,7 +30,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             var buffService = new BuffsService(this, target);
             var coolDown = new CoolDownService(this);
 
-            buffService.Activate(() => target.ReceiveDebuff(PlayerDebuff.FindTheWeakness));
+            buffService.Activate(() => target.ReceiveDebuff(PLAYER_DEBUFF.FindTheWeakness));
             coolDown.Activate();
         }
 
