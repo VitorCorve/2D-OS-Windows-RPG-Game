@@ -9,10 +9,12 @@ namespace GameEngine.Locations_ALPHA
     public enum LOCATION
     {
         Thawed_Ice,
-        Rouhdunhaim,
-        Irongrip,
-        Elvenstaid,
-        Black_Bulwark,
+        Black_Mountains,
         Scarlet_Leaffall,
+        Dead_Temple,
+        Roughdunhaim_forrest,
+        Black_Stronghold_fields,
+        Forgotten_sands,
+        Darkenterr_blacksands
     }
 }

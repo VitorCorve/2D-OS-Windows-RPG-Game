@@ -1,9 +1,5 @@
-﻿using System;
-using GameEngine.Abstract;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameEngine.Abstract;
+using GameEngine.Player;
 
 namespace GameEngine.Specializatons
 {
@@ -12,7 +8,7 @@ namespace GameEngine.Specializatons
 
         public Warrior()
         {
-            Specialization = "warrior";
+            Specialization = SPECIALIZATION.Warrior;
         }
     }
 }

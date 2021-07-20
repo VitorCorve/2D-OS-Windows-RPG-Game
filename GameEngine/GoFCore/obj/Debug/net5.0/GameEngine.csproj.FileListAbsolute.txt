@@ -21,4 +21,3 @@ E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.csproj
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.dll
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\ref\GameEngine.dll
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.pdb
-E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.csprojAssemblyReference.cache

@@ -7,12 +7,74 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.SpecializationMechanics.Warrior.Skills;
 using GameEngine.SpecializationMechanics.UniversalSkills;
+using GameEngine.SpecializationMechanics.Mage.Skills;
+using GameEngine.SpecializationMechanics.Rogue.Skills;
+using GameEngine.Specializatons;
+using GameEngine.Player.Specializatons.Mage;
+using GameEngine.NPC.Specializations.Humans;
+using GameEngine.Equipment;
+using GameEngine.EquipmentManagement;
 
 namespace EngineTest
 {
     public class TestCombatServices
     {
         public static decimal benchmarkCount = 0;
+
+        public TestCombatServices()
+        {
+            var regularAttack = new RegularAttack();
+
+            // mage skills. Every players entity must have their own skills exemplar
+            var fireball = new Fireball(3);
+            var heal = new Heal(3);
+            var magicShield = new MagicShield(5);
+            var polymorph = new Polymorph(1);
+            var polymorph2 = new Polymorph(1);
+            var soulburn = new Soulburn(1);
+            var soulburn2 = new Soulburn(1);
+
+
+            // rogue skills
+            var backstab = new Backstab(1);
+            var dissapearIntoTheShadows = new DissapearIntoTheShadows(1);
+            var findTheWeakness = new FindTheWeakness(1);
+            var rend = new Rend(1);
+            var stun = new Stun(1);
+
+            // warrior skills
+            var crushLegs = new CrushLegs(1);
+            var deepDefense = new DeepDefense(8);
+            var lastManStanding = new LastManStanding(5);
+            var powerHit = new PowerHit(1);
+            var wideBlow = new WideBlow(2);
+
+            var playerEntityConstructor = new PlayerEntityConstructor();
+
+            var specialization = new Mage();
+            var specializationAttributes = new EntityModel_Mage();
+            var specializationAttributes2 = new EntityModel_Rogue();
+            var wearedEquipment = new WearedEquipment(2);
+            var equipmentValues = new EquipmentValue(wearedEquipment);
+
+            var player1GlobalData = new PlayerModelData(specialization, "male", "Gendalf_1", 1);
+            var player2GlobalData = new PlayerModelData(specialization, "male", "Ralof_2", 1);
+
+            var player1 = playerEntityConstructor.CreatePlayer(player1GlobalData, specializationAttributes, equipmentValues);
+            var player2 = playerEntityConstructor.CreatePlayer(player2GlobalData, specializationAttributes2, equipmentValues);
+
+
+            Run(
+                player1GlobalData,
+                player2GlobalData,
+                player1: player1,
+                player2: player2,
+                skill1: wideBlow,
+                skill2: powerHit,
+                cyclesCount: 1000,
+                iterationsInterval: 1);
+        }
+   
         public void Run(PlayerModelData player1Data, PlayerModelData player2Data, PlayerEntity player1, PlayerEntity player2, ISkill skill1, ISkill skill2, int cyclesCount, double iterationsInterval)
         {
             double _iterationsInterval = 1000 * iterationsInterval;

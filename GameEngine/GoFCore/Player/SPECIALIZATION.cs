@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.NPC.Interfaces.Services
+namespace GameEngine.Player
 {
-    public interface INPC_CreationValidate
+    public enum SPECIALIZATION
     {
-        INPC_Enemy Validate(int playerLevel);
+        Warrior,
+        Rogue,
+        Mage
     }
 }

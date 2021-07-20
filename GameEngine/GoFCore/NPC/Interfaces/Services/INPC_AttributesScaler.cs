@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameEngine.NPC.Interfaces.Services
 {
-    public interface INPC_Builder
+    public interface INPC_AttributesScaler
     {
-        INPC_Enemy Build(INPC_Enemy npcArchetype);
+        void Scale(INPC_Enemy npc);
     }
 }
