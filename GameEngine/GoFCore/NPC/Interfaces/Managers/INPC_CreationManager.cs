@@ -10,8 +10,7 @@ namespace GameEngine.NPC.Interfaces.Managers
 {
     public interface INPC_CreationManager
     {
-        IEntityAttributes NPC { get; }
-        PlayerModelData NPC_Model { get; }
-        void Create(List<INPC_Enemy> npcList, int level);
+        INPC_Enemy NPC { get; }
+        NPC_ModelData NPC_Model { get; }
     }
 }

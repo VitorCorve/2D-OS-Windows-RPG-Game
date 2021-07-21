@@ -1,4 +1,5 @@
 ﻿using GameEngine.NPC.Interfaces.SpecializationArchetypes;
+using GameEngine.Player;
 
 namespace GameEngine.NPC.Specializations.Vampires
 {
@@ -11,8 +12,13 @@ namespace GameEngine.NPC.Specializations.Vampires
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
+        public SPECIALIZATION Specialization { get; private set; }
+        public NPC_NAME Name { get; private set; }
         public EntityModel_Vampire()
         {
+            Specialization = SPECIALIZATION.Vampire;
+            Name = NPC_NAME.Vampire;
+
             Strength = 7;
             Stamina = 6;
             Intellect = 2;

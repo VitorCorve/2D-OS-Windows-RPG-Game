@@ -1,4 +1,6 @@
 ﻿using GameEngine.NPC.Interfaces.SpecializationArchetypes;
+using GameEngine.Player;
+
 
 namespace GameEngine.NPC.Specializations.Dragons
 {
@@ -11,8 +13,13 @@ namespace GameEngine.NPC.Specializations.Dragons
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
+        public SPECIALIZATION Specialization { get; private set; }
+        public NPC_NAME Name { get; private set; }
         public EntityModel_Wyvern()
         {
+            Specialization = SPECIALIZATION.Dragon;
+            Name = NPC_NAME.Wyvern;
+
             Strength = 7;
             Stamina = 6;
             Intellect = 2;

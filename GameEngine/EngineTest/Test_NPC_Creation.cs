@@ -4,11 +4,6 @@ using GameEngine.EquipmentManagement;
 using GameEngine.NPC;
 using GameEngine.Player;
 using GameEngine.Specializatons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EngineTest
 {
@@ -17,19 +12,32 @@ namespace EngineTest
         public Test_NPC_Creation()
         {
             var specialization = new Mage();
-            var playerModelData = new PlayerModelData(specialization, "male", "Gendalf_1", 1);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 17);
 
             var npcCreationManager = new NPC_CreationManager(playerModelData);
 
-            var wearedEquipment = new WearedEquipment(2);
-            var equipmentValues = new EquipmentValue(wearedEquipment);
-
             var playerEntityConstructor = new PlayerEntityConstructor();
 
-            playerEntityConstructor.CreatePlayer(
+            var playerEntity = playerEntityConstructor.CreatePlayer(
                 npcCreationManager.NPC_Model, 
-                npcCreationManager.NPC, 
-                equipmentValues);
+                npcCreationManager.NPC);
+
+            System.Console.ForegroundColor = System.ConsoleColor.Cyan;
+            System.Console.WriteLine("\n\tPlayer:\n");
+            System.Console.ForegroundColor = System.ConsoleColor.White;
+
+            System.Console.WriteLine("player grade: " + playerModelData.PlayerGrade);
+            System.Console.WriteLine($"player level: {playerModelData.Level}");
+
+            System.Console.ForegroundColor = System.ConsoleColor.Cyan;
+            System.Console.WriteLine("\n\tEnemy:\n");
+            System.Console.ForegroundColor = System.ConsoleColor.White;
+
+            System.Console.WriteLine("npc level: " + npcCreationManager.NPC_Model.Level);
+            System.Console.WriteLine("npc name: " + npcCreationManager.NPC_Model.Name);
+            System.Console.WriteLine("npc specialization(race/type): \t" + npcCreationManager.NPC_Model.Specialization);
+            System.Console.WriteLine($"enemy healthpoints {playerEntity.HealthPoints.Value}");
+            System.Console.WriteLine($"enemy attack power {playerEntity.Attack.Value}");
         }
     }
 }

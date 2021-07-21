@@ -1,4 +1,5 @@
-﻿using GameEngine.Player;
+﻿using GameEngine.NPC;
+using GameEngine.Player;
 
 namespace GameEngine.CombatEngine.Services
 {
@@ -9,7 +10,7 @@ namespace GameEngine.CombatEngine.Services
         public string DealerName { get; set; }
         public string TargetName { get; set; }
 
-        public ObserverService(CombatManager player1Manager, PlayerModelData player1Data, PlayerModelData player2Data)
+        public ObserverService(CombatManager player1Manager, PlayerModelData player1ModelData, PlayerModelData player2ModelData)
         {
             player1Manager.Ready.Log += ConstructReadyNotification;
             player1Manager.Defense.Log += ConstructDefenseNotification;
@@ -19,8 +20,35 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
             player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
 
-            DealerName = player1Data.Name;
-            TargetName = player2Data.Name;
+            DealerName = player1ModelData.Name;
+            TargetName = player2ModelData.Name;
+        }
+        public ObserverService(CombatManager player1Manager, NPC_ModelData npcModelData, PlayerModelData playerModelData)
+        {
+            player1Manager.Ready.Log += ConstructReadyNotification;
+            player1Manager.Defense.Log += ConstructDefenseNotification;
+            player1Manager.Combat.LogDamage += ConstructCombatDamageNotification;
+            player1Manager.Combat.LogBuff += ConstructCombatBuffNotification;
+            player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
+            player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
+            player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
+
+            DealerName = npcModelData.Name.ToString();
+            TargetName = playerModelData.Name;
+        }
+
+        public ObserverService(CombatManager player1Manager, PlayerModelData playerModelData, NPC_ModelData npcModelData)
+        {
+            player1Manager.Ready.Log += ConstructReadyNotification;
+            player1Manager.Defense.Log += ConstructDefenseNotification;
+            player1Manager.Combat.LogDamage += ConstructCombatDamageNotification;
+            player1Manager.Combat.LogBuff += ConstructCombatBuffNotification;
+            player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
+            player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
+            player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
+
+            DealerName = playerModelData.Name;
+            TargetName = npcModelData.Name.ToString();
         }
 
         private void ConstructReadyNotification(string str)

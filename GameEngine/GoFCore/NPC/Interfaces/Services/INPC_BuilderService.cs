@@ -8,6 +8,6 @@ namespace GameEngine.NPC.Interfaces.Services
     {
         int PlayerLevelScalingValue { get; }
         List<INPC_Enemy> NPC_List { get; }
-        IEntityAttributes Build();
+        INPC_Enemy Build();
     }
 }

@@ -12,6 +12,8 @@ namespace GameEngine.Equipment
         {
             switch (ID)
             {
+                case 0:
+                    return ID0();
                 case 1:
                     return ID1();
                 case 2:
@@ -20,7 +22,12 @@ namespace GameEngine.Equipment
                     throw new Exception($"Item with ID {ID} no exists.");
             }
         }
+        public static ItemAttributes ID0()
+        {
+            var itemAttributes = new ItemAttributes();
 
+            return itemAttributes;
+        }
         public static ItemAttributes ID1()
         {
             var itemAttributes = new ItemAttributes();

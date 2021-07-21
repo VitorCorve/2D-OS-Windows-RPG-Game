@@ -12,7 +12,7 @@ namespace GameEngine.Abstract
     {
         string Name {get;}
         SPECIALIZATION Specialization {get;}
-        string Gender {get;}
+        GENDER Gender {get;}
         int Level {get;}
         LOCATION CurrentLocation {get;}
         PLAYER_GRADE PlayerGrade {get;}

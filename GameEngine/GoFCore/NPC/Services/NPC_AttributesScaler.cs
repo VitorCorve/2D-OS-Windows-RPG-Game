@@ -1,13 +1,9 @@
 ﻿using GameEngine.NPC.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GameEngine.NPC.Interfaces.Services;
 
 namespace GameEngine.NPC.Services
 {
-    public class NPC_AttributesScaler : IAttributesScaler
+    public class NPC_AttributesScaler : INPC_AttributesScaler
     {
         public void Scale(INPC_Enemy npc, int level)
         {

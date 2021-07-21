@@ -10,6 +10,12 @@ namespace GameEngine.Player
     {
         Warrior,
         Rogue,
-        Mage
+        Mage,
+        Animal,
+        Dragon,
+        Human,
+        Undead,
+        Vampire,
+        Werewolf
     }
 }

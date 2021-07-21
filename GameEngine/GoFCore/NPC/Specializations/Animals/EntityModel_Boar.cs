@@ -1,4 +1,5 @@
 ﻿using GameEngine.NPC.Interfaces.SpecializationArchetypes;
+using GameEngine.Player;
 
 namespace GameEngine.NPC.Specializations.Animals
 {
@@ -11,8 +12,13 @@ namespace GameEngine.NPC.Specializations.Animals
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
+        public SPECIALIZATION Specialization { get; private set; }
+        public NPC_NAME Name { get; private set; }
         public EntityModel_Boar()
         {
+            Specialization = SPECIALIZATION.Animal;
+            Name = NPC_NAME.Boar;
+
             Strength = 7;
             Stamina = 6;
             Intellect = 2;

@@ -5,7 +5,7 @@ using GameEngine.Player.Abstract;
 using System;
 using System.Collections.Generic;
 
-namespace GameEngine.NPC
+namespace GameEngine.NPC.Services
 {
     public class NPC_BuilderService : INPC_BuilderService
     {
@@ -17,7 +17,7 @@ namespace GameEngine.NPC
             NPC_List = npcList;
         }
 
-        public IEntityAttributes Build()
+        public INPC_Enemy Build()
         {
             var npcAttributesScaler = new NPC_AttributesScaler();
 
