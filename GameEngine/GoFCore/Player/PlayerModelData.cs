@@ -8,13 +8,13 @@ namespace GameEngine.Player
         public string Name { get; private set; }
         public SPECIALIZATION Specialization { get; private set; }
         public GENDER Gender { get; set; }
-        public int Level { get; private set; }
+        public int Level { get; set; }
         public LOCATION CurrentLocation { get; set; }
         public int Experience { get; set; }
         public int MaxExperience { get; set; }
         public PLAYER_GRADE PlayerGrade
         {
-            get { return ValidatePlayerGrade(Level); }
+            get { return SetPlayerGrade(Level); }
             set { _PlayerGrade = value; }
         }
 
@@ -28,7 +28,7 @@ namespace GameEngine.Player
             Level = level;
         }
 
-        private PLAYER_GRADE ValidatePlayerGrade(int level)
+        private PLAYER_GRADE SetPlayerGrade(int level)
         {
             switch (level)
             {

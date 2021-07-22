@@ -10,16 +10,26 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class Rend : IDamageOverTimeSkill, IDamageOverTimeIntervals
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Rend";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set 
+            { 
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 6;
+        public int CoolDownDuration { get; set; } = 12;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
-        public int Cost { get; private set; }
-        public int Intervals { get; private set; }
+        public int Intervals { get; private set; } = 1;
         public int SkillDamageValue { get; set; }
-        public int AmountOfValue { get; private set; }
+        public int AmountOfValue { get; set; }
+        public int Cost { get; set; }
+
         public IResourceType ResourceType { get; set; } = new Energy();
         public IUseType Type { get; set; } = new Melee();
 
@@ -34,16 +44,10 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             damageOverTimeService.Activate();
             coolDown.Activate();
         }
-
-        public Rend(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Rend";
-            SkillLevel = skillLevel;
-            AmountOfValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 12;
-            Duration = 6;
-            Intervals = 1;
+            SkillDamageValue = SkillLevel * 5;
         }
     }
 }

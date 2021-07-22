@@ -10,9 +10,18 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class Backstab : IDamageSkill, ISkillDamageValue
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Backstab";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int CoolDownDuration { get; set; } = 2;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
@@ -53,14 +62,10 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public Backstab(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Backstab";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 2;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

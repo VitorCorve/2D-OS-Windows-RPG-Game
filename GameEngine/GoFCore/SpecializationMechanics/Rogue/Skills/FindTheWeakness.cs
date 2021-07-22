@@ -10,10 +10,19 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class FindTheWeakness : IDebuffSkill
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Find the weakness";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 12;
+        public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -33,15 +42,10 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             buffService.Activate(() => target.ReceiveDebuff(PLAYER_DEBUFF.FindTheWeakness));
             coolDown.Activate();
         }
-
-        public FindTheWeakness(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Find the weakness";
-            SkillLevel = skillLevel;
-            AmountOfValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 20;
-            Duration = 12;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

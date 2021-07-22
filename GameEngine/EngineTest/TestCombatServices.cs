@@ -27,28 +27,28 @@ namespace EngineTest
             var regularAttack = new RegularAttack();
 
             // mage skills. Every players entity must have their own skills exemplar
-            var fireball = new Fireball(3);
-            var heal = new Heal(3);
-            var magicShield = new MagicShield(5);
-            var polymorph = new Polymorph(1);
-            var polymorph2 = new Polymorph(1);
-            var soulburn = new Soulburn(1);
-            var soulburn2 = new Soulburn(1);
+            var fireball = new Fireball();
+            var heal = new Heal();
+            var magicShield = new MagicShield();
+            var polymorph = new Polymorph();
+            var polymorph2 = new Polymorph();
+            var soulburn = new Soulburn();
+            var soulburn2 = new Soulburn();
 
 
             // rogue skills
-            var backstab = new Backstab(1);
-            var dissapearIntoTheShadows = new DissapearIntoTheShadows(1);
-            var findTheWeakness = new FindTheWeakness(1);
-            var rend = new Rend(1);
-            var stun = new Stun(1);
+            var backstab = new Backstab();
+            var dissapearIntoTheShadows = new DissapearIntoTheShadows();
+            var findTheWeakness = new FindTheWeakness();
+            var rend = new Rend();
+            var stun = new Stun();
 
             // warrior skills
-            var crushLegs = new CrushLegs(1);
-            var deepDefense = new DeepDefense(8);
-            var lastManStanding = new LastManStanding(5);
-            var powerHit = new PowerHit(1);
-            var wideBlow = new WideBlow(2);
+            var crushLegs = new CrushLegs();
+            var deepDefense = new DeepDefense();
+            var lastManStanding = new LastManStanding();
+            var powerHit = new PowerHit();
+            var wideBlow = new WideBlow();
 
             var playerEntityConstructor = new PlayerEntityConstructor();
 
@@ -58,12 +58,12 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var player1GlobalData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50);
-            /*var player2GlobalData = new PlayerModelData(specialization, GENDER.Male, "Ralof_2", 1);*/
+            var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50);
+            /*var player2ModelData = new PlayerModelData(specialization, GENDER.Male, "Ralof_2", 1);*/
 
             // creating NPC
 
-            var npcCreationManager = new NPC_CreationManager(player1GlobalData);
+            var npcCreationManager = new NPC_CreationManager(player1ModelData);
 
             var npcEntityConstructor = new PlayerEntityConstructor();
 
@@ -71,17 +71,17 @@ namespace EngineTest
                 npcCreationManager.NPC_Model,
                 npcCreationManager.NPC);
 
-            var player1 = playerEntityConstructor.CreatePlayer(player1GlobalData, specializationAttributes, equipmentValues);
+            var player1 = playerEntityConstructor.CreatePlayer(player1ModelData, specializationAttributes, equipmentValues);
             /*var player2 = playerEntityConstructor.CreatePlayer(player2GlobalData, specializationAttributes2, equipmentValues);*/
 
 
             Run(
-                player1GlobalData,
+                player1ModelData,
                 npcCreationManager.NPC_Model,
                 player1: player1,
                 player2: npcEntity,
-                skill1: regularAttack,
-                skill2: regularAttack,
+                skill1: powerHit,
+                skill2: wideBlow,
                 cyclesCount: 100,
                 iterationsInterval: 0);
         }
@@ -98,7 +98,7 @@ namespace EngineTest
 
             var specialAbilitiesObserver = new SpecialAbilitiesObserverService(player1, skill1);
 
-            var lastManStanding = new LastManStanding(5);
+            var lastManStanding = new LastManStanding();
 
             observerService.Log += Notification;
             observerService2.Log += Notification;
@@ -187,7 +187,7 @@ namespace EngineTest
 
             var specialAbilitiesObserver = new SpecialAbilitiesObserverService(player1, skill1);
 
-            var lastManStanding = new LastManStanding(5);
+            var lastManStanding = new LastManStanding();
 
             observerService.Log += Notification;
             observerService2.Log += Notification;

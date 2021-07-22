@@ -15,10 +15,19 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class DeepDefense : IBuffSkill, ISkillDuration, IBuffSecondResourceType
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Deep defense";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 20;
+        public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -37,15 +46,10 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public DeepDefense(int skillLevel)
+        private void ConvertValues()
         {
-            AmountOfValue = skillLevel;
-            SkillName = "Deep defense";
-            SkillLevel = skillLevel;
             Cost = SkillLevel * 2;
-            Duration = 20;
-            CoolDownDuration = 20;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

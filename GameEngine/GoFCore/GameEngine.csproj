@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Docs\Specialization mechanics\Новая папка\**" />
+    <EmbeddedResource Remove="Docs\Specialization mechanics\Новая папка\**" />
+    <None Remove="Docs\Specialization mechanics\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LevelUpMechanics\Services\" />
+  </ItemGroup>
+
 </Project>

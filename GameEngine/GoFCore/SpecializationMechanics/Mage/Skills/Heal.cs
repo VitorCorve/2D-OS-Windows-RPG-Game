@@ -10,9 +10,18 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class Heal : IHealSkill, ISkillDamageValue
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Heal";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int CoolDownDuration { get; set; } = 6;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
@@ -37,15 +46,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         {
             target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
         }
-
-        public Heal(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Heal";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 6;
+            SkillDamageValue = SkillLevel * 5;
         }
-
     }
 }

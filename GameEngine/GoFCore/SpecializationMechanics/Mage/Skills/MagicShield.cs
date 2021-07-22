@@ -9,10 +9,19 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class MagicShield : IBuffSkill
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Magic Shield";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 6;
+        public int CoolDownDuration { get; set; } = 10;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -31,15 +40,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public MagicShield(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Magic Shield";
-            SkillLevel = skillLevel;
+            Cost = SkillLevel * 3;
             AmountOfValue = SkillLevel * 5;
-            Cost = SkillLevel * 3; 
-            Duration = 6;
-            CoolDownDuration = 10;
         }
     }
 }

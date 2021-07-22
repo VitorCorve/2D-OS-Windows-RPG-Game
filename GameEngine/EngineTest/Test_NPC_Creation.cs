@@ -1,6 +1,4 @@
 ﻿using GameEngine.CombatEngine;
-using GameEngine.Equipment;
-using GameEngine.EquipmentManagement;
 using GameEngine.NPC;
 using GameEngine.Player;
 using GameEngine.Specializatons;
@@ -12,7 +10,7 @@ namespace EngineTest
         public Test_NPC_Creation()
         {
             var specialization = new Mage();
-            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 17);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 30);
 
             var npcCreationManager = new NPC_CreationManager(playerModelData);
 

@@ -10,10 +10,19 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class DissapearIntoTheShadows : IBuffSkill, ISkillDuration
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Dissapear into the Shadows";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 5;
+        public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -31,14 +40,10 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public DissapearIntoTheShadows(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Dissapear into the Shadows";
-            SkillLevel = skillLevel;
             Cost = SkillLevel * 3;
-            Duration = 5;
-            CoolDownDuration = 20;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

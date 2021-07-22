@@ -1,0 +1,14 @@
+﻿1 lvl
+Fireball
+
+4 lvl
+Heal
+
+8 lvl
+Magic Shiled
+
+12 lvl 
+Polymorph
+
+16 lvl
+Soulburn

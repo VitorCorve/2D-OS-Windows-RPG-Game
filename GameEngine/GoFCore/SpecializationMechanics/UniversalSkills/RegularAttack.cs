@@ -10,7 +10,7 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
 {
     public class RegularAttack : IDamageSkill, ISkillDamageValue
     {
-        public string SkillName { get; private set; }
+        public string SkillName { get; private set; } = "melee attack";
         public int SkillLevel { get; private set; }
         public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
@@ -43,11 +43,6 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
                 AmountOfValue = target.ArmorPoints.Value / 10;
 
             target.ReceiveDamage(AmountOfValue);
-        }
-
-        public RegularAttack()
-        {
-            SkillName = "melee attack";
         }
     }
 }

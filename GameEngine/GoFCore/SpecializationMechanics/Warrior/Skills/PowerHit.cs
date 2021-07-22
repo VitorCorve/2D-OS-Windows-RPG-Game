@@ -10,9 +10,18 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class PowerHit : IDamageSkill, ISkillDamageValue
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Power hit";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int CoolDownDuration { get; set; } = 3;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
@@ -53,14 +62,10 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public PowerHit(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Power hit";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 3;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

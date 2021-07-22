@@ -6,7 +6,8 @@ namespace EngineTest
     {
         static void Main(string[] args)
         {
-            var testNPC_Creation = new Test_NPC_Creation();
+            //var testNPC_Creation = new Test_NPC_Creation();
+            var testLevelUp = new TestLevelUpMechanics(); ;
             //var testCombat = new TestCombatServices();
         }
     }

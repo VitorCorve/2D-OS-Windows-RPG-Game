@@ -10,10 +10,19 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class WideBlow : IDamageSkill, ISkillDamageValue, IBuffSkill
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Wide blow";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 8;
+        public int CoolDownDuration { get; set; } = 15;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -49,15 +58,10 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
 
             target.ReceiveDamage(AmountOfValue);
         }
-
-        public WideBlow(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Wide blow";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 10;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 15;
-            Duration = 8;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

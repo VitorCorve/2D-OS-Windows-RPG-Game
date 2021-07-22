@@ -9,19 +9,27 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class Fireball : IDamageSkill, ISkillDamageValue
     {
-        public string SkillName { get ; private set; }
-        public int SkillLevel { get ; private set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get ; private set; } = "Fireball";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int CoolDownDuration { get; set; } = 3;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get ; private set; }
         public int Cost { get ; private set; }
-
-        private int _skillDamageValue;
         public int SkillDamageValue
         {
             get { return RandomizeDamageValue(_skillDamageValue); }
             private set { _skillDamageValue = value; }
         }
+        private int _skillDamageValue;
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
         public IUseType Type { get; set; } = new Magic();
@@ -39,15 +47,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
         }
-
-        public Fireball(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Fireball";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 3;
+            SkillDamageValue = SkillLevel * 5;
         }
-
     }
 }

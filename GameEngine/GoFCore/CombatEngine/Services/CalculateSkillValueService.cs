@@ -14,6 +14,9 @@ namespace GameEngine.CombatEngine.Services
         {
             Random randomize = new Random();
 
+            if (criticalChance == null)
+                criticalChance = new CriticalHitChance(0.0);
+
             if (randomize.Next(0, 100) < criticalChance.Value)
                 basicSkillValue *= 3;
 

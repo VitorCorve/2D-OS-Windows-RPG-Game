@@ -8,14 +8,23 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class Soulburn : IDamageOverTimeSkill
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get;  set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Soul Burn";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get;  set; } = 10;
+        public int CoolDownDuration { get; set; } = 12;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }
-        public int Intervals { get; private set; }
+        public int Intervals { get; private set; } = 2;
         public int SkillDamageValue { get; set; }
         public int AmountOfValue { get; private set; }
         public IResourceType ResourceType { get; set; } = new Mana();
@@ -31,16 +40,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             damageOverTimeService.Activate();
             coolDown.Activate();
         }
-
-        public Soulburn(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Soul Burn";
-            SkillLevel = skillLevel;
-            SkillDamageValue = SkillLevel * 5;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 12;
-            Duration = 10;
-            Intervals = 2;
+            AmountOfValue = SkillLevel * 5;
         }
     }
 }

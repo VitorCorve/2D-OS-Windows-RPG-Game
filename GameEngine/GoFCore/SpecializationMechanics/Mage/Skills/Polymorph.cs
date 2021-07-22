@@ -8,10 +8,19 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class Polymorph : IDebuffSkill
     {
-        public string SkillName { get; private set; }
-        public int SkillLevel { get; private set; }
-        public int Duration { get; set; }
-        public int CoolDownDuration { get; set; }
+        public string SkillName { get; private set; } = "Polymorph";
+        public int SkillLevel
+        {
+            get { return _SkillLevel; }
+            set
+            {
+                _SkillLevel = value;
+                ConvertValues();
+            }
+        }
+        private int _SkillLevel;
+        public int Duration { get; set; } = 6;
+        public int CoolDownDuration { get; set; } = 30;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
         public int AmountOfValue { get; private set; }
@@ -25,15 +34,10 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
             buffService.Activate(() => target.LoseControl());
             coolDown.Activate();
         }
-
-        public Polymorph(int skillLevel)
+        private void ConvertValues()
         {
-            SkillName = "Polymorph";
-            SkillLevel = skillLevel;
             Cost = SkillLevel * 3;
-            CoolDownDuration = 30;
-            Duration = 6;
+            AmountOfValue = SkillLevel * 5;
         }
-
     }
 }
