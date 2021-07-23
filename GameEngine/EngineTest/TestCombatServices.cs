@@ -54,7 +54,7 @@ namespace EngineTest
 
             var specialization = new Mage();
             var specializationAttributes = new EntityModel_Mage();
-            var specializationAttributes2 = new EntityModel_Rogue();
+            var specializationAttributes2 = new EntityModel_Thug();
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 

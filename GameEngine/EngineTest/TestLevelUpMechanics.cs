@@ -1,9 +1,11 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.Equipment;
 using GameEngine.EquipmentManagement;
-using GameEngine.LevelUpMechanics;
+using GameEngine.LevelUpMechanics.Services;
 using GameEngine.Player;
 using GameEngine.Player.Specializatons.Mage;
+using GameEngine.Player.Specializatons.Rogue;
+using GameEngine.Player.Specializatons.Warrior;
 using GameEngine.SpecializationMechanics.Rogue.Skills;
 using GameEngine.Specializatons;
 using System;
@@ -14,13 +16,13 @@ namespace EngineTest
     {
         public TestLevelUpMechanics()
         {
-            var specialization = new Mage();
-            var specializationAttributes = new EntityModel_Mage();
+            var specialization = new Warrior();
+            var specializationAttributes = new EntityModel_Warrior();
 
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 10);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 5);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
             var player1 = playerEntityConstructor.CreatePlayer(playerModelData, specializationAttributes, equipmentValues);
@@ -44,7 +46,7 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.White;
 
             // level-up part
-            var levelUpMechanics = new LevelUpManager(specializationAttributes, playerModelData);
+            var levelUpMechanics = new PlayerLevelUpService(specializationAttributes, playerModelData);
             levelUpMechanics.UpgradeStamina();
 
             // player stats reconstruction
@@ -83,6 +85,42 @@ namespace EngineTest
             Console.WriteLine(backstab.SkillLevel);
             Console.WriteLine(backstab.AmountOfValue);
 
+            var getAvailablePlayerSkills = new GetAvailablePlayerSkills(playerModelData);
+
+            foreach (var item in getAvailablePlayerSkills.SkillList)
+            {
+                Console.WriteLine(item.SkillName);
+            }
+
+            Console.WriteLine();
+
+            var playerConsumables = new PlayerConsumablesData();
+
+            playerConsumables.SkillPointsValue.Value += 2;
+
+            var playerSkills = new PlayerSkillList();
+
+            var skillLevelUpService = new SkillLevelUpService(playerModelData, playerConsumables, playerSkills);
+            skillLevelUpService.Select();
+            skillLevelUpService.LevelUp();
+            skillLevelUpService.LevelUp();
+
+
+            Console.WriteLine();
+
+            foreach (var item in playerSkills.Skills)
+            {
+                Console.WriteLine(item.SkillName);
+            }
+
+            Console.WriteLine();
+
+            foreach (var item in playerSkills.Skills)
+            {
+                Console.WriteLine("Skill: ");
+                Console.WriteLine(item.SkillName);
+                Console.WriteLine(item.SkillLevel);
+            }
         }
     }
 }

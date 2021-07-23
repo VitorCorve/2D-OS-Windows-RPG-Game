@@ -3,7 +3,7 @@ using GameEngine.Player;
 
 namespace GameEngine.NPC.Specializations.Humans
 {
-    public class EntityModel_Rogue : IHuman
+    public class EntityModel_Thug : IHuman
     {
         public int Strength { get; set; }
         public int Stamina { get; set; }
@@ -14,10 +14,10 @@ namespace GameEngine.NPC.Specializations.Humans
         public int ArmorValue { get; set; }
         public SPECIALIZATION Specialization { get; private set; }
         public NPC_NAME Name { get; private set; }
-        public EntityModel_Rogue()
+        public EntityModel_Thug()
         {
             Specialization = SPECIALIZATION.Human;
-            Name = NPC_NAME.Rogue;
+            Name = NPC_NAME.Thug;
 
             Strength = 7;
             Stamina = 6;

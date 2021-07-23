@@ -56,7 +56,7 @@ namespace GameEngine.NPC
         private void CreateAdvancedNPCs()
         {
             Advanced.Add(new EntityModel_Wolf());
-            Advanced.Add(new EntityModel_Rogue());
+            Advanced.Add(new EntityModel_Thug());
             Advanced.Add(new EntityModel_AncientWarrior());
             Advanced.Add(new EntityModel_Werewolf());
             Advanced.Add(new EntityModel_Vampire());

@@ -11,7 +11,7 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
     public class RegularAttack : IDamageSkill, ISkillDamageValue
     {
         public string SkillName { get; private set; } = "melee attack";
-        public int SkillLevel { get; private set; }
+        public int SkillLevel { get; set; }
         public int Duration { get; set; }
         public int CoolDownDuration { get; set; }
         public int CoolDown { get; set; }

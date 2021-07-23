@@ -25,7 +25,7 @@ namespace GameEngine.NPC.Specializations
         Assassin,
         Bandit,
         Mercenary,
-        Rogue,
+        Thug,
         Scavenger,
 
         // undead

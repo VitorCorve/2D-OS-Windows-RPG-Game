@@ -10,8 +10,4 @@
     <None Remove="Docs\Specialization mechanics\Новая папка\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="LevelUpMechanics\Services\" />
-  </ItemGroup>
-
 </Project>

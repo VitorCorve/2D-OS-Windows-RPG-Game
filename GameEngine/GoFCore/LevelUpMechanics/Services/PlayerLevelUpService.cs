@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.LevelUpMechanics
+namespace GameEngine.LevelUpMechanics.Services
 {
-    public class LevelUpManager
+    public class PlayerLevelUpService
     {
         public IEntityAttributes PlayerAttributes { get; private set; }
-        public LevelUpManager(IEntityAttributes playerAttributes, PlayerModelData playerModel)
+        public PlayerLevelUpService(IEntityAttributes playerAttributes, PlayerModelData playerModel)
         {
             playerModel.Level += 1;
             PlayerAttributes = playerAttributes;

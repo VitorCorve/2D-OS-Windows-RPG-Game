@@ -5,7 +5,7 @@ namespace GameEngine.CombatEngine.Interfaces
     public interface ISkill
     {
         string SkillName { get; }
-        int SkillLevel { get; }
+        int SkillLevel { get; set; }
         int CoolDownDuration { get; set; }
         int CoolDown { get; set; }
         int Cost { get; }
