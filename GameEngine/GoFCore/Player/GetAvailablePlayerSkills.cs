@@ -21,15 +21,15 @@ namespace GameEngine.Player
             switch (playerModel.Specialization)
             {
                 case SPECIALIZATION.Warrior:
-                    var warriorSkills = new GetAvailableWarriorSkills(PlayerLevel);
+                    var warriorSkills = new GetWarriorSkills(PlayerLevel);
                     SkillList = warriorSkills.SkillList;
                     return;
                 case SPECIALIZATION.Rogue:
-                    var rogueSkills = new GetAvailableRogueSkills(PlayerLevel);
+                    var rogueSkills = new GetRogueSkills(PlayerLevel);
                     SkillList = rogueSkills.SkillList;
                     return;
                 default:
-                    var mageSkills = new GetAvailableMageSkills(PlayerLevel);
+                    var mageSkills = new GetMageSkills(PlayerLevel);
                     SkillList = mageSkills.SkillList;
                     return;
             }

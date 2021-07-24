@@ -1,13 +1,13 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.SpecializationMechanics.Rogue.Skills;
+using GameEngine.SpecializationMechanics.Mage.Skills;
 using System.Collections.Generic;
 
-namespace GameEngine.Player.Specializatons.Rogue
+namespace GameEngine.Player.Specializatons.Mage
 {
-    public class GetAvailableRogueSkills
+    public class GetMageSkills
     {
         public List<ISkill> SkillList { get; } = new();
-        public GetAvailableRogueSkills(int playerLevel)
+        public GetMageSkills(int playerLevel)
         {
             switch (playerLevel)
             {
@@ -33,33 +33,33 @@ namespace GameEngine.Player.Specializatons.Rogue
 
         public void SetNoviceSkills()
         {
-            var backstab = new Backstab();
-            SkillList.Add(backstab);
+            var fireball = new Fireball();
+            SkillList.Add(fireball);
         }
         public void SetAdvancedSkills()
         {
             SetNoviceSkills();
-            var rend = new Rend();
-            SkillList.Add(rend);
+            var heal = new Heal();
+            SkillList.Add(heal);
         }
         public void SetAdeptSkills()
         {
             SetAdvancedSkills();
-            var dissapearIntoTheShadows = new DissapearIntoTheShadows();
-            SkillList.Add(dissapearIntoTheShadows);
+            var magicShield = new MagicShield();
+            SkillList.Add(magicShield);
         }
         public void SetExpertSkills()
         {
             SetAdeptSkills();
-            var stun = new Stun();
-            SkillList.Add(stun);
+            var polymorph = new Polymorph();
+            SkillList.Add(polymorph);
         }
 
         public void SetMasterSkills()
         {
             SetExpertSkills();
-            var findTheWeakness = new FindTheWeakness();
-            SkillList.Add(findTheWeakness);
+            var soulburn = new Soulburn();
+            SkillList.Add(soulburn);
         }
     }
 }

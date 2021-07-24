@@ -1,13 +1,13 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.SpecializationMechanics.Mage.Skills;
+using GameEngine.SpecializationMechanics.Warrior.Skills;
 using System.Collections.Generic;
 
-namespace GameEngine.Player.Specializatons.Mage
+namespace GameEngine.Player.Specializatons.Warrior
 {
-    public class GetAvailableMageSkills
+    public class GetWarriorSkills
     {
         public List<ISkill> SkillList { get; } = new();
-        public GetAvailableMageSkills(int playerLevel)
+        public GetWarriorSkills(int playerLevel)
         {
             switch (playerLevel)
             {
@@ -23,7 +23,7 @@ namespace GameEngine.Player.Specializatons.Mage
                 case < 16:
                     SetExpertSkills();
                     return;
-                case > 16:
+                case < 30:
                     SetMasterSkills();
                     return;
                 default:
@@ -33,33 +33,33 @@ namespace GameEngine.Player.Specializatons.Mage
 
         public void SetNoviceSkills()
         {
-            var fireball = new Fireball();
-            SkillList.Add(fireball);
+            var powerHit = new PowerHit();
+            SkillList.Add(powerHit);
         }
         public void SetAdvancedSkills()
         {
             SetNoviceSkills();
-            var heal = new Heal();
-            SkillList.Add(heal);
+            var deepDefense = new DeepDefense();
+            SkillList.Add(deepDefense);
         }
         public void SetAdeptSkills()
         {
             SetAdvancedSkills();
-            var magicShield = new MagicShield();
-            SkillList.Add(magicShield);
+            var wideBlow = new WideBlow();
+            SkillList.Add(wideBlow);
         }
         public void SetExpertSkills()
         {
             SetAdeptSkills();
-            var polymorph = new Polymorph();
-            SkillList.Add(polymorph);
+            var crushLegs = new CrushLegs();
+            SkillList.Add(crushLegs);
         }
 
         public void SetMasterSkills()
         {
             SetExpertSkills();
-            var soulburn = new Soulburn();
-            SkillList.Add(soulburn);
+            var lastManStanding = new LastManStanding();
+            SkillList.Add(lastManStanding);
         }
     }
 }

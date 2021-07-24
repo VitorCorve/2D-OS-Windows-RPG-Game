@@ -1,13 +1,13 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
-using GameEngine.SpecializationMechanics.Warrior.Skills;
+using GameEngine.SpecializationMechanics.Rogue.Skills;
 using System.Collections.Generic;
 
-namespace GameEngine.Player.Specializatons.Warrior
+namespace GameEngine.Player.Specializatons.Rogue
 {
-    public class GetAvailableWarriorSkills
+    public class GetRogueSkills
     {
         public List<ISkill> SkillList { get; } = new();
-        public GetAvailableWarriorSkills(int playerLevel)
+        public GetRogueSkills(int playerLevel)
         {
             switch (playerLevel)
             {
@@ -33,33 +33,33 @@ namespace GameEngine.Player.Specializatons.Warrior
 
         public void SetNoviceSkills()
         {
-            var powerHit = new PowerHit();
-            SkillList.Add(powerHit);
+            var backstab = new Backstab();
+            SkillList.Add(backstab);
         }
         public void SetAdvancedSkills()
         {
             SetNoviceSkills();
-            var deepDefense = new DeepDefense();
-            SkillList.Add(deepDefense);
+            var rend = new Rend();
+            SkillList.Add(rend);
         }
         public void SetAdeptSkills()
         {
             SetAdvancedSkills();
-            var wideBlow = new WideBlow();
-            SkillList.Add(wideBlow);
+            var dissapearIntoTheShadows = new DissapearIntoTheShadows();
+            SkillList.Add(dissapearIntoTheShadows);
         }
         public void SetExpertSkills()
         {
             SetAdeptSkills();
-            var crushLegs = new CrushLegs();
-            SkillList.Add(crushLegs);
+            var stun = new Stun();
+            SkillList.Add(stun);
         }
 
         public void SetMasterSkills()
         {
             SetExpertSkills();
-            var lastManStanding = new LastManStanding();
-            SkillList.Add(lastManStanding);
+            var findTheWeakness = new FindTheWeakness();
+            SkillList.Add(findTheWeakness);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 5);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 15);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
             var player1 = playerEntityConstructor.CreatePlayer(playerModelData, specializationAttributes, equipmentValues);
@@ -46,7 +46,8 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.White;
 
             // level-up part
-            var levelUpMechanics = new PlayerLevelUpService(specializationAttributes, playerModelData);
+            var playerConsumables = new PlayerConsumablesData();
+            var levelUpMechanics = new PlayerLevelUpService(specializationAttributes, playerModelData, playerConsumables);
             levelUpMechanics.UpgradeStamina();
 
             // player stats reconstruction
@@ -74,53 +75,19 @@ namespace EngineTest
             Console.WriteLine(specializationAttributes.Stamina);
             Console.ForegroundColor = ConsoleColor.White;
 
-            var backstab = new Backstab();
- 
-
-            Console.WriteLine(backstab.SkillLevel);
-            Console.WriteLine(backstab.AmountOfValue);
-
-            backstab.SkillLevel = 2;
-
-            Console.WriteLine(backstab.SkillLevel);
-            Console.WriteLine(backstab.AmountOfValue);
-
-            var getAvailablePlayerSkills = new GetAvailablePlayerSkills(playerModelData);
-
-            foreach (var item in getAvailablePlayerSkills.SkillList)
-            {
-                Console.WriteLine(item.SkillName);
-            }
-
-            Console.WriteLine();
-
-            var playerConsumables = new PlayerConsumablesData();
-
-            playerConsumables.SkillPointsValue.Value += 2;
-
             var playerSkills = new PlayerSkillList();
 
             var skillLevelUpService = new SkillLevelUpService(playerModelData, playerConsumables, playerSkills);
-            skillLevelUpService.Select();
-            skillLevelUpService.LevelUp();
             skillLevelUpService.LevelUp();
 
-
+            // available skills
             Console.WriteLine();
-
-            foreach (var item in playerSkills.Skills)
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            foreach (var item in skillLevelUpService.AvailablePlayerSkills.SkillList)
             {
-                Console.WriteLine(item.SkillName);
+                Console.WriteLine($"Avaliable skill: {item.SkillName} (Lvl.{item.SkillLevel})");
             }
-
-            Console.WriteLine();
-
-            foreach (var item in playerSkills.Skills)
-            {
-                Console.WriteLine("Skill: ");
-                Console.WriteLine(item.SkillName);
-                Console.WriteLine(item.SkillLevel);
-            }
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

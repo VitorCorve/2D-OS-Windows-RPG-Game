@@ -13,10 +13,13 @@ namespace GameEngine.LevelUpMechanics.Services
     public class PlayerLevelUpService
     {
         public IEntityAttributes PlayerAttributes { get; private set; }
-        public PlayerLevelUpService(IEntityAttributes playerAttributes, PlayerModelData playerModel)
+        public PlayerConsumablesData PlayerConsumables { get; private set; }
+        public PlayerLevelUpService(IEntityAttributes playerAttributes, PlayerModelData playerModel, PlayerConsumablesData playerConsumablesData)
         {
             playerModel.Level += 1;
             PlayerAttributes = playerAttributes;
+            PlayerConsumables = playerConsumablesData;
+            PlayerConsumables.SkillPointsValue.Value += 1;
         }
 
         public void UpgradeStrength()
