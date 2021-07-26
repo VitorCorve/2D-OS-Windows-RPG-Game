@@ -17,17 +17,17 @@ namespace GameEngine.Player
             get { return SetPlayerGrade(Level); }
             set { _PlayerGrade = value; }
         }
-
         private PLAYER_GRADE _PlayerGrade;
+        public PlayerConsumablesData PlayerConsumablesData { get; set; }
         public PlayerModelData(AbstractPlayer player, GENDER gender, string name, int level)
         {
+            PlayerConsumablesData = new PlayerConsumablesData(0);
             PlayerGrade = PLAYER_GRADE.Novice;
             Name = name;
             Specialization = player.Specialization;
             Gender = gender;
             Level = level;
         }
-
         private PLAYER_GRADE SetPlayerGrade(int level)
         {
             switch (level)
@@ -48,6 +48,5 @@ namespace GameEngine.Player
                     return PLAYER_GRADE.Legend;
             }
         }
-
     }
 }

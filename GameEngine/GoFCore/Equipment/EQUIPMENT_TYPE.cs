@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Equipment
 {
-    public enum EquipmentTypes
+    public enum EQUIPMENT_TYPE
     {
         Helmet,
         Necklace,

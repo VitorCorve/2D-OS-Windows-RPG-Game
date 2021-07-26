@@ -8,9 +8,18 @@ namespace GameEngine.Equipment
 {
     public class ItemModel
     {
-        public readonly uint ID;
+        public readonly int ID;
         public readonly string ItemName;
-        public readonly string Quality;
-        public readonly EquipmentTypes WearType;
+        public readonly ITEM_QUALITY Quality;
+        public readonly EQUIPMENT_TYPE WearType;
+        public readonly ItemCostData Cost;
+        public ItemModel(int id, string itemName, ITEM_QUALITY quality, EQUIPMENT_TYPE wearType, ItemCostData cost)
+        {
+            ID = id;
+            ItemName = itemName;
+            Quality = quality;
+            WearType = wearType;
+            Cost = cost;
+        }
     }
 }

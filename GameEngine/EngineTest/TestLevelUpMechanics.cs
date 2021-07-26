@@ -46,8 +46,8 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.White;
 
             // level-up part
-            var playerConsumables = new PlayerConsumablesData();
-            var levelUpMechanics = new PlayerLevelUpService(specializationAttributes, playerModelData, playerConsumables);
+            var playerConsumables = new PlayerConsumablesData(0);
+            var levelUpMechanics = new PlayerLevelUpService(specializationAttributes, playerModelData);
             levelUpMechanics.UpgradeStamina();
 
             // player stats reconstruction

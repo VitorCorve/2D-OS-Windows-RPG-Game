@@ -4,9 +4,9 @@ namespace GameEngine.Abstract
 {
     public interface IPlayerConsumablesData
     {
-        CopperCurrency CopperValue { get; }
-        SilverCurrency SilverValue { get; }
-        GoldCurrency GoldValue { get; }
-        SkillPointsCurrency SkillPointsValue { get; }
+        Copper CopperValue { get; }
+        Silver SilverValue { get; }
+        Gold GoldValue { get; }
+        SkillPoints SkillPointsValue { get; }
     }
 }

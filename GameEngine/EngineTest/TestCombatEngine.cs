@@ -4,7 +4,6 @@ using System.Timers;
 using System;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
-using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.SpecializationMechanics.Warrior.Skills;
 using GameEngine.SpecializationMechanics.UniversalSkills;
 using GameEngine.SpecializationMechanics.Mage.Skills;
@@ -18,11 +17,11 @@ using GameEngine.NPC;
 
 namespace EngineTest
 {
-    public class TestCombatServices
+    public class TestCombatEngine
     {
         public static decimal benchmarkCount = 0;
 
-        public TestCombatServices()
+        public TestCombatEngine()
         {
             var regularAttack = new RegularAttack();
 

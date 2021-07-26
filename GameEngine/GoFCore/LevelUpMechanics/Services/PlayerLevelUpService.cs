@@ -14,11 +14,11 @@ namespace GameEngine.LevelUpMechanics.Services
     {
         public IEntityAttributes PlayerAttributes { get; private set; }
         public PlayerConsumablesData PlayerConsumables { get; private set; }
-        public PlayerLevelUpService(IEntityAttributes playerAttributes, PlayerModelData playerModel, PlayerConsumablesData playerConsumablesData)
+        public PlayerLevelUpService(IEntityAttributes playerAttributes, PlayerModelData playerModel)
         {
             playerModel.Level += 1;
             PlayerAttributes = playerAttributes;
-            PlayerConsumables = playerConsumablesData;
+            PlayerConsumables = playerModel.PlayerConsumablesData;
             PlayerConsumables.SkillPointsValue.Value += 1;
         }
 

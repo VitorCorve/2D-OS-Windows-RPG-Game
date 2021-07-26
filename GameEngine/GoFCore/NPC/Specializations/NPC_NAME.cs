@@ -48,5 +48,11 @@ namespace GameEngine.NPC.Specializations
         Moonwalker,
         Nightmare,
         Werewolf,
+
+        // non-enemyNPCs: traders
+        Trader,
+
+        // non-enemyNPCs: blacksmiths
+        Blacksmith,
     }
 }

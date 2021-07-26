@@ -2,9 +2,9 @@
 
 namespace GameEngine.Player.ConsumableResources
 {
-    public class CopperCurrency : IConsumableResource
+    public class Gold : IConsumableResource
     {
-        public CONSUMABLE_NAME Name { get; } = CONSUMABLE_NAME.Copper;
+        public CONSUMABLE_NAME Name { get; } = CONSUMABLE_NAME.Gold;
         public int Value { get; set; }
     }
 }
