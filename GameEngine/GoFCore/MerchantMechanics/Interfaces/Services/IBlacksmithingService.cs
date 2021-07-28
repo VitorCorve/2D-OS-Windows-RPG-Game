@@ -3,11 +3,12 @@ using GameEngine.Player;
 
 namespace GameEngine.MerchantMechanics.Interfaces.Services
 {
-    public interface ITradingService
+    public interface IBlacksmithingService
     {
         int LocationValueMultiplier { get; }
+        bool PermissionToRepair { get; }
+        int RepairCostValue { get; }
         PlayerConsumablesData PlayerConsumables { get; }
-        void IncreasePlayerMoneyValue(ItemEntity item);
-        void DecreasePlayerMoneyValue(ItemEntity item);
+        WearedEquipment Repair(WearedEquipment equipment);
     }
 }

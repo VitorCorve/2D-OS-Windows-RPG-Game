@@ -1,5 +1,5 @@
 ﻿using GameEngine.Abstract;
-using GameEngine.Locations_ALPHA;
+using GameEngine.Locations;
 
 namespace GameEngine.Player
 {
@@ -9,7 +9,8 @@ namespace GameEngine.Player
         public SPECIALIZATION Specialization { get; private set; }
         public GENDER Gender { get; set; }
         public int Level { get; set; }
-        public LOCATION CurrentLocation { get; set; }
+        public LAND CurrentLand { get; set; }
+        public TOWN CurrentTown { get; set; }
         public int Experience { get; set; }
         public int MaxExperience { get; set; }
         public PLAYER_GRADE PlayerGrade

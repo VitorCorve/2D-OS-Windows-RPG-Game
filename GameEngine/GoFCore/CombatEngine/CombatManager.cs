@@ -17,7 +17,6 @@ namespace GameEngine.CombatEngine
             Defense = new DefenseService(Target);
             Ready = new ValidateEntityCanExecuteActionService(Dealer);
             Combat = new CombatServiсe(Dealer);
-
         }
 
         public void Action(ISkill skill)
