@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.Locations
+namespace GameEngine.Data.Interfaces.Services
 {
-    public class LocationManager
+    public interface ISaveGameService
     {
+        void Save(PlayerSaveData playerData);
     }
 }

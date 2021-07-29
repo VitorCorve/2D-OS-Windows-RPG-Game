@@ -1,0 +1,7 @@
+﻿WearedEquipment
+PlayerInventoryItemList
+PlayerSkillList
+PlayerModelData
+Specialization(Mage)
+SpecializationEntity(EntityModel_Mage)
+PlayerConsumablesData

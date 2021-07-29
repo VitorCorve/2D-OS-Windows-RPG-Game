@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "59jSaiDw3a3MTkG0qkMxtTXtGu6LrZczBh457YTS+tqNNn6cj4o8P3hhj+Kt7ap/sdfSbdoFM3xgxjl51btFcQ==",
+  "dgSpecHash": "Dvr5O5GufamoighGVGbvj3rPKT7UX1mR0mwi79bSoqD4ruLa98F3U4+iNKIoEOOdCG4yPxcWFpQLDS6K0XaX+A==",
   "success": true,
   "projectFilePath": "E:\\GitProjects\\dev\\practic\\GameEngine\\GoFCore\\GameEngine.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Anatoly\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

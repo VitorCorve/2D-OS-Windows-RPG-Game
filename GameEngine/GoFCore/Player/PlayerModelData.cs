@@ -20,9 +20,9 @@ namespace GameEngine.Player
         }
         private PLAYER_GRADE _PlayerGrade;
         public PlayerConsumablesData PlayerConsumablesData { get; set; }
-        public PlayerModelData(AbstractPlayer player, GENDER gender, string name, int level)
+        public PlayerModelData(PlayerSpecialization player, GENDER gender, string name, int level, int money)
         {
-            PlayerConsumablesData = new PlayerConsumablesData(0);
+            PlayerConsumablesData = new PlayerConsumablesData(money);
             PlayerGrade = PLAYER_GRADE.Novice;
             Name = name;
             Specialization = player.Specialization;

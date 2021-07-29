@@ -10,7 +10,7 @@ namespace EngineTest
         public Test_NPC_Creation()
         {
             var specialization = new Mage();
-            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 30);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 30, 100);
 
             var npcCreationManager = new NPC_CreationManager(playerModelData);
 

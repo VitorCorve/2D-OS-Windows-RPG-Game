@@ -57,7 +57,7 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50);
+            var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50, 100);
             /*var player2ModelData = new PlayerModelData(specialization, GENDER.Male, "Ralof_2", 1);*/
 
             // creating NPC

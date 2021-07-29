@@ -2,7 +2,7 @@
 
 namespace GameEngine.Abstract
 {
-    public abstract class AbstractPlayer
+    public abstract class PlayerSpecialization
     {
         public SPECIALIZATION Specialization { get; protected set; }
     }

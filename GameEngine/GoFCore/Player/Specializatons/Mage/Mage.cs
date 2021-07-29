@@ -3,7 +3,7 @@ using GameEngine.Player;
 
 namespace GameEngine.Specializatons
 {
-    public class Mage : AbstractPlayer
+    public class Mage : PlayerSpecialization
     {
         public Mage()
         {

@@ -22,7 +22,7 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(0);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 15);
+            var playerModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 15, 100);
 
             var playerEntityConstructor = new PlayerEntityConstructor();
             var player1 = playerEntityConstructor.CreatePlayer(playerModelData, specializationAttributes, equipmentValues);

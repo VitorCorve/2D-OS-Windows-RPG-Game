@@ -3,7 +3,7 @@ using GameEngine.Player;
 
 namespace GameEngine.Specializatons
 {
-    public class Rogue : AbstractPlayer
+    public class Rogue : PlayerSpecialization
     {
         public Rogue()
         {

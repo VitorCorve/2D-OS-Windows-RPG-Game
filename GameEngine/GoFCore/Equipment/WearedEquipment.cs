@@ -11,6 +11,9 @@ namespace GameEngine.Equipment
         public List<ItemAttributes> ItemsList = new List<ItemAttributes> { };
         public WearedEquipment(params int[] id)
         {
+            if (id == null)
+                return;
+
             var itemConstructor = new ItemAttributesConstructor();
 
             for (int i = 0; i < id.Length; i++)
