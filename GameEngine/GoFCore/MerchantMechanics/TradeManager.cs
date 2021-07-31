@@ -26,7 +26,7 @@ namespace GameEngine.MerchantMechanics
         }
         public void Buy()
         {
-            if (PlayerTradingService.PlayerConsumables.AbsoluteMoneyValue < ItemToTrade.Model.Cost.AbsoluteMoneyValue)
+            if (PlayerTradingService.PlayerConsumables.AbsoluteMoneyValue < ItemToTrade.Model.Price.AbsoluteMoneyValue)
             {
                 throw new Exception("Not enought money");
             }

@@ -14,11 +14,11 @@ namespace GameEngine.MerchantMechanics.Services
         }
         public void IncreasePlayerMoneyValue(ItemEntity item)
         {
-            PlayerConsumables.IncreaseValue(item.Model.Cost.AbsoluteMoneyValue * LocationValueMultiplier);
+            PlayerConsumables.IncreaseValue(item.Model.Price.AbsoluteMoneyValue * LocationValueMultiplier);
         }
         public void DecreasePlayerMoneyValue(ItemEntity item)
         {
-            PlayerConsumables.DecreaseValue(item.Model.Cost.AbsoluteMoneyValue * LocationValueMultiplier);
+            PlayerConsumables.DecreaseValue(item.Model.Price.AbsoluteMoneyValue * LocationValueMultiplier);
         }
     }
 }

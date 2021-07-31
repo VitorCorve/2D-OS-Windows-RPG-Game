@@ -67,7 +67,7 @@ namespace EngineTest
             Console.Write("\nitem cost in coppers: ");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(item.Model.Cost.AbsoluteMoneyValue);
+            Console.WriteLine(item.Model.Price.AbsoluteMoneyValue);
             Console.ForegroundColor = ConsoleColor.White;
 
             ////////////////////////////////////////
