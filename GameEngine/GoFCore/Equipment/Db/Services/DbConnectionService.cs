@@ -9,39 +9,40 @@ namespace GameEngine.Equipment.Db.Services
 {
     public class DbConnectionService
     {
-        public ItemModelDB Model { get; private set; }
-/*        public ItemModel Model { get; private set; }
-        public ItemAttributes Attributes { get; private set; }*/
-        public DbConnectionService(/*int id*/)
+        public ItemsDBContext DataBase { get; private set; }
+        public DbConnectionService()
         {
-            using(ItemsDBContext db = new ItemsDBContext())
+            ItemsDBContext db = new ItemsDBContext();
+                DataBase = db;
+        }
+        public ItemModelDB GetModel(int id)
+        {
+            foreach (var item in DataBase.ItemModels)
             {
-                /*                var models = db.ItemModels;
-                                var attributes = db.ItemAttributes;
-                                foreach (var item in models)
-                                {
-                                    if (item.ID == id)
-                                        Model = item;
-                                }*/
-                /*                var itemAttributes = new ItemModelDB
-                                { 
-                                    ID = 1,
-                                    ItemName = "Bad helmet",
-                                    Quality = "Poor",
-                                    WearType = "Helmet",
-                                    Price = 100
-                                };
-
-                                db.ItemModels.Add(itemAttributes);
-                                db.SaveChanges();*/
-                foreach (var item in db.ItemModels)
-                {
-                    if (item.ID == 1)
-                    {
-                        Model = item;
-                    }
-                }
+                if (id == item.ID)
+                    return item;
             }
+
+            throw new Exception("Invalid item ID");
+        }
+
+        public ItemAttributes GetAttributes(int id)
+        {
+            foreach (var item in DataBase.ItemAttributes)
+            {
+                if (id == item.ID)
+                    return item;
+            }
+
+            throw new Exception("Invalid item ID");
+        }
+
+        public List<ItemModelDB> GetItemsList()
+        {
+            var items = new List<ItemModelDB> { };
+            foreach (var item in DataBase.ItemModels)
+                items.Add(item);
+            return items;
         }
     }
 }

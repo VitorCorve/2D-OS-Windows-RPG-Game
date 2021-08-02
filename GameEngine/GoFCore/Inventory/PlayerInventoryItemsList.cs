@@ -24,11 +24,7 @@ namespace GameEngine.Inventory
                     description.Add("Name", item.Key.Model.ItemName);
                     description.Add("Quality", item.Key.Model.Quality.ToString());
                     description.Add("Wear type", item.Key.Model.WearType.ToString());
-
-                    if (item.Key.Model.WearType == EQUIPMENT_TYPE.MainWeapon ||
-                        item.Key.Model.WearType == EQUIPMENT_TYPE.OffHandWeapon)
-                        description.Add("Damage value", item.Key.Attributes.WeaponDamageValue.ToString());
-
+                    description.Add("Damage value", item.Key.Attributes.WeaponDamageValue.ToString());
                     description.Add("Armor value", item.Key.Attributes.ArmorValue.ToString());
                     description.Add("Stamina", item.Key.Attributes.Stamina.ToString());
                     description.Add("Strength", item.Key.Attributes.Strength.ToString());
@@ -40,7 +36,8 @@ namespace GameEngine.Inventory
                     break;
                 }
             }
-            return description;
+
+            return CleanDescription(description);
         }
         public void AddItem(ItemEntity item)
         {
@@ -63,6 +60,15 @@ namespace GameEngine.Inventory
                 else
                     throw new Exception($"You dont have {item.Model.ItemName} in your inventory");
             }
+        }
+        private Dictionary<string, string> CleanDescription(Dictionary<string, string> description)
+        {
+            foreach (var item in description)
+            {
+                if (item.Value == "0")
+                    description.Remove(item.Key);
+            }
+            return description;
         }
     }
 }

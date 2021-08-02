@@ -19,5 +19,5 @@ namespace GameEngine.Equipment
         public int ArmorValue { get; set; }
 
         public int Durability = 100;
-    }
+     }
 }

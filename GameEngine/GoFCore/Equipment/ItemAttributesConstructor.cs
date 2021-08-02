@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameEngine.Equipment.Db.Services;
 
 namespace GameEngine.Equipment
 {
     public class ItemAttributesConstructor
     {
-        public ItemAttributes CreateItem(int ID)
+        public ItemAttributes CreateItem(DbConnectionService database, int id)
         {
-            var item = ItemsList.GetAttributes(ID);
-            return item;
+            return database.GetAttributes(id);
         }
     }
 }

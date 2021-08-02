@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameEngine.Equipment.Db.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,10 @@ namespace GameEngine.Equipment
         {
             var itemAttributesConstructor = new ItemAttributesConstructor();
             var itemModelConstructor = new ItemModelConstructor();
+            var dbConnection = new DbConnectionService();
 
-            Attributes = itemAttributesConstructor.CreateItem(id);
-            Model = itemModelConstructor.CreateItem(id);
+            Attributes = itemAttributesConstructor.CreateItem(dbConnection, id);
+            Model = itemModelConstructor.CreateItem(dbConnection, id);
         }
     }
 }
