@@ -17,5 +17,9 @@ namespace GameEngine.Equipment
                 ItemsList.Add(itemEntity.Attributes);
             }
         }
+        public WearedEquipment()
+        {
+
+        }
     }
 }

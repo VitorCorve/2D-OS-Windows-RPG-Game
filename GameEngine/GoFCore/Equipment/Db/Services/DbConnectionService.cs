@@ -44,5 +44,10 @@ namespace GameEngine.Equipment.Db.Services
                 items.Add(item);
             return items;
         }
+
+        public void Close()
+        {
+            DataBase.Dispose();
+        }
     }
 }

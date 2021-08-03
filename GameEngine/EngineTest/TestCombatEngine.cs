@@ -54,7 +54,7 @@ namespace EngineTest
             var specialization = new Mage();
             var specializationAttributes = new EntityModel_Mage();
             var specializationAttributes2 = new EntityModel_Thug();
-            var wearedEquipment = new WearedEquipment(0);
+            var wearedEquipment = new WearedEquipment(1);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
             var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50, 100);

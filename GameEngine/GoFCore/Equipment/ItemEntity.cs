@@ -1,9 +1,4 @@
 ﻿using GameEngine.Equipment.Db.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.Equipment
 {
@@ -19,6 +14,8 @@ namespace GameEngine.Equipment
 
             Attributes = itemAttributesConstructor.CreateItem(dbConnection, id);
             Model = itemModelConstructor.CreateItem(dbConnection, id);
+
+            dbConnection.Close();
         }
     }
 }

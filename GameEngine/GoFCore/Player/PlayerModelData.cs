@@ -11,7 +11,12 @@ namespace GameEngine.Player
         public int Level { get; set; }
         public LAND CurrentLand { get; set; }
         public TOWN CurrentTown { get; set; }
-        public int Experience { get; set; }
+        public int Experience
+        {
+            get { return _Experience; }
+            set { _Experience = ConvertValue(value); }
+        }
+        private int _Experience;
         public int MaxExperience { get; set; }
         public PLAYER_GRADE PlayerGrade
         {
@@ -28,6 +33,7 @@ namespace GameEngine.Player
             Specialization = player.Specialization;
             Gender = gender;
             Level = level;
+            MaxExperience = 36 + (Level * 6);
         }
         private PLAYER_GRADE SetPlayerGrade(int level)
         {
@@ -48,6 +54,13 @@ namespace GameEngine.Player
                 default:
                     return PLAYER_GRADE.Legend;
             }
+        }
+        private int ConvertValue(int value)
+        {
+            if ((value + Experience) > MaxExperience)
+                return (value + Experience) - MaxExperience;
+            else
+                return value;
         }
     }
 }
