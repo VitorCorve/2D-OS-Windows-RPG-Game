@@ -1,5 +1,6 @@
 ﻿using GameEngine.CombatEngine.Actions;
 using GameEngine.CombatEngine.Interfaces;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.Player.ConditionResources;
 
 namespace GameEngine.CombatEngine
@@ -10,9 +11,11 @@ namespace GameEngine.CombatEngine
         public event NotifyMaster LogDamage;
         public event NotifyMaster LogBuff;
         public event NotifyMaster LogDebuff;
+        public event NotifyMaster LogDeath;
         public delegate void ExecuteAction();
         public delegate bool CheckAction();
         public AttackPower DamageValue { get; private set; }
+        public int OutComingDamage { get; private set; }
         public CombatServiсe(PlayerEntity dealer)
         {
             DamageValue = dealer.Attack;
@@ -30,17 +33,22 @@ namespace GameEngine.CombatEngine
             {
                 case IDamageSkill:
                     LogDamage($"deals {skill.AmountOfValue} damage by {skill.SkillName}");
-                    return;
+                    break;
                 case IBuffSkill:
                     LogBuff($"uses {skill.SkillName} for {((IBuffSkill)skill).Duration} second");
-                    return;
+                    break;
                 case IDebuffSkill:
                     LogDebuff($"uses {skill.SkillName} for {((IDebuffSkill)skill).Duration} second");
-                    return;
+                    break;
+                case IHealSkill:
+                    LogBuff($"recovers {skill.AmountOfValue} health by Heal");
+                    break;
                 default:
-                    return;
+                    break;
             }
 
+            if (target.HealthPoints.Value <= 0)
+                LogDeath($"died");
         }
     }
 }

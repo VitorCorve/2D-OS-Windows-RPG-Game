@@ -10,7 +10,7 @@ namespace GameEngine.Player
 {
     public class PlayerSkillList : IPlayerSkillList
     {
-        public List<ISkill> Skills { get; private set; } = new();
+        public List<ISkill> Skills { get; set; } = new();
         public void AddSkill(ISkill skill)
         {
             skill.SkillLevel = 1;

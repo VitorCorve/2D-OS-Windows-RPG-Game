@@ -15,7 +15,10 @@ namespace GameEngine.Data.Services
         {
             string saveGamePath = playerData.Name;
 
-            var jsonData = JsonConvert.SerializeObject(playerData);
+            var jsonData = JsonConvert.SerializeObject(playerData, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
 
             string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 

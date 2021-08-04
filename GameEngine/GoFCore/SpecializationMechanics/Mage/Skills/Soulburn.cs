@@ -33,7 +33,8 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalChance;
-            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
+            double incomingDamage = ((dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value) * target.Defense.IncomingDamageDivider;
+            AmountOfValue = (int)incomingDamage;
 
             var damageOverTimeService = new DamageOverTimeService(target, this);
             var coolDown = new CoolDownService(this);

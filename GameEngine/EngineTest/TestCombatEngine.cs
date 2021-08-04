@@ -45,8 +45,10 @@ namespace EngineTest
             // warrior skills
             var crushLegs = new CrushLegs();
             var deepDefense = new DeepDefense();
+            deepDefense.SkillLevel = 1;
             var lastManStanding = new LastManStanding();
             var powerHit = new PowerHit();
+            powerHit.SkillLevel = 1;
             var wideBlow = new WideBlow();
 
             var playerEntityConstructor = new PlayerEntityConstructor();
@@ -57,7 +59,7 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(1);
             var equipmentValues = new EquipmentValue(wearedEquipment);
 
-            var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 50, 100);
+            var player1ModelData = new PlayerModelData(specialization, GENDER.Male, "Gendalf_1", 10, 100);
             /*var player2ModelData = new PlayerModelData(specialization, GENDER.Male, "Ralof_2", 1);*/
 
             // creating NPC
@@ -79,10 +81,10 @@ namespace EngineTest
                 npcCreationManager.NPC_Model,
                 player1: player1,
                 player2: npcEntity,
-                skill1: powerHit,
-                skill2: wideBlow,
+                skill1: deepDefense,
+                skill2: powerHit,
                 cyclesCount: 100,
-                iterationsInterval: 0);
+                iterationsInterval: 1);
         }
    
         // player VS player Run method overload

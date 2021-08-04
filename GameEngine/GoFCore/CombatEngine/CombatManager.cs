@@ -1,5 +1,6 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+using GameEngine.CombatEngine.Services;
 
 namespace GameEngine.CombatEngine
 {
@@ -18,7 +19,6 @@ namespace GameEngine.CombatEngine
             Ready = new ValidateEntityCanExecuteActionService(Dealer);
             Combat = new CombatServiсe(Dealer);
         }
-
         public void Action(ISkill skill)
         {
             if (Ready.CheckStatement(skill))
@@ -42,7 +42,6 @@ namespace GameEngine.CombatEngine
                 }
             }
         }
-
         private void Damage(ISkill skill)
         {
             Dealer.ReduceResource(skill);
@@ -52,7 +51,6 @@ namespace GameEngine.CombatEngine
             else
                 return;
         }
-
         private void Buff(ISkill skill)
         {
             Dealer.ReduceResource(skill);

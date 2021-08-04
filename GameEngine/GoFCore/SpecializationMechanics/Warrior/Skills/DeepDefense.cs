@@ -26,7 +26,7 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             }
         }
         private int _SkillLevel;
-        public int Duration { get; set; } = 20;
+        public int Duration { get; set; } = 8;
         public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
@@ -49,7 +49,7 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         private void ConvertValues()
         {
             Cost = SkillLevel * 2;
-            AmountOfValue = SkillLevel * 5;
+            AmountOfValue = SkillLevel;
         }
     }
 }

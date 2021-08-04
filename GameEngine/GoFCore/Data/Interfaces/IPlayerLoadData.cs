@@ -11,7 +11,7 @@ namespace GameEngine.Data.Interfaces
     {
         WearedEquipment Equipment { get; }
         PlayerInventoryItemsList Inventory { get; }
-        PlayerSkillList Skills { get; }
+        PlayerSkillList ListOfSkills { get; }
         List<ItemAttributes> ItemsList { get; }
         PlayerModelData PlayerModel { get; }
         PlayerSpecialization Specialization { get; }

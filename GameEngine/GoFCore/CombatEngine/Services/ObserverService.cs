@@ -19,6 +19,7 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
             player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
             player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
+            player1Manager.Combat.LogDeath += ConstructCharacterDeathNotification;
 
             DealerName = player1ModelData.Name;
             TargetName = player2ModelData.Name;
@@ -32,6 +33,7 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
             player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
             player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
+            player1Manager.Combat.LogDeath += ConstructCharacterDeathNotification;
 
             DealerName = npcModelData.Name.ToString();
             TargetName = playerModelData.Name;
@@ -46,6 +48,7 @@ namespace GameEngine.CombatEngine.Services
             player1Manager.Combat.LogDebuff += ConstructCombatDebuffNotification;
             player1Manager.Target.LogDotDamage += ConstructCombatDoTNotification;
             player1Manager.Target.LogSpecialDamage += ConstructCombatSpecialDamageNotification;
+            player1Manager.Combat.LogDeath += ConstructCharacterDeathNotification;
 
             DealerName = playerModelData.Name;
             TargetName = npcModelData.Name.ToString();
@@ -83,6 +86,10 @@ namespace GameEngine.CombatEngine.Services
         private void ConstructCombatSpecialDamageNotification(string str)
         {
             Log($"{DealerName}'s {str} " + TargetName + "!");
+        }
+        public void ConstructCharacterDeathNotification(string str)
+        {
+            Log($"{TargetName} {str}");
         }
     }
 }

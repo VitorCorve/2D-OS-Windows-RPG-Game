@@ -45,7 +45,8 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalChance;
-            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
+            double incomingDamage = ((dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value) * target.Defense.IncomingDamageDivider;
+            AmountOfValue = (int)incomingDamage;
 
             if (AmountOfValue < (target.ArmorPoints.Value / 10))
                 AmountOfValue = target.ArmorPoints.Value / 10;

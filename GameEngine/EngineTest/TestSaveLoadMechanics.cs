@@ -15,7 +15,7 @@ namespace EngineTest
         {
             var playerData = new PlayerSaveData();
 
-            var wearedEquipment = new WearedEquipment(0,1);
+            var wearedEquipment = new WearedEquipment(1,2);
             var playerInventory = new PlayerInventoryItemsList();
             var playerSpecialization = new Mage();
             var playerModelData = new PlayerModelData(playerSpecialization, GENDER.Male, "Ralof_2", 50, money: 100);

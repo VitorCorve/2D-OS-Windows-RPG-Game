@@ -39,6 +39,7 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
             SkillDamageValue = dealerAttackPower;
             double incomingDamage = ((SkillDamageValue) - target.ArmorPoints.Value) * target.Defense.IncomingDamageDivider;
             AmountOfValue = (int)incomingDamage;
+
             if (AmountOfValue < (target.ArmorPoints.Value / 10))
                 AmountOfValue = target.ArmorPoints.Value / 10;
 

@@ -10,7 +10,7 @@ namespace GameEngine.Player
         public Silver SilverValue { get; set; } = new();
         public Gold GoldValue { get; set; } = new();
         public int AbsoluteMoneyValue { get; set; }
-        public SkillPoints SkillPointsValue { get; set; } = new();
+        public SkillPoints SkillPointsValue { get; set; } = new() { Value = 0 };
         public PlayerConsumablesData(int copperValue)
         {
             AbsoluteMoneyValue = copperValue;

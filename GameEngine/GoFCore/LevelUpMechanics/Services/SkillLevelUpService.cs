@@ -11,11 +11,11 @@ namespace GameEngine.LevelUpMechanics.Services
         public PlayerConsumablesData PlayerConsumables { get; private set; }
         public GetAvailablePlayerSkills AvailablePlayerSkills { get; private set; }
         public ISkill SkillToRaise { get; private set; }
-        public SkillLevelUpService(PlayerModelData playerModel, PlayerConsumablesData playerConsumables, PlayerSkillList playerSkills)
+        public SkillLevelUpService(PlayerModelData playerModel, PlayerSkillList playerSkills)
         {
             PlayerSkills = playerSkills;
             AvailablePlayerSkills = new GetAvailablePlayerSkills(playerModel);
-            PlayerConsumables = playerConsumables;
+            PlayerConsumables = playerModel.PlayerConsumablesData;
             SkillToRaise = AvailablePlayerSkills.SkillList.First();
         }
         public void LevelUp()

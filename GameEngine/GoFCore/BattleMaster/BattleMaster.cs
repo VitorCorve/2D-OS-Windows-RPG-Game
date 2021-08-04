@@ -1,6 +1,7 @@
 ﻿using GameEngine.BattleMaster.Interfaces;
 using GameEngine.BattleMaster.Services;
 using GameEngine.CombatEngine;
+using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Data;
 using GameEngine.EquipmentManagement;
@@ -13,6 +14,8 @@ namespace GameEngine.BattleMaster
     {
         public List<ObserverService> Observers { get; private set; } = new List<ObserverService> { };
         public AutoAttackMaster AutoAttack { get; private set; }
+        public CombatManager PlayerCombatManager { get; private set; }
+        public List<ISkill> SkillList { get; private set; }
         public BattleMaster(PlayerLoadData playerLoadData)
         {
             var playerEntityConstructor = new PlayerEntityConstructor();
@@ -41,6 +44,12 @@ namespace GameEngine.BattleMaster
 
             Observers.Add(observerService);
             Observers.Add(observerService2);
+
+            playerEntity.HealthPoints.StopCombat += StopFight;
+            npcEntity.HealthPoints.StopCombat += StopFight;
+
+            PlayerCombatManager = playerCombatManager;
+            SkillList = playerLoadData.ListOfSkills.Skills;
         }
         public void StartFight()
         {
@@ -53,6 +62,11 @@ namespace GameEngine.BattleMaster
         public void Pause()
         {
 
+        }
+
+        public void UseSkill(int skillIndex)
+        {
+            PlayerCombatManager.Action(SkillList[skillIndex]);
         }
     }
 }

@@ -13,7 +13,10 @@ namespace GameEngine.Data.Services
 
             string loadGamePath = characterName;
 
-            var playerData = JsonConvert.DeserializeObject<PlayerSaveData>(File.ReadAllText($"{workingDirectory}\\Games\\Game of Frameworks\\Saves\\{loadGamePath}\\save.json"));
+            var playerData = JsonConvert.DeserializeObject<PlayerSaveData>(File.ReadAllText($"{workingDirectory}\\Games\\Game of Frameworks\\Saves\\{loadGamePath}\\save.json"), new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
 
             var playerLoadData = new PlayerLoadData(playerData);
 

@@ -16,16 +16,16 @@ namespace GameEngine.Data
     {
         public WearedEquipment Equipment { get; set; }
         public PlayerInventoryItemsList Inventory { get; set; }
-        public PlayerSkillList Skills { get; set; }
+        public PlayerSkillList ListOfSkills { get; set; }
         public List<ItemAttributes> ItemsList { get; set; }
         public PlayerModelData PlayerModel { get; set; }
         public PlayerSpecialization Specialization { get; set; }
         public IEntityAttributes SpecializationAttributes { get; set; }
         public PlayerLoadData(PlayerSaveData playerSaveData)
         {
-            Equipment = playerSaveData.Equipment;
-            Inventory = playerSaveData.Inventory;
-            Skills = playerSaveData.Skills;
+            Equipment = playerSaveData.Equipment ?? new WearedEquipment();
+            Inventory = playerSaveData.Inventory ?? new PlayerInventoryItemsList();
+            ListOfSkills = playerSaveData.Skills ?? new PlayerSkillList();
             ItemsList = playerSaveData.ItemsList;
 
             switch (playerSaveData.Specialization)
@@ -44,7 +44,7 @@ namespace GameEngine.Data
                     break;
             }
             PlayerModel = new PlayerModelData(Specialization, playerSaveData.Gender, playerSaveData.Name, playerSaveData.Level, playerSaveData.Money);
-
+            PlayerModel.PlayerConsumablesData.SkillPointsValue.Value = playerSaveData.AvailableSkillPoints;
         }
     }
 }

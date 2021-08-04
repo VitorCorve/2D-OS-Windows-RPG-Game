@@ -20,8 +20,6 @@ namespace GameEngine.CombatEngine
             Resources.Add(dealer.EnergyPoints);
         }
 
-
-
         public bool CheckStatement(ISkill skill)
         {
             if (IsAlive == false)

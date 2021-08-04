@@ -44,16 +44,8 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             CriticalChance = target.CriticalChance;
-            AmountOfValue = (dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value;
-
-            foreach (var debuff in target.Debuffs)
-            {
-                if (debuff == PLAYER_DEBUFF.FindTheWeakness)
-                {
-                    AmountOfValue *= 120 / 100;
-                    break;
-                }
-            }
+            double incomingDamage = ((dealerAttackPower + SkillDamageValue) - target.ArmorPoints.Value) * target.Defense.IncomingDamageDivider;
+            AmountOfValue = (int)incomingDamage;
 
             if (AmountOfValue < (target.ArmorPoints.Value / 10))
                 AmountOfValue = target.ArmorPoints.Value / 10;

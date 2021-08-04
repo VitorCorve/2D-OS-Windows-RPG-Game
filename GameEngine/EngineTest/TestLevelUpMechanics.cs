@@ -77,7 +77,7 @@ namespace EngineTest
 
             var playerSkills = new PlayerSkillList();
 
-            var skillLevelUpService = new SkillLevelUpService(playerModelData, playerConsumables, playerSkills);
+            var skillLevelUpService = new SkillLevelUpService(playerModelData, playerSkills);
             skillLevelUpService.LevelUp();
 
             // available skills
