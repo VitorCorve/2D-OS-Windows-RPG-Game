@@ -6,12 +6,17 @@ using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.DefenseResources;
-using System;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class CrushLegs : IDebuffSkill, ISpecialSkill
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public event CoolDownObserver NotifyHarmEffectAppears;
+        public event CoolDownObserver NotifyHarmEffectFade;
+        public int Skill_ID { get; } = 12;
         public event SpecialAblitiesCallDelegate Buff;
         public event SpecialAbilitiesFadeDelegate BuffFade;
         public string SkillName { get; private set; } = "Crush legs";
@@ -34,6 +39,7 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         public IResourceType BuffResourceType { get; set; } = new Dodge();
         public IResourceType SpecialResource { get; set; } = new CriticalHitChance();
         public int Duration { get; set; } = 2;
+        public int ActiveDuration { get; set; }
 
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
@@ -44,6 +50,9 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             coolDown.Activate();
 
             Buff(this, 100);
+
+            NotifyHarmEffectAppears?.Invoke(this);
+            NotifyCooldownStart?.Invoke(this);
         }
         public void CancelEffect()
         {
@@ -53,6 +62,14 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         {
             Cost = SkillLevel * 3;
             AmountOfValue = SkillLevel * 5;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
+        }
+        public void HarmEffectEnd()
+        {
+            NotifyHarmEffectFade?.Invoke(this);
         }
     }
 }

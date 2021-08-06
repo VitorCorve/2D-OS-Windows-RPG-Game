@@ -4,12 +4,15 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
-using System.Timers;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.UniversalSkills
 {
     public class RegularAttack : IDamageSkill, ISkillDamageValue
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public int Skill_ID { get; } = 2;
         public string SkillName { get; private set; } = "melee attack";
         public int SkillLevel { get; set; }
         public int Duration { get; set; }
@@ -44,6 +47,9 @@ namespace GameEngine.SpecializationMechanics.UniversalSkills
                 AmountOfValue = target.ArmorPoints.Value / 10;
 
             target.ReceiveDamage(AmountOfValue);
+        }
+        public void CoolDownEnd()
+        {
         }
     }
 }

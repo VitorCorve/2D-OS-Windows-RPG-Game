@@ -5,11 +5,17 @@ using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.DefenseResources;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class DissapearIntoTheShadows : IBuffSkill, ISkillDuration
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public event CoolDownObserver NotifyEffectApears;
+        public event CoolDownObserver NotifyEffectFade;
+        public int Skill_ID { get; } = 8;
         public string SkillName { get; private set; } = "Dissapear into the Shadows";
         public int SkillLevel
         {
@@ -22,6 +28,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         }
         private int _SkillLevel;
         public int Duration { get; set; } = 5;
+        public int ActiveDuration { get; set; }
         public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
@@ -39,11 +46,22 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
+
+            NotifyEffectApears?.Invoke(this);
+            NotifyCooldownStart?.Invoke(this);
         }
         private void ConvertValues()
         {
             Cost = SkillLevel * 3;
             AmountOfValue = SkillLevel * 5;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
+        }
+        public void EffectFade()
+        {
+            NotifyEffectFade?.Invoke(this);
         }
     }
 }

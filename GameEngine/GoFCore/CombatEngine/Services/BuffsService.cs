@@ -79,10 +79,12 @@ namespace GameEngine.CombatEngine.Services
                 case IBuffSkill:
                     // value decrases becase buff effect fades
                     Target.SetValue(BuffResourceType, - BuffValue);
+                    ((IBuffSkill)Buff).EffectFade();
                     return;
                 case IDebuffSkill:
                     // value increases becase debuff effect fades
                     Target.SetValue(BuffResourceType, + BuffValue);
+                    ((IDebuffSkill)Buff).HarmEffectEnd();
                     return;
                 default:
                     Target.ReturnControl();
@@ -93,6 +95,8 @@ namespace GameEngine.CombatEngine.Services
 
         public void Activate(SkillAction func = null)
         {
+            if (Buff is ISkillDuration)
+                ((ISkillDuration)Buff).ActiveDuration = ((ISkillDuration)Buff).Duration;
             if (BuffTimer == null)
             {
                 BuffTimer = new Timer(1000);
@@ -125,6 +129,9 @@ namespace GameEngine.CombatEngine.Services
         private void Tick(object sender, ElapsedEventArgs e)
         {
             Duration -= 1;
+
+            if (Buff is ISkillDuration)
+                ((ISkillDuration)Buff).ActiveDuration -= 1;
 
             if (Duration == 0)
             {

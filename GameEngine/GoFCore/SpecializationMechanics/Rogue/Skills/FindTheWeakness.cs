@@ -5,11 +5,17 @@ using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
 using GameEngine.Player.PlayerConditions;
 using System;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Rogue.Skills
 {
     public class FindTheWeakness : IDebuffSkill
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public event CoolDownObserver NotifyHarmEffectAppears;
+        public event CoolDownObserver NotifyHarmEffectFade;
+        public int Skill_ID { get; } = 9;
         public string SkillName { get; private set; } = "Find the weakness";
         public int SkillLevel
         {
@@ -22,6 +28,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
         }
         private int _SkillLevel;
         public int Duration { get; set; } = 12;
+        public int ActiveDuration { get; set; }
         public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
@@ -41,11 +48,22 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
 
             buffService.Activate(() => target.ReceiveDebuff(PLAYER_DEBUFF.FindTheWeakness));
             coolDown.Activate();
+
+            NotifyHarmEffectAppears?.Invoke(this);
+            NotifyCooldownStart?.Invoke(this);
         }
         private void ConvertValues()
         {
             Cost = SkillLevel * 3;
             AmountOfValue = SkillLevel * 5;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
+        }
+        public void HarmEffectEnd()
+        {
+            NotifyHarmEffectFade?.Invoke(this);
         }
     }
 }

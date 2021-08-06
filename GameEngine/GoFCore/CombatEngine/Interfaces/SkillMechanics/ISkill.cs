@@ -1,9 +1,11 @@
-﻿using System.Timers;
-
-namespace GameEngine.CombatEngine.Interfaces
+﻿namespace GameEngine.CombatEngine.Interfaces
 {
     public interface ISkill
     {
+        delegate void CoolDownObserver(ISkill skill);
+        event CoolDownObserver NotifyCooldownStart;
+        event CoolDownObserver NotifyCooldownEnd;
+        int Skill_ID { get; }
         string SkillName { get; }
         int SkillLevel { get; set; }
         int CoolDownDuration { get; set; }
@@ -13,5 +15,6 @@ namespace GameEngine.CombatEngine.Interfaces
         IResourceType ResourceType { get; set; }
         IUseType Type { get; set; }
         void Use(int dealerAttackPower, PlayerEntity target);
+        void CoolDownEnd();
     }
 }

@@ -38,6 +38,7 @@ namespace GameEngine.CombatEngine.Services
         public void Deactivate()
         {
             CoolDownTimer.Stop();
+            Skill.CoolDownEnd();
         }
 
     }

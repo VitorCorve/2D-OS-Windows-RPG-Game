@@ -9,5 +9,6 @@ namespace GameEngine.CombatEngine.Interfaces.SkillMechanics
     public interface ISkillDuration
     {
         int Duration { get; set; }
+        int ActiveDuration { get; set; }
     }
 }

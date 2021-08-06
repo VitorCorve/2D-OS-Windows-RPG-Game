@@ -4,17 +4,17 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
-using GameEngine.Player.DefenseResources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class DeepDefense : IBuffSkill, ISkillDuration, IBuffSecondResourceType
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public event CoolDownObserver NotifyEffectApears;
+        public event CoolDownObserver NotifyEffectFade;
+        public int Skill_ID { get; } = 13;
         public string SkillName { get; private set; } = "Deep defense";
         public int SkillLevel
         {
@@ -27,6 +27,7 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         }
         private int _SkillLevel;
         public int Duration { get; set; } = 8;
+        public int ActiveDuration { get; set; }
         public int CoolDownDuration { get; set; } = 20;
         public int CoolDown { get; set; }
         public int Cost { get; private set; }
@@ -45,11 +46,22 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
 
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
+
+            NotifyEffectApears?.Invoke(this);
+            NotifyCooldownStart?.Invoke(this);
         }
         private void ConvertValues()
         {
             Cost = SkillLevel * 2;
             AmountOfValue = SkillLevel;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
+        }
+        public void EffectFade()
+        {
+            NotifyEffectFade?.Invoke(this);
         }
     }
 }

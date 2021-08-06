@@ -4,12 +4,15 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
-using System.Timers;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Mage.Skills
 {
     public class Heal : IHealSkill, ISkillDamageValue
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public int Skill_ID { get; } = 3;
         public string SkillName { get; private set; } = "Heal";
         public int SkillLevel
         {
@@ -45,11 +48,18 @@ namespace GameEngine.SpecializationMechanics.Mage.Skills
         public void Use(int dealerAttackPower, PlayerEntity target)
         {
             target.ReceiveHeal(dealerAttackPower + SkillDamageValue);
+            var coolDown = new CoolDownService(this);
+            coolDown.Activate();
+            NotifyCooldownStart?.Invoke(this);
         }
         private void ConvertValues()
         {
             Cost = SkillLevel * 3;
             SkillDamageValue = SkillLevel * 5;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
         }
     }
 }

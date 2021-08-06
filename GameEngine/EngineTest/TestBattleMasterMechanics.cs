@@ -1,5 +1,6 @@
 ﻿using GameEngine.BattleMaster;
-using GameEngine.Data;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+using GameEngine.CombatEngine.Services;
 using GameEngine.Data.Services;
 using GameEngine.LevelUpMechanics.Services;
 using GameEngine.Player;
@@ -17,6 +18,7 @@ namespace EngineTest
 
             var availableskills = new GetAvailablePlayerSkills(playerData.PlayerModel);
             var skillLevelUpService = new SkillLevelUpService(playerData.PlayerModel, playerData.ListOfSkills);
+            var skillEffectObserver = new SkillEffectObserver(playerData);
 
 
             var battleMaster = new BattleMaster(playerData);
@@ -30,8 +32,25 @@ namespace EngineTest
 
             battleMaster.UseSkill(0);
 
-            Console.ReadLine();
 
+
+            for (int i = 0; i <= 20; i++)
+            {
+                Console.WriteLine("Player cooldowns:\n");
+                foreach (var item in skillEffectObserver.DealerCoolDowns)
+                {
+                    Console.WriteLine($"Skill name: {item.SkillName}\t Skill ID: {item.Skill_ID}\t Skill cooldown: {item.CoolDown}");
+                }
+
+                Console.WriteLine("\nPlayer buffs:\n");
+                foreach (var item in skillEffectObserver.EffectsOnDealer)
+                {
+                    Console.WriteLine($"Skill name: {item.SkillName}\t Skill ID: {item.Skill_ID}\t Buff duration: {((ISkillDuration)item).ActiveDuration}");
+                }
+
+                System.Threading.Thread.Sleep(1000);
+            }
+            Console.ReadLine();
         }
         private static void Notification(string message)
         {

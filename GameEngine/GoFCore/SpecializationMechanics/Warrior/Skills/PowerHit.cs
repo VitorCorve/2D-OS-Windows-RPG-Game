@@ -4,12 +4,15 @@ using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Player.ConditionResources;
-using GameEngine.Player.PlayerConditions;
+using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
     public class PowerHit : IDamageSkill, ISkillDamageValue
     {
+        public event CoolDownObserver NotifyCooldownStart;
+        public event CoolDownObserver NotifyCooldownEnd;
+        public int Skill_ID { get; } = 15;
         public string SkillName { get; private set; } = "Power hit";
         public int SkillLevel
         {
@@ -53,11 +56,17 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             target.ReceiveDamage(AmountOfValue);
             var coolDown = new CoolDownService(this);
             coolDown.Activate();
+
+            NotifyCooldownStart?.Invoke(this);
         }
         private void ConvertValues()
         {
             Cost = SkillLevel * 3;
             AmountOfValue = SkillLevel * 5;
+        }
+        public void CoolDownEnd()
+        {
+            NotifyCooldownEnd?.Invoke(this);
         }
     }
 }
