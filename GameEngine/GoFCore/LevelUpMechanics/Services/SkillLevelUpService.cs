@@ -1,12 +1,18 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
 using GameEngine.LevelUpMechanics.Interfaces.Services;
 using GameEngine.Player;
-using System.Linq;
 
 namespace GameEngine.LevelUpMechanics.Services
 {
     public class SkillLevelUpService : ISkillLevelUpService
     {
+        public int MaxSelectValue { get; private set; }
+        public int SelectValue
+        {
+            get { return _SelectValue; }
+            set { _SelectValue = ValidateValue(value); }
+        }
+        private int _SelectValue;
         public PlayerSkillList PlayerSkills { get; private set; }
         public PlayerConsumablesData PlayerConsumables { get; private set; }
         public GetAvailablePlayerSkills AvailablePlayerSkills { get; private set; }
@@ -16,7 +22,8 @@ namespace GameEngine.LevelUpMechanics.Services
             PlayerSkills = playerSkills;
             AvailablePlayerSkills = new GetAvailablePlayerSkills(playerModel);
             PlayerConsumables = playerModel.PlayerConsumablesData;
-            SkillToRaise = AvailablePlayerSkills.SkillList.First();
+            SkillToRaise = AvailablePlayerSkills.SkillList[SelectValue];
+            MaxSelectValue = AvailablePlayerSkills.SkillList.Count;
         }
         public void LevelUp()
         {
@@ -35,23 +42,24 @@ namespace GameEngine.LevelUpMechanics.Services
             if (PlayerConsumables.SkillPointsValue.Value > 0)
             {
                 PlayerConsumables.SkillPointsValue.Value--;
-                PlayerSkills.AddSkill(SkillToRaise);
+                PlayerSkills.AddSkillExperience(SkillToRaise);
             }
         }
         public void Select()
         {
-            foreach (var item in AvailablePlayerSkills.SkillList)
-            {
-                if (item == AvailablePlayerSkills.SkillList.Last())
-                    SkillToRaise = AvailablePlayerSkills.SkillList.First();
-
-                if (item == SkillToRaise)
-                    continue;
-
-                SkillToRaise = item;
-                return;
-            }
+            SelectValue++;
+            SkillToRaise = AvailablePlayerSkills.SkillList[SelectValue];
         }
-
+        public void LearnDirectly(ISkill skill)
+        {
+            PlayerSkills.AddSkillExperience(skill);
+        }
+        private int ValidateValue(int value)
+        {
+            if (SelectValue + value > MaxSelectValue)
+                return 0;
+            else
+                return value;
+        }
     }
 }

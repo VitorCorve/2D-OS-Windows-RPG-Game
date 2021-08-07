@@ -11,8 +11,16 @@ namespace GameEngine.Player
     public class PlayerSkillList : IPlayerSkillList
     {
         public List<ISkill> Skills { get; set; } = new();
-        public void AddSkill(ISkill skill)
+        public void AddSkillExperience(ISkill skill)
         {
+            foreach (var item in Skills)
+            {
+                if (item.GetType() == skill.GetType())
+                {
+                    item.SkillLevel++;
+                    return;
+                }
+            }
             skill.SkillLevel = 1;
             Skills.Add(skill);
         }

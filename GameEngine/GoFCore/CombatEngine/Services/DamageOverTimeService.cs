@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.Player.ConditionResources;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace GameEngine.CombatEngine.Services
             CriticalChance = target.CriticalChance;
             Intervals = debuff.Intervals;
             Target = target;
+
+            if (Debuff is ISkillDuration)
+                Debuff.ActiveDuration = Debuff.Duration;
         }
 
         public void Activate()
@@ -45,6 +49,7 @@ namespace GameEngine.CombatEngine.Services
             }
 
             Duration -= 1;
+            Debuff.ActiveDuration -= 1;
 
             if (Duration % Intervals == 0)
             { 
@@ -56,6 +61,7 @@ namespace GameEngine.CombatEngine.Services
         private void Cancel()
         {
             DurationTimer.Stop();
+            Debuff.HarmEffectEnd();
         }
     }
 }

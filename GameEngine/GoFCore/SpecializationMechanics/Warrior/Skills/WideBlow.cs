@@ -8,12 +8,12 @@ using static GameEngine.CombatEngine.Interfaces.ISkill;
 
 namespace GameEngine.SpecializationMechanics.Warrior.Skills
 {
-    public class WideBlow : IDamageSkill, ISkillDamageValue, IBuffSkill
+    public class WideBlow : IDamageSkill, ISkillDamageValue, IDebuffSkill, IBuffResourceType
     {
         public event CoolDownObserver NotifyCooldownStart;
         public event CoolDownObserver NotifyCooldownEnd;
-        public event CoolDownObserver NotifyEffectApears;
-        public event CoolDownObserver NotifyEffectFade;
+        public event CoolDownObserver NotifyHarmEffectAppears;
+        public event CoolDownObserver NotifyHarmEffectFade;
         public int Skill_ID { get; } = 16;
         public string SkillName { get; private set; } = "Wide blow";
         public int SkillLevel
@@ -66,7 +66,7 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
             target.ReceiveDamage(AmountOfValue);
 
             NotifyCooldownStart?.Invoke(this);
-            NotifyEffectApears?.Invoke(this);
+            NotifyHarmEffectAppears?.Invoke(this);
         }
         private void ConvertValues()
         {
@@ -77,9 +77,9 @@ namespace GameEngine.SpecializationMechanics.Warrior.Skills
         {
             NotifyCooldownEnd?.Invoke(this);
         }
-        public void EffectFade()
+        public void HarmEffectEnd()
         {
-            NotifyEffectFade?.Invoke(this);
+            NotifyHarmEffectFade?.Invoke(this);
         }
     }
 }

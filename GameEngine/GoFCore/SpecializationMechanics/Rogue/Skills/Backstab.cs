@@ -25,7 +25,7 @@ namespace GameEngine.SpecializationMechanics.Rogue.Skills
             }
         }
         private int _SkillLevel;
-        public int CoolDownDuration { get; set; } = 2;
+        public int CoolDownDuration { get; set; } = 5;
         public int CoolDown { get; set; }
         public CriticalHitChance CriticalChance { get; private set; }
         public int Cost { get; private set; }

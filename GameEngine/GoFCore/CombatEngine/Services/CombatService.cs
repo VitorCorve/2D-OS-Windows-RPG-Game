@@ -31,6 +31,9 @@ namespace GameEngine.CombatEngine
 
             switch (skill)
             {
+                case ICombinedSkill:
+                    LogBuff($"uses {skill.SkillName} for {((IBuffSkill)skill).Duration} second");
+                    break;
                 case IDamageSkill:
                     LogDamage($"deals {skill.AmountOfValue} damage by {skill.SkillName}");
                     break;

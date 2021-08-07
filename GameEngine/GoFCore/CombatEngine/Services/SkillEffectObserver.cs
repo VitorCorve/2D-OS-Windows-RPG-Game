@@ -1,5 +1,6 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.Services;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameEngine.Data;
 using GameEngine.Player;
 using System.Collections.Generic;

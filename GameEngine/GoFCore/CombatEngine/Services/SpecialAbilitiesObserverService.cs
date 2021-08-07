@@ -31,6 +31,21 @@ namespace GameEngine.CombatEngine.Services
                 }
             }
         }
+        public SpecialAbilitiesObserverService(PlayerEntity dealer,  List<ISkill> skills)
+        {
+            Dealer = dealer;
+
+            foreach (var skill in skills)
+            {
+                if (skill is ISpecialSkill)
+                {
+                    var specialSkill = (ISpecialSkill)skill;
+                    Skills.Add(specialSkill);
+                    specialSkill.Buff += Activate;
+                    specialSkill.BuffFade += Cancel;
+                }
+            }
+        }
         public void Activate(ISpecialSkill skill, double value)
         {
             switch (skill.SpecialResource)

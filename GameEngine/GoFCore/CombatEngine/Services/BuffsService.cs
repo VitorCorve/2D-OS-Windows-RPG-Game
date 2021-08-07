@@ -32,13 +32,15 @@ namespace GameEngine.CombatEngine.Services
             if (buff is IBuffSecondResourceType)
                 BuffSecondResourceType = ((IBuffSecondResourceType)buff).BuffSecondResourceType;
         }
-
         public BuffsService(IDebuffSkill buff, PlayerEntity target)
         {
             Buff = buff;
             Target = target;
             Duration = buff.Duration;
             BuffValue = buff.AmountOfValue;
+
+            if (buff is IBuffResourceType)
+                BuffResourceType = ((IBuffResourceType)Buff).BuffResourceType;
 
             if (buff is ISpecialSkill)
             {
@@ -61,20 +63,25 @@ namespace GameEngine.CombatEngine.Services
             {
                 case WideBlow:
                     Target.RecoverResources.ContinueRecover(BuffResourceType);
+                    ((IDebuffSkill)Buff).HarmEffectEnd();
                     return;
                 case LastManStanding:
                     Target.SetValue(BuffResourceType, 1.0);
                     Target.SetValue(BuffSecondResourceType, 1.0);
+                    ((IBuffSkill)Buff).EffectFade();
                     return;
                 case DeepDefense:
                     Target.SetValue(BuffResourceType, 1.0);
                     Target.SetValue(BuffSecondResourceType, 1.0);
+                    ((IBuffSkill)Buff).EffectFade();
                     return;
                 case CrushLegs:
                     Target.SetValue(BuffResourceType, DefaultResourceValue);
+                    ((IDebuffSkill)Buff).HarmEffectEnd();
                     return;
                 case FindTheWeakness:
                     Target.RemoveDebuff(PLAYER_DEBUFF.FindTheWeakness);
+                    ((IDebuffSkill)Buff).HarmEffectEnd();
                     return;
                 case IBuffSkill:
                     // value decrases becase buff effect fades
