@@ -1,6 +1,8 @@
 ﻿using GameEngine.Equipment;
+using GameEngine.Equipment.Resource;
 using GameEngine.Inventory;
 using GameEngine.Player;
+using GameEngine.Player.ModelConditions;
 using System.Collections.Generic;
 
 namespace GameEngine.Data.Interfaces
@@ -15,6 +17,7 @@ namespace GameEngine.Data.Interfaces
         string Specialization { get; }
         GENDER Gender { get; }
         int Money { get; }
-        List<ItemAttributes> ItemsList { get; }
+        PlayerBiography Bio { get; }
+        PlayerAvatar Avatar_ID { get; }
     }
 }

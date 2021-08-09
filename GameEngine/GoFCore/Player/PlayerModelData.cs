@@ -1,5 +1,6 @@
 ﻿using GameEngine.Abstract;
 using GameEngine.Locations;
+using GameEngine.Player.ModelConditions;
 
 namespace GameEngine.Player
 {
@@ -24,6 +25,8 @@ namespace GameEngine.Player
             set { _PlayerGrade = value; }
         }
         private PLAYER_GRADE _PlayerGrade;
+        public PlayerBiography Bio { get; set; }
+        public PlayerAvatar Avatar_ID { get; set; }
         public PlayerConsumablesData PlayerConsumablesData { get; set; }
         public PlayerModelData(PlayerSpecialization player, GENDER gender, string name, int level, int money)
         {
@@ -35,7 +38,7 @@ namespace GameEngine.Player
             Level = level;
             MaxExperience = 36 + (Level * 6);
         }
-        private PLAYER_GRADE SetPlayerGrade(int level)
+        private static PLAYER_GRADE SetPlayerGrade(int level)
         {
             switch (level)
             {

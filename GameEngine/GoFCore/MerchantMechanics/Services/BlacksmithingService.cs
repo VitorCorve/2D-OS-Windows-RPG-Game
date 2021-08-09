@@ -17,22 +17,19 @@ namespace GameEngine.MerchantMechanics.Services
         }
         public WearedEquipment Repair(WearedEquipment equipment)
         {
+            RepairCostValue *= LocationValueMultiplier;
             ValidateMoneyValue();
 
             if (!PermissionToRepair)
                 return equipment;
 
-            foreach (var item in equipment.ItemsList)
-            {
-                RepairCostValue += 100 - item.Durability;
-                item.Durability = 100;
-            }
+            var durabilityManager = new DurabilityManager();
 
-            RepairCostValue *= LocationValueMultiplier;
+            RepairCostValue = durabilityManager.CalculateRepairValue(equipment);
+            equipment = durabilityManager.RecoverWearedEquipment(equipment);
             Pay();
             return equipment;
         }
-
         private void ValidateMoneyValue()
         {
             if (PlayerConsumables.AbsoluteMoneyValue >= RepairCostValue)
@@ -40,7 +37,6 @@ namespace GameEngine.MerchantMechanics.Services
             else
                 throw new Exception("Not enought money");
         }
-
         private void Pay()
         {
             PlayerConsumables.AbsoluteMoneyValue -= RepairCostValue;

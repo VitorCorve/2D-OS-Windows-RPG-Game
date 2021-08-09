@@ -1,12 +1,12 @@
 ﻿Startup menu
 
-classes change: show Attributes, show avatar, save bio
+classes change: show Attributes
 
 character creation confirm - skill list
 
 Main menu load - character data
 
-Battle Scene - loot system. Loot avatar, pause, start fight, autoattack, endfight
+Battle Scene - loot system. Loot avatar, pause, 
 
 Armory - recovery in towns, 
 
@@ -14,4 +14,4 @@ Else : items durability, notes system, game settings
 
 DONE:
 
-player experience
+player experience, start fight, autoattack, endfight, show avatar, save bio

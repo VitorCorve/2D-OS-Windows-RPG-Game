@@ -4,6 +4,7 @@ using GameEngine.CombatEngine;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
 using GameEngine.Data;
+using GameEngine.Equipment;
 using GameEngine.EquipmentManagement;
 using GameEngine.NPC;
 using System.Collections.Generic;
@@ -16,12 +17,13 @@ namespace GameEngine.BattleMaster
         public AutoAttackMaster AutoAttack { get; private set; }
         public CombatManager PlayerCombatManager { get; private set; }
         public List<ISkill> SkillList { get; private set; }
+        public WearedEquipment PlayerEquipment { get; private set; }
         public BattleMaster(PlayerLoadData playerLoadData)
         {
             var playerEntityConstructor = new PlayerEntityConstructor();
             var npcCreationManager = new NPC_CreationManager(playerLoadData.PlayerModel);
-
             var equipmentValues = new EquipmentValue(playerLoadData.Equipment);
+            PlayerEquipment = playerLoadData.Equipment;
 
             var playerEntity = playerEntityConstructor.CreatePlayer(
                 playerLoadData.PlayerModel, 
@@ -58,6 +60,8 @@ namespace GameEngine.BattleMaster
         public void StopFight()
         {
             AutoAttack.StopAutoAttack();
+            var durabilityManager = new DurabilityManager();
+            PlayerEquipment = durabilityManager.DecreaseDurabilityAfterFight(PlayerEquipment);
         }
         public void Pause()
         {

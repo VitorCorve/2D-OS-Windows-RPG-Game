@@ -18,7 +18,7 @@ namespace EngineTest
             var wearedEquipment = new WearedEquipment(1,2);
             var playerInventory = new PlayerInventoryItemsList();
             var playerSpecialization = new Mage();
-            var playerModelData = new PlayerModelData(playerSpecialization, GENDER.Male, "Ralof_2", 50, money: 100);
+            var playerModelData = new PlayerModelData(playerSpecialization, GENDER.Male, "Ralof_3", 50, money: 100);
             var playerSkills = new PlayerSkillList();
 
             playerData.Equipment = wearedEquipment;
@@ -28,14 +28,13 @@ namespace EngineTest
             playerData.Specialization = "mage";
             playerData.Level = playerModelData.Level;
             playerData.Name = playerModelData.Name;
-            playerData.ItemsList = wearedEquipment.ItemsList;
             playerData.Money = playerModelData.PlayerConsumablesData.AbsoluteMoneyValue;
 
 
             var saveGameService = new SaveGameService();
-            // saveGameService.Save(playerData);
+             saveGameService.Save(playerData);
 
-            var loadGameService = new LoadGameService();
+/*            var loadGameService = new LoadGameService();
             
             var newPlayerData = loadGameService.Load("Ralof_2");
 
@@ -77,7 +76,7 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Money: \t");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(newPlayerData.PlayerModel.PlayerConsumablesData.AbsoluteMoneyValue);
+            Console.WriteLine(newPlayerData.PlayerModel.PlayerConsumablesData.AbsoluteMoneyValue);*/
         }
     }
 }

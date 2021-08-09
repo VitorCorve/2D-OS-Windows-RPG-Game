@@ -17,7 +17,5 @@ namespace GameEngine.Equipment
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
-
-        public int Durability = 100;
      }
 }

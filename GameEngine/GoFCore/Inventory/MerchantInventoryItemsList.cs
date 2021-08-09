@@ -35,7 +35,7 @@ namespace GameEngine.Inventory
                     description.Add("Agility", item.Key.Attributes.Agility.ToString());
                     description.Add("Endurance", item.Key.Attributes.Endurance.ToString());
                     description.Add("Intellect", item.Key.Attributes.Intellect.ToString());
-                    description.Add("Durability", item.Key.Attributes.Durability.ToString());
+                    description.Add("Durability", item.Key.ItemDurability.Value.ToString());
 
                     break;
                 }

@@ -104,12 +104,6 @@ namespace EngineTest
             battleMaster.UseSkill(3);
             battleMaster.UseSkill(4);
 
-            /*            for (int i = 0; i < 13; i++)
-                        {
-                            battleMaster.UseSkill(i);
-                        }*/
-
-
             for (int i = 0; i <= 20; i++)
             {
                 Console.WriteLine("\tPlayer cooldowns:\n");

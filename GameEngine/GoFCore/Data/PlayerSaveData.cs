@@ -1,11 +1,11 @@
 ﻿using GameEngine.Data.Interfaces;
-using GameEngine.Abstract;
 using GameEngine.Equipment;
 using GameEngine.Inventory;
 using GameEngine.Player;
-using GameEngine.Player.Abstract;
 using System.Collections.Generic;
-using GameEngine.Player.ConsumableResources;
+using GameEngine.Player.ModelConditions;
+using GameEngine.Equipment.Resource;
+using Newtonsoft.Json;
 
 namespace GameEngine.Data
 {
@@ -20,6 +20,7 @@ namespace GameEngine.Data
         public string Specialization { get; set; }
         public GENDER Gender { get; set; }
         public int Money { get; set; }
-        public List<ItemAttributes> ItemsList { get; set; }
+        public PlayerBiography Bio { get; set;}
+        public PlayerAvatar Avatar_ID { get; set; }
     }
 }

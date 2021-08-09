@@ -1,6 +1,7 @@
 ﻿using GameEngine.Abstract;
 using GameEngine.Data.Interfaces;
 using GameEngine.Equipment;
+using GameEngine.Equipment.Resource;
 using GameEngine.Inventory;
 using GameEngine.Player;
 using GameEngine.Player.Abstract;
@@ -17,7 +18,7 @@ namespace GameEngine.Data
         public WearedEquipment Equipment { get; set; }
         public PlayerInventoryItemsList Inventory { get; set; }
         public PlayerSkillList ListOfSkills { get; set; }
-        public List<ItemAttributes> ItemsList { get; set; }
+        public Dictionary<ItemAttributes, Durability> ItemsList { get; set; }
         public PlayerModelData PlayerModel { get; set; }
         public PlayerSpecialization Specialization { get; set; }
         public IEntityAttributes SpecializationAttributes { get; set; }
@@ -26,7 +27,6 @@ namespace GameEngine.Data
             Equipment = playerSaveData.Equipment ?? new WearedEquipment();
             Inventory = playerSaveData.Inventory ?? new PlayerInventoryItemsList();
             ListOfSkills = playerSaveData.Skills ?? new PlayerSkillList();
-            ItemsList = playerSaveData.ItemsList;
 
             switch (playerSaveData.Specialization)
             {
@@ -45,6 +45,8 @@ namespace GameEngine.Data
             }
             PlayerModel = new PlayerModelData(Specialization, playerSaveData.Gender, playerSaveData.Name, playerSaveData.Level, playerSaveData.Money);
             PlayerModel.PlayerConsumablesData.SkillPointsValue.Value = playerSaveData.AvailableSkillPoints;
+            PlayerModel.Bio = playerSaveData.Bio;
+            PlayerModel.Avatar_ID = playerSaveData.Avatar_ID;
         }
     }
 }
