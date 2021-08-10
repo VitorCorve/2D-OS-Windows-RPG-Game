@@ -29,7 +29,7 @@ namespace EngineTest
             Console.WriteLine("merchant inventory before deal: \n");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            foreach (var merchantItems in merchantInventory.ItemsInInventory)
+            foreach (var merchantItems in merchantInventory.ItemsInInventoryDescription)
             {
                 Console.WriteLine(merchantItems.Key.Model.ItemName);
             }
@@ -43,7 +43,7 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (var playerItems in playerInventory.ItemsInInventory)
             {
-                Console.WriteLine(playerItems.Key.Model.ItemName);
+                Console.WriteLine(playerItems.Model.ItemName);
             }
 
             ////////////////////////////////////////
@@ -110,7 +110,7 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (var playerItems in playerInventory.ItemsInInventory)
             {
-                Console.WriteLine(playerItems.Key.Model.ItemName);
+                Console.WriteLine(playerItems.Model.ItemName);
             }
 
             Console.WriteLine();
@@ -120,7 +120,7 @@ namespace EngineTest
             Console.WriteLine("\nmerchant inventory after deal: \n");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            foreach (var merchantItems in merchantInventory.ItemsInInventory)
+            foreach (var merchantItems in merchantInventory.ItemsInInventoryDescription)
             {
                 Console.WriteLine(merchantItems.Key.Model.ItemName);
             }

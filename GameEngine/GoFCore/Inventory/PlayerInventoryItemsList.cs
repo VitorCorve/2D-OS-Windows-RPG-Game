@@ -2,48 +2,45 @@
 using GameEngine.Inventory.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.Inventory
 {
     public class PlayerInventoryItemsList : IInventoryItemsList
     {
         public int MaxItemsInInventory {get;} = 32;
-        public Dictionary<ItemEntity, string> ItemsInInventory { get; private set; } = new Dictionary<ItemEntity, string> { };
+        public List<ItemEntity> ItemsInInventory { get; set; } = new();
         public Dictionary<string, string> GetDescription(int ID)
         {
-
             var description = new Dictionary<string, string> { };
-
             foreach (var item in ItemsInInventory)
             {
-                if (item.Key.Model.ID == ID)
+                if (item.Model.ID == ID)
                 {
-                    description.Add("Name", item.Key.Model.ItemName);
-                    description.Add("Quality", item.Key.Model.Quality.ToString());
-                    description.Add("Wear type", item.Key.Model.WearType.ToString());
-                    description.Add("Damage value", item.Key.Attributes.WeaponDamageValue.ToString());
-                    description.Add("Armor value", item.Key.Attributes.ArmorValue.ToString());
-                    description.Add("Stamina", item.Key.Attributes.Stamina.ToString());
-                    description.Add("Strength", item.Key.Attributes.Strength.ToString());
-                    description.Add("Agility", item.Key.Attributes.Agility.ToString());
-                    description.Add("Endurance", item.Key.Attributes.Endurance.ToString());
-                    description.Add("Intellect", item.Key.Attributes.Intellect.ToString());
-                    description.Add("Durability", item.Key.ItemDurability.Value.ToString());
+                    description.Add("Name", item.Model.ItemName);
+                    description.Add("Quality", item.Model.Quality.ToString());
+                    description.Add("Wear type", item.Model.WearType.ToString());
+                    description.Add("Damage value", item.Attributes.WeaponDamageValue.ToString());
+                    description.Add("Armor value", item.Attributes.ArmorValue.ToString());
+                    description.Add("Stamina", item.Attributes.Stamina.ToString());
+                    description.Add("Strength", item.Attributes.Strength.ToString());
+                    description.Add("Agility", item.Attributes.Agility.ToString());
+                    description.Add("Endurance", item.Attributes.Endurance.ToString());
+                    description.Add("Intellect", item.Attributes.Intellect.ToString());
+                    description.Add("Durability", item.ItemDurability.Value.ToString());
 
                     break;
                 }
             }
-
-            return CleanDescription(description);
+            return AdjustDescription(description);
         }
         public void AddItem(ItemEntity item)
         {
             if (ItemsInInventory.Count > MaxItemsInInventory)
                 throw new Exception("No empty slots in inventory");
-            ItemsInInventory.Add(item, item.Model.ItemName);
+            else
+            {
+                ItemsInInventory.Add(item);
+            }
         }
         public void RemoveItem(ItemEntity item)
         {
@@ -52,16 +49,16 @@ namespace GameEngine.Inventory
 
             foreach (var calledItem in ItemsInInventory)
             {
-                if (calledItem.Key.Model.ID == item.Model.ID)
+                if (calledItem.Model.ID == item.Model.ID)
                 {
-                    ItemsInInventory.Remove(calledItem.Key);
+                    ItemsInInventory.Remove(calledItem);
                     return;
                 }
                 else
                     throw new Exception($"You dont have {item.Model.ItemName} in your inventory");
             }
         }
-        private Dictionary<string, string> CleanDescription(Dictionary<string, string> description)
+        private static Dictionary<string, string> AdjustDescription(Dictionary<string, string> description)
         {
             foreach (var item in description)
             {
@@ -69,6 +66,14 @@ namespace GameEngine.Inventory
                     description.Remove(item.Key);
             }
             return description;
+        }
+        public PlayerInventoryItemsList(List<ItemEntity> itemsList)
+        {
+            ItemsInInventory = itemsList;
+        }
+        public PlayerInventoryItemsList()
+        {
+
         }
     }
 }

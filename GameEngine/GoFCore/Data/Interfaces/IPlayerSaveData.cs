@@ -1,16 +1,13 @@
 ﻿using GameEngine.Equipment;
-using GameEngine.Equipment.Resource;
-using GameEngine.Inventory;
 using GameEngine.Player;
 using GameEngine.Player.ModelConditions;
-using System.Collections.Generic;
 
 namespace GameEngine.Data.Interfaces
 {
     public interface IPlayerSaveData
     {
-        WearedEquipment Equipment { get; }
-        PlayerInventoryItemsList Inventory { get; }
+        ItemSerializationData ItemsInInventory { get; set; }
+        ItemSerializationData ItemsOnCharacter { get; set; }
         PlayerSkillList Skills { get;  }
         int Level { get; }
         string Name { get; }

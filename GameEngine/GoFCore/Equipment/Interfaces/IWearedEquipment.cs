@@ -5,7 +5,7 @@ namespace GameEngine.Equipment.Interfaces
 {
     public interface IWearedEquipment
     {
-        Dictionary<ItemAttributes, Durability> ItemsList { get; }
+        List<ItemEntity> ItemsList { get; }
         void WearGear(ItemEntity item);
         void TakeOffGear(ItemEntity item);
     }

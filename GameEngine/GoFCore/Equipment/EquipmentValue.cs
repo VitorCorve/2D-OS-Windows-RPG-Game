@@ -17,13 +17,13 @@ namespace GameEngine.EquipmentManagement
         {
             foreach (var item in equipment.ItemsList)
             {
-                Strength += item.Key.Strength;
-                Stamina += item.Key.Stamina;
-                Intellect += item.Key.Intellect;
-                Agility += item.Key.Agility;
-                Endurance += item.Key.Endurance;
-                WeaponDamageValue += item.Key.WeaponDamageValue;
-                ArmorValue += item.Key.ArmorValue;
+                Strength += item.Attributes.Strength;
+                Stamina += item.Attributes.Stamina;
+                Intellect += item.Attributes.Intellect;
+                Agility += item.Attributes.Agility;
+                Endurance += item.Attributes.Endurance;
+                WeaponDamageValue += item.Attributes.WeaponDamageValue;
+                ArmorValue += item.Attributes.ArmorValue;
             }
         }
     }

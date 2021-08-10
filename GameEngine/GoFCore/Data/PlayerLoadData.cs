@@ -18,14 +18,16 @@ namespace GameEngine.Data
         public WearedEquipment Equipment { get; set; }
         public PlayerInventoryItemsList Inventory { get; set; }
         public PlayerSkillList ListOfSkills { get; set; }
-        public Dictionary<ItemAttributes, Durability> ItemsList { get; set; }
         public PlayerModelData PlayerModel { get; set; }
         public PlayerSpecialization Specialization { get; set; }
         public IEntityAttributes SpecializationAttributes { get; set; }
         public PlayerLoadData(PlayerSaveData playerSaveData)
         {
-            Equipment = playerSaveData.Equipment ?? new WearedEquipment();
-            Inventory = playerSaveData.Inventory ?? new PlayerInventoryItemsList();
+            var itemsInInventoryData = playerSaveData.ItemsInInventory;
+            var itemsOnCharacterData = playerSaveData.ItemsOnCharacter;
+
+            Equipment = new WearedEquipment(itemsOnCharacterData.ConvertToItemsEntityList());
+            Inventory = new PlayerInventoryItemsList(itemsInInventoryData.ConvertToItemsEntityList());
             ListOfSkills = playerSaveData.Skills ?? new PlayerSkillList();
 
             switch (playerSaveData.Specialization)

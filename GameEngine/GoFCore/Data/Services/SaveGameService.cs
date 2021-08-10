@@ -7,10 +7,6 @@ namespace GameEngine.Data.Services
 {
     public class SaveGameService : ISaveGameService
     {
-        public SaveGameService()
-        {
-
-        }
         public void Save(PlayerSaveData playerData)
         {
             string saveGamePath = playerData.Name;

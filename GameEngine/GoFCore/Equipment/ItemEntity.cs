@@ -32,5 +32,9 @@ namespace GameEngine.Equipment
 
             ItemDurability.Value = itemDurability;
         }
+        public ItemEntity()
+        {
+
+        }
     }
 }
