@@ -12,11 +12,11 @@ namespace GameEngine.NPC.Specializations.Undead
         public int Endurance { get; set; }
         public int WeaponDamageValue { get; set; }
         public int ArmorValue { get; set; }
-        public SPECIALIZATION Specialization { get; private set; }
+        public NPC_TYPE NPC_Type { get; private set; }
         public NPC_NAME Name { get; private set; }
         public EntityModel_AncientWarrior()
         {
-            Specialization = SPECIALIZATION.Undead;
+            NPC_Type = NPC_TYPE.Undead;
             Name = NPC_NAME.Ancient_Warrior;
 
             Strength = 7;

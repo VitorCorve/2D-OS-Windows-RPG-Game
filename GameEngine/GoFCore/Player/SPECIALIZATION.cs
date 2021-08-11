@@ -11,11 +11,5 @@ namespace GameEngine.Player
         Warrior,
         Rogue,
         Mage,
-        Animal,
-        Dragon,
-        Human,
-        Undead,
-        Vampire,
-        Werewolf
     }
 }

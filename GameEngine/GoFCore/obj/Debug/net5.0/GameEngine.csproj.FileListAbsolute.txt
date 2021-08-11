@@ -22,7 +22,6 @@ E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.dll
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\ref\GameEngine.dll
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.pdb
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.csprojAssemblyReference.cache
-E:\GitProjects\dev\practic\GameEngine\GoFCore\bin\Debug\net5.0\GameEngine.dll.config
 E:\GitProjects\dev\practic\GameEngine\GoFCore\bin\Debug\net5.0\GameEngine.runtimeconfig.json
 E:\GitProjects\dev\practic\GameEngine\GoFCore\bin\Debug\net5.0\GameEngine.runtimeconfig.dev.json
 E:\GitProjects\dev\practic\GameEngine\GoFCore\obj\Debug\net5.0\GameEngine.genruntimeconfig.cache

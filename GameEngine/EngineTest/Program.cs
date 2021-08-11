@@ -10,9 +10,10 @@ namespace EngineTest
             //var testLevelUp = new TestLevelUpMechanics(); ;
             //var testCombat = new TestCombatEngine();
             //var testMecrhantMechanics = new TestMerchantMechanics();
-            var testSaveLoadMechanics = new TestSaveLoadMechanics();
+            //var testSaveLoadMechanics = new TestSaveLoadMechanics();
             //var testDbConnection = new TestDbConnection();
             //var testBattleMaster = new TestBattleMasterMechanics();
+            var testCharacterCreation = new TestCharacterCreation();
         }
     }
 }

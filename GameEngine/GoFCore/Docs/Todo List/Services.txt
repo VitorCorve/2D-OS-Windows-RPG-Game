@@ -1,10 +1,4 @@
-﻿Startup menu
-
-classes change: show Attributes
-
-character creation confirm - skill list
-
-Main menu load - character data
+﻿Main menu load - character data
 
 Battle Scene - loot system. Loot avatar, pause, 
 
@@ -14,4 +8,6 @@ Else : notes system, game settings, DbContext - one time connection for object b
 
 DONE:
 
-player experience, start fight, autoattack, endfight, show avatar, save bio, items durability
+player experience, start fight, autoattack, endfight, show avatar, 
+save bio, items durability, classes change: show Attributes
+character creation confirm - skill list

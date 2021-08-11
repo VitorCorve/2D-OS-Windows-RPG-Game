@@ -1,4 +1,5 @@
 ﻿using GameEngine.Abstract;
+using GameEngine.CharacterCreationMaster.Interfaces;
 using GameEngine.Locations;
 using GameEngine.Player.ModelConditions;
 
@@ -36,6 +37,16 @@ namespace GameEngine.Player
             Specialization = player.Specialization;
             Gender = gender;
             Level = level;
+            MaxExperience = 36 + (Level * 6);
+        }
+        public PlayerModelData(ICharacterCreationData characterCreationData)
+        {
+            PlayerConsumablesData = new PlayerConsumablesData(0);
+            PlayerGrade = PLAYER_GRADE.Novice;
+            Name = characterCreationData.Name;
+            Specialization = characterCreationData.CharacterSpecialization;
+            Gender = characterCreationData.Gender;
+            Level = 1;
             MaxExperience = 36 + (Level * 6);
         }
         private static PLAYER_GRADE SetPlayerGrade(int level)

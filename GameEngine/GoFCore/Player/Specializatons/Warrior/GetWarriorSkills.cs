@@ -27,6 +27,7 @@ namespace GameEngine.Player.Specializatons.Warrior
                     SetMasterSkills();
                     return;
                 default:
+                    SetMasterSkills();
                     break;
             }
         }

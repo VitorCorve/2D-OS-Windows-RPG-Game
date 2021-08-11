@@ -1,6 +1,5 @@
 ﻿using GameEngine.NPC.Interfaces;
 using GameEngine.NPC.Interfaces.Managers;
-using GameEngine.Player.Abstract;
 using GameEngine.Player;
 using System.Collections.Generic;
 using GameEngine.NPC.Services;

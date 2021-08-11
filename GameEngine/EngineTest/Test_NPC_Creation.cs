@@ -33,7 +33,7 @@ namespace EngineTest
 
             System.Console.WriteLine("npc level: " + npcCreationManager.NPC_Model.Level);
             System.Console.WriteLine("npc name: " + npcCreationManager.NPC_Model.Name);
-            System.Console.WriteLine("npc specialization(race/type): \t" + npcCreationManager.NPC_Model.Specialization);
+            System.Console.WriteLine("npc specialization(race/type): \t" + npcCreationManager.NPC_Model.NPC_Type);
             System.Console.WriteLine($"enemy healthpoints {playerEntity.HealthPoints.Value}");
             System.Console.WriteLine($"enemy attack power {playerEntity.Attack.Value}");
         }

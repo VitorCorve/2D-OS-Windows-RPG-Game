@@ -6,7 +6,7 @@ namespace GameEngine.NPC.Interfaces
 {
     public interface INPC_Enemy : IEntityAttributes
     {
-        SPECIALIZATION Specialization { get; }
+        NPC_TYPE NPC_Type { get; }
         NPC_NAME Name { get; }
     }
 }
