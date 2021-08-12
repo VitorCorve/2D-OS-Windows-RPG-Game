@@ -13,7 +13,7 @@ namespace GameEngine.Data.Interfaces
         PlayerInventoryItemsList Inventory { get; }
         PlayerSkillList ListOfSkills { get; }
         PlayerModelData PlayerModel { get; }
-        PlayerSpecialization Specialization { get; }
+        PlayerSpecializationAttributes Specialization { get; }
         IEntityAttributes SpecializationAttributes { get; }
     }
 }

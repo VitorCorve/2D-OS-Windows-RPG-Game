@@ -21,7 +21,7 @@ namespace GameEngine.LevelUpMechanics.Services
         {
             PlayerSkills = playerSkills;
             AvailablePlayerSkills = new GetAvailablePlayerSkills(playerModel);
-            PlayerConsumables = playerModel.PlayerConsumablesData;
+            PlayerConsumables = playerModel.PlayerConsumables;
             SkillToRaise = AvailablePlayerSkills.SkillList[SelectValue];
             MaxSelectValue = AvailablePlayerSkills.SkillList.Count;
         }

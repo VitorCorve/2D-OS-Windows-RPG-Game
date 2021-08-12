@@ -20,7 +20,7 @@ namespace EngineTest
         {
             var loadGameService = new LoadGameService();
 
-            var newPlayerData = loadGameService.Load("Ralof_3");
+            var newPlayerData = loadGameService.Load("Wulfgar_2");
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"\n\tCharacter {newPlayerData.PlayerModel.Name} loaded\n");
@@ -60,7 +60,7 @@ namespace EngineTest
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Money: \t");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(newPlayerData.PlayerModel.PlayerConsumablesData.AbsoluteMoneyValue);
+            Console.WriteLine(newPlayerData.PlayerModel.PlayerConsumables.AbsoluteMoneyValue);
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("\n\tInventory item list:");
@@ -99,10 +99,10 @@ namespace EngineTest
             playerData.ItemsInInventory.PrepareToSerialize(playerInventory.ItemsInInventory);
             playerData.Gender = playerModelData.Gender;
             playerData.Skills = playerSkills;
-            playerData.Specialization = "mage";
+            playerData.Specialization = SPECIALIZATION.Mage;
             playerData.Level = playerModelData.Level;
             playerData.Name = playerModelData.Name;
-            playerData.Money = playerModelData.PlayerConsumablesData.AbsoluteMoneyValue;
+            playerData.Money = playerModelData.PlayerConsumables.AbsoluteMoneyValue;
 
             var skillLevelUpService = new SkillLevelUpService(playerModelData, playerData.Skills);
 
@@ -126,6 +126,17 @@ namespace EngineTest
 
             var saveGameService = new SaveGameService();
             saveGameService.Save(playerData);
+        }
+        public void AlternativeSave()
+        {
+            var loadGameService = new LoadGameService();
+
+            var newPlayerData = loadGameService.Load("Ralof_3");
+
+            newPlayerData.PlayerModel.Name = "Wulfgar_2";
+
+            var saveGameService = new SaveGameService();
+            saveGameService.Save(newPlayerData);
         }
     }
 }

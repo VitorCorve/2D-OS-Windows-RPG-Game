@@ -13,7 +13,7 @@ namespace GameEngine.Data
         public int AvailableSkillPoints { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
-        public string Specialization { get; set; }
+        public SPECIALIZATION Specialization { get; set; }
         public GENDER Gender { get; set; }
         public int Money { get; set; }
         public PlayerBiography Bio { get; set; }

@@ -19,7 +19,7 @@ namespace GameEngine.Data
         public PlayerInventoryItemsList Inventory { get; set; }
         public PlayerSkillList ListOfSkills { get; set; }
         public PlayerModelData PlayerModel { get; set; }
-        public PlayerSpecialization Specialization { get; set; }
+        public PlayerSpecializationAttributes Specialization { get; set; }
         public IEntityAttributes SpecializationAttributes { get; set; }
         public PlayerLoadData(PlayerSaveData playerSaveData)
         {
@@ -32,11 +32,11 @@ namespace GameEngine.Data
 
             switch (playerSaveData.Specialization)
             {
-                case "mage":
+                case SPECIALIZATION.Mage:
                     Specialization = new Mage();
                     SpecializationAttributes = new EntityModel_Mage();
                     break;
-                case "rogue":
+                case SPECIALIZATION.Rogue:
                     Specialization = new Rogue();
                     SpecializationAttributes = new EntityModel_Rogue();
                     break;
@@ -46,7 +46,7 @@ namespace GameEngine.Data
                     break;
             }
             PlayerModel = new PlayerModelData(Specialization, playerSaveData.Gender, playerSaveData.Name, playerSaveData.Level, playerSaveData.Money);
-            PlayerModel.PlayerConsumablesData.SkillPointsValue.Value = playerSaveData.AvailableSkillPoints;
+            PlayerModel.PlayerConsumables.SkillPointsValue.Value = playerSaveData.AvailableSkillPoints;
             PlayerModel.Bio = playerSaveData.Bio;
             PlayerModel.Avatar_ID = playerSaveData.Avatar_ID;
         }

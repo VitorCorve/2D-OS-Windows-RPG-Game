@@ -11,7 +11,7 @@ namespace GameEngine.Data.Interfaces
         PlayerSkillList Skills { get;  }
         int Level { get; }
         string Name { get; }
-        string Specialization { get; }
+        SPECIALIZATION Specialization { get; }
         GENDER Gender { get; }
         int Money { get; }
         PlayerBiography Bio { get; }

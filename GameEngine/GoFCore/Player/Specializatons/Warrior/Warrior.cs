@@ -3,7 +3,7 @@ using GameEngine.Player;
 
 namespace GameEngine.Specializatons
 {
-    public class Warrior : PlayerSpecialization
+    public class Warrior : PlayerSpecializationAttributes
     {
 
         public Warrior()

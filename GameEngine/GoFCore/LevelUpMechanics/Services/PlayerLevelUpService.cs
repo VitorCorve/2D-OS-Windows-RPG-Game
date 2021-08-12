@@ -18,7 +18,7 @@ namespace GameEngine.LevelUpMechanics.Services
         {
             playerModel.Level += 1;
             PlayerAttributes = playerAttributes;
-            PlayerConsumables = playerModel.PlayerConsumablesData;
+            PlayerConsumables = playerModel.PlayerConsumables;
             PlayerConsumables.SkillPointsValue.Value += 1;
         }
 

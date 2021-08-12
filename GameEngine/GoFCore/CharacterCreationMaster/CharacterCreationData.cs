@@ -21,7 +21,7 @@ namespace GameEngine.CharacterCreationMaster
         public int AvatarSelectionValue
         {
             get { return _AvatarSelectionValue; }
-            set { _AvatarSelectionValue = ValidateAvatarSelectionvalue(value); }
+            set { _AvatarSelectionValue = ValidateAvatarSelectionValue(value); }
         }
         private int _AvatarSelectionValue;
         public List<string> AttributesDescriptionList { get; set; } = new();
@@ -51,7 +51,7 @@ namespace GameEngine.CharacterCreationMaster
                 break;
             }
         }
-        private int ValidateAvatarSelectionvalue(int value)
+        private int ValidateAvatarSelectionValue(int value)
         {
             if (AvatarSelectionValue + value > AvatarsCount)
                 return 0;

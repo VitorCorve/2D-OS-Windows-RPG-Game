@@ -22,5 +22,10 @@ namespace GameEngine.Data.Services
 
             File.WriteAllText($"{workingDirectory}\\Games\\Game of Frameworks\\Saves\\{saveGamePath}\\save.json", jsonData);
         }
+        public void Save(PlayerLoadData playerData)
+        {
+            var dataConverter = new ConvertLoadToSaveFormatService();
+            Save(dataConverter.Covert(playerData));
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace GameEngine.Player
 {
     public class PlayerModelData : IPlayerModelData
     {
-        public string Name { get; private set; }
+        public string Name { get;  set; }
         public SPECIALIZATION Specialization { get; private set; }
         public GENDER Gender { get; set; }
         public int Level { get; set; }
@@ -28,10 +28,10 @@ namespace GameEngine.Player
         private PLAYER_GRADE _PlayerGrade;
         public PlayerBiography Bio { get; set; }
         public PlayerAvatar Avatar_ID { get; set; }
-        public PlayerConsumablesData PlayerConsumablesData { get; set; }
-        public PlayerModelData(PlayerSpecialization player, GENDER gender, string name, int level, int money)
+        public PlayerConsumablesData PlayerConsumables { get; set; }
+        public PlayerModelData(PlayerSpecializationAttributes player, GENDER gender, string name, int level, int money)
         {
-            PlayerConsumablesData = new PlayerConsumablesData(money);
+            PlayerConsumables = new PlayerConsumablesData(money);
             PlayerGrade = PLAYER_GRADE.Novice;
             Name = name;
             Specialization = player.Specialization;
@@ -41,7 +41,7 @@ namespace GameEngine.Player
         }
         public PlayerModelData(ICharacterCreationData characterCreationData)
         {
-            PlayerConsumablesData = new PlayerConsumablesData(0);
+            PlayerConsumables = new PlayerConsumablesData(0);
             PlayerGrade = PLAYER_GRADE.Novice;
             Name = characterCreationData.Name;
             Specialization = characterCreationData.CharacterSpecialization;

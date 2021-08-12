@@ -1,6 +1,6 @@
 ﻿Main menu load - character data
 
-Battle Scene - loot system. Loot avatar, pause, 
+Battle Scene - Loot avatar, pause, 
 
 Armory - recovery in towns, 
 
@@ -10,4 +10,4 @@ DONE:
 
 player experience, start fight, autoattack, endfight, show avatar, 
 save bio, items durability, classes change: show Attributes
-character creation confirm - skill list
+character creation confirm - skill list, loot system. 
