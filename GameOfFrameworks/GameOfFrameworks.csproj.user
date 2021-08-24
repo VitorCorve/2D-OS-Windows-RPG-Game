@@ -7,55 +7,55 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Scenes\ApplyCharacterCreation.xaml.cs">
+    <Compile Update="Views\Scenes\ApplyCharacterCreation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\Armory.xaml.cs">
+    <Compile Update="Views\Scenes\Armory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\BattleWindow.xaml.cs">
+    <Compile Update="Views\Scenes\BattleWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\LoadGame.xaml.cs">
+    <Compile Update="Views\Scenes\LoadGame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\NewGame.xaml.cs">
+    <Compile Update="Views\Scenes\NewGame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\RunGame.xaml.cs">
+    <Compile Update="Views\Scenes\RunGame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\AttributesControl.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\AttributesControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\CombatTextBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\CombatTextBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\EquipmentControl.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\EquipmentControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\InventoryControl.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\InventoryControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\ItemDescriptionControl.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\ItemDescriptionControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\LootBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\LootBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\NPCBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\NPCBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\OptionsControl.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\OptionsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\PlayerBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\PlayerBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\SkillDescriptionBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\SkillDescriptionBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Scenes\UserControls\SkillsBar.xaml.cs">
+    <Compile Update="Views\Scenes\UserControls\SkillsBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -63,55 +63,55 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\ApplyCharacterCreation.xaml">
+    <Page Update="Views\Scenes\ApplyCharacterCreation.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\Armory.xaml">
+    <Page Update="Views\Scenes\Armory.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\BattleWindow.xaml">
+    <Page Update="Views\Scenes\BattleWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\LoadGame.xaml">
+    <Page Update="Views\Scenes\LoadGame.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\NewGame.xaml">
+    <Page Update="Views\Scenes\NewGame.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\RunGame.xaml">
+    <Page Update="Views\Scenes\RunGame.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\AttributesControl.xaml">
+    <Page Update="Views\Scenes\UserControls\AttributesControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\CombatTextBar.xaml">
+    <Page Update="Views\Scenes\UserControls\CombatTextBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\EquipmentControl.xaml">
+    <Page Update="Views\Scenes\UserControls\EquipmentControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\InventoryControl.xaml">
+    <Page Update="Views\Scenes\UserControls\InventoryControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\ItemDescriptionControl.xaml">
+    <Page Update="Views\Scenes\UserControls\ItemDescriptionControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\LootBar.xaml">
+    <Page Update="Views\Scenes\UserControls\LootBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\NPCBar.xaml">
+    <Page Update="Views\Scenes\UserControls\NPCBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\OptionsControl.xaml">
+    <Page Update="Views\Scenes\UserControls\OptionsControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\PlayerBar.xaml">
+    <Page Update="Views\Scenes\UserControls\PlayerBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\SkillDescriptionBar.xaml">
+    <Page Update="Views\Scenes\UserControls\SkillDescriptionBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Scenes\UserControls\SkillsBar.xaml">
+    <Page Update="Views\Scenes\UserControls\SkillsBar.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

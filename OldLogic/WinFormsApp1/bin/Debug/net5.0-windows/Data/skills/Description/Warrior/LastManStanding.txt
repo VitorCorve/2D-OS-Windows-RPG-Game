@@ -1,1 +1,0 @@
-Increases characters damage to 20% and incoming damage to 30%. Duration 10 sec.

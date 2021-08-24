@@ -88,25 +88,25 @@
     <None Remove="Data\Images\textures\SkillsBarVar2.png" />
     <None Remove="Data\Images\textures\xpBarEmptyIcon.png" />
     <None Remove="Data\Images\textures\xpBarFilledIcon.png" />
-    <None Remove="Scenes\avatarImage.jpg" />
-    <None Remove="Scenes\background2.jpg" />
-    <None Remove="Scenes\combatTextBar.png" />
-    <None Remove="Scenes\Images\Buttons\buttonTexture.png" />
-    <None Remove="Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
-    <None Remove="Scenes\Images\VisualElements\combatTextPanel.png" />
-    <None Remove="Scenes\Images\VisualElements\NPCBar.png" />
-    <None Remove="Scenes\Images\VisualElements\PlayerBar.png" />
-    <None Remove="Scenes\indicatorBar.png" />
-    <None Remove="Scenes\inventoryBackground2.png" />
-    <None Remove="Scenes\inventoryItemframe.png" />
-    <None Remove="Scenes\leather_texture351.jpg" />
-    <None Remove="Scenes\scene19.jpg" />
-    <None Remove="Scenes\SkillsBarVar2.png" />
-    <None Remove="Scenes\titileBar.png" />
-    <None Remove="Scenes\titileBarVar3.png" />
-    <None Remove="Scenes\UserControls\Images\SkillsBar.png" />
-    <None Remove="Scenes\UserControls\inventoryItemframe.png" />
-    <None Remove="Scenes\xpBarEmpty.png" />
+    <None Remove="Views\Scenes\avatarImage.jpg" />
+    <None Remove="Views\Scenes\background2.jpg" />
+    <None Remove="Views\Scenes\combatTextBar.png" />
+    <None Remove="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <None Remove="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
+    <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\PlayerBar.png" />
+    <None Remove="Views\Scenes\indicatorBar.png" />
+    <None Remove="Views\Scenes\inventoryBackground2.png" />
+    <None Remove="Views\Scenes\inventoryItemframe.png" />
+    <None Remove="Views\Scenes\leather_texture351.jpg" />
+    <None Remove="Views\Scenes\scene19.jpg" />
+    <None Remove="Views\Scenes\SkillsBarVar2.png" />
+    <None Remove="Views\Scenes\titileBar.png" />
+    <None Remove="Views\Scenes\titileBarVar3.png" />
+    <None Remove="Views\Scenes\UserControls\Images\SkillsBar.png" />
+    <None Remove="Views\Scenes\UserControls\inventoryItemframe.png" />
+    <None Remove="Views\Scenes\xpBarEmpty.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -353,31 +353,89 @@
     <Resource Include="Data\Images\textures\xpBarFilledIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Scenes\Images\avatarPlug.jpg" />
-    <Resource Include="Scenes\Images\Buttons\buttonTexture.png" />
-    <Resource Include="Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
+    <Resource Include="Views\Scenes\Images\avatarPlug.jpg" />
+    <Resource Include="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <Resource Include="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Scenes\Images\VisualElements\combatTextPanel.png">
+    <Resource Include="Views\Scenes\Images\VisualElements\combatTextPanel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Scenes\Images\VisualElements\ElementCover.png" />
-    <Resource Include="Scenes\Images\VisualElements\NPCBar.png">
+    <Resource Include="Views\Scenes\Images\VisualElements\ElementCover.png" />
+    <Resource Include="Views\Scenes\Images\VisualElements\NPCBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Scenes\Images\VisualElements\PlayerBar.png">
+    <Resource Include="Views\Scenes\Images\VisualElements\PlayerBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Scenes\UserControls\Images\inventoryBackground.png" />
-    <Resource Include="Scenes\Images\inventoryItemframe.png" />
-    <Resource Include="Scenes\Images\ScenesBackground\ArmoryBG.jpg" />
-    <Resource Include="Scenes\Images\ScenesBackground\RunGameBG.jpg" />
-    <Resource Include="Scenes\Images\VisualElements\NameInputBar.png" />
-    <Resource Include="Scenes\Images\ScenesBackground\NewGameBG.jpg" />
-    <Resource Include="Scenes\UserControls\Images\inventoryItemframe.png" />
-    <Resource Include="Scenes\UserControls\Images\SkillsBar.png">
+    <Resource Include="Views\Scenes\UserControls\Images\inventoryBackground.png" />
+    <Resource Include="Views\Scenes\Images\inventoryItemframe.png" />
+    <Resource Include="Views\Scenes\Images\ScenesBackground\ArmoryBG.jpg" />
+    <Resource Include="Views\Scenes\Images\ScenesBackground\RunGameBG.jpg" />
+    <Resource Include="Views\Scenes\Images\VisualElements\NameInputBar.png" />
+    <Resource Include="Views\Scenes\Images\ScenesBackground\NewGameBG.jpg" />
+    <Resource Include="Views\Scenes\UserControls\Images\inventoryItemframe.png" />
+    <Resource Include="Views\Scenes\UserControls\Images\SkillsBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\GameEngine\Abstract\PlayerConsumable\" />
+    <Folder Include="Models\GameEngine\BattleMaster\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\BattleMaster\Services\" />
+    <Folder Include="Models\GameEngine\CharacterCreationMaster\AvatarsNavigation\" />
+    <Folder Include="Models\GameEngine\CharacterCreationMaster\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\CharacterCreationMaster\Services\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Actions\" />
+    <Folder Include="Models\GameEngine\CombatEngine\ActionTypes\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Delegates\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Interfaces\Resources\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Interfaces\SkillMechanics\" />
+    <Folder Include="Models\GameEngine\CombatEngine\Services\" />
+    <Folder Include="Models\GameEngine\Data\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\Data\Services\" />
+    <Folder Include="Models\GameEngine\Equipment\Db\Models\" />
+    <Folder Include="Models\GameEngine\Equipment\Db\Services\" />
+    <Folder Include="Models\GameEngine\Equipment\Interfaces\" />
+    <Folder Include="Models\GameEngine\Equipment\Resource\" />
+    <Folder Include="Models\GameEngine\Inventory\Interfaces\" />
+    <Folder Include="Models\GameEngine\LevelUpMechanics\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\LevelUpMechanics\Services\" />
+    <Folder Include="Models\GameEngine\Locations\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\Locations\Services\" />
+    <Folder Include="Models\GameEngine\LootMaster\Interfaces\" />
+    <Folder Include="Models\GameEngine\MerchantMechanics\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\MerchantMechanics\Services\" />
+    <Folder Include="Models\GameEngine\NPC\Interfaces\Managers\" />
+    <Folder Include="Models\GameEngine\NPC\Interfaces\Services\" />
+    <Folder Include="Models\GameEngine\NPC\Interfaces\SpecializationArchetypes\" />
+    <Folder Include="Models\GameEngine\NPC\Services\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Animals\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Dragons\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Humans\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\NonEnemyCharacters\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Undead\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Vampires\" />
+    <Folder Include="Models\GameEngine\NPC\Specializations\Werewolfs\" />
+    <Folder Include="Models\GameEngine\Player\ConditionResources\" />
+    <Folder Include="Models\GameEngine\Player\ConsumableResources\" />
+    <Folder Include="Models\GameEngine\Player\DefenseResources\" />
+    <Folder Include="Models\GameEngine\Player\ModelConditions\" />
+    <Folder Include="Models\GameEngine\Player\PlayerConditions\" />
+    <Folder Include="Models\GameEngine\Player\Specializatons\Mage\" />
+    <Folder Include="Models\GameEngine\Player\Specializatons\Rogue\" />
+    <Folder Include="Models\GameEngine\Player\Specializatons\Warrior\" />
+    <Folder Include="Models\GameEngine\SpecializationMechanics\Mage\" />
+    <Folder Include="Models\GameEngine\SpecializationMechanics\Rogue\" />
+    <Folder Include="Models\GameEngine\SpecializationMechanics\Warrior\" />
+    <Folder Include="Models\GameEngine\SpecializationMechanics\UniversalSkills\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>

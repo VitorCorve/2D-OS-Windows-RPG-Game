@@ -1,1 +1,0 @@
-Heals player. Restores percent of health point, depended on skill level. Costs 20 mana.

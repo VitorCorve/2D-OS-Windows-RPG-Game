@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 E:\GitProjects\dev\practic\GameOfFrameworks\App.xaml
-181486530286
+18-1239299760
 
-22-572243691
-193-1891726104
-MainWindow.xaml;Scenes\ApplyCharacterCreation.xaml;Scenes\Armory.xaml;Scenes\BattleWindow.xaml;Scenes\LoadGame.xaml;Scenes\NewGame.xaml;Scenes\RunGame.xaml;Scenes\UserControls\AttributesControl.xaml;Scenes\UserControls\CombatTextBar.xaml;Scenes\UserControls\EquipmentControl.xaml;Scenes\UserControls\InventoryControl.xaml;Scenes\UserControls\ItemDescriptionControl.xaml;Scenes\UserControls\LootBar.xaml;Scenes\UserControls\NPCBar.xaml;Scenes\UserControls\OptionsControl.xaml;Scenes\UserControls\PlayerBar.xaml;Scenes\UserControls\SkillDescriptionBar.xaml;Scenes\UserControls\SkillsBar.xaml;
+2671253044992
+1971848650477
+MainWindow.xaml;Views\Scenes\ApplyCharacterCreation.xaml;Views\Scenes\Armory.xaml;Views\Scenes\BattleWindow.xaml;Views\Scenes\LoadGame.xaml;Views\Scenes\NewGame.xaml;Views\Scenes\RunGame.xaml;Views\Scenes\UserControls\AttributesControl.xaml;Views\Scenes\UserControls\CombatTextBar.xaml;Views\Scenes\UserControls\EquipmentControl.xaml;Views\Scenes\UserControls\InventoryControl.xaml;Views\Scenes\UserControls\ItemDescriptionControl.xaml;Views\Scenes\UserControls\LootBar.xaml;Views\Scenes\UserControls\NPCBar.xaml;Views\Scenes\UserControls\OptionsControl.xaml;Views\Scenes\UserControls\PlayerBar.xaml;Views\Scenes\UserControls\SkillDescriptionBar.xaml;Views\Scenes\UserControls\SkillsBar.xaml;
 
 False
 

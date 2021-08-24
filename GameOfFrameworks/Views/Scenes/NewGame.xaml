@@ -1,0 +1,345 @@
+﻿<Page x:Class="GameOfFrameworks.Scenes.NewGame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1400"
+      Title="NewGame">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Page.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.6"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="MaxWidth" Value="210"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Page.Background>
+        <ImageBrush/>
+    </Page.Background>
+    <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/Scenes/Images/ScenesBackground/NewGameBG.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.15*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.3"/>
+            </Grid.Background>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+             <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" />
+                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center">
+                <TextBox.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/NameInputBar.png"/>
+                </TextBox.Background>
+            </TextBox>
+                <TextBlock Text="Gender" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Male" VerticalAlignment="Center" Grid.Column="0" Foreground="White" FontFamily="Franklin Gothic Book" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <TextBlock Text="Female" VerticalAlignment="Center" Grid.Column="1" Foreground="White" FontFamily="Franklin Gothic Book" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Warrior" Click="BackButton_Click" Grid.Row="0"/>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Mage" Click="BackButton_Click" Grid.Row="1"/>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Rogue" Click="BackButton_Click" Grid.Row="2"/>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.8*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Bio" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <Grid Grid.Row="1">
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+                        </Border.Background>
+                        <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... Stranger from the lonesome road... "/>
+                    </Border>
+                </Grid>
+                
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.67*"/>
+                <RowDefinition Height="0.23*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.55*"/>
+                    <RowDefinition Height="0.025*"/>
+                    <RowDefinition Height="0.225*"/>
+                    <RowDefinition Height="0.02*"/>
+                    <RowDefinition Height="0.08*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="0.6*"/>
+                        <RowDefinition Height="0.2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="1" Grid.Column="1">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <Viewbox>
+                            <TextBlock Text="Character Creation" VerticalAlignment="Center" TextAlignment="Center" Margin="10">
+                            </TextBlock>
+                        </Viewbox>
+
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.05*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.05*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Previous" Click="BackButton_Click" />
+                    <Image Grid.Column="2" Stretch="Fill">
+                        <Image.Source>
+                            <BitmapImage UriSource="/Views/Scenes/Images/avatarPlug.jpg"/>
+                        </Image.Source>
+                    </Image>
+                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Next" Click="BackButton_Click"/>
+
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="1">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+                        </Border.Background>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="Here is description about choosen class" VerticalAlignment="Center" TextWrapping="Wrap" Padding="23"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Confirm"  Click="ConfirmButton_Click" Grid.Column="1"/>
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.035*"/>
+                <RowDefinition Height="0.53*"/>
+                <RowDefinition Height="0.34*"/>
+                <RowDefinition Height="0.095*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center"  Text="0" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="0" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="0" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="0" Foreground="White" HorizontalAlignment="Center" Grid.Row="1"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" />
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="0" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                </Grid>
+                
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*"/>
+                    <RowDefinition Height="0.85*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Description" HorizontalAlignment="Center" Foreground="White"/>
+                <Grid Grid.Row="1">
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+                        </Border.Background>
+                        <TextBlock Text="Attribute Description" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="4" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Back" Click="BackButton_Click"/>
+        </Grid>
+
+    </Grid>
+</Page>

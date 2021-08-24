@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "m0ojLQAZDz8Lin+iyDHG+PSGdxB237X2i+Sp0DKOQ/ABIuITBaJl7sCB86aoB7HLOvSVuYvC87gqq1FhZOQHSA==",
+  "success": false,
+  "projectFilePath": "E:\\GitProjects\\dev\\practic\\LibraryTestingModule\\LibraryTestingModule.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Проект GameOfFrameworks несовместим с net5.0 (.NETCoreApp,Version=v5.0). Проект GameOfFrameworks поддерживает: net5.0-windows7.0 (.NETCoreApp,Version=v5.0)",
+      "libraryId": "GameOfFrameworks",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

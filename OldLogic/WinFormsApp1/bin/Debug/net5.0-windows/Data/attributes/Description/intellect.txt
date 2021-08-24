@@ -1,1 +1,0 @@
-Intellect affects to magical skills power and determines amount of available mana.
