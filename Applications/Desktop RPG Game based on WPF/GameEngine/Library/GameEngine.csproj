@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Docs\Specialization mechanics\Новая папка\**" />
+    <EmbeddedResource Remove="Docs\Specialization mechanics\Новая папка\**" />
+    <None Remove="Docs\Specialization mechanics\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Inventory\Services\" />
+    <Folder Include="NPC\Instruments\" />
+    <Folder Include="NPC\Interfaces\Instruments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

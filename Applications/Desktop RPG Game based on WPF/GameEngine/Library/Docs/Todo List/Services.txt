@@ -1,0 +1,13 @@
+﻿Main menu load - character data
+
+Battle Scene - Loot avatar, pause, 
+
+Armory - recovery in towns, 
+
+Else : notes system, game settings, DbContext - one time connection for object building
+
+DONE:
+
+player experience, start fight, autoattack, endfight, show avatar, 
+save bio, items durability, classes change: show Attributes
+character creation confirm - skill list, loot system. 

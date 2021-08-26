@@ -1,0 +1,14 @@
+﻿1 lvl
+Backstab
+
+4 lvl
+Rend
+
+8 lvl
+Dissapear into the shadows
+
+12 lvl 
+Stun
+
+16 lvl 
+FindTheWeakness
