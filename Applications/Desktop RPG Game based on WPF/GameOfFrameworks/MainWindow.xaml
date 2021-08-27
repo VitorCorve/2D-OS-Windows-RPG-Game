@@ -12,9 +12,10 @@
     </Window.Background>
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
-
         </Frame>
-        <TextBlock Text="ver. 1.0.0.1" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,15"/>
-        <Button Width="40" Height="20" Content="Close" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="70,0,0,12.3" Click="Button_Click"></Button>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <TextBlock Text="ver. 1.0.0.3" Foreground="White" Margin="10"/>
+            <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
+        </StackPanel>
     </Grid>
 </Window>

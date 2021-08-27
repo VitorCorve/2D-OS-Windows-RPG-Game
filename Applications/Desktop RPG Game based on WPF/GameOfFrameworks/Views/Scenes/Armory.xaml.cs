@@ -31,7 +31,6 @@ namespace GameOfFrameworks.Scenes
             NavigationService.Navigate(runGame);
 
         }
-
         private void EquippmentButton_Click(object sender, RoutedEventArgs e)
         {
             SetActiveUserControl(EquipmentControlElement);
@@ -43,6 +42,7 @@ namespace GameOfFrameworks.Scenes
             AttributesControlElement.Visibility = Visibility.Collapsed;
             InventoryControlElement.Visibility = Visibility.Collapsed;
             OptionsControlElement.Visibility = Visibility.Collapsed;
+            LevelUpControlElement.Visibility = Visibility.Collapsed;
             control.Visibility = Visibility.Visible;
         }
 
@@ -65,6 +65,11 @@ namespace GameOfFrameworks.Scenes
         {
             BattleWindow battleWindow = new BattleWindow();
             NavigationService.Navigate(battleWindow);
+        }
+
+        private void LevelUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetActiveUserControl(LevelUpControlElement);
         }
     }
 }

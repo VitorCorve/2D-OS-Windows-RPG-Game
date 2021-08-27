@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+      xmlns:usc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="1400"
       Title="Armory">
@@ -266,9 +266,11 @@
             <local:InventoryControl Style="{StaticResource UserControlTemplate}" x:Name="InventoryControlElement" Visibility="Collapsed"></local:InventoryControl>
             <local:AttributesControl Style="{StaticResource UserControlTemplate}" x:Name="AttributesControlElement" Visibility="Collapsed"></local:AttributesControl>
             <local:OptionsControl Style="{StaticResource UserControlTemplate}" x:Name="OptionsControlElement" Visibility="Collapsed"></local:OptionsControl>
+            <local:LevelUpControl Style="{StaticResource UserControlTemplate}" x:Name="LevelUpControlElement" Visibility="Visible"></local:LevelUpControl>
         </Grid>
         <Grid Grid.Row="10" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Margin="0,10,0,0" Click="MainMenuButton_Click"/>
         </Grid>
+        <Button x:Name="LevelUpButton" Style="{StaticResource ButtonTemplate}" Content="Level up" Grid.Row="2" Grid.Column="5" VerticalAlignment="Top" Margin="0,10,0,0" Click="LevelUpButton_Click"/>
     </Grid>
 </Page>
