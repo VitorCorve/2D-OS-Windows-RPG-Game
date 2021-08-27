@@ -48,7 +48,7 @@
             <Setter Property="MaxWidth" Value="210"/>
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -82,7 +82,7 @@
     </Page.Resources>
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
         <Grid.Background>
-            <ImageBrush x:Name="AvatarImage" ImageSource="/Scenes/Images/ScenesBackground/ApplyCharacterBG.jpg"/>
+            <ImageBrush x:Name="AvatarImage" ImageSource="/Views/Scenes/Images/ScenesBackground/ApplyCharacterBG.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
@@ -115,7 +115,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Name" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -125,7 +125,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,5,0">
             <StackPanel.Background>
-                <ImageBrush ImageSource="/Scenes/Images/avatarPlug.jpg"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/avatarPlug.jpg"/>
             </StackPanel.Background>
         </StackPanel>
 
@@ -143,7 +143,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Info" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -173,7 +173,7 @@
                 <TextBlock Text="Gender" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="15,0,15,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Female" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -181,7 +181,7 @@
                 <TextBlock Text="Class" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
                 <Border Margin="15,0,15,0" Grid.Row="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Mage" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -195,7 +195,7 @@
                 <TextBlock Text="Class description" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                     </Border.Background>
                     <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Here is description about choosen class" Margin="15,15,15,15"/>
                 </Border>
@@ -218,14 +218,14 @@
             </Border>
             <Border Grid.Row="0" >
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
                 <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Stranger from the lonesome road..." Margin="15,15,15,15"/>
             </Border>
 
             <Border Margin="15,0,15,0" Grid.Row="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -248,7 +248,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" Grid.ColumnSpan="7" Panel.ZIndex="-1" Grid.RowSpan="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                     </Border.Background>
                 </Border>
                 <Image Source="/Data/Images/skills/mage/relBUtton/1.jpg" Grid.Column="1" Grid.Row="1"/>
@@ -259,14 +259,14 @@
             </Grid>
             <Border Margin="15,0,15,0" Grid.Row="3">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Skill Name" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
             </Border>
             <Border Grid.Row="4" >
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/VisualElements/ElementCover.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
                 <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="here is skill description" Margin="15,15,15,15"/>
             </Border>
@@ -285,7 +285,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Bio" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -308,7 +308,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -346,7 +346,7 @@
                 <TextBlock Text="Stamina" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -361,7 +361,7 @@
                 <TextBlock Text="Intellect" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -376,7 +376,7 @@
                 <TextBlock Text="Health" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -391,7 +391,7 @@
                 <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -406,7 +406,7 @@
                 <TextBlock Text="Strength" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -421,7 +421,7 @@
                 <TextBlock Text="Endurance" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -436,7 +436,7 @@
                 <TextBlock Text="Attack" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -451,7 +451,7 @@
                 <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -466,7 +466,7 @@
                 <TextBlock Text="Agility" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -481,7 +481,7 @@
                 <TextBlock Text="Dodge" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
