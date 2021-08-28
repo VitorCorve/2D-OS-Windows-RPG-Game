@@ -20,7 +20,7 @@ namespace YoutubeToMp3.Managers
         }
         private static string _VideoURL;
         public static string VideoName { get; set; }
-        public static void DownloadAndConvert()
+        public static void DownloadAudio()
         {
             var source = $@"{DestinationPath}\\";
 
@@ -39,12 +39,27 @@ namespace YoutubeToMp3.Managers
             File.Delete(source + VideoName);
             OperationFinished();
         }
-        public static string Notify() => "Downloaded and converted";
+        public static void DownloadVideo()
+        {
+            var source = $@"{DestinationPath}\\";
+
+            File.WriteAllBytes(source + VideoName + ".mp4", Video.GetBytes());
+            OperationFinished();
+        }
+        public static string Notify() => "Operation Completed";
         private static void UpdateVideoDescription(string url)
         {
             _VideoURL = url;
 
-            Video = YoutubeManager.GetVideo($"{VideoURL}");
+            try
+            {
+                Video = YoutubeManager.GetVideo($"{VideoURL}");
+            }
+
+            catch (System.Exception)
+            {
+                return;
+            }
 
             VideoName = Video.FullName.Replace(".mp4", "");
 
