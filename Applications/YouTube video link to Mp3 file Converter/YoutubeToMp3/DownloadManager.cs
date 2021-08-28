@@ -24,8 +24,6 @@ namespace YoutubeToMp3
         {
             var source = $@"{DestinationPath}\\";
 
-            VideoName = Video.FullName.Replace(".mp4", "");
-
             File.WriteAllBytes(source + VideoName, Video.GetBytes());
 
             var inputFile = new MediaFile { Filename = source + VideoName };
@@ -48,7 +46,7 @@ namespace YoutubeToMp3
 
             Video = YoutubeManager.GetVideo($"{VideoURL}");
 
-            VideoName = Video.FullName;
+            VideoName = Video.FullName.Replace(".mp4", "");
 
             if (VideoName != null && VideoName.Length > 0) ShowVideoName();
         }

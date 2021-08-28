@@ -38,6 +38,7 @@ namespace YoutubeToMp3
             this.completeNotifyLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.videoNameLabel = new System.Windows.Forms.Label();
+            this.openFolderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // downloadButton
@@ -123,6 +124,17 @@ namespace YoutubeToMp3
             this.videoNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.videoNameLabel.Visible = false;
             // 
+            // openFolderButton
+            // 
+            this.openFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.openFolderButton.Location = new System.Drawing.Point(25, 248);
+            this.openFolderButton.Name = "openFolderButton";
+            this.openFolderButton.Size = new System.Drawing.Size(51, 23);
+            this.openFolderButton.TabIndex = 8;
+            this.openFolderButton.Text = "Open";
+            this.openFolderButton.UseVisualStyleBackColor = true;
+            this.openFolderButton.Click += new System.EventHandler(this.OpenFolderButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -131,6 +143,7 @@ namespace YoutubeToMp3
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(319, 283);
+            this.Controls.Add(this.openFolderButton);
             this.Controls.Add(this.videoNameLabel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.completeNotifyLabel);
@@ -140,6 +153,7 @@ namespace YoutubeToMp3
             this.Controls.Add(this.videoLinkTextBox);
             this.Controls.Add(this.downloadButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Youtube Download Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -161,6 +175,7 @@ namespace YoutubeToMp3
         private System.Windows.Forms.Label completeNotifyLabel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label videoNameLabel;
+        private System.Windows.Forms.Button openFolderButton;
     }
 }
 

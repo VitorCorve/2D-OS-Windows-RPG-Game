@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace YoutubeToMp3
@@ -48,5 +50,7 @@ namespace YoutubeToMp3
             videoNameLabel.Visible = true;
             videoNameLabel.Text = DownloadManager.VideoName;
         }
+
+        private void OpenFolderButton_Click(object sender, System.EventArgs e) => Process.Start("explorer.exe", @$"{DestinationManager.DestinationPath}");
     }
 }
