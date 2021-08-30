@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.VideoSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="Grid">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Page.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.6"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ChangeResolutionButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.03*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="5,2,0,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.85*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Resolution" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.85*"/>
+                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.075*"/>
+                </Grid.ColumnDefinitions>
+                <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                    </Border.Background>
+                    <TextBlock Text="1360 x 760" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
+                </Border>
+                <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,0,2"/>
+                <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="2,2,0,2"/>
+            </Grid>
+            <Grid Grid.Row="2" Margin="5,2,0,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.85*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Window mode" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.85*"/>
+                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.075*"/>
+                </Grid.ColumnDefinitions>
+                <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                    </Border.Background>
+                    <TextBlock Text="Fullscreen" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
+                </Border>
+                <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,0,2"/>
+                <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="2,2,0,2"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -102,7 +102,7 @@
             </Button>
             <Button Style="{StaticResource ButtonTemplate}" Content="Armory" Click="ArmoryButton_Click" Grid.Row="3">
             </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Options" Click="ArmoryButton_Click" Grid.Row="4">
+            <Button Style="{StaticResource ButtonTemplate}" Content="Options" Click="OptionsButton_Click" Grid.Row="4">
             </Button>
             <Button Style="{StaticResource ButtonTemplate}" Content="Battle Scene" Click="BattleScene_Click" Grid.Row="5">
             </Button>

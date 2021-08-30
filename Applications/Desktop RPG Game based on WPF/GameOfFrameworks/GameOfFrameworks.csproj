@@ -105,6 +105,7 @@
     <None Remove="Views\Scenes\combatTextBar.png" />
     <None Remove="Views\Scenes\Images\Buttons\buttonTexture.png" />
     <None Remove="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
+    <None Remove="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
     <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
     <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
     <None Remove="Views\Scenes\Images\VisualElements\PlayerBar.png" />
@@ -112,6 +113,7 @@
     <None Remove="Views\Scenes\inventoryBackground2.png" />
     <None Remove="Views\Scenes\inventoryItemframe.png" />
     <None Remove="Views\Scenes\leather_texture351.jpg" />
+    <None Remove="Views\Scenes\OptionsBG.jpg" />
     <None Remove="Views\Scenes\scene19.jpg" />
     <None Remove="Views\Scenes\SkillsBarVar2.png" />
     <None Remove="Views\Scenes\titileBar.png" />
@@ -370,6 +372,7 @@
     <Resource Include="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
     <Resource Include="Views\Scenes\Images\VisualElements\combatTextPanel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
