@@ -29,5 +29,13 @@ namespace GameOfFrameworks.Scenes
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
         }
+        public void SetActiveUserControl(UserControl control)
+        {
+            AudioSettingsControlElement.Visibility = Visibility.Collapsed;
+            VideoSettingsControlElement.Visibility = Visibility.Collapsed;
+            control.Visibility = Visibility.Visible;
+        }
+        public void VideoSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(VideoSettingsControlElement);
+        public void AudioSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AudioSettingsControlElement);
     }
 }

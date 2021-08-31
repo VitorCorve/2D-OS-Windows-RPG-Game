@@ -17,7 +17,6 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-
         <Style TargetType="Grid">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Page.Loaded">
@@ -157,11 +156,11 @@
                     <Border.Background>
                         <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
                     </Border.Background>
-                    <TextBlock Text="1360 x 760" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock Text="1360 x 768" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
-                <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,0,2"/>
-                <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="2,2,0,2"/>
+                <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
+                <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
             </Grid>
             <Grid Grid.Row="2" Margin="5,2,0,2">
                 <Grid.ColumnDefinitions>
@@ -189,8 +188,8 @@
                     <TextBlock Text="Fullscreen" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
-                <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,0,2"/>
-                <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="2,2,0,2"/>
+                <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
+                <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
             </Grid>
         </Grid>
     </Grid>

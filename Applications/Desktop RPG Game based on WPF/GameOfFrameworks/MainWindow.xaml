@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfFrameworks"
-        
+        xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1400" WindowStartupLocation="CenterScreen" WindowState="Normal">
+        Title="MainWindow" 
+        Height="{Binding VerticalWindowResolution, Mode=TwoWay}" 
+        Width="{Binding HorizontalWindowResolution, Mode=TwoWay}" 
+        WindowStartupLocation="CenterOwner" 
+        WindowStyle="{Binding WindowStyle}" 
+        ResizeMode="NoResize" 
+        WindowState="{Binding WindowState}">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Window.Background>
         <SolidColorBrush Color="Black"/>
     </Window.Background>

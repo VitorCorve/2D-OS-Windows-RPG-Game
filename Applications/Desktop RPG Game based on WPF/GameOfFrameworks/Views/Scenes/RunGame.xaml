@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="1400"
+      d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"
       Title="RunGame">
-    <Page.Resources>
+    <Page.Resources> 
         <Style TargetType="Grid">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
@@ -69,7 +69,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    <Grid Width="{Binding ElementName=ParentGrid, Path=ActualWidth}" Height="{Binding ElementName=ParentGrid, Path=ActualHeight}">
+    <Grid Width="{Binding ElementName=Page, Path=ActualWidth}" Height="{Binding ElementName=Page, Path=ActualHeight}">
         <Grid.Background>
             <ImageBrush ImageSource="/Views/Scenes/Images/ScenesBackground/RunGameBG.jpg"/>
         </Grid.Background>

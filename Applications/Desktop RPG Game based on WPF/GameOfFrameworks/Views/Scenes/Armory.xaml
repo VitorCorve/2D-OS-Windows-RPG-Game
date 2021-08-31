@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       xmlns:usc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="1400"
+      d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"
       Title="Armory">
 
     <Page.Resources>

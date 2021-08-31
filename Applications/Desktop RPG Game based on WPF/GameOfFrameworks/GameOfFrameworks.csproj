@@ -405,7 +405,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Commands\Options\" />
+    <Folder Include="Infrastructure\UserApplicationSettings\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
