@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Navigation;
 
 namespace GameOfFrameworks.Scenes
@@ -16,12 +9,7 @@ namespace GameOfFrameworks.Scenes
     /// </summary>
     public partial class RunGame : Page
     {
-        public RunGame()
-        {
-            InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
+        public RunGame() => InitializeComponent();
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {

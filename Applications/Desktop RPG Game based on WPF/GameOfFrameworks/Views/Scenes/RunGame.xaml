@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
+      xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"
+            d:DesignHeight="1080" d:DesignWidth="1920"
       Title="RunGame">
+    <!--d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"-->
+    <Page.DataContext>
+        <vm:RunGameViewModel/>
+    </Page.DataContext>
     <Page.Resources> 
         <Style TargetType="Grid">
             <Style.Triggers>
@@ -98,7 +103,7 @@
             </Button>
             <Button Style="{StaticResource ButtonTemplate}" Content="Load" Click="LoadButton_Click" Grid.Row="1">
             </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Exit" Click="Button_Click" Grid.Row="2">
+            <Button Style="{StaticResource ButtonTemplate}" Content="Exit" Command="{Binding ExitGameCommand}" Grid.Row="2">
             </Button>
             <Button Style="{StaticResource ButtonTemplate}" Content="Armory" Click="ArmoryButton_Click" Grid.Row="3">
             </Button>
