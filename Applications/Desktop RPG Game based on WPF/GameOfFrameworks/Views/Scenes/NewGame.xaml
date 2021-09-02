@@ -120,7 +120,7 @@
                 </Grid.RowDefinitions>
 
              <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" />
-                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Character.Name}">
+                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CreationData.Name}">
                     <TextBox.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/NameInputBar.png"/>
                     </TextBox.Background>
@@ -165,7 +165,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Character.Bio}" Width="180" Height="250"/>
+                        <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationData.Bio}" Width="180" Height="250"/>
                     </Border>
                 </Grid>
                 
@@ -285,7 +285,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White" Command="{Binding SelectAttributeDescriptionCommand}" CommandParameter="0"/>
-                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center"  Text="{Binding Character.Strength}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center"  Text="{Binding CreationData.CharacterAttributes.Strength}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -294,7 +294,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White" Command="{Binding SelectAttributeDescriptionCommand}" CommandParameter="1"/>
-                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Character.Stamina}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CreationData.CharacterAttributes.Stamina}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -303,7 +303,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White" Command="{Binding SelectAttributeDescriptionCommand}" CommandParameter="2"/>
-                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Character.Endurance}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CreationData.CharacterAttributes.Endurance}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -312,7 +312,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect" Command="{Binding SelectAttributeDescriptionCommand}" CommandParameter="3"/>
-                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Character.Intellect}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CreationData.CharacterAttributes.Intellect}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -321,7 +321,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" Command="{Binding SelectAttributeDescriptionCommand}" CommandParameter="4"/>
-                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Character.Agility}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
+                    <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CreationData.CharacterAttributes.Agility}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
                 
             </Grid>

@@ -1,4 +1,5 @@
-﻿using GameOfFrameworks.Infrastructure.Commands;
+﻿using GameEngine.CharacterCreationMaster;
+using GameOfFrameworks.Infrastructure.Commands;
 using GameOfFrameworks.Infrastructure.Commands.CharacterCreation;
 using GameOfFrameworks.Models.CharacterCreation;
 using GameOfFrameworks.ViewModels.Base;
@@ -20,34 +21,60 @@ namespace GameOfFrameworks.ViewModels
         public ICommand SelectAttributeDescriptionCommand { get; }
         public string SelectedAttributeDescription { get; }
 
-        private CharacterModel _CharacterModel;
-        public CharacterModel Character { get => _CharacterModel; set => Set(ref _CharacterModel, value); }
+        private CharacterCreationData _CreationData;
+        public CharacterCreationData CreationData 
+        { 
+            get => _CreationData; 
+            set
+            {
+                _CreationData = value;
+                OnPropertyChanged();
+            }
+        }
+        public CharacterCreationMaster CreationMaster { get; private set; } = new();
         public NewGameViewModel()
         {
-            Character = new CharacterModel();
-            Character.Gender = CharacterCreationManager.CreationMaster.CharacterData.Gender;
-            Character.Specialization = CharacterCreationManager.CreationMaster.CharacterData.CharacterSpecialization;
-            Character.Strength = CharacterCreationManager.CreationMaster.CharacterData.CharacterAttributes.Strength;
-            Character.Stamina = CharacterCreationManager.CreationMaster.CharacterData.CharacterAttributes.Stamina;
-            Character.Endurance = CharacterCreationManager.CreationMaster.CharacterData.CharacterAttributes.Endurance;
-            Character.Intellect = CharacterCreationManager.CreationMaster.CharacterData.CharacterAttributes.Intellect;
-            Character.Agility = CharacterCreationManager.CreationMaster.CharacterData.CharacterAttributes.Agility;
+            CreationData = new CharacterCreationData();
+            CreationMaster = new CharacterCreationMaster();
 
             SelectFemaleGenderCommand = new SelectFemaleGenderCommand();
             SelectMaleGenderCommand = new SelectMaleGenderCommand();
             SelectNextAvatarCommand = new SelectNextAvatarCommand();
             SelectPreviousAvatarCommand = new SelectPreviousAvatarCommand();
             SelectRogueClassCommand = new LambdaCommands(OnSelectRogueClassCommandExecuted, CanSelectRogueClassCommandExecute);
-            SelectWarriorClassCommand = new SelectWarriorClassCommand();
-            SelectMageClassCommand = new SelectMageClassCommand();
+            SelectWarriorClassCommand = new LambdaCommands(OnSelectWarriorClassCommandExecuted, CanSelectWarriorClassCommandExecute);
+            SelectMageClassCommand = new LambdaCommands(OnSelectMageClassCommandExecuted, CanSelectMageClassCommandExecute);
+            SelectAttributeDescriptionCommand = new LambdaCommands(OnSelectAttributeDescriptionCommand, CanSelectAtrributeDescriptionCommand);
+
+            CreationMaster.SelectSpecialization(0);
+            CreationData = CreationMaster.CharacterData;
+
+            CreationMaster.SelectAttributeDescription(0);
+            SelectedAttributeDescription = CreationData.AttributeDescription;
         }
 
         private bool CanSelectRogueClassCommandExecute(object p) => true;
         private void OnSelectRogueClassCommandExecuted(object p)
         {
-            CharacterCreationManager.CreationMaster.SelectSpecialization(2);
-            OnPropertyChanged();
+            CreationMaster.SelectSpecialization(2);
+            CreationData = CreationMaster.CharacterData;
         }
+        private bool CanSelectMageClassCommandExecute(object p) => true;
+        private void OnSelectMageClassCommandExecuted(object p)
+        {
+            CreationMaster.SelectSpecialization(1);
+            CreationData = CreationMaster.CharacterData;
+        }
+        private bool CanSelectWarriorClassCommandExecute(object p) => true;
+        private void OnSelectWarriorClassCommandExecuted(object p)
+        {
+            CreationMaster.SelectSpecialization(0);
+            CreationData = CreationMaster.CharacterData;
+        }
+        private bool CanSelectAtrributeDescriptionCommand(object p) => true;
+        private void OnSelectAttributeDescriptionCommand(object p)
+        {
 
+        }
     }
 }
