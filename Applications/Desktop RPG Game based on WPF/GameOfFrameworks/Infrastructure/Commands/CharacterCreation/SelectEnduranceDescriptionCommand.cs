@@ -1,15 +1,14 @@
 ﻿using GameEngine.CharacterCreationMaster;
-using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.ViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
 {
-    public class SelectFemaleGenderCommand : Command
+    public class SelectEnduranceDescriptionCommand : Command
     {
         public CharacterCreationData CharacterData { get; set; }
         public NewGameViewModel ViewModel { get; set; }
-        public SelectFemaleGenderCommand(CharacterCreationData characterData, NewGameViewModel viewModel)
+        public SelectEnduranceDescriptionCommand(CharacterCreationData characterData, NewGameViewModel viewModel)
         {
             CharacterData = characterData;
             ViewModel = viewModel;
@@ -17,7 +16,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
-            CharacterData.Gender = GENDER.Female;
+            CharacterData.AttributeDescription = CharacterData.AttributesDescriptionList[2];
             ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }

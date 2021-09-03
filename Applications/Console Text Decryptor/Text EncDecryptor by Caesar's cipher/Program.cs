@@ -22,6 +22,7 @@ namespace Text_EncDecryptor_by_Caesar_s_cipher
             var decryptedMessage = decryptor.DecryptedData;
 
             Console.WriteLine("\n Decrypted message: " + decryptedMessage);
+            Console.ReadLine();
         }
     }
 }

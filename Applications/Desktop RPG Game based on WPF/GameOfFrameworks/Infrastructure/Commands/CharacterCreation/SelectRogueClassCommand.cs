@@ -1,16 +1,26 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.Base;
-using GameOfFrameworks.Models.CharacterCreation;
+﻿using GameEngine.CharacterCreationMaster;
+using GameEngine.Player;
+using GameEngine.Player.Specializatons.Rogue;
+using GameOfFrameworks.Infrastructure.Commands.Base;
+using GameOfFrameworks.ViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
 {
     public class SelectRogueClassCommand : Command
     {
-        public delegate void Action();
-        public SelectRogueClassCommand(Action func = null)
+        public CharacterCreationData CharacterData { get; set; }
+        public NewGameViewModel ViewModel { get; set; }
+        public SelectRogueClassCommand(CharacterCreationData characterData, NewGameViewModel viewModel)
         {
-            func?.Invoke();
+            CharacterData = characterData;
+            ViewModel = viewModel;
         }
         public override bool CanExecute(object parameter) => true;
-        public override void Execute(object parameter) => CharacterCreationManager.CreationMaster.SelectSpecialization(2);
+        public override void Execute(object parameter)
+        {
+            CharacterData.CharacterAttributes = new EntityModel_Rogue();
+            CharacterData.CharacterSpecialization = SPECIALIZATION.Rogue;
+            ViewModel.OnPropertyChanged(nameof(CharacterData));
+        }
     }
 }
