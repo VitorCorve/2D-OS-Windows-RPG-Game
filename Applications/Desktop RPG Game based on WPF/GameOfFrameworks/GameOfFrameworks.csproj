@@ -5,8 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
+    <AssemblyVersion>1.0.0.7</AssemblyVersion>
+    <FileVersion>1.0.0.7</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -87,6 +87,8 @@
     <None Remove="Data\Images\textures\combatTextBarVar6.png" />
     <None Remove="Data\Images\textures\dragon1.png" />
     <None Remove="Data\Images\textures\energyIndicator\energyBar.png" />
+    <None Remove="Data\Images\textures\genders\female.png" />
+    <None Remove="Data\Images\textures\genders\male.png" />
     <None Remove="Data\Images\textures\healthIndicator\healthBar.png" />
     <None Remove="Data\Images\textures\indicatorBar.png" />
     <None Remove="Data\Images\textures\inventoryBackground.png" />
@@ -328,6 +330,8 @@
     <Resource Include="Data\Images\textures\energyIndicator\energyBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\textures\genders\female.png" />
+    <Resource Include="Data\Images\textures\genders\male.png" />
     <Resource Include="Data\Images\textures\healthIndicator\healthBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

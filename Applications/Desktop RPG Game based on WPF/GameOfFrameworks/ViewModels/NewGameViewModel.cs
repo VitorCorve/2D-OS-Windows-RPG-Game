@@ -1,7 +1,10 @@
 ﻿using GameEngine.CharacterCreationMaster;
+using GameEngine.CharacterCreationMaster.Services;
+using GameEngine.Player.ModelConditions;
 using GameEngine.Player.Specializatons.Warrior;
 using GameOfFrameworks.Infrastructure.Commands.CharacterCreation;
 using GameOfFrameworks.ViewModels.Base;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels
@@ -25,6 +28,11 @@ namespace GameOfFrameworks.ViewModels
         public string SelectedAttributeDescription { get; }
         private CharacterCreationData _CharacterData;
         public CharacterCreationData CharacterData { get => _CharacterData; set { _CharacterData = value; OnPropertyChanged(); }}
+        public string AvatarPath { get; set; }
+
+        private int _AvatarSelectionValue = 0;
+        public int AvatarSelectionValue { get => _AvatarSelectionValue; set => ConvertValues(value); }
+        public List<PlayerAvatar> AvatarsList { get; set; } = new();
         public NewGameViewModel()
         {
             CharacterData = new CharacterCreationData();
@@ -36,13 +44,35 @@ namespace GameOfFrameworks.ViewModels
             SelectWarriorClassCommand = new SelectWarriorClassCommand(CharacterData, this);
 
             SelectMaleGenderCommand = new SelectMaleGenderCommand(CharacterData, this);
-            SelectFemaleGenderCommand = new SelectMaleGenderCommand(CharacterData, this);
+            SelectFemaleGenderCommand = new SelectFemaleGenderCommand(CharacterData, this);
 
             SelectStrengthDescriptionCommand = new SelectStrengthDescriptionCommand(CharacterData, this);
             SelectStaminaDescriptionCommand = new SelectStaminaDescriptionCommand(CharacterData, this);
             SelectEnduranceDescriptionCommand = new SelectEnduranceDescriptionCommand(CharacterData, this);
             SelectIntellectDescriptionCommand = new SelectIntellectDescriptionCommand(CharacterData, this);
             SelectAgilityDescriptionCommand = new SelectAgilityDescriptionCommand(CharacterData, this);
+
+            SelectNextAvatarCommand = new SelectNextAvatarCommand(CharacterData, this);
+            SelectPreviousAvatarCommand = new SelectPreviousAvatarCommand(CharacterData, this);
+
+            var avatarsData = new GetAvatarsData();
+            AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
+            AvatarPath = AvatarsList[AvatarSelectionValue].Path;
+        }
+        private void ConvertValues(int value)
+        {
+
+            if (value > 9)
+            {
+                _AvatarSelectionValue = 0;
+                return;
+            }
+            if (value < 0)
+            {
+                _AvatarSelectionValue = 9;
+                return;
+            }
+            _AvatarSelectionValue = value;
         }
     }
 }

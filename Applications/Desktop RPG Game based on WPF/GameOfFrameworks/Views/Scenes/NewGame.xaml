@@ -47,7 +47,6 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="MinHeight" Value="35"/>
             <Setter Property="MaxWidth" Value="210"/>
             <Setter Property="Background">
@@ -98,11 +97,12 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.15*"/>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.06*"/>
+                <RowDefinition Height="0.05*"/>
                 <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.3*"/>
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -116,16 +116,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
              <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" />
-                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CreationData.Name}">
+                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CharacterData.Name}">
                     <TextBox.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/NameInputBar.png"/>
                     </TextBox.Background>
                 </TextBox>
-                <TextBlock Text="Gender" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1">
@@ -135,12 +133,9 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Male" VerticalAlignment="Center" Grid.Column="0" Foreground="White" FontFamily="Franklin Gothic Book" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                <TextBlock Text="Female" VerticalAlignment="Center" Grid.Column="1" Foreground="White" FontFamily="Franklin Gothic Book" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Command="{Binding SelectMaleGenderCommand}"/>
-                <RadioButton HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Command="{Binding SelectFemaleGenderCommand}"/>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Male" Grid.Row="0" Command="{Binding SelectMaleGenderCommand}" Margin="15,0,10,0"/>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" VerticalAlignment="Center" Content="Female" Grid.Row="1" Command="{Binding SelectFemaleGenderCommand}" Margin="15,0,10,0"/>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -155,8 +150,8 @@
 
             <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Bio" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
@@ -211,7 +206,6 @@
                             <TextBlock Text="Character Creation" VerticalAlignment="Center" TextAlignment="Center" Margin="10">
                             </TextBlock>
                         </Viewbox>
-
                     </Border>
                 </Grid>
 
@@ -219,17 +213,22 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.25*"/>
                         <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.45*"/>
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectNextAvatarCommand}" />
-                    <Image Grid.Column="2" Stretch="Fill">
-                        <Image.Source>
-                            <BitmapImage UriSource="/Views/Scenes/Images/avatarPlug.jpg"/>
-                        </Image.Source>
+                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Next" Command="{Binding SelectNextAvatarCommand}" />
+                    <Border Grid.Column="2">
+                        <Border.Background>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Direction="310" ShadowDepth="6" Opacity="0.8" BlurRadius="50"/>
+                        </Border.Effect>
+                    </Border>
+                    <Image Grid.Column="2" Stretch="Fill" Source="{Binding AvatarPath}">
                     </Image>
-                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Next" Command="{Binding SelectPreviousAvatarCommand}"/>
+                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}"/>
 
                 </Grid>
                 <Grid Grid.Row="3">
@@ -261,9 +260,9 @@
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.035*"/>
-                <RowDefinition Height="0.53*"/>
+                <RowDefinition Height="0.27*"/>
                 <RowDefinition Height="0.34*"/>
-                <RowDefinition Height="0.095*"/>
+                <RowDefinition Height="0.295*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -332,7 +331,7 @@
                     <RowDefinition Height="0.85*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Description" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Description" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center"/>
                 <Grid Grid.Row="1">
                     <Border>
                         <Border.Background>
@@ -342,7 +341,7 @@
                     </Border>
                 </Grid>
             </Grid>
-            <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Back" Click="BackButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Back" Click="BackButton_Click" Margin="0,10,0,0"/>
         </Grid>
 
     </Grid>

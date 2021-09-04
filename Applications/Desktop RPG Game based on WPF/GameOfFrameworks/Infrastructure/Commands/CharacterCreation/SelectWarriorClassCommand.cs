@@ -1,4 +1,5 @@
 ﻿using GameEngine.CharacterCreationMaster;
+using GameEngine.CharacterCreationMaster.Services;
 using GameEngine.Player;
 using GameEngine.Player.Specializatons.Warrior;
 using GameOfFrameworks.Infrastructure.Commands.Base;
@@ -20,6 +21,12 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
         {
             CharacterData.CharacterAttributes = new EntityModel_Warrior();
             CharacterData.CharacterSpecialization = SPECIALIZATION.Warrior;
+
+            var avatarsData = new GetAvatarsData();
+            ViewModel.AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
+            ViewModel.AvatarPath = ViewModel.AvatarsList[0].Path;
+
+            ViewModel.OnPropertyChanged(nameof(ViewModel.AvatarPath));
             ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }

@@ -23,7 +23,7 @@
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
         </Frame>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <TextBlock Text="ver. 1.0.0.5" Foreground="White" Margin="10"/>
+            <TextBlock Text="ver. 1.0.0.7" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>

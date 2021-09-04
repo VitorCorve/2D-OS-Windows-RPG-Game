@@ -1,4 +1,5 @@
 ﻿using GameEngine.CharacterCreationMaster;
+using GameEngine.CharacterCreationMaster.Services;
 using GameEngine.Player;
 using GameEngine.Player.Specializatons.Rogue;
 using GameOfFrameworks.Infrastructure.Commands.Base;
@@ -20,6 +21,12 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
         {
             CharacterData.CharacterAttributes = new EntityModel_Rogue();
             CharacterData.CharacterSpecialization = SPECIALIZATION.Rogue;
+
+            var avatarsData = new GetAvatarsData();
+            ViewModel.AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
+            ViewModel.AvatarPath = ViewModel.AvatarsList[0].Path;
+
+            ViewModel.OnPropertyChanged(nameof(ViewModel.AvatarPath));
             ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }
