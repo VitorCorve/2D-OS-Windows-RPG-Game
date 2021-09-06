@@ -17,8 +17,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
         public override void Execute(object parameter)
         {
             ViewModel.AvatarSelectionValue--;
-            ViewModel.AvatarPath = ViewModel.AvatarsList[ViewModel.AvatarSelectionValue].Path;
-            ViewModel.OnPropertyChanged(nameof(ViewModel.AvatarPath));
+            ViewModel.CharacterData.AvatarPath.Path = ViewModel.AvatarsList[ViewModel.AvatarSelectionValue].Path;
+            ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }
 }

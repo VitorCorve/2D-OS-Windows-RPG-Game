@@ -44,8 +44,7 @@ namespace GameLogicAndFunctionalTests
                 Console.WriteLine("\nSpecialization: \t" + characterCreationMaster.CharacterData.CharacterSpecialization);
 
                 // avatar
-                Console.WriteLine("\nAvatar ID: \t" + characterCreationMaster.CharacterData.Avatar.ID);
-                Console.WriteLine("\nAvatar Path: \t" + characterCreationMaster.CharacterData.Avatar.Path);
+                Console.WriteLine("\nAvatar Path: \t" + characterCreationMaster.CharacterData.AvatarPath.Path);
 
                 // personal attribute desctiption
                 characterCreationMaster.SelectAttributeDescription(i);
@@ -58,7 +57,6 @@ namespace GameLogicAndFunctionalTests
                     Console.Write(item.SkillName + ", ");
                 characterCreationMaster.SelectGender(1);
                 characterCreationMaster.SelectSpecialization(1);
-                characterCreationMaster.SelectNextAvatar();
 
                 System.Threading.Thread.Sleep(5000);
                 Console.Clear();

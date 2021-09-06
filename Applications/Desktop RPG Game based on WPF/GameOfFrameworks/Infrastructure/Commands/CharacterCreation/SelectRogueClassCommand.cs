@@ -22,12 +22,15 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
             CharacterData.CharacterAttributes = new EntityModel_Rogue();
             CharacterData.CharacterSpecialization = SPECIALIZATION.Rogue;
 
+            ViewModel.SpecializationDescription.SetDescription(CharacterData.CharacterSpecialization);
+
             var avatarsData = new GetAvatarsData();
             ViewModel.AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
-            ViewModel.AvatarPath = ViewModel.AvatarsList[0].Path;
+            ViewModel.CharacterData.AvatarPath.Path = ViewModel.AvatarsList[0].Path;
 
-            ViewModel.OnPropertyChanged(nameof(ViewModel.AvatarPath));
+            ViewModel.OnPropertyChanged(nameof(ViewModel.CharacterData.AvatarPath.Path));
             ViewModel.OnPropertyChanged(nameof(CharacterData));
+            ViewModel.OnPropertyChanged(nameof(ViewModel.SpecializationDescription));
         }
     }
 }

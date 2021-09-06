@@ -22,9 +22,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
 
             var avatarsData = new GetAvatarsData();
             ViewModel.AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
-            ViewModel.AvatarPath = ViewModel.AvatarsList[0].Path;
+            ViewModel.CharacterData.AvatarPath.Path = ViewModel.AvatarsList[0].Path;
 
-            ViewModel.OnPropertyChanged(nameof(ViewModel.AvatarPath));
             ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
       xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
+      xmlns:usercontrol="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
             d:DesignHeight="1080" d:DesignWidth="1920"
       Title="RunGame">
@@ -13,6 +14,23 @@
         <vm:NewGameViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="UserControl"  x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -95,6 +113,8 @@
             <ColumnDefinition Width="0.7*"/>
             <ColumnDefinition Width="0.15*"/>
         </Grid.ColumnDefinitions>
+        <usercontrol:ConfirmCharacterCreationDialog Style="{StaticResource UserControlTemplate}" x:Name="ConfirmCharacterCreationDialog" Grid.Column="1" Width="400" Height="150" Panel.ZIndex="1" Opacity="0.97" Visibility="Hidden"/>
+        <usercontrol:CustomMessageBoxWarrningUserControl Style="{StaticResource UserControlTemplate}" x:Name="WarningDialog" Grid.Column="1" Width="400" Height="150" Panel.ZIndex="1" Opacity="0.97" Visibility="Hidden"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.06*"/>
@@ -102,7 +122,6 @@
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.25*"/>
                 <RowDefinition Height="0.3*"/>
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -117,9 +136,8 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-             <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" />
-                <TextBox BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CharacterData.Name}">
+                <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" />
+                <TextBox x:Name="NameTextBox" BorderThickness="0" Foreground="White"  Padding="7" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CharacterData.Name}">
                     <TextBox.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/NameInputBar.png"/>
                     </TextBox.Background>
@@ -134,8 +152,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Male" Grid.Row="0" Command="{Binding SelectMaleGenderCommand}" Margin="15,0,10,0"/>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" VerticalAlignment="Center" Content="Female" Grid.Row="1" Command="{Binding SelectFemaleGenderCommand}" Margin="15,0,10,0"/>
+                <Button x:Name="MaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Male" Grid.Row="0" Command="{Binding SelectMaleGenderCommand}" Margin="15,0,10,0"/>
+                <Button x:Name="FemaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="1" VerticalAlignment="Center" Content="Female" Grid.Row="1" Command="{Binding SelectFemaleGenderCommand}" Margin="15,0,10,0"/>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -143,30 +161,27 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Warrior" Grid.Row="0" Command="{Binding SelectWarriorClassCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Mage" Grid.Row="1" Command="{Binding SelectMageClassCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Rogue" Grid.Row="2" Command="{Binding SelectRogueClassCommand}"/>
+                <Button x:Name="WarriorButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Warrior" Grid.Row="0" Command="{Binding SelectWarriorClassCommand}"/>
+                <Button x:Name="RogueButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Mage" Grid.Row="1" Command="{Binding SelectMageClassCommand}"/>
+                <Button x:Name="MageButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Rogue" Grid.Row="2" Command="{Binding SelectRogueClassCommand}"/>
             </Grid>
-
             <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
-
                 <TextBlock Text="Bio" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                 <Grid Grid.Row="1">
                     <Border>
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationData.Bio}" Width="180" Height="250"/>
+                        <TextBox x:Name="BioTextBox" BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CharacterData.Bio.Value}" Width="180" Height="250"/>
                     </Border>
                 </Grid>
-                
+
             </Grid>
         </Grid>
-
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
@@ -208,7 +223,6 @@
                         </Viewbox>
                     </Border>
                 </Grid>
-
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.25*"/>
@@ -217,7 +231,7 @@
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Next" Command="{Binding SelectNextAvatarCommand}" />
+                    <Button x:Name="NextAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Next" Command="{Binding SelectNextAvatarCommand}" />
                     <Border Grid.Column="2">
                         <Border.Background>
                             <SolidColorBrush Color="Black"/>
@@ -226,10 +240,9 @@
                             <DropShadowEffect Color="Black" Direction="310" ShadowDepth="6" Opacity="0.8" BlurRadius="50"/>
                         </Border.Effect>
                     </Border>
-                    <Image Grid.Column="2" Stretch="Fill" Source="{Binding AvatarPath}">
+                    <Image Grid.Column="2" Stretch="Fill" Source="{Binding CharacterData.AvatarPath.Path}">
                     </Image>
-                    <Button Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}"/>
-
+                    <Button x:Name="PreviousAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}"/>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -241,7 +254,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                         </Border.Background>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="Here is description about choosen class" VerticalAlignment="Center" TextWrapping="Wrap" Padding="23"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="{Binding SpecializationDescription.Description}" VerticalAlignment="Center" TextWrapping="Wrap" Padding="23"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Row="5" >
@@ -251,7 +264,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Confirm"  Click="ConfirmButton_Click" Grid.Column="1" Command="{Binding ConfirmCharacterCreationDataCommand}"/>
+                    <Button x:Name="ConfirmButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Confirm"  Click="ConfirmButton_Click" Grid.Column="1" Command="{Binding ConfirmCharacterCreationDataCommand}"/>
 
                 </Grid>
             </Grid>
@@ -283,7 +296,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White" Command="{Binding SelectStrengthDescriptionCommand}"/>
+                    <Button x:Name="StrengthDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White" Command="{Binding SelectStrengthDescriptionCommand}"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center"  Text="{Binding CharacterData.CharacterAttributes.Strength}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -292,7 +305,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White" Command="{Binding SelectStaminaDescriptionCommand}" CommandParameter="1"/>
+                    <Button x:Name="StaminaDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White" Command="{Binding SelectStaminaDescriptionCommand}"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Stamina}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -301,7 +314,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White" Command="{Binding SelectEnduranceDescriptionCommand}" CommandParameter="2"/>
+                    <Button x:Name="EnduranceDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White" Command="{Binding SelectEnduranceDescriptionCommand}"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Endurance}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -310,7 +323,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect" Command="{Binding SelectIntellectDescriptionCommand}" CommandParameter="3"/>
+                    <Button x:Name="IntellectDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect" Command="{Binding SelectIntellectDescriptionCommand}"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Intellect}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1"/>
                 </Grid>
 
@@ -319,7 +332,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}" CommandParameter="4"/>
+                    <Button x:Name="AgilityDescriptionButton" Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Agility}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
                 
@@ -341,7 +354,7 @@
                     </Border>
                 </Grid>
             </Grid>
-            <Button Style="{StaticResource ButtonTemplate}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Back" Click="BackButton_Click" Margin="0,10,0,0"/>
+            <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Back" Click="BackButton_Click" Margin="0,10,0,0"/>
         </Grid>
 
     </Grid>
