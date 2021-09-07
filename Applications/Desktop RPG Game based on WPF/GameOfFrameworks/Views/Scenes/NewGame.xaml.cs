@@ -19,6 +19,7 @@ namespace GameOfFrameworks.Scenes
             ConfirmCharacterCreationDialog.YesButton.Click += ConfirmCharacterCreation;
             WarningDialog.OkButton.Click += EnableDialogBehindUI;
             WarningDialog.OkButton.Click += HideWarningDialog;
+            NameTextBox.Focus();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

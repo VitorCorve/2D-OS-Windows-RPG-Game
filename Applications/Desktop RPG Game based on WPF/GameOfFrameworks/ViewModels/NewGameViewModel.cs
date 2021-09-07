@@ -5,6 +5,7 @@ using GameEngine.Player.ModelConditions;
 using GameEngine.Player.Specializatons.Warrior;
 using GameOfFrameworks.Infrastructure.Commands.CharacterCreation;
 using GameOfFrameworks.Models.CharacterCreation;
+using GameOfFrameworks.Models.CharacterCreation.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace GameOfFrameworks.ViewModels
 {
     public class NewGameViewModel : ViewModel
     {
-        public ICommand ConfirmCharacterCreationDataCommand { get; }
-        public ICommand SelectFemaleGenderCommand { get; }
-        public ICommand SelectMaleGenderCommand { get; }
-        public ICommand SelectNextAvatarCommand { get; }
-        public ICommand SelectPreviousAvatarCommand { get; }
-        public ICommand SelectRogueClassCommand { get; }
-        public ICommand SelectWarriorClassCommand { get; }
-        public ICommand SelectMageClassCommand { get; }
-        public ICommand UpdateDataCommand { get; }
-        public ICommand SelectStrengthDescriptionCommand { get; }
-        public ICommand SelectStaminaDescriptionCommand { get; }
-        public ICommand SelectEnduranceDescriptionCommand { get; }
-        public ICommand SelectIntellectDescriptionCommand { get; }
-        public ICommand SelectAgilityDescriptionCommand { get; }
-        public string SelectedAttributeDescription { get; }
+        public ICommand ConfirmCharacterCreationDataCommand { get; private set; }
+        public ICommand SelectFemaleGenderCommand { get; private set; }
+        public ICommand SelectMaleGenderCommand { get; private set; }
+        public ICommand SelectNextAvatarCommand { get; private set; }
+        public ICommand SelectPreviousAvatarCommand { get; private set; }
+        public ICommand SelectRogueClassCommand { get; private set; }
+        public ICommand SelectWarriorClassCommand { get; private set; }
+        public ICommand SelectMageClassCommand { get; private set; }
+        public ICommand UpdateDataCommand { get; private set; }
+        public ICommand SelectStrengthDescriptionCommand { get; private set; }
+        public ICommand SelectStaminaDescriptionCommand { get; private set; }
+        public ICommand SelectEnduranceDescriptionCommand { get; private set; }
+        public ICommand SelectIntellectDescriptionCommand { get; private set; }
+        public ICommand SelectAgilityDescriptionCommand { get; private set; }
+        public string SelectedAttributeDescription { get; private set; }
         private CharacterCreationData _CharacterData;
         public CharacterCreationData CharacterData { get => _CharacterData; set { _CharacterData = value; OnPropertyChanged(); } }
 
@@ -38,33 +39,18 @@ namespace GameOfFrameworks.ViewModels
         public List<PlayerAvatar> AvatarsList { get; set; } = new();
         public NewGameViewModel()
         {
-            CharacterData = new CharacterCreationData();
-            CharacterData.CharacterAttributes = new EntityModel_Warrior();
+            if (NewGameCharacterTemporaryData.PlayerModel != null)
+            {
+                LoadTemporaryData();
+                InitializeCommands();
+                return;
+            }
 
-            SelectRogueClassCommand = new SelectRogueClassCommand(CharacterData, this);
-            SelectMageClassCommand = new SelectMageClassCommand(CharacterData, this);
-            SelectWarriorClassCommand = new SelectWarriorClassCommand(CharacterData, this);
-            SelectMaleGenderCommand = new SelectMaleGenderCommand(CharacterData, this);
-            SelectFemaleGenderCommand = new SelectFemaleGenderCommand(CharacterData, this);
-            SelectStrengthDescriptionCommand = new SelectStrengthDescriptionCommand(CharacterData, this);
-            SelectStaminaDescriptionCommand = new SelectStaminaDescriptionCommand(CharacterData, this);
-            SelectEnduranceDescriptionCommand = new SelectEnduranceDescriptionCommand(CharacterData, this);
-            SelectIntellectDescriptionCommand = new SelectIntellectDescriptionCommand(CharacterData, this);
-            SelectAgilityDescriptionCommand = new SelectAgilityDescriptionCommand(CharacterData, this);
-            SelectNextAvatarCommand = new SelectNextAvatarCommand(CharacterData, this);
-            SelectPreviousAvatarCommand = new SelectPreviousAvatarCommand(CharacterData, this);
-            ConfirmCharacterCreationDataCommand = new ConfirmCharacterCreationDataCommand(CharacterData, this);
-
-            CharacterData.AttributeDescription = CharacterData.AttributesDescriptionList[0];
-
-            var avatarsData = new GetAvatarsData();
-            AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
-            CharacterData.AvatarPath = new PlayerAvatarPath(AvatarsList[AvatarSelectionValue].Path);
-
-            SpecializationDescription.SetDescription(CharacterData.CharacterSpecialization);
-
-            CharacterData.Bio = new PlayerBiography();
-            CharacterData.Bio.Value = "Stranger from the lonesome road.";
+            InitializeCharacterData();
+            InitialiizeCharacterBio();
+            InitializeAttributesDescription();
+            InitializePlayerAvatars();
+            InitializeCommands();
         }
         private void ConvertValues(int value)
         {
@@ -79,6 +65,53 @@ namespace GameOfFrameworks.ViewModels
                 return;
             }
             _AvatarSelectionValue = value;
+        }
+        private void InitializeCommands()
+        {
+            SelectRogueClassCommand = new SelectRogueClassCommand(CharacterData, this);
+            SelectMageClassCommand = new SelectMageClassCommand(CharacterData, this);
+            SelectWarriorClassCommand = new SelectWarriorClassCommand(CharacterData, this);
+            SelectMaleGenderCommand = new SelectMaleGenderCommand(CharacterData, this);
+            SelectFemaleGenderCommand = new SelectFemaleGenderCommand(CharacterData, this);
+            SelectStrengthDescriptionCommand = new SelectStrengthDescriptionCommand(CharacterData, this);
+            SelectStaminaDescriptionCommand = new SelectStaminaDescriptionCommand(CharacterData, this);
+            SelectEnduranceDescriptionCommand = new SelectEnduranceDescriptionCommand(CharacterData, this);
+            SelectIntellectDescriptionCommand = new SelectIntellectDescriptionCommand(CharacterData, this);
+            SelectAgilityDescriptionCommand = new SelectAgilityDescriptionCommand(CharacterData, this);
+            SelectNextAvatarCommand = new SelectNextAvatarCommand(CharacterData, this);
+            SelectPreviousAvatarCommand = new SelectPreviousAvatarCommand(CharacterData, this);
+            ConfirmCharacterCreationDataCommand = new ConfirmCharacterCreationDataCommand(CharacterData, this);
+        }
+        private void InitializePlayerAvatars()
+        {
+            var avatarsData = new GetAvatarsData();
+            AvatarsList = avatarsData.GetAvatarsList(CharacterData.CharacterSpecialization, CharacterData.Gender);
+            CharacterData.AvatarPath = new PlayerAvatarPath(AvatarsList[AvatarSelectionValue].Path);
+        }
+        private void InitializeAttributesDescription()
+        {
+            CharacterData.AttributeDescription = CharacterData.AttributesDescriptionList[0];
+            SpecializationDescription.SetDescription(CharacterData.CharacterSpecialization);
+        }
+        private void LoadTemporaryData()
+        {
+            AvatarSelectionValue = NewGameCharacterTemporaryData.AvatarSelectionValue;
+            var convertPlayerModelToCharacterCreationData = new ConvertPlayerModelToCharacterCreationData();
+            CharacterData = convertPlayerModelToCharacterCreationData.Convert(NewGameCharacterTemporaryData.PlayerModel);
+            AvatarsList = CharacterData.PlayerAvatarsList;
+            SpecializationDescription = NewGameCharacterTemporaryData.SpecializationDescription;
+            SelectedAttributeDescription = CharacterData.AttributeDescription;
+        }
+        private void InitializeCharacterData()
+        {
+            CharacterData = new CharacterCreationData();
+            CharacterData.CharacterAttributes = new EntityModel_Warrior();
+            CharacterData.Name = "Debug";
+        }
+        private void InitialiizeCharacterBio()
+        {
+            CharacterData.Bio = new PlayerBiography();
+            CharacterData.Bio.Value = "Stranger from the lonesome road.";
         }
     }
 }

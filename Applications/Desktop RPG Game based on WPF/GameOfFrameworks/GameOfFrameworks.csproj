@@ -80,6 +80,11 @@
     <None Remove="Data\Images\skills\mage\relButton\3.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\4.jpg" />
     <None Remove="Data\Images\skills\mage\relButton\5.jpg" />
+    <None Remove="Data\Images\skills\warrior\1.jpg" />
+    <None Remove="Data\Images\skills\warrior\2.jpg" />
+    <None Remove="Data\Images\skills\warrior\3.jpg" />
+    <None Remove="Data\Images\skills\warrior\4.jpg" />
+    <None Remove="Data\Images\skills\warrior\5.jpg" />
     <None Remove="Data\Images\source\coolDownBarBG.png" />
     <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
     <None Remove="Data\Images\system\combatReward.png" />
@@ -309,6 +314,11 @@
     <Resource Include="Data\Images\skills\mage\relButton\5.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\skills\warrior\1.jpg" />
+    <Resource Include="Data\Images\skills\warrior\2.jpg" />
+    <Resource Include="Data\Images\skills\warrior\3.jpg" />
+    <Resource Include="Data\Images\skills\warrior\4.jpg" />
+    <Resource Include="Data\Images\skills\warrior\5.jpg" />
     <Resource Include="Data\Images\source\coolDownBarBG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

@@ -12,6 +12,32 @@
         <vm:ApplyCharacterCreationViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="Button" x:Key="SkillShortCut">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect  ShadowDepth="2" Color="Black"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#FF055878"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF055878"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -102,7 +128,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="0.42*"/>
-            <RowDefinition Height="0.43*"/>
+            <RowDefinition Height="0.37*"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -124,17 +150,18 @@
                 </TextBlock>
             </Border>
         </Grid>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,5,0">
-            <StackPanel.Background>
-                <SolidColorBrush Color="Black"/>
-            </StackPanel.Background>
-            <StackPanel.Effect>
-                <DropShadowEffect Color="Black" Direction="310" ShadowDepth="16" Opacity="0.8" BlurRadius="50"/>
-            </StackPanel.Effect>
-            <Image Grid.Column="2" Stretch="Fill" Source="{Binding PlayerModel.AvatarPath.Path}" Panel.ZIndex="-1">
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Image Stretch="Fill" Source="{Binding PlayerModel.AvatarPath.Path}">
             </Image>
-        </StackPanel>
-
+            <Border Panel.ZIndex="-1">
+                <Border.Background>
+                    <SolidColorBrush Color="Black"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" ShadowDepth="16" Opacity="1" BlurRadius="50" Direction="310"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
         <Grid  Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
@@ -155,14 +182,11 @@
                 </TextBlock>
             </Border>
         </Grid>
-
         <Grid Grid.Row="1" Grid.Column="3">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*"/>
                 <RowDefinition Height="0.6*"/>
             </Grid.RowDefinitions>
-
             <Border Grid.RowSpan="2" CornerRadius="15">
                 <Border.Background>
                     <SolidColorBrush Color="Black" Opacity="0.3"/>
@@ -206,9 +230,7 @@
                     <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding SpecializationDescription}" Margin="15,15,15,15"/>
                 </Border>
             </Grid>
-
         </Grid>
-
         <Grid Grid.Row="1" Grid.Column="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.45*"/>
@@ -229,11 +251,11 @@
                 <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding PlayerModel.Bio.Value}" Margin="15,15,15,15"/>
             </Border>
 
-            <Border Margin="15,0,15,0" Grid.Row="1">
+            <Border  Grid.Row="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
-                <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center" >
+                <TextBlock Text="Class skills" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
             </Border>
 
@@ -257,17 +279,37 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                     </Border.Background>
                 </Border>
-                <Image Source="{Binding SkillList[0]}" Grid.Column="1" Grid.Row="1"/>
-                <Image Source="{Binding SkillList[1]}" Grid.Column="2" Grid.Row="1"/>
-                <Image Source="{Binding SkillList[2]}" Grid.Column="3" Grid.Row="1"/>
-                <Image Source="{Binding SkillList[3]}" Grid.Column="4" Grid.Row="1"/>
-                <Image Source="{Binding SkillList[4]}" Grid.Column="5" Grid.Row="1"/>
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="1" Grid.Row="1" Command="{Binding SelectSkill1Command}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SkillViewList[0].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="2" Grid.Row="1" Command="{Binding SelectSkill2Command}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SkillViewList[1].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="3" Grid.Row="1" Command="{Binding SelectSkill3Command}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SkillViewList[2].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="4" Grid.Row="1" Command="{Binding SelectSkill4Command}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SkillViewList[3].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="5" Grid.Row="1" Command="{Binding SelectSkill5Command}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SkillViewList[4].ImagePath}"/>
+                    </Button.Background>
+                </Button>
             </Grid>
-            <Border Margin="15,0,15,0" Grid.Row="3">
+            <Border Grid.Row="3">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </Border.Background>
-                <TextBlock Text="{Binding SelectedSkillName}" VerticalAlignment="Center" TextAlignment="Center" >
+                <TextBlock Text="{Binding SelectedSkill.Skill.SkillName}" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
             </Border>
             <Border Grid.Row="4" >
@@ -510,7 +552,7 @@
                 <RowDefinition Height="0.08*"/>
                 <RowDefinition Height="0.88*"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Confirm"  Grid.Row="1" Width="130" Click="ConfirmButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Confirm"  Grid.Row="1" Width="130" Click="ConfirmButton_Click" Command="{Binding SaveCharacterCommand}"/>
         </Grid>
 
     </Grid>

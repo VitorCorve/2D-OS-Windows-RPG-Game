@@ -11,5 +11,6 @@ namespace GameOfFrameworks.Models.Temporary
         public static PlayerEntity PlayerEntity { get; set; }
         public static IEntityAttributes CharacterBaseAttributes { get; set; }
         public static CharacterSpecializationDescription SpecializationDescription { get; set; }
+        public static int AvatarSelectionValue { get; set; }
     }
 }
