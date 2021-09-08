@@ -3,12 +3,61 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
+      xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="LoadGame">
 
+    <Page.DataContext>
+        <vm:LoadGameViewModel/>
+    </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="UserControl"  x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.7"
+                                    To="1"
+                                    Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -38,7 +87,6 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -80,15 +128,14 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
         <Grid.Background>
             <ImageBrush ImageSource="/Views/Scenes/Images/ScenesBackground/NewGameBG.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.125*"/>
-            <RowDefinition Height="0.426*"/>
-            <RowDefinition Height="0.435*"/>
+            <RowDefinition Height="0.13*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.46*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.23*"/>
@@ -101,7 +148,7 @@
             <ColumnDefinition Width="0.14*"/>
             <ColumnDefinition Width="0.23*"/>
         </Grid.ColumnDefinitions>
-
+        <uc:CustomConfirmationDialogUserControl DataContext="{Binding }" x:Name="DeletingConfirmationDialog" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource UserControlTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="150" Opacity="0.97" Panel.ZIndex="1" Visibility="Hidden"/>
         <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Panel.ZIndex="1" MaxHeight="35" MaxWidth="200">
             <Border.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
@@ -109,31 +156,41 @@
             <TextBlock Text="Characters" VerticalAlignment="Center" TextAlignment="Center" >
             </TextBlock>
         </Border>
-
-        <Grid Grid.Row="1" Grid.Column="1">
-           
-            <ListBox Grid.Column="1" BorderThickness="0">
-
-                <ListBox.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
-                </ListBox.Background>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+            </Grid.Background>
+            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Names}" SelectedIndex="{Binding SaveSelectionIndex}">
             </ListBox>
         </Grid>
-
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Delete"  Grid.Row="0" Margin="0,20,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete"  Grid.Row="0" Margin="0,20,0,0" VerticalAlignment="Top" Click="DeleteButtonClick"/>
         </Grid>
-
-        <StackPanel Grid.Row="1" Grid.Column="3">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/avatarPlug.jpg"/>
-            </StackPanel.Background>
-        </StackPanel>
-
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding SaveData.AvatarPath.Path}" Stretch="Fill"/>
+            <Border Panel.ZIndex="-1">
+                <Border.Background>
+                    <SolidColorBrush Color="Black"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="50" Direction="310" ShadowDepth="16"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
         <Grid Grid.Row="2" Grid.Column="3">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -143,14 +200,11 @@
                 <Border.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
-                <TextBlock Text="1970.01.01 00:00:00" VerticalAlignment="Center" TextAlignment="Center" FontSize="15">
+                <TextBlock Text="{Binding SaveDateTime}" VerticalAlignment="Center" TextAlignment="Center" FontSize="15">
                 </TextBlock>
             </Border>
         </Grid>
-
-
         <Grid Grid.Row="1" Grid.Column="5">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.025*"/>
@@ -158,13 +212,11 @@
                 <RowDefinition Height="0.025*"/>
                 <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
-
             <Border Grid.RowSpan="5" CornerRadius="15">
                 <Border.Background>
                     <SolidColorBrush Color="Black" Opacity="0.3"/>
                 </Border.Background>
             </Border>
-
             <Grid Grid.Column="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.025*"/>
@@ -178,54 +230,48 @@
                     <TextBlock Text="Info" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
-
-
             </Grid>
-
-            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="Stranger from the Lonesome road" TextWrapping="Wrap" TextAlignment="Center" Foreground="White">
+            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="{Binding SaveData.Bio.Value}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White">
             </TextBlock>
-
             <StackPanel Grid.Column="1" Grid.Row="2">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </StackPanel.Background>
             </StackPanel>
-
-
-            <Viewbox Grid.Row="4" Panel.ZIndex="2">
-                <StackPanel Grid.Row="4" Panel.ZIndex="1" Margin="20" VerticalAlignment="Center">
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Enemies killed: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
-                    </TextBlock>
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
-                    </TextBlock>
-                    <TextBlock Background="Transparent" Grid.Row="4" Panel.ZIndex="1" Text="Epic items: 0" TextWrapping="Wrap" TextAlignment="Left" Foreground="White">
-                    </TextBlock>
-                </StackPanel>
-            </Viewbox>
+            <Grid Grid.Row="4" Panel.ZIndex="1" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Background="Transparent" Text="Class: " TextWrapping="Wrap" TextAlignment="Center" Foreground="White"/>
+                <TextBlock Background="Transparent" Text="{Binding SaveData.Specialization}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Column="1"/>
+                <TextBlock Background="Transparent" Text="Gender: " TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Row="1"/>
+                <TextBlock Background="Transparent" Text="{Binding SaveData.Gender}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
             <ListBox Grid.Column="1" BorderThickness="0" Grid.Row="4">
                 <ListBox.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                 </ListBox.Background>
             </ListBox>
-            
         </Grid>
-        
         <Grid Grid.Row="2" Grid.Column="5">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Load"  Grid.Row="0" Margin="0,20,0,0"/>
+            <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Load"  Grid.Row="0" Margin="0,20,0,0"/>
         </Grid>
-
         <Grid Grid.Row="2" Grid.Column="7">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Back"  Grid.Row="0" Click="BackButton_Click" Margin="0,20,0,0"/>
+            <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Back"  Grid.Row="0" Click="BackButton_Click" Margin="0,20,0,0"/>
         </Grid>
-
         <Grid Grid.Column="7" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -239,7 +285,6 @@
                     <SolidColorBrush Color="Black" Opacity="0.3"/>
                 </Border.Background>
             </Border>
-
             <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -250,11 +295,10 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding SaveData.Level}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
-            
             <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -265,11 +309,10 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding CharacterEntity.HealthPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
-
             <Grid Grid.Row="2" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -280,7 +323,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
@@ -294,10 +337,9 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding CharacterEntity.EnergyPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
-
             </Grid>
             <Grid Grid.Row="4" Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -315,11 +357,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center"/>
-                        <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
-                        <TextBlock Text="0" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2"/>
+                        <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2"/>
                     </Grid>
-
                 </Border>
             </Grid>
         </Grid>

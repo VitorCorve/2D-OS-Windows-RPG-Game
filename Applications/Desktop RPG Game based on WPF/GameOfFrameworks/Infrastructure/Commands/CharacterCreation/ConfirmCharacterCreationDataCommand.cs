@@ -32,7 +32,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
             NewGameCharacterTemporaryData.AvatarSelectionValue = ViewModel.AvatarSelectionValue;
 
             var playerEntityConstructor = new PlayerEntityConstructor();
-            NewGameCharacterTemporaryData.PlayerEntity = playerEntityConstructor.CreateNewPlayer(playerModelData, CharacterData.CharacterAttributes);
+            NewGameCharacterTemporaryData.PlayerEntity = playerEntityConstructor.CreatePlayer(playerModelData, CharacterData.CharacterAttributes);
         }
     }
 }

@@ -24,16 +24,32 @@ namespace GameOfFrameworks.ViewModels
         public Dodge PlayerDodgeChance { get; set; }
 
         private PlayerModelData _PlayerModel;
-        public PlayerModelData PlayerModel { get => _PlayerModel; set { _PlayerModel = value; OnPropertyChanged(); } }
+        public PlayerModelData PlayerModel 
+        { 
+            get => _PlayerModel; 
+            set { _PlayerModel = value; OnPropertyChanged(); } 
+        }
 
         private PlayerEntity _PlayerEntity;
-        public PlayerEntity PlayerEntity { get => _PlayerEntity; set { _PlayerEntity = value; OnPropertyChanged(); } }
+        public PlayerEntity PlayerEntity 
+        { 
+            get => _PlayerEntity; 
+            set { _PlayerEntity = value; OnPropertyChanged(); } 
+        }
 
         private IEntityAttributes _CharacterBasicAttributes;
-        public IEntityAttributes CharacterBasicAttributes { get => _CharacterBasicAttributes; set { _CharacterBasicAttributes = value; OnPropertyChanged(); } }
+        public IEntityAttributes CharacterBasicAttributes 
+        { 
+            get => _CharacterBasicAttributes; 
+            set { _CharacterBasicAttributes = value; OnPropertyChanged(); } 
+        }
 
         private string _SpecializationDescription;
-        public string SpecializationDescription { get => _SpecializationDescription; set { _SpecializationDescription = value; OnPropertyChanged(); } }
+        public string SpecializationDescription 
+        { 
+            get => _SpecializationDescription; 
+            set { _SpecializationDescription = value; OnPropertyChanged(); } 
+        }
         public List<ISkillView> SkillViewList { get; set; }
         public ISkillView SelectedSkill { get; set; }
         public ICommand SelectSkill1Command { get; set; }
@@ -56,7 +72,7 @@ namespace GameOfFrameworks.ViewModels
             SelectSkill3Command = new SelectSkill3Command(this);
             SelectSkill4Command = new SelectSkill4Command(this);
             SelectSkill5Command = new SelectSkill5Command(this);
-            SaveCharacterCommand = new SaveCharacterCommand(PlayerModel);
+            SaveCharacterCommand = new SaveCharacterCommand(PlayerModel, this);
         }
         private void InitializeData()
         {
