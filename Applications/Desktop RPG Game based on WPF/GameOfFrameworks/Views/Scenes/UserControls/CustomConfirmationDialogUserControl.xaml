@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoadGameViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="400"
+             d:DesignHeight="150" d:DesignWidth="400">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -37,7 +36,6 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -92,10 +90,10 @@
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="0.3*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Delete character?" VerticalAlignment="Center" TextAlignment="Center" Margin="15,10,14,0">
+            <TextBlock Text="{Binding Model.SaveData.Name, StringFormat={}Delete {0} character?}" VerticalAlignment="Center" TextAlignment="Center" Margin="15,10,14,0">
             </TextBlock>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="150" Margin="5"/>
+                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="150" Margin="5" Command="{Binding DeleteGameSaveCommand}"/>
                 <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="150" Margin="5"/>
             </StackPanel>
         </Grid>

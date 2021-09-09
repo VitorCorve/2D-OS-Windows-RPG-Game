@@ -12,6 +12,24 @@
         <vm:ApplyCharacterCreationViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.7"
+                                    To="1"
+                                    Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="Button" x:Key="SkillShortCut">
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Effect">
@@ -37,6 +55,22 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.7"
+                                    To="1"
+                                    Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -151,7 +185,7 @@
             </Border>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
-            <Image Stretch="Fill" Source="{Binding PlayerModel.AvatarPath.Path}">
+            <Image Style="{StaticResource AvatarImage}" Stretch="Fill" Source="{Binding PlayerModel.AvatarPath.Path}">
             </Image>
             <Border Panel.ZIndex="-1">
                 <Border.Background>

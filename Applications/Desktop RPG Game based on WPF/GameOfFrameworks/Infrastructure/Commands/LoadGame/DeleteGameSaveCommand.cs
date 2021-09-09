@@ -12,17 +12,14 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
-            var specialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var characterDirectory = new DirectoryInfo(specialFolderPath + $"\\Games\\Game of Frameworks\\Saves\\{ViewModel.SaveData.Name}\\");
+            foreach (var item in ViewModel.Model.GameSaves)
+            {
+                if (item.Name == ViewModel.Model.SaveData.Name)
+                    File.Delete(item.Path);
+            }
 
-            ViewModel.SelectionUpdateService.ExecuteNext();
-            ViewModel.InitializeCharacterSaveNamesList();
-            ViewModel.OnPropertyChanged();
-
-/*            foreach (FileInfo file in characterDirectory.GetFiles())
-                file.Delete();
-            Directory.Delete(characterDirectory.FullName);*/
-
+            ViewModel.Model.SetupCharacterGameSavesList();
+            if (ViewModel.Model.GameSaves.Count == 0) ViewModel.Model.CleanSaveViewData();
         }
     }
 }

@@ -9,11 +9,28 @@
       mc:Ignorable="d" 
             d:DesignHeight="1080" d:DesignWidth="1920"
       Title="RunGame">
-    <!--d:DesignHeight="{Binding ElementName=ParentGrid, Path=Height}" d:DesignWidth="{Binding ElementName=ParentGrid, Path=Width}"-->
     <Page.DataContext>
         <vm:NewGameViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.7"
+                                    To="1"
+                                    Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="UserControl"  x:Key="UserControlTemplate">
             <Style.Triggers>
                 <Trigger Property="Visibility" Value="Visible">
@@ -240,7 +257,7 @@
                             <DropShadowEffect Color="Black" Direction="310" ShadowDepth="6" Opacity="0.8" BlurRadius="50"/>
                         </Border.Effect>
                     </Border>
-                    <Image Grid.Column="2" Stretch="Fill" Source="{Binding CharacterData.AvatarPath.Path}">
+                    <Image Grid.Column="2" Style="{StaticResource AvatarImage}" Stretch="Fill" Source="{Binding CharacterData.AvatarPath.Path}">
                     </Image>
                     <Button x:Name="PreviousAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}"/>
                 </Grid>

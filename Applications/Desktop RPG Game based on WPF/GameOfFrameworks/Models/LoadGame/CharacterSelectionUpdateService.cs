@@ -1,52 +1,49 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.Data.Services;
 using GameEngine.Player;
-using GameOfFrameworks.ViewModels;
 
 namespace GameOfFrameworks.Models.LoadGame
 {
     public class CharacterSelectionUpdateService
     {
-        public LoadGameViewModel ViewModel { get; set; }
-        public CharacterSelectionUpdateService(LoadGameViewModel loadGameViewModel) => ViewModel = loadGameViewModel;
+        public LoadGameModel Model { get; set; }
+        public CharacterSelectionUpdateService(LoadGameModel model) => Model = model;
         public void Execute()
         {
-            if (ViewModel.Names.Count > 0)
+            if (Model.GameSaves.Count > 0)
             {
                 var playerEntityConstructor = new PlayerEntityConstructor();
                 var saveDataJsonDeserializer = new SaveDataJsonDeserializer();
 
-                ViewModel.SaveData = saveDataJsonDeserializer.Deserialize(ViewModel.Names[ViewModel.SaveSelectionIndex]);
-                ViewModel.SaveDateTime = ViewModel.SaveData.Date;
+                Model.SaveData = saveDataJsonDeserializer.Deserialize(Model.GameSaves[Model.SaveSelectionIndex].Path);
+                Model.SaveDateTime = Model.SaveData.Date;
+                Model.CharacterSpecialization = "Specialization: " + Model.SaveData.Specialization.ToString();
+                Model.CharacterGender = "Gender: " + Model.SaveData.Gender.ToString();
 
-                ViewModel.PlayerConsumables.ConvertValues(ViewModel.SaveData.Money);
+                Model.PlayerConsumables.ConvertValues(Model.SaveData.Money);
 
-                var playerModelData = new PlayerModelData(ViewModel.SaveData.Specialization, ViewModel.SaveData.Gender, ViewModel.SaveData.Name, ViewModel.SaveData.Level, ViewModel.SaveData.Money);
-                ViewModel.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, ViewModel.SaveData.PlayerAttributes);
-            }
-            else
-            {
-                ViewModel.OnPropertyChanged(nameof(ViewModel.SaveData));
+                var playerModelData = new PlayerModelData(Model.SaveData.Specialization, Model.SaveData.Gender, Model.SaveData.Name, Model.SaveData.Level, Model.SaveData.Money);
+                Model.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, Model.SaveData.PlayerAttributes);
             }
         }
         public void ExecuteNext()
         {
-            if (ViewModel.Names.Count > 0)
+            if (Model.GameSaves.Count > 0)
             {
                 var playerEntityConstructor = new PlayerEntityConstructor();
                 var saveDataJsonDeserializer = new SaveDataJsonDeserializer();
 
-                ViewModel.SaveData = saveDataJsonDeserializer.Deserialize(ViewModel.Names[ViewModel.Names.Count-1]);
-                ViewModel.SaveDateTime = ViewModel.SaveData.Date;
+                if (Model.SaveSelectionIndex == Model.GameSaves.Count-1)
+                    Model.SaveData = saveDataJsonDeserializer.Deserialize(Model.GameSaves[Model.SaveSelectionIndex = 0].Path);
+                else
+                    Model.SaveData = saveDataJsonDeserializer.Deserialize(Model.GameSaves[Model.SaveSelectionIndex += 1].Path);
 
-                ViewModel.PlayerConsumables.ConvertValues(ViewModel.SaveData.Money);
+                Model.CharacterSpecialization = "Specialization: " + Model.SaveData.Specialization.ToString();
+                Model.SaveDateTime = Model.SaveData.Date;
+                Model.PlayerConsumables.ConvertValues(Model.SaveData.Money);
 
-                var playerModelData = new PlayerModelData(ViewModel.SaveData.Specialization, ViewModel.SaveData.Gender, ViewModel.SaveData.Name, ViewModel.SaveData.Level, ViewModel.SaveData.Money);
-                ViewModel.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, ViewModel.SaveData.PlayerAttributes);
-            }
-            else
-            {
-                ViewModel.OnPropertyChanged(nameof(ViewModel.SaveData));
+                var playerModelData = new PlayerModelData(Model.SaveData.Specialization, Model.SaveData.Gender, Model.SaveData.Name, Model.SaveData.Level, Model.SaveData.Money);
+                Model.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, Model.SaveData.PlayerAttributes);
             }
         }
     }

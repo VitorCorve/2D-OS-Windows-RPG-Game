@@ -45,7 +45,6 @@ namespace GameOfFrameworks.ViewModels
                 InitializeCommands();
                 return;
             }
-
             InitializeCharacterData();
             InitialiizeCharacterBio();
             InitializeAttributesDescription();

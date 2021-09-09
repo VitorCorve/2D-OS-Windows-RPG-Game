@@ -170,7 +170,12 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
             </Grid.Background>
-            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Names}" SelectedIndex="{Binding SaveSelectionIndex}">
+            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
@@ -181,7 +186,7 @@
             <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete"  Grid.Row="0" Margin="0,20,0,0" VerticalAlignment="Top" Click="DeleteButtonClick"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="3">
-            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding SaveData.AvatarPath.Path}" Stretch="Fill"/>
+            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding Model.SaveData.AvatarPath.Path}" Stretch="Fill"/>
             <Border Panel.ZIndex="-1">
                 <Border.Background>
                     <SolidColorBrush Color="Black"/>
@@ -200,7 +205,7 @@
                 <Border.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
-                <TextBlock Text="{Binding SaveDateTime}" VerticalAlignment="Center" TextAlignment="Center" FontSize="15">
+                <TextBlock Text="{Binding Model.SaveDateTime}" VerticalAlignment="Center" TextAlignment="Center" FontSize="15">
                 </TextBlock>
             </Border>
         </Grid>
@@ -231,7 +236,7 @@
                     </TextBlock>
                 </Border>
             </Grid>
-            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="{Binding SaveData.Bio.Value}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White">
+            <TextBlock Grid.Column="5" Grid.Row="2" Background="Transparent"  Margin="40,40,40,40"  Panel.ZIndex="1" Text="{Binding Model.SaveData.Bio.Value}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White">
             </TextBlock>
             <StackPanel Grid.Column="1" Grid.Row="2">
                 <StackPanel.Background>
@@ -241,16 +246,14 @@
             <Grid Grid.Row="4" Panel.ZIndex="1" Margin="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Background="Transparent" Text="Class: " TextWrapping="Wrap" TextAlignment="Center" Foreground="White"/>
-                <TextBlock Background="Transparent" Text="{Binding SaveData.Specialization}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Column="1"/>
-                <TextBlock Background="Transparent" Text="Gender: " TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Row="1"/>
-                <TextBlock Background="Transparent" Text="{Binding SaveData.Gender}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Background="Transparent" Text="{Binding Model.CharacterSpecialization}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White"/>
+                <TextBlock Background="Transparent" Text="{Binding Model.CharacterGender}" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" Grid.Row="1"/>
             </Grid>
             <ListBox Grid.Column="1" BorderThickness="0" Grid.Row="4">
                 <ListBox.Background>
@@ -295,7 +298,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding SaveData.Level}" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding Model.SaveData.Level}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
@@ -309,7 +312,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding CharacterEntity.HealthPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding Model.CharacterEntity.HealthPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
@@ -323,7 +326,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding Model.CharacterEntity.ManaPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
@@ -337,7 +340,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding CharacterEntity.EnergyPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
+                    <TextBlock Text="{Binding Model.CharacterEntity.EnergyPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
                 </Border>
             </Grid>
@@ -357,9 +360,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center"/>
-                        <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
-                        <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2"/>
+                        <TextBlock Text="{Binding Model.PlayerConsumables.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Model.PlayerConsumables.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding Model.PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2"/>
                     </Grid>
                 </Border>
             </Grid>
