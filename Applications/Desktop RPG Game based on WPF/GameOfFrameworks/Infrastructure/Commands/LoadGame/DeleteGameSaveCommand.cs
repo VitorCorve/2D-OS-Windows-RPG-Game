@@ -1,6 +1,5 @@
 ﻿using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.ViewModels;
-using System;
 using System.IO;
 
 namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
@@ -12,13 +11,11 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
-            foreach (var item in ViewModel.Model.GameSaves)
-            {
-                if (item.Name == ViewModel.Model.SaveData.Name)
-                    File.Delete(item.Path);
-            }
-
+            var filePath = ViewModel.Model.SelectedGameSavePath;
             ViewModel.Model.SetupCharacterGameSavesList();
+            ViewModel.Model.SelectionUpdateService.ExecuteNext();
+            File.Delete(filePath);
+
             if (ViewModel.Model.GameSaves.Count == 0) ViewModel.Model.CleanSaveViewData();
         }
     }

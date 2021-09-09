@@ -424,7 +424,7 @@
 
   <ItemGroup>
     <Reference Include="GameEngine">
-      <HintPath>..\GameEngine\GameEngine.dll</HintPath>
+      <HintPath>..\Engine Library\GameEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
 

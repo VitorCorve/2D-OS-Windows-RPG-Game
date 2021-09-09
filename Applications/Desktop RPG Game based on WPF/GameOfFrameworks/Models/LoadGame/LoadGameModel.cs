@@ -19,14 +19,24 @@ namespace GameOfFrameworks.Models.LoadGame
         private int _SaveSelectionIndex;
         private string _CharacterGender;
         private string _CharacterSpecialization;
+        private string _SelectedGameSavePath;
         public List<GameSaveModel> GameSaves { get => _GameSaves; set => Set(ref _GameSaves, value); }
         public PlayerEntity CharacterEntity {get => _CharacterEntity;set => Set(ref _CharacterEntity, value); }
         public PlayerConsumablesData PlayerConsumables { get => _PlayerConsumables;set => Set(ref _PlayerConsumables, value);}
         public string SaveDateTime { get => _SaveDateTime; set => Set(ref _SaveDateTime, value); }
         public PlayerSaveData SaveData { get => _SaveData; set => Set(ref _SaveData, value); }
-        public int SaveSelectionIndex { get => _SaveSelectionIndex; set { Set(ref _SaveSelectionIndex, value);SelectionUpdateService.Execute(); } }
+        public int SaveSelectionIndex
+        {
+            get => _SaveSelectionIndex;
+            set 
+            { 
+                Set (ref _SaveSelectionIndex, value); 
+                SelectionUpdateService.Execute(); 
+            }
+        }
         public string CharacterGender { get => _CharacterGender; set => Set(ref _CharacterGender, value); }
         public string CharacterSpecialization { get => _CharacterSpecialization;  set { _CharacterSpecialization = value; OnPropertyChanged(); } }
+        public string SelectedGameSavePath { get => _SelectedGameSavePath; set { _SelectedGameSavePath = value; OnPropertyChanged(); } }
         public CharacterSelectionUpdateService SelectionUpdateService { get; private set; }
         private readonly PlayerEntityConstructor EntityConstructor = new();
         private readonly SaveDataJsonDeserializer DataDeserializer = new();
@@ -45,6 +55,7 @@ namespace GameOfFrameworks.Models.LoadGame
             if (GameSaves.Count == 0) return;
 
             SaveData = DataDeserializer.Deserialize(GameSaves[0].Path);
+            SelectedGameSavePath = GameSaves[0].Path;
             SaveDateTime = SaveData.Date;
             PlayerConsumables = new PlayerConsumablesData(SaveData.Money);
             var playerModelData = new PlayerModelData(SaveData.Specialization, SaveData.Gender, SaveData.Name, SaveData.Level, SaveData.Money);
