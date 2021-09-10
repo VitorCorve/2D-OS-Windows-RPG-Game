@@ -21,8 +21,7 @@ namespace GameOfFrameworks.ViewModels
             Model = new LoadGameModel();
             Model.SetupCharacterGameSavesList();
             Model.SetDefaultSaveData();
-            InitializeCommands();
+            DeleteGameSaveCommand = new DeleteGameSaveCommand(this);
         }
-        private void InitializeCommands() => DeleteGameSaveCommand = new DeleteGameSaveCommand(this);
     }
 }

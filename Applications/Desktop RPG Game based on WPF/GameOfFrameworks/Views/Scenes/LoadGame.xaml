@@ -170,7 +170,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
             </Grid.Background>
-            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>

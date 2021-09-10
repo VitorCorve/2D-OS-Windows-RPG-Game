@@ -12,8 +12,10 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
         public override void Execute(object parameter)
         {
             var filePath = ViewModel.Model.SelectedGameSavePath;
-            ViewModel.Model.SetupCharacterGameSavesList();
-            ViewModel.Model.SelectionUpdateService.ExecuteNext();
+
+            ViewModel.Model.CleanGameSavesList();
+            ViewModel.Model.SelectionUpdateService.MoveToNextSaveSelectionIndex();
+
             File.Delete(filePath);
 
             if (ViewModel.Model.GameSaves.Count == 0) ViewModel.Model.CleanSaveViewData();

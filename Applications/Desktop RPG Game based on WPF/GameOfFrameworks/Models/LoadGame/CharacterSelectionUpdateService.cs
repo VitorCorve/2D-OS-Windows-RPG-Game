@@ -15,7 +15,13 @@ namespace GameOfFrameworks.Models.LoadGame
                 var playerEntityConstructor = new PlayerEntityConstructor();
                 var saveDataJsonDeserializer = new SaveDataJsonDeserializer();
 
-                Model.SaveData = saveDataJsonDeserializer.Deserialize(Model.GameSaves[Model.SaveSelectionIndex].Path);
+                int selectionValue = Model.SaveSelectionIndex;
+
+                if (selectionValue < 0)
+                    selectionValue = 0;
+
+                Model.SaveData = saveDataJsonDeserializer.Deserialize(Model.GameSaves[selectionValue].Path);
+                Model.SelectedGameSavePath = Model.GameSaves[selectionValue].Path;
                 Model.SaveDateTime = Model.SaveData.Date;
                 Model.CharacterSpecialization = "Specialization: " + Model.SaveData.Specialization.ToString();
                 Model.CharacterGender = "Gender: " + Model.SaveData.Gender.ToString();
@@ -26,13 +32,16 @@ namespace GameOfFrameworks.Models.LoadGame
                 Model.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, Model.SaveData.PlayerAttributes);
             }
         }
-        public void ExecuteNext()
+        public void MoveToNextSaveSelectionIndex()
         {
             if (Model.GameSaves.Count > 0)
             {
-
                 if (Model.GameSaves.Count == 1)
                     Model.SaveSelectionIndex = 0;
+
+                if (Model.SaveSelectionIndex + 1 > Model.GameSaves.Count - 1)
+                    Model.SaveSelectionIndex = 0;
+
                 else
                     Model.SaveSelectionIndex += 1;
             }

@@ -5,13 +5,14 @@ using GameEngine.Player;
 using GameOfFrameworks.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace GameOfFrameworks.Models.LoadGame
 {
     public class LoadGameModel : ViewModel
     {
-        private List<GameSaveModel> _GameSaves;
+        private ObservableCollection<GameSaveModel> _GameSaves;
         private PlayerEntity _CharacterEntity;
         private PlayerConsumablesData _PlayerConsumables;
         private string _SaveDateTime;
@@ -20,7 +21,7 @@ namespace GameOfFrameworks.Models.LoadGame
         private string _CharacterGender;
         private string _CharacterSpecialization;
         private string _SelectedGameSavePath;
-        public List<GameSaveModel> GameSaves { get => _GameSaves; set => Set(ref _GameSaves, value); }
+        public ObservableCollection<GameSaveModel> GameSaves { get => _GameSaves; set { _GameSaves = value; OnPropertyChanged(); } }
         public PlayerEntity CharacterEntity {get => _CharacterEntity;set => Set(ref _CharacterEntity, value); }
         public PlayerConsumablesData PlayerConsumables { get => _PlayerConsumables;set => Set(ref _PlayerConsumables, value);}
         public string SaveDateTime { get => _SaveDateTime; set => Set(ref _SaveDateTime, value); }
@@ -65,7 +66,7 @@ namespace GameOfFrameworks.Models.LoadGame
         }
         public void SetupCharacterGameSavesList()
         {
-            GameSaves = new List<GameSaveModel>();
+            GameSaves = new ObservableCollection<GameSaveModel>();
             var specialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var directoryInfo = new DirectoryInfo(specialFolderPath + "\\Games\\Game of Frameworks\\Saves\\");
 
@@ -77,5 +78,6 @@ namespace GameOfFrameworks.Models.LoadGame
                 GameSaves.Add(gameSave);
             }
         }
+        public void CleanGameSavesList() => GameSaves.RemoveAt(SaveSelectionIndex);
     }
 }
