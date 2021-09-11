@@ -148,7 +148,8 @@
             <ColumnDefinition Width="0.14*"/>
             <ColumnDefinition Width="0.23*"/>
         </Grid.ColumnDefinitions>
-        <uc:CustomConfirmationDialogUserControl DataContext="{Binding }" x:Name="DeletingConfirmationDialog" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource UserControlTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="150" Opacity="0.97" Panel.ZIndex="1" Visibility="Hidden"/>
+        <uc:CustomConfirmationDialogUserControl x:Name="DeletingConfirmationDialog" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource UserControlTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="150" Opacity="0.97" Panel.ZIndex="1" Visibility="Hidden"/>
+        <uc:CharacterLoadConfirmationDialog x:Name="LoadingConfirmationDialog" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource UserControlTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="150" Opacity="0.97" Panel.ZIndex="1" Visibility="Hidden"/>
         <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Panel.ZIndex="1" MaxHeight="35" MaxWidth="200">
             <Border.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
@@ -266,7 +267,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Load"  Grid.Row="0" Margin="0,20,0,0"/>
+            <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Top" Content="Load" Command="{Binding SetTemporaryCharacterDataCommand}" Grid.Row="0" Margin="0,20,0,0" Click="LoadArmoryButtonClick"/>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="7">
             <Grid.RowDefinitions>

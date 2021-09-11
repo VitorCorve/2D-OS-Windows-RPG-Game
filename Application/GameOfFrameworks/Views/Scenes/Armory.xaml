@@ -4,12 +4,57 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+      xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
       xmlns:usc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Armory">
 
+    <Page.DataContext>
+        <vm:ArmoryViewModel/>
+    </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="ProgressBar" x:Key="ExperienceProgressBar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border ClipToBounds="True"  BorderThickness="2" BorderBrush="Black">
+                            <Grid x:Name="PART_Track" ClipToBounds="True" Margin="{TemplateBinding Height}">
+                                <Rectangle  x:Name="PART_Indicator" HorizontalAlignment="Left" Height="{TemplateBinding Height}" RenderTransformOrigin="0,0">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#FF1D5666" Offset="0"/>
+                                            <GradientStop Color="#FF00AEAE" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                                </Grid.Background>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.8"
+                                    To="1"
+                                    Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="UserControl"  x:Key="UserControlTemplate">
             <Style.Triggers>
                 <Trigger Property="Visibility" Value="Visible">
@@ -55,8 +100,66 @@
                 </EventTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="LevelUpButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="20" ShadowDepth="1" Direction="310" Color="White" Opacity="0.6"/>
+                                </Border.Effect>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.5"
+                                    To="1"
+                                    Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -153,9 +256,9 @@
         </Grid>
         <Grid Grid.Row="1" Grid.Column="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.15*"/>
                 <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.15*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
@@ -173,53 +276,62 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.4*"/>
                     <RowDefinition Height="0.6*"/>
-
                 </Grid.RowDefinitions>
                 <Border Grid.Row="1">
-                <Border.Background>
+                    <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/ButtonTexture.png"/>
-                </Border.Background>
-                <TextBlock Text="Name" VerticalAlignment="Center" TextAlignment="Center">
-                </TextBlock>
+                    </Border.Background>
+                    <TextBlock Text="{Binding PlayeModel.Name}" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
                 </Border>
-
                 <Border Grid.Row="1" Grid.Column="1">
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="Level: 0" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock Text="{Binding PlayeModel.Level, StringFormat={} Level: {0}}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
             </Grid>
-
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.2*"/>
                     <RowDefinition Height="0.4*"/>
-                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="5" Grid.Row="1" Margin="2">
-                    <Border.Background>
-                        <SolidColorBrush Color="Cyan" Opacity="0.5"/>
-                    </Border.Background>
-                </Border>
+                
+                <Grid Grid.Row="1" Margin="0,0,0,3">
+                    <StackPanel Orientation="Horizontal" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding PlayeModel.Experience, StringFormat={} Exp: {0}}" Foreground="White"/>
+                        <TextBlock Text="{Binding PlayeModel.MaxExperience, StringFormat={}/{0}}" Foreground="White"/>
+                    </StackPanel>
+                    <ProgressBar Style="{StaticResource ExperienceProgressBar}" Value="{Binding ProgressBarValue}">
+                    </ProgressBar>
+                </Grid>
             </Grid>
 
-            <Image Grid.Column="1"  Grid.Row="2" Source="/Views/Scenes/Images/avatarPlug.jpg" />
-
+            <Grid Grid.Column="1"  Grid.Row="2">
+                <Border>
+                    <Border.Background>
+                        <SolidColorBrush Color="Black"/>
+                    </Border.Background>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="100" ShadowDepth="18" Direction="310" Color="black"/>
+                    </Border.Effect>
+                </Border>
+                <Image Style="{StaticResource AvatarImage}" Source="{Binding PlayeModel.AvatarPath.Path}" Stretch="Fill"/>
+            </Grid>
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.08*"/>
+                    <ColumnDefinition Width="0.15*"/>
                     <ColumnDefinition Width="0.24*"/>
                     <ColumnDefinition Width="0.06*"/>
                     <ColumnDefinition Width="0.24*"/>
                     <ColumnDefinition Width="0.06*"/>
                     <ColumnDefinition Width="0.24*"/>
-                    <ColumnDefinition Width="0.08*"/>
+                    <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.25*"/>
@@ -231,7 +343,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <Viewbox>
-                        <TextBlock Text="HP:100" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
+                        <TextBlock Text="{Binding CharacterEntity.HealthPoints.Value, StringFormat={} HP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
                     </Viewbox>
                 </Border>
 
@@ -240,7 +352,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <Viewbox>
-                        <TextBlock Text="MP:100" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
+                        <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value, StringFormat={} MP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
                     </Viewbox>
                 </Border>
 
@@ -249,7 +361,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                     <Viewbox>
-                        <TextBlock Text="MP:100" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
+                        <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value, StringFormat={} MP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
                     </Viewbox>
                 </Border>
             </Grid>
@@ -262,15 +374,15 @@
             </Border>
         </Grid>
         <Grid Grid.Column="3" Grid.Row="1">
-            <local:EquipmentControl Style="{StaticResource UserControlTemplate}" x:Name="EquipmentControlElement" Visibility="Collapsed"></local:EquipmentControl>
+            <local:EquipmentControl Style="{StaticResource UserControlTemplate}" x:Name="EquipmentControlElement" Visibility="Visible"></local:EquipmentControl>
             <local:InventoryControl Style="{StaticResource UserControlTemplate}" x:Name="InventoryControlElement" Visibility="Collapsed"></local:InventoryControl>
             <local:AttributesControl Style="{StaticResource UserControlTemplate}" x:Name="AttributesControlElement" Visibility="Collapsed"></local:AttributesControl>
             <local:OptionsControl Style="{StaticResource UserControlTemplate}" x:Name="OptionsControlElement" Visibility="Collapsed"></local:OptionsControl>
-            <local:LevelUpControl Style="{StaticResource UserControlTemplate}" x:Name="LevelUpControlElement" Visibility="Visible"></local:LevelUpControl>
+            <local:LevelUpControl Style="{StaticResource UserControlTemplate}" x:Name="LevelUpControlElement" Visibility="Collapsed"></local:LevelUpControl>
         </Grid>
         <Grid Grid.Row="10" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Margin="0,10,0,0" Click="MainMenuButton_Click"/>
         </Grid>
-        <Button x:Name="LevelUpButton" Style="{StaticResource ButtonTemplate}" Content="Level up" Grid.Row="2" Grid.Column="5" VerticalAlignment="Top" Margin="0,10,0,0" Click="LevelUpButton_Click"/>
+        <Button x:Name="LevelUpButton" Style="{StaticResource LevelUpButtonTemplate}" Content="Level up" Grid.Row="2" Grid.Column="5" VerticalAlignment="Top" Margin="0,10,0,0" Click="LevelUpButton_Click"/>
     </Grid>
 </Page>

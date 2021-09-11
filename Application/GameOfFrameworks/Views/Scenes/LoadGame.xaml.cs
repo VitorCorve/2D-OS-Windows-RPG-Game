@@ -21,12 +21,14 @@ namespace GameOfFrameworks.Scenes
             DeletingConfirmationDialog.NoButton.Click += HideDeletingConfirmationDialog;
             DeletingConfirmationDialog.YesButton.Click += EnableDialogBehindUI;
             DeletingConfirmationDialog.NoButton.Click += EnableDialogBehindUI;
-        }
 
+            LoadingConfirmationDialog.YesButton.Click += LoadArmory;
+            LoadingConfirmationDialog.NoButton.Click += HideLoadConfirmationDialog;
+            LoadingConfirmationDialog.NoButton.Click += EnableDialogBehindUI;
+        }
+        public void LoadArmoryButtonClick(object sender, RoutedEventArgs e) => LoadingConfirmationDialog.Visibility = Visibility.Visible;
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Image img = new Image();
-
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
         }
@@ -52,5 +54,11 @@ namespace GameOfFrameworks.Scenes
             BackButton.IsEnabled = true;
         }
         private void HideDeletingConfirmationDialog(object sender, RoutedEventArgs e) => DeletingConfirmationDialog.Visibility = Visibility.Hidden;
+        private void HideLoadConfirmationDialog(object sender, RoutedEventArgs e) => LoadingConfirmationDialog.Visibility = Visibility.Hidden;
+        private void LoadArmory(object sender, RoutedEventArgs e)
+        {
+            Armory armory = new Armory();
+            NavigationService.Navigate(armory);
+        }
     }
 }

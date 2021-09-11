@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:EquipmentControlViewModel}"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <armoryusercontrolsviewmodels:EquipmentControlViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -17,7 +20,6 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-
         <Style TargetType="Grid">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Page.Loaded">
@@ -37,40 +39,63 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="MinHeight" Value="35"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Width" Value="55"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
+                <Trigger Property="IsMouseCaptured"  Value="True">
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1"
+                                    To="0.7"
+                                    Duration="0:0:0.3"
+                                    />
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                     <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="1"
+                                    Duration="0:0:0.3"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    From="54"
+                                    To="51"
+                                    Duration="0:0:0.3"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    To="54"
+                                    Duration="0:0:0.3"
+                                    />
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
@@ -98,7 +123,6 @@
                         <SolidColorBrush Color="Black" Opacity="0.3"/>
                     </Border.Background>
                 </Border>
-
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -120,7 +144,6 @@
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="0.1*"/>
                         <RowDefinition Height="0.5*"/>
-
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
@@ -134,9 +157,19 @@
                         <TextBlock Text="Helmet" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding HelmetAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -156,9 +189,19 @@
                         <TextBlock Text="Shoulders" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding ShouldersAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -178,9 +221,19 @@
                         <TextBlock Text="Necklace" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding NecklaceAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -200,9 +253,19 @@
                         <TextBlock Text="Chest" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding ChestAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -222,9 +285,19 @@
                         <TextBlock Text="Cloak" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding CloakAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -244,9 +317,19 @@
                         <TextBlock Text="Gloves" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding GlovesAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-                
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -266,9 +349,19 @@
                         <TextBlock Text="Bracers" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding BracersAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="2" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -288,9 +381,19 @@
                         <TextBlock Text="Waist" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding WaistAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="3" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -310,9 +413,19 @@
                         <TextBlock Text="Pants" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding PantsAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="4" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -332,9 +445,19 @@
                         <TextBlock Text="Boots" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding BootsAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -354,9 +477,19 @@
                         <TextBlock Text="Weapon" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding MainWeaponAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="1" Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -376,9 +509,19 @@
                         <TextBlock Text="Weapon" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding SecondWeaponAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="2" Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -398,9 +541,19 @@
                         <TextBlock Text="Artefact" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding FirstArtefactAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="3" Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -420,9 +573,19 @@
                         <TextBlock Text="Artefact" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding SecondArtefactAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
-
                 <Grid Grid.Row="4" Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -442,7 +605,18 @@
                         <TextBlock Text="Artefact" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Image Source="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Grid.Row="3" Grid.Column="1"/>
+                    <Grid Grid.Row="3" Grid.Column="1" >
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding ThirdArtefactAvatarPath}" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid Grid.Column="3" Grid.Row="1">
@@ -466,7 +640,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="Shoulders" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock Text="{Binding ItemName}" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
                 </Grid>

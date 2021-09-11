@@ -15,6 +15,7 @@ namespace GameOfFrameworks.ViewModels
             set => Set(ref _Model, value);
         }
         public ICommand DeleteGameSaveCommand { get; set; }
+        public ICommand SetTemporaryCharacterDataCommand { get; set; }
         public CustomConfirmationDialogUserControl DialogUserControl { get; set; }
         public LoadGameViewModel()
         {
@@ -22,6 +23,7 @@ namespace GameOfFrameworks.ViewModels
             Model.SetupCharacterGameSavesList();
             Model.SetDefaultSaveData();
             DeleteGameSaveCommand = new DeleteGameSaveCommand(this);
+            SetTemporaryCharacterDataCommand = new SetTemporaryCharacterDataCommand(Model);
         }
     }
 }
