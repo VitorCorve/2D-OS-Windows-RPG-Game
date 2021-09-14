@@ -1,86 +1,42 @@
 ﻿using GameEngine.Equipment;
+using GameOfFrameworks.Infrastructure.Commands.Armory.Equipment;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
+using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
     public class EquipmentControlViewModel : ViewModel
     {
-        private Equipment _EquipmentListModel;
-        public Equipment EquipmentListModel { get => _EquipmentListModel; set => _EquipmentListModel = value; }
-        private string _HelmetAvatarPath;
-        private string _GlovesAvatarPath;
-        private string _MainWeaponAvatarPath;
-        private string _ShouldersAvatarPath;
-        private string _BracersAvatarPath;
-        private string _SecondWeaponAvatarPath;
-        private string _NecklaceAvatarPath;
-        private string _WaistAvatarPath;
-        private string _FirstArtefactAvatarPath;
-        private string _SecondArtefactAvatarPath;
-        private string _ThirdArtefactAvatarPath;
-        private string _ChestAvatarPath;
-        private string _PantsAvatarPath;
-        private string _CloakAvatarPath;
-        private string _BootsAvatarPath;
-        public string HelmetAvatarPath { get => _HelmetAvatarPath; set => Set(ref _HelmetAvatarPath, value); }
-        public string GlovesAvatarPath { get => _GlovesAvatarPath; set => Set(ref _GlovesAvatarPath, value); }
-        public string MainWeaponAvatarPath { get => _MainWeaponAvatarPath; set => Set(ref _MainWeaponAvatarPath, value); }
-        public string ShouldersAvatarPath { get => _ShouldersAvatarPath; set => Set(ref _ShouldersAvatarPath, value); }
-        public string BracersAvatarPath { get => _BracersAvatarPath; set => Set(ref _BracersAvatarPath, value); }
-        public string SecondWeaponAvatarPath { get => _SecondWeaponAvatarPath; set => Set(ref _SecondWeaponAvatarPath, value); }
-        public string NecklaceAvatarPath { get => _NecklaceAvatarPath; set => Set(ref _NecklaceAvatarPath, value); }
-        public string WaistAvatarPath { get => _WaistAvatarPath; set => Set(ref _WaistAvatarPath, value); }
-        public string FirstArtefactAvatarPath { get => _FirstArtefactAvatarPath; set => Set(ref _FirstArtefactAvatarPath, value); }
-        public string SecondArtefactAvatarPath { get => _SecondArtefactAvatarPath; set => Set(ref _SecondArtefactAvatarPath, value); }
-        public string ThirdArtefactAvatarPath { get => _ThirdArtefactAvatarPath; set => Set(ref _ThirdArtefactAvatarPath, value); }
-        public string ChestAvatarPath { get => _ChestAvatarPath; set => Set(ref _ChestAvatarPath, value); }
-        public string PantsAvatarPath { get => _PantsAvatarPath; set => Set(ref _PantsAvatarPath, value); }
-        public string CloakAvatarPath { get => _CloakAvatarPath; set => Set(ref _CloakAvatarPath, value); }
-        public string BootsAvatarPath { get => _BootsAvatarPath; set => Set(ref _BootsAvatarPath, value); }
+        private EquipmentUserInterfaceListModel _WearedItemsLisd;
+        private EquipmentUserInterfaceViewTemplate _SelectedItem;
+        public EquipmentUserInterfaceListModel WearedItemsList { get => _WearedItemsLisd; set => Set(ref _WearedItemsLisd, value); }
+        public EquipmentUserInterfaceViewTemplate SelectedItem { get => _SelectedItem; set => Set(ref _SelectedItem, value); }
+        public ICommand SelectHelmetCommand { get; }
         public EquipmentControlViewModel()
         {
-            var itemEntityID0 = new ItemEntity(0);
-            var itemEntityID1 = new ItemEntity(1);
-            var itemEntityID2 = new ItemEntity(2);
+            var itemEntity0 = new ItemEntity(0);
+            var itemEntity1 = new ItemEntity(1);
+            var itemEntity2 = new ItemEntity(2);
 
-            var itemList = new List<ItemEntity>();
-            itemList.Add(itemEntityID0);
-            itemList.Add(itemEntityID1);
-            itemList.Add(itemEntityID2);
+            var equipmentUserInterfaceViewTemplate0 = new EquipmentUserInterfaceViewTemplate();
+            var equipmentUserInterfaceViewTemplate1 = new EquipmentUserInterfaceViewTemplate();
+            var equipmentUserInterfaceViewTemplate2 = new EquipmentUserInterfaceViewTemplate();
 
-            var itemSerializationData = new ItemSerializationData();
-            itemSerializationData.PrepareToSerialize(itemList);
+            equipmentUserInterfaceViewTemplate0.Build(itemEntity0);
+            equipmentUserInterfaceViewTemplate1.Build(itemEntity1);
+            equipmentUserInterfaceViewTemplate2.Build(itemEntity2);
 
-            var wearedEquipment = new WearedEquipment(itemSerializationData.ConvertToItemsEntityList());
-            EquipmentListModel = new Equipment(wearedEquipment);
-            EquipmentListModel.InitializeEquipment();
-            InitializeEquipmentUserInterface();
+
+            WearedItemsList = new EquipmentUserInterfaceListModel();
+            WearedItemsList.AddItem(equipmentUserInterfaceViewTemplate0);
+            WearedItemsList.AddItem(equipmentUserInterfaceViewTemplate1);
+            WearedItemsList.AddItem(equipmentUserInterfaceViewTemplate2);
+
+            SelectHelmetCommand = new SelectHelmetInfoCommand(this);
+
+            SelectedItem = WearedItemsList.Helmet;
         }
-        public void InitializeEquipmentUserInterface()
-        {
-            HelmetAvatarPath = EquipmentListModel.Helmet?.Model.ItemAvatarPath;
-            GlovesAvatarPath = EquipmentListModel.Gloves?.Model.ItemAvatarPath;
-            MainWeaponAvatarPath = EquipmentListModel.MainWeapon?.Model.ItemAvatarPath;
-            ShouldersAvatarPath = EquipmentListModel.Shoulders?.Model.ItemAvatarPath;
-            BracersAvatarPath = EquipmentListModel.Bracers?.Model.ItemAvatarPath;
-            SecondWeaponAvatarPath = EquipmentListModel.SecondWeapon?.Model.ItemAvatarPath;
-            NecklaceAvatarPath = EquipmentListModel.Necklace?.Model.ItemAvatarPath;
-            WaistAvatarPath = EquipmentListModel.Waist?.Model.ItemAvatarPath;
-            FirstArtefactAvatarPath = EquipmentListModel.FirstArtefact?.Model.ItemAvatarPath;
-            SecondArtefactAvatarPath = EquipmentListModel.SecondArtefact?.Model.ItemAvatarPath;
-            ThirdArtefactAvatarPath = EquipmentListModel.ThirdArtefact?.Model.ItemAvatarPath;
-            ChestAvatarPath = EquipmentListModel.Chest?.Model.ItemAvatarPath;
-            PantsAvatarPath = EquipmentListModel.Pants?.Model.ItemAvatarPath;
-            CloakAvatarPath = EquipmentListModel.Cloak?.Model.ItemAvatarPath;
-            BootsAvatarPath = EquipmentListModel.Boots?.Model.ItemAvatarPath ;
-        }
-       
     }
 }
