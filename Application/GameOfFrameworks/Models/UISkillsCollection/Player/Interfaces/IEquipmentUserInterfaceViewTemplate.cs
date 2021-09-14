@@ -4,6 +4,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
 {
     public interface IEquipmentUserInterfaceViewTemplate
     {
+        ItemEntity Source { get; }
         ItemAttributes Attributes { get; }
         string ImagePath { get; }
         string ItemName { get; }

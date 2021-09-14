@@ -6,6 +6,8 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
 {
     public class EquipmentUserInterfaceViewTemplate : IEquipmentUserInterfaceViewTemplate
     {
+        public int Itemlevel { get; set; }
+        public ItemEntity Source { get; set; }
         public ItemAttributes Attributes { get; set; }
         public string ImagePath { get; set; }
         public EQUIPMENT_TYPE EquipmentType { get; set; }
@@ -14,6 +16,8 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         public int Durability { get; set; }
         public void Build(ItemEntity itemEntity)
         {
+            Itemlevel = itemEntity.Attributes.ItemLevel;
+            Source = itemEntity;
             Attributes = itemEntity.Attributes;
             ImagePath = itemEntity.Model.ItemAvatarPath;
             EquipmentType = itemEntity.Model.WearType;

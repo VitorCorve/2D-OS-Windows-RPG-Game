@@ -3,14 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
              xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:EquipmentControlViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="200">
-    <UserControl.DataContext>
-        <vm:EquipmentControlViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FF00B9FF"/>
@@ -22,6 +18,7 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="HorizontalAlignment" Value="left"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="TextBlockAttributesValue">
             <Setter Property="Foreground" Value="Lime"/>
@@ -107,7 +104,6 @@
             <RowDefinition Height="0.67*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="1">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
                 <ColumnDefinition Width="0.9*"/>
@@ -128,12 +124,26 @@
                 <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                <Image Source="/Data/Images/items/warglaive.png"/>
+                <Image Source="{Binding SelectedItem.ImagePath}"/>
                 <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributes}" Text="Level: " VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14"/>
-                <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributesValue}" Text="10" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributesValue}" Text="{Binding SelectedItem.Itemlevel}" VerticalAlignment="Center" FontSize="14"/>
             </StackPanel>
 
         </Grid>
+        <ItemsControl ItemsSource="{Binding ItemDescription}" Grid.Row="3">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Key, StringFormat={}{0}: }" Grid.Column="0" Style="{StaticResource TextBlockAttributes}"/>
+                        <TextBlock Text="{Binding Value}" Grid.Column="1" Style="{StaticResource TextBlockAttributesValue}"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <!--<Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>

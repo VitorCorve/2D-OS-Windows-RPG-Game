@@ -1,8 +1,6 @@
 ﻿using GameEngine.Equipment;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.Base;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace GameOfFrameworks.Models.Armory.EquipmentControl
 {

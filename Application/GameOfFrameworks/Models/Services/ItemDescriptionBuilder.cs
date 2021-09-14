@@ -16,7 +16,6 @@ namespace GameOfFrameworks.Models.Services
 
             var description = new Dictionary<string, string> { };
 
-            description.Add("Name", Item.Model.ItemName);
             description.Add("Quality", Item.Model.Quality.ToString());
             description.Add("Wear type", Item.Model.WearType.ToString());
             description.Add("Damage value", Item.Attributes.WeaponDamageValue.ToString());

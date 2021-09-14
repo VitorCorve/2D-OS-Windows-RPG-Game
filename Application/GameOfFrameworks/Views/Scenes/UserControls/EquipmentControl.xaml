@@ -183,7 +183,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectHelmetInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Helmet.ImagePath}" Stretch="Uniform">
                                 </ImageBrush>
@@ -216,10 +221,10 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShouldersShortcut_MouseEnter" MouseLeave="ShouldersShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectHelmetCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectShouldersInfoCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -253,7 +258,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="NecklaceShortcut_MouseEnter" MouseLeave="NecklaceShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectNecklaceInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Necklace.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -285,7 +295,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ChestShortcut_MouseEnter" MouseLeave="ChestShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectChestInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Chest.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -317,7 +332,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="CloakShortcut_MouseEnter" MouseLeave="CloakShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectCloakInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Cloak.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -349,7 +369,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="GlovesShortcut_MouseEnter" MouseLeave="GlovesShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectGlovesInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Gloves.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -381,7 +406,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="BracersShortcut_MouseEnter" MouseLeave="BracersShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectBracersInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding BracersAvatarPath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -413,7 +443,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="WaistShortcut_MouseEnter" MouseLeave="WaistShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectWaistInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Waist.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -445,7 +480,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="PantsShortcut_MouseEnter" MouseLeave="PantsShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectPantsInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Pants.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -477,7 +517,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="BootsShortcut_MouseEnter">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectBootsInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.Boots.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -509,7 +554,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="MainWeaponShortcut_MouseEnter" MouseLeave="MainWeaponShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectMainWeaponInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.MainWeapon.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -541,7 +591,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="SecondWeaponShortcut_MouseEnter" MouseLeave="SecondWeaponShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectSecondWeaponInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.SecondWeapon.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -573,7 +628,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="FirstArtefactShortcut_MouseEnter" MouseLeave="FirstArtefactShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectSecondArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.FirstArtefact.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -605,7 +665,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="SecondArtefactShortcut_MouseEnter" MouseLeave="ThirdArtefactShortcut_MouseLeave">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.SecondArtefact.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -637,7 +702,12 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding WearedItemsList.ThirdArtefact.ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
@@ -671,7 +741,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                         </Border.Background>
-                        <TextBlock x:Name="ItemName" Text="{Binding SelectedItemName}" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock x:Name="ItemName" Text="{Binding SelectedItem.ItemName}" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
                 </Grid>
