@@ -5,20 +5,19 @@ using GameOfFrameworks.Models.Services;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
 {
-    public class SelectMainWeaponInfoCommand : ICommand
+    public class SelectItemInInventoryCommand : ICommand
     {
         public EquipmentControlViewModel ViewModel { get; }
         public event EventHandler CanExecuteChanged;
-        public SelectMainWeaponInfoCommand(EquipmentControlViewModel equipmentControlViewModel) => ViewModel = equipmentControlViewModel;
-        public bool CanExecute(object parameter)
-        {
-            if (ViewModel.WearedItemsList.MainWeapon is null) return false;
-            else return true;
-        }
+        public SelectItemInInventoryCommand(EquipmentControlViewModel equipmentControlViewModel) => ViewModel = equipmentControlViewModel;
+        public bool CanExecute(object parameter) => true;
         public void Execute(object parameter)
         {
-            var itemDescriptionBuilder = new ItemDescriptionBuilder();
-            ViewModel.SelectedItem = ViewModel.WearedItemsList.MainWeapon;
+            int selectionIndex = ViewModel.InventoryMouseOverSelectionIndex;
+            if (selectionIndex < 0)
+                selectionIndex++;
+                            var itemDescriptionBuilder = new ItemDescriptionBuilder();
+            ViewModel.SelectedItem = ViewModel.ItemsInInventory[selectionIndex];
             ViewModel.ItemDescription = itemDescriptionBuilder.Build(ViewModel.SelectedItem?.Source);
             ViewModel.DescriptionToolTipVisibility = System.Windows.Visibility.Visible;
         }

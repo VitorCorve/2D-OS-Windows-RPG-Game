@@ -3,14 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:EquipmentControlViewModel}"
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
+             xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:EquipmentControlViewModel}"
              mc:Ignorable="d"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mouseBehaviour="clr-namespace:GameOfFrameworks.Models.Services"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <armoryusercontrolsviewmodels:EquipmentControlViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <Style TargetType="ToolTip">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="UserControl" x:Key="DescriptionTooltip">
             <Style.Triggers>
                 <Trigger Property="Visibility" Value="Visible">
@@ -57,7 +63,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-            <Setter Property="Width" Value="55"/>
+            <Setter Property="Width" Value="51"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -99,8 +105,8 @@
                             <Storyboard>
                                 <DoubleAnimation
                                     Storyboard.TargetProperty="Width"
-                                    From="54"
-                                    To="51"
+                                    From="51"
+                                    To="54"
                                     Duration="0:0:0.3"
                                     />
                             </Storyboard>
@@ -111,7 +117,7 @@
                             <Storyboard>
                                 <DoubleAnimation
                                     Storyboard.TargetProperty="Width"
-                                    To="54"
+                                    To="51"
                                     Duration="0:0:0.3"
                                     />
                             </Storyboard>
@@ -127,7 +133,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <local:ItemDescriptionControl Style="{StaticResource DescriptionTooltip}" x:Name="DescriptionToolTip" Visibility="Hidden" Grid.Column="1"/>
+            <Canvas Grid.ColumnSpan="2">
+
+                <local:ItemDescriptionControl Style="{StaticResource DescriptionTooltip}" Visibility="Visible" Width="200" Height="400" Margin="{Binding InventoryMouseOverSelectionIndex}"/>
+            </Canvas>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -142,6 +151,13 @@
                 <RowDefinition Height="0.84*"/>
                 <RowDefinition Height="0.08*"/>
             </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.Column="1" Margin="0,8,0,8">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Border.Background>
+                <TextBlock Text="Equipment" VerticalAlignment="Center" TextAlignment="Center">
+                </TextBlock>
+            </Border>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Border CornerRadius="15">
                     <Border.Background>
@@ -183,10 +199,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Command="{Binding SelectItemInInventoryCommand}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectHelmetInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -221,10 +240,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectShouldersInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -258,10 +280,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectNecklaceInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -295,10 +320,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectChestInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -332,10 +360,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectCloakInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -369,10 +400,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectGlovesInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -406,10 +440,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectBracersInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -443,10 +480,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectWaistInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -480,10 +520,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectPantsInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -517,10 +560,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectBootsInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -554,10 +600,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectMainWeaponInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -591,10 +640,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectSecondWeaponInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -628,10 +680,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectSecondArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -665,10 +720,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -702,10 +760,13 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" MouseEnter="ShowItemDescriptionDialog" MouseLeave="HideItemDescriptionDialog">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
@@ -720,54 +781,14 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="3" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*"/>
-                    <RowDefinition Height="0.3*"/>
-                    <RowDefinition Height="0.6*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*"/>
-                        <RowDefinition Height="0.6*"/>
-                        <RowDefinition Height="0.2*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="0.6*"/>
-                        <ColumnDefinition Width="0.2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Row="1" Grid.Column="1">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                        </Border.Background>
-                        <TextBlock x:Name="ItemName" Text="{Binding SelectedItem.ItemName}" VerticalAlignment="Center" TextAlignment="Center">
-                        </TextBlock>
-                    </Border>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="0.25*"/>
-                    </Grid.RowDefinitions>
-                    <Image Source="/Data/Images/items/jpg/testSword.jpg" Grid.Row="1"/>
-                </Grid>
-                <Border Grid.Row="2" CornerRadius="15">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"/>
-                    </Border.Background>
-                </Border>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.45*"/>
-                        <ColumnDefinition Width="0.45*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </Grid>
+            <Border Grid.Row="0" Margin="0,8,0,8" Grid.Column="3">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Border.Background>
+                <TextBlock Text="{Binding PanelX}" VerticalAlignment="Center" TextAlignment="Center">
+                </TextBlock>
+            </Border>
+            <local:InventoryControl Grid.Column="3" Grid.Row="1"/>
         </Grid>
-
     </Grid>
 </UserControl>

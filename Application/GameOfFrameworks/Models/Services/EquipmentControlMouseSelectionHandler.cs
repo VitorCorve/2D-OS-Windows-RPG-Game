@@ -17,7 +17,6 @@ namespace GameOfFrameworks.Models.Services
             {
                 if (item.Model.WearType == equipmentType)
                 {
-                    Control.DescriptionToolTip.Visibility = Visibility.Visible;
                     EquipmentTemporaryData.SelectItem(equipmentType);
                 }
             }

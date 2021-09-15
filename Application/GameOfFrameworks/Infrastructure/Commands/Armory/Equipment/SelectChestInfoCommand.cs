@@ -10,14 +10,17 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
         public EquipmentControlViewModel ViewModel { get; }
         public event EventHandler CanExecuteChanged;
         public SelectChestInfoCommand(EquipmentControlViewModel equipmentControlViewModel) => ViewModel = equipmentControlViewModel;
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object parameter)
+        {
+            if (ViewModel.WearedItemsList.Chest is null) return false;
+            else return true;
+        }
         public void Execute(object parameter)
         {
             var itemDescriptionBuilder = new ItemDescriptionBuilder();
             ViewModel.SelectedItem = ViewModel.WearedItemsList.Chest;
-
-            if (ViewModel.WearedItemsList.Chest is null) return;
             ViewModel.ItemDescription = itemDescriptionBuilder.Build(ViewModel.SelectedItem?.Source);
+            ViewModel.DescriptionToolTipVisibility = System.Windows.Visibility.Visible;
         }
     }
 }

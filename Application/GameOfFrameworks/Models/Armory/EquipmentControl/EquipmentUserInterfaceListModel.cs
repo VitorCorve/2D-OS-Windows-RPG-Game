@@ -1,6 +1,8 @@
 ﻿using GameEngine.Equipment;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.Base;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GameOfFrameworks.Models.Armory.EquipmentControl
 {
@@ -36,7 +38,11 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
         public EquipmentUserInterfaceViewTemplate Pants { get => _Pants; set => Set(ref _Pants, value); }
         public EquipmentUserInterfaceViewTemplate Cloak { get => _Cloak; set => Set(ref _Cloak, value); }
         public EquipmentUserInterfaceViewTemplate Boots { get => _Boots; set => Set(ref _Boots, value); }
-      
+        public void AddItemsRange(List<EquipmentUserInterfaceViewTemplate> equipmentUserInterfaceViewTemplatesList)
+        {
+            foreach (var item in equipmentUserInterfaceViewTemplatesList)
+                AddItem(item);
+        }
         public void AddItem(EquipmentUserInterfaceViewTemplate itemViewTemplate)
         {
             switch (itemViewTemplate.EquipmentType)
