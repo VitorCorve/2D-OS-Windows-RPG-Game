@@ -9,13 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="400">
     <UserControl.Resources>
-        <Style TargetType="ListBoxItem">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="IsSelected" Value="True"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <Style TargetType="ToolTip">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -49,7 +42,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-            <Setter Property="Width" Value="55"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -60,7 +53,7 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <Trigger Property="IsMouseCaptured"  Value="True">
+                <Trigger Property="IsMouseOver" Value="True">
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
@@ -91,8 +84,9 @@
     
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="0.9*"/>
-                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.65*"/>
+                <RowDefinition Height="0.10*"/>
+                <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
@@ -100,33 +94,657 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryBackground.png"/>
                 </Grid.Background>
-                <ListBox SelectedIndex="{Binding InventoryMouseOverSelectionIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="PlayerInventoryListBox" Margin="13,12,16,12" ItemsSource="{Binding ItemsInInventory}" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Height="55" Width="53" Style="{StaticResource ButtonTemplate}" BorderThickness="0">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseEnter">
-                                        <i:InvokeCommandAction Command="{Binding DataContext.SelectItemInInventoryCommand, Mode=OneWay, ElementName=PlayerInventoryListBox}"/>
-                                    </i:EventTrigger>
-                                    <i:EventTrigger EventName="MouseLeave">
-                                        <i:InvokeCommandAction Command="{Binding DataContext.HideDescriptionToolTipDialogCommand, Mode=OneWay, ElementName=PlayerInventoryListBox}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Button.Background>
-                                    <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Uniform">
-                                    </ImageBrush>
-                                </Button.Background>
-                            </Button>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            <Grid x:Name="InventoryGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[0]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[0]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[0].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers><Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[1].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[2]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[2]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers><Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[2].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[3]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[3]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[3].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[4]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[4]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[4].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[5]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[5]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[5].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="1" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[6]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[6]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[6].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[7]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[7]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[7].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[8]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[8]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[8].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[9]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[9]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[9].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[10]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[10]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[10].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[11]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[11]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[11].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="2" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[12]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[12]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[12].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[13]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[13]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[13].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[14]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[14]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[14].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[15]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[15]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[15].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[16]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[16]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[16].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[17]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[17]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[17].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="3" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[18]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[18]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[18].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[19]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[19]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[19].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[20]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[20]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[20].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[21]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[21]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[21].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[22]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[22]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[22].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[23]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[23]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[23].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="4" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[24]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[24]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[24].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[25]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[25]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[25].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[26]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[26]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[26].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[27]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[27]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[27].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[28]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[28]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[28].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[29]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[29]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[29].ImagePath}" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="5" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
             </Grid>
-            <Grid Grid.Row="2">
+            </Grid>
+            <Grid Grid.Row="1">
                 <Border Grid.Row="1" Margin="0,5,0,5">
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
@@ -137,11 +755,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Gold: 0" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="5">
+                        <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value, StringFormat={}Gold: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="5">
                         </TextBlock>
-                        <TextBlock Text="Silver: 0" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Margin="5">
+                    <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value, StringFormat={}Silver: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Margin="5">
                         </TextBlock>
-                        <TextBlock Text="Copper: 0" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Margin="5">
+                    <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value, StringFormat={}Copper: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Margin="5">
                         </TextBlock>
                     </Grid>
                 </Border>

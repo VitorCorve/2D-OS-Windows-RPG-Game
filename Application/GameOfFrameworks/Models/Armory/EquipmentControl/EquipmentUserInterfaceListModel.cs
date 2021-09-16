@@ -107,5 +107,50 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
             }
             FirstArtefact = itemViewTemplate;
         }
+        public void TakeOffItem(EQUIPMENT_TYPE equipmentType)
+        {
+            switch (equipmentType)
+            {
+                case EQUIPMENT_TYPE.Helmet:
+                    Helmet = null;
+                    break;
+                case EQUIPMENT_TYPE.Necklace:
+                    Necklace = null;
+                    break;
+                case EQUIPMENT_TYPE.Shoulder:
+                    Shoulders = null;
+                    break;
+                case EQUIPMENT_TYPE.Breastplate:
+                    Chest = null;
+                    break;
+                case EQUIPMENT_TYPE.Bracers:
+                    Bracers = null;
+                    break;
+                case EQUIPMENT_TYPE.Gloves:
+                    Gloves = null;
+                    break;
+                case EQUIPMENT_TYPE.Waist:
+                    Waist = null;
+                    break;
+                case EQUIPMENT_TYPE.Pants:
+                    Pants = null;
+                    break;
+                case EQUIPMENT_TYPE.Boots:
+                    Boots = null;
+                    break;
+                case EQUIPMENT_TYPE.Cloak:
+                    Cloak = null;
+                    break;
+                case EQUIPMENT_TYPE.MainWeapon:
+                    MainWeapon = null;
+                    break;
+                case EQUIPMENT_TYPE.OffHandWeapon:
+                    SecondWeapon = null;
+                    break;
+                case EQUIPMENT_TYPE.Artefact:
+                    WearArtefact(null);
+                    break;
+            }
+        }
     }
 }

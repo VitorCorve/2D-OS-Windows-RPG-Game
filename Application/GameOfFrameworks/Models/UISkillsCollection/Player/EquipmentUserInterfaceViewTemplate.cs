@@ -6,6 +6,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
 {
     public class EquipmentUserInterfaceViewTemplate : IEquipmentUserInterfaceViewTemplate
     {
+        public int ItemID { get; set; }
         public int Itemlevel { get; set; }
         public ItemEntity Source { get; set; }
         public ItemAttributes Attributes { get; set; }
@@ -16,6 +17,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         public int Durability { get; set; }
         public void Build(ItemEntity itemEntity)
         {
+            ItemID = itemEntity.Model.ID;
             Itemlevel = itemEntity.Attributes.ItemLevel;
             Source = itemEntity;
             Attributes = itemEntity.Attributes;

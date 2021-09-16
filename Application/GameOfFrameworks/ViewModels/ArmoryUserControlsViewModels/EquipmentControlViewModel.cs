@@ -1,12 +1,13 @@
 ﻿using GameEngine.Equipment;
 using GameEngine.Inventory;
+using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Equipment;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Services;
+using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.Base;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,128 +15,48 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
     public class EquipmentControlViewModel : ViewModel
     {
-        private double _panelX;
-        private double _panelY;
-        private int _InventoryMouseOverSelectionIndex;
-        private Dictionary<string, string> _ItemDescription;
-        private EquipmentUserInterfaceListModel _WearedItemsLisd;
+        private WearedViewList _WearedItemsList;
         private EquipmentUserInterfaceViewTemplate _SelectedItem;
-        private ObservableCollection<EquipmentUserInterfaceViewTemplate> _ItemsInInventory;
-        public EquipmentUserInterfaceListModel WearedItemsList { get => _WearedItemsLisd; set => Set(ref _WearedItemsLisd, value); }
-        public EquipmentUserInterfaceViewTemplate SelectedItem { get => _SelectedItem; set => Set(ref _SelectedItem, value); }
-        public ObservableCollection<EquipmentUserInterfaceViewTemplate> ItemsInInventory { get => _ItemsInInventory; set => Set(ref _ItemsInInventory, value); }
-        public Dictionary<string, string> ItemDescription { get => _ItemDescription; set => Set(ref _ItemDescription, value); }
-        public int InventoryMouseOverSelectionIndex { get => _InventoryMouseOverSelectionIndex; set => Set(ref _InventoryMouseOverSelectionIndex, value); }
+        private InventoryViewList _InventoryItemsList;
+        private Dictionary<string, string> _ItemDescription;
+        private PlayerConsumablesData _PlayerConsumables;
         private Visibility _DescriptionToolTipVisibility;
-        public ICommand SelectHelmetInfoCommand { get; private set; }
-        public ICommand SelectGlovesInfoCommand { get; private set; }
-        public ICommand SelectMainWeaponInfoCommand { get; private set; }
-        public ICommand SelectShouldersInfoCommand { get; private set; }
-        public ICommand SelectBracersInfoCommand { get; private set; }
-        public ICommand SelectSecondWeaponInfoCommand { get; private set; }
-        public ICommand SelectNecklaceInfoCommand { get; private set; }
-        public ICommand SelectWaistInfoCommand { get; private set; }
-        public ICommand SelectFisrtArtefactInfoCommand { get; private set; }
-        public ICommand SelectSecondArtefactInfoCommand { get; private set; }
-        public ICommand SelectThirdArtefactInfoCommand { get; private set; }
-        public ICommand SelectChestInfoCommand { get; private set; }
-        public ICommand SelectPantsInfoCommand { get; private set; }
-        public ICommand SelectCloakInfoCommand { get; private set; }
-        public ICommand SelectBootsInfoCommand { get; private set; }
+        public EquipmentUserInterfaceViewTemplate SelectedItem { get => _SelectedItem; set => Set(ref _SelectedItem, value); }
+        public InventoryViewList InventoryView { get => _InventoryItemsList; set => Set(ref _InventoryItemsList, value); }
+        public WearedViewList EquipmentView { get => _WearedItemsList; set => Set(ref _WearedItemsList, value); }
+        public Dictionary<string, string> ItemDescription { get => _ItemDescription; set => Set(ref _ItemDescription, value); }
+        public PlayerConsumablesData PlayerConsumables { get => _PlayerConsumables; set => Set(ref _PlayerConsumables, value); }
+        public EquipmentManager EquipmentHandler { get; set; }
         public ICommand HideDescriptionToolTipDialogCommand { get; private set; }
         public ICommand SelectItemInInventoryCommand { get; private set; }
-        public Visibility DescriptionToolTipVisibility { get => _DescriptionToolTipVisibility; set { _DescriptionToolTipVisibility = value; OnPropertyChanged(); } }
-        public double PanelX
-        {
-            get { return _panelX; }
-            set
-            {
-                if (value.Equals(_panelX)) return;
-                _panelX = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public double PanelY
-        {
-            get { return _panelY; }
-            set
-            {
-                if (value.Equals(_panelY)) return;
-                _panelY = value;
-                OnPropertyChanged();
-            }
-        }
+        public ICommand TakeOffWearedItemCommand { get; private set; }
+        public ICommand WearItemFromInventoryCommand { get; private set; }
+        public ICommand SelectItemFromEquippmentCommand { get; private set; }
+        public Visibility DescriptionToolTipVisibility { get => _DescriptionToolTipVisibility; set => Set(ref _DescriptionToolTipVisibility, value); }
+        public PlayerInventoryItemsList InventoryModel { get; set; }
+        public WearedEquipment EquipmentModel { get; set; }
         public EquipmentControlViewModel()
         {
-            var itemEntityToViewTemplateConverter = new ItemEntityToViewTemplateConverter();
-            var itemEntity0 = new ItemEntity(0);
-            var itemEntity1 = new ItemEntity(1);
-            var itemEntity2 = new ItemEntity(2);
+            PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
-            var itemsList = new List<ItemEntity>();
-            itemsList.Add(itemEntity0);
-            itemsList.Add(itemEntity1);
-            itemsList.Add(itemEntity2);
+            InventoryModel = new PlayerInventoryItemsList(0, 0, 1, 2, 2, 2, 2, 2);
+            EquipmentModel = new WearedEquipment();
 
-            var itemEntity3 = new ItemEntity(0);
-            var itemEntity4 = new ItemEntity(1);
-            var itemEntity5 = new ItemEntity(2);
-            var itemEntity6 = new ItemEntity(2);
-            var itemEntity7 = new ItemEntity(2);
-            var itemEntity8 = new ItemEntity(2);
-            var itemEntity9 = new ItemEntity(2);
-            var itemEntity10 = new ItemEntity(2);
+            InventoryView = new InventoryViewList();
+            EquipmentView = new WearedViewList();
 
-            var inventoryItemsList = new List<ItemEntity>();
-            inventoryItemsList.Add(itemEntity3);
-            inventoryItemsList.Add(itemEntity4);
-            inventoryItemsList.Add(itemEntity5);
-            inventoryItemsList.Add(itemEntity6);
-            inventoryItemsList.Add(itemEntity7);
-            inventoryItemsList.Add(itemEntity8);
-            inventoryItemsList.Add(itemEntity9);
-            inventoryItemsList.Add(itemEntity10);
-
-            var inventoryItemsListObservableCollection = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
-            inventoryItemsListObservableCollection = itemEntityToViewTemplateConverter.ConvertRangeIntoObservableCollection(inventoryItemsList);
-            var equipmentUserInterfaceViewTemplatesList = new List<EquipmentUserInterfaceViewTemplate>();
-
-            equipmentUserInterfaceViewTemplatesList.AddRange(itemEntityToViewTemplateConverter.ConvertRange(itemsList));
-
-            var playerItemList = new PlayerInventoryItemsList();
-            playerItemList.AddRange(inventoryItemsList);
-            ItemsInInventory = inventoryItemsListObservableCollection;
-
-            WearedItemsList = new EquipmentUserInterfaceListModel();
-            WearedItemsList.AddItemsRange(equipmentUserInterfaceViewTemplatesList);
-
+            EquipmentHandler = new EquipmentManager(this, InventoryView, EquipmentView, EquipmentModel, InventoryModel, SelectedItem);
 
             InitializeCommands();
-
-            SelectedItem = WearedItemsList.MainWeapon;
-
-            DescriptionToolTipVisibility = Visibility.Hidden;
 
         }
         private void InitializeCommands()
         {
-            SelectHelmetInfoCommand = new SelectHelmetInfoCommand(this);
-            SelectGlovesInfoCommand = new SelectGlovesInfoCommand(this);
-            SelectMainWeaponInfoCommand = new SelectMainWeaponInfoCommand(this);
-            SelectShouldersInfoCommand = new SelectShouldersInfoCommand(this);
-            SelectBracersInfoCommand = new SelectBracersInfoCommand(this);
-            SelectSecondWeaponInfoCommand = new SelectSecondWeaponInfoCommand(this);
-            SelectNecklaceInfoCommand = new SelectNecklaceInfoCommand(this);
-            SelectWaistInfoCommand = new SelectWaistInfoCommand(this);
-            SelectFisrtArtefactInfoCommand = new SelectFisrtArtefactInfoCommand(this);
-            SelectSecondArtefactInfoCommand = new SelectSecondArtefactInfoCommand(this);
-            SelectThirdArtefactInfoCommand = new SelectThirdArtefactInfoCommand(this);
-            SelectChestInfoCommand = new SelectChestInfoCommand(this);
-            SelectPantsInfoCommand = new SelectPantsInfoCommand(this);
-            SelectCloakInfoCommand = new SelectCloakInfoCommand(this);
-            SelectBootsInfoCommand = new SelectBootsInfoCommand(this);
             HideDescriptionToolTipDialogCommand = new HideDescriptionToolTipDialogCommand(this);
+
+            TakeOffWearedItemCommand = new TakeOffWearedItemCommand(this);
+            WearItemFromInventoryCommand = new WearItemFromInventoryCommand(this);
+            SelectItemFromEquippmentCommand = new SelectItemFromEquippmentCommand(this);
             SelectItemInInventoryCommand = new SelectItemInInventoryCommand(this);
         }
     }

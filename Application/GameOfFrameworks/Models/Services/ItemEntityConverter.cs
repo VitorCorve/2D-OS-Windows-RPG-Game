@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace GameOfFrameworks.Models.Services
 {
-    public class ItemEntityToViewTemplateConverter
+    public class ItemEntityConverter
     {
-        public EquipmentUserInterfaceViewTemplate Convert(ItemEntity itemEntity)
+        public EquipmentUserInterfaceViewTemplate ConvertToEquipmentUserInterfaceViewTemplate(ItemEntity itemEntity)
         {
             var equipmentUserInterfaceViewTemplate = new EquipmentUserInterfaceViewTemplate();
             equipmentUserInterfaceViewTemplate.Itemlevel = itemEntity.Attributes.ItemLevel;
@@ -21,19 +21,36 @@ namespace GameOfFrameworks.Models.Services
 
             return equipmentUserInterfaceViewTemplate;
         }
-        public List<EquipmentUserInterfaceViewTemplate> ConvertRange(ICollection<ItemEntity> itemsEntityList)
+        public List<EquipmentUserInterfaceViewTemplate> ConvertRangeToInterfaceTemplate(ICollection<ItemEntity> itemsEntityList)
         {
             var equipmentUserInterfaceViewTemplatesList = new List<EquipmentUserInterfaceViewTemplate>();
             foreach (var item in itemsEntityList)
-                equipmentUserInterfaceViewTemplatesList.Add(Convert(item));
+                equipmentUserInterfaceViewTemplatesList.Add(ConvertToEquipmentUserInterfaceViewTemplate(item));
             return equipmentUserInterfaceViewTemplatesList;
         }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> ConvertRangeIntoObservableCollection(ICollection<ItemEntity> itemsEntityList)
         {
             var equipmentUserInterfaceViewTemplatesList = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
             foreach (var item in itemsEntityList)
-                equipmentUserInterfaceViewTemplatesList.Add(Convert(item));
+                equipmentUserInterfaceViewTemplatesList.Add(ConvertToEquipmentUserInterfaceViewTemplate(item));
             return equipmentUserInterfaceViewTemplatesList;
+        }
+        public ItemEntity ConvertToItemEntity(EquipmentUserInterfaceViewTemplate equipmentUserInterfaceViewTemplate)
+        {
+            var itemEntity = new ItemEntity(equipmentUserInterfaceViewTemplate.ItemID);
+            itemEntity.ItemDurability.Value = equipmentUserInterfaceViewTemplate.Durability;
+            return itemEntity;
+        }
+        public List<ItemEntity> ConvertRangeItemEntityList(ICollection<EquipmentUserInterfaceViewTemplate> equipmentUserInterfaceViewTemplate)
+        {
+            var itemEntityList = new List<ItemEntity>();
+            foreach (var item in equipmentUserInterfaceViewTemplate)
+            {
+                var itemEntity = new ItemEntity(item.ItemID);
+                itemEntity.ItemDurability.Value = item.Durability;
+                itemEntityList.Add(itemEntity);
+            }
+            return itemEntityList;
         }
     }
 }

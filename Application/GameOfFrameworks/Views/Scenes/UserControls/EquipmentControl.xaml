@@ -128,23 +128,13 @@
         </Style>
     </UserControl.Resources>
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
-        <Grid Panel.ZIndex="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Canvas Grid.ColumnSpan="2">
-
-                <local:ItemDescriptionControl Style="{StaticResource DescriptionTooltip}" Visibility="Visible" Width="200" Height="400" Margin="{Binding InventoryMouseOverSelectionIndex}"/>
-            </Canvas>
-        </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.06*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.43*"/>
+                <ColumnDefinition Width="0.02*"/>
                 <ColumnDefinition Width="0.46*"/>
-                <ColumnDefinition Width="0.06*"/>
-                <ColumnDefinition Width="0.46*"/>
-                <ColumnDefinition Width="0.06*"/>
+                <ColumnDefinition Width="0.26*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.08*"/>
@@ -199,18 +189,20 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Command="{Binding SelectItemInInventoryCommand}">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectHelmetInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[0]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[0]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Helmet.ImagePath}" Stretch="Uniform">
-                                </ImageBrush>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[0].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -243,14 +235,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectShouldersInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[3]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[3]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Shoulders.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[3].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -283,14 +278,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectNecklaceInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[6]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[6]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Necklace.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[6].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -323,14 +321,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectChestInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[9]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[9]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Chest.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[9].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -363,14 +364,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectCloakInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[12]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[12]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Cloak.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[12].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -403,14 +407,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectGlovesInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[1]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[1]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Gloves.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[1].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -443,14 +450,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectBracersInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[4]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[4]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding BracersAvatarPath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[4].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -483,14 +493,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectWaistInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[7]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[7]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Waist.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[7].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -523,14 +536,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectPantsInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[10]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[10]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Pants.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[10].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -563,14 +579,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectBootsInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[13]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[13]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.Boots.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[13].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -603,14 +622,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectMainWeaponInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[2]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[2]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.MainWeapon.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[2].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -643,14 +665,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectSecondWeaponInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[5]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[5]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.SecondWeapon.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[5].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -683,14 +708,17 @@
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectSecondArtefactInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[8]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[8]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.FirstArtefact.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[8].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -716,21 +744,24 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="Artefact" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock Text="Ring" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[11]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[11]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.SecondArtefact.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[11].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -756,21 +787,24 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="Artefact" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock Text="Earring" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
                         <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
-                                    <i:InvokeCommandAction Command="{Binding SelectThirdArtefactInfoCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[14]}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseLeave">
                                     <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseRightButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding TakeOffWearedItemCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[14]}"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Button.Background>
-                                <ImageBrush ImageSource="{Binding WearedItemsList.ThirdArtefact.ImagePath}" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="{Binding EquipmentView.EquipmentSlotsList[14].ImagePath}" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Border>
@@ -785,10 +819,11 @@
                 <Border.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
-                <TextBlock Text="{Binding PanelX}" VerticalAlignment="Center" TextAlignment="Center">
+                <TextBlock Text="Inventory" VerticalAlignment="Center" TextAlignment="Center">
                 </TextBlock>
             </Border>
             <local:InventoryControl Grid.Column="3" Grid.Row="1"/>
+            <local:ItemDescriptionControl Grid.Column="4" Visibility="Visible" Grid.Row="1" HorizontalAlignment="Center" MinWidth="190" Margin="0,0,10,0" VerticalAlignment="Top" MinHeight="370"/>
         </Grid>
     </Grid>
 </UserControl>
