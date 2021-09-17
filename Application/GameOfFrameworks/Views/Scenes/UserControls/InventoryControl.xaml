@@ -42,7 +42,6 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -80,16 +79,34 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="UserControl"  x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="0.65*"/>
-                <RowDefinition Height="0.10*"/>
-                <RowDefinition Height="0.25*"/>
-            </Grid.RowDefinitions>
+                <RowDefinition Height="0.92*"/>
+            <RowDefinition Height="0.08*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
+        <Popup x:Name="InventoryTooltipPopup" Placement="Mouse" IsOpen="{Binding IsOpenInventoryItemPopupDialogUserControl}" StaysOpen="False" Panel.ZIndex="2" Width="240" Height="85">
+            <local:ItemInInventoryPopupDialogUserControl Visibility="Visible" Background="Transparent"/>
+        </Popup>
         <Grid Grid.Row="0">
                 <Grid.Background>
                     <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryBackground.png"/>
@@ -112,6 +129,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                     <RowDefinition Height="0.3*"/>
                 </Grid.RowDefinitions>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
@@ -125,14 +145,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[0]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[0]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[0].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[0].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
@@ -146,13 +169,16 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers><Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[1].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[1].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="2">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
@@ -166,13 +192,16 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[2]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[2]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers><Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[2].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[2].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
@@ -186,14 +215,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[3]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[3]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[3].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[3].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
@@ -207,14 +239,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[4]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[4]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[4].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[4].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="1" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
@@ -228,14 +263,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[5]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[5]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[5].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[5].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="1" Grid.Column="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
@@ -249,14 +287,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[6]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[6]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[6].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[6].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
@@ -270,14 +311,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[7]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[7]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[7].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[7].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="2">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
@@ -291,14 +335,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[8]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[8]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[8].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[8].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
@@ -312,14 +359,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[9]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[9]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[9].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[9].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Fill"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
@@ -333,14 +383,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[10]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[10]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[10].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[10].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="2" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
@@ -354,14 +407,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[11]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[11]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[11].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[11].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="2" Grid.Column="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
@@ -375,14 +431,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[12]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[12]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[12].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[12].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
@@ -396,14 +455,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[13]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[13]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[13].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[13].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="2">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
@@ -417,14 +479,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[14]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[14]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[14].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[14].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
@@ -438,14 +503,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[15]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[15]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[15].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[15].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
@@ -459,14 +527,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[16]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[16]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[16].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[16].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
@@ -480,14 +551,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[17]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[17]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[17].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[17].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="3" Grid.Column="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
@@ -501,14 +575,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[18]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[18]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[18].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[18].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
@@ -522,14 +599,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[19]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[19]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[19].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[19].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="2">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
@@ -543,14 +623,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[20]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[20]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[20].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[20].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
@@ -564,14 +647,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[21]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[21]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[21].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[21].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
@@ -585,14 +671,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[22]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[22]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[22].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[22].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="4" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
@@ -606,14 +695,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[23]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[23]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[23].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[23].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="4" Grid.Column="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
@@ -627,14 +719,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[24]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[24]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[24].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[24].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
@@ -648,14 +743,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[25]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[25]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[25].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[25].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="2">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
@@ -669,14 +767,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[26]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[26]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[26].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[26].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
@@ -690,14 +791,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[27]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[27]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[27].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[27].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
@@ -711,14 +815,17 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[28]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[28]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[28].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[28].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="5" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
@@ -732,14 +839,449 @@
                         <i:EventTrigger EventName="MouseRightButtonDown">
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[29]}"/>
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[29]}"/>
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[29].ImagePath}" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[29].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="5" Grid.Column="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[30]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[30]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[30]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[30].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[31]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[31]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[31]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[31].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[32]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[32]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[32]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[32].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[33]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[33]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[33]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[33].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[34]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[34]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[34]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[34].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="6" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[35]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[35]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[35]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[35].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="6" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[36]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[36]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[36]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[37].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[37]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[37]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[37]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[38].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[38]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[38]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[38]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[39].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[39]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[39]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[39]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[40].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[40]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[40]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[40]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[41].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="7" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[41]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[41]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[41]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[42].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="7" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[42]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[42]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[42]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[43].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="2" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[43]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[43]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[43]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[44].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="3" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[44]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[44]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[44]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[45].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="4" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[45]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[45]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[45]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[46].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[47]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[47]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[47].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[48]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[48]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[48].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="6">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
                     </Border.Background>
                 </Border>
             </Grid>

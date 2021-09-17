@@ -1,9 +1,4 @@
-﻿using GameEngine.Equipment;
-using GameOfFrameworks.Models.Services;
-using GameOfFrameworks.Models.Temporary;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 
 namespace GameOfFrameworks.Scenes.UserControls
 {

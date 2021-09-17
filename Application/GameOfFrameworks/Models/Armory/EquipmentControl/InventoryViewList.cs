@@ -1,5 +1,4 @@
 ﻿using GameOfFrameworks.Models.UISkillsCollection.Player;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -19,9 +18,6 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
             OnPropertyChanged(propertyName);
             return true;
         }
-        public InventoryViewList()
-        {
-            InventorySlotsList = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
-        }
+        public InventoryViewList() => InventorySlotsList = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
     }
 }

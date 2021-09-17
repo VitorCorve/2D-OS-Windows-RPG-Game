@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.ItemInInventoryPopupDialogUserControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:EquipmentControlViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="85" d:DesignWidth="240">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="51"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+        </Grid.Background>
+        <Grid Height="30" VerticalAlignment="Top" Margin="0,15,0,0" Width="200">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition Width="0.85*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding SelectedItem.ImagePath}" Grid.Column="0"/>
+            <TextBlock Text="{Binding SelectedItem.ItemName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+        <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,15">
+            <Button Content="Delete" Style="{StaticResource ButtonTemplate}" Width="120" Height="22" Command="{Binding ShowInventoryItemDeletingDialogCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
+

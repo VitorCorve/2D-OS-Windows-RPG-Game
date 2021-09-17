@@ -14,6 +14,7 @@ namespace GameOfFrameworks.Models.LoadGame
         {
             ArmoryTemporaryData.CharacterEntity = Model.CharacterEntity;
             ArmoryTemporaryData.PlayerModel = new PlayerModelData(Model.SaveData);
+            ArmoryTemporaryData.SaveData = Model.SaveData;
         }
     }
 }

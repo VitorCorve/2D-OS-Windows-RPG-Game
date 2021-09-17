@@ -40,17 +40,10 @@ namespace GameOfFrameworks.Scenes
         {
             EquipmentControlElement.Visibility = Visibility.Collapsed;
             AttributesControlElement.Visibility = Visibility.Collapsed;
-            InventoryControlElement.Visibility = Visibility.Collapsed;
             OptionsControlElement.Visibility = Visibility.Collapsed;
             LevelUpControlElement.Visibility = Visibility.Collapsed;
             control.Visibility = Visibility.Visible;
         }
-
-        private void InventoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetActiveUserControl(InventoryControlElement);
-        }
-
         private void AttributesButton_Click(object sender, RoutedEventArgs e)
         {
             SetActiveUserControl(AttributesControlElement);

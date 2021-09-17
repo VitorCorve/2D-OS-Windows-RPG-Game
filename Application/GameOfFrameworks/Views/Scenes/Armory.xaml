@@ -55,7 +55,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="UserControl"  x:Key="UserControlTemplate">
+        <Style TargetType="UserControl" x:Key="UserControlTemplate">
             <Style.Triggers>
                 <Trigger Property="Visibility" Value="Visible">
                     <Trigger.EnterActions>
@@ -244,15 +244,14 @@
             </Border>
             <Button x:Name="HuntButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Hunt" Grid.Row="0" Grid.Column="1" Click="HuntButton_Click"/>
             <Button x:Name="EquippmentButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Equipment" Grid.Row="1" Grid.Column="1" Click="EquippmentButton_Click"/>
-            <Button x:Name="InventoryButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Inventory" Grid.Row="2" Grid.Column="1" Click="InventoryButton_Click"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Blacksmith" Grid.Row="3" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Merchant" Grid.Row="4" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Towns" Grid.Row="5" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Territories" Grid.Row="6" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quests" Grid.Row="7" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Notes" Grid.Row="8" Grid.Column="1"/>
-            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Attributes" Grid.Row="9" Grid.Column="1" Click="AttributesButton_Click"/>
-            <Button x:Name="OptionsButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Options" Grid.Row="10" Grid.Column="1" Click="OptionsButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Blacksmith" Grid.Row="2" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Merchant" Grid.Row="3" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Towns" Grid.Row="4" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Territories" Grid.Row="5" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quests" Grid.Row="6" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Notes" Grid.Row="7" Grid.Column="1"/>
+            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Attributes" Grid.Row="8" Grid.Column="1" Click="AttributesButton_Click"/>
+            <Button x:Name="OptionsButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Options" Grid.Row="9" Grid.Column="1" Click="OptionsButton_Click"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="5">
             <Grid.ColumnDefinitions>

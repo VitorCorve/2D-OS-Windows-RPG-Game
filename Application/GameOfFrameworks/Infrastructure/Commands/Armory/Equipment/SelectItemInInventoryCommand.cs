@@ -13,7 +13,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
         public SelectItemInInventoryCommand(EquipmentControlViewModel equipmentControlViewModel) => ViewModel = equipmentControlViewModel;
         public bool CanExecute(object parameter)
         {
-            if (parameter is null)
+            var selectedItem = (EquipmentUserInterfaceViewTemplate)parameter;
+            if (selectedItem is null || selectedItem.Source is null)
                 return false;
             return true;
         }
