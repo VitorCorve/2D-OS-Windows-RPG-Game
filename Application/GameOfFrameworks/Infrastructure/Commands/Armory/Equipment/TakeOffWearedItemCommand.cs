@@ -20,6 +20,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
         {
             var itemToTakeOff = (EquipmentUserInterfaceViewTemplate)parameter;
             ViewModel.EquipmentHandler.TakeOffEquippedItem(itemToTakeOff);
+            ViewModel.SaveInventoryChanges();
         }
     }
 }

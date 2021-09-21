@@ -1012,7 +1012,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[37].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[36].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="1">
@@ -1036,7 +1036,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[38].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[37].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="2">
@@ -1060,7 +1060,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[39].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[38].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="3">
@@ -1084,7 +1084,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[40].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[39].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="4">
@@ -1108,7 +1108,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[41].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[40].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="5">
@@ -1132,7 +1132,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[42].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[41].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="7" Grid.Column="6">
@@ -1156,7 +1156,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[43].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[42].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="8" Grid.Column="1">
@@ -1180,7 +1180,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[44].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[43].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="8" Grid.Column="2">
@@ -1204,7 +1204,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[45].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[44].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="8" Grid.Column="3">
@@ -1228,7 +1228,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[46].ImagePath}" Stretch="Fill"/>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[45].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="8" Grid.Column="4">
@@ -1237,6 +1237,30 @@
                     </Border.Background>
                 </Border>
                 <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="5" Panel.ZIndex="1" BorderThickness="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[46]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[46]}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[46]}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[46].ImagePath}" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Border Grid.Row="8" Grid.Column="5">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
+                    </Border.Background>
+                </Border>
+                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[47]}"/>
@@ -1248,35 +1272,11 @@
                             <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[47]}"/>
                         </i:EventTrigger>
                         <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
+                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[47]}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[47].ImagePath}" Stretch="Fill"/>
-                    </Button.Background>
-                </Button>
-                <Border Grid.Row="8" Grid.Column="5">
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="FIll"/>
-                    </Border.Background>
-                </Border>
-                <Button Style="{StaticResource ButtonTemplate}" Grid.Row="8" Grid.Column="6" Panel.ZIndex="1" BorderThickness="0">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding SelectItemInInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[48]}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseLeave">
-                            <i:InvokeCommandAction Command="{Binding HideDescriptionToolTipDialogCommand}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseRightButtonDown">
-                            <i:InvokeCommandAction Command="{Binding WearItemFromInventoryCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[48]}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <Button.Background>
-                        <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[48].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
                 <Border Grid.Row="8" Grid.Column="6">

@@ -3,9 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uc="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels"
+             xmlns:luc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="AttributesControlUserControl">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="LayoutUpdated">
+            <i:InvokeCommandAction Command="{Binding UpdateAttributesCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.DataContext>
+        <uc:AttributesControlViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
+        <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter/>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" From="1" To="0.7" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="IsSelected" Value="True"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -16,7 +60,6 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-
         <Style TargetType="Grid">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Page.Loaded">
@@ -36,7 +79,6 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -62,22 +104,49 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.3"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                     <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="UserControl" x:Key="DescriptionBarStyle">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
+    <Grid x:Name="MainGrid" Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}" MouseMove="MainGrid_MouseMove">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                <i:InvokeCommandAction Command="{Binding CloseShortcutPopupCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Popup x:Name="ShortcutPopup" IsOpen="{Binding PopupShortcutIsOpen}" StaysOpen="True" AllowsTransparency="True" Placement="RelativePoint"  VerticalOffset="0" HorizontalOffset="0" Width="60" Height="60">
+            <Border Width="50" Opacity="0.5">
+                <Image Source="{Binding MouseCapturedSkill.ImagePath}"/>
+            </Border>
+        </Popup>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.025*"/>
@@ -128,38 +197,45 @@
                     <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
+                <Border Grid.ColumnSpan="4">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Attack" VerticalAlignment="Center" TextAlignment="Center">
+                    </TextBlock>
+                </Border>
                 <TextBlock Text="Health" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="1"/>
-                <TextBlock Text="100" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Health}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="1" Grid.Column="2"/>
 
                 <TextBlock Text="Mana" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="1"/>
-                <TextBlock Text="100" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="2" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Mana}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="2" Grid.Column="2"/>
 
                 <TextBlock Text="Energy" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="3" Grid.Column="1"/>
-                <TextBlock Text="100" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="3" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Energy}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="3" Grid.Column="2"/>
 
                 <TextBlock Text="Health regen." VerticalAlignment="Center" TextAlignment="Left" Grid.Row="4" Grid.Column="1"/>
-                <TextBlock Text="1 hp/s." VerticalAlignment="Center" TextAlignment="Right" Grid.Row="4" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.HealthRegen, StringFormat={}{0} hp/s.}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="4" Grid.Column="2"/>
 
                 <TextBlock Text="Mana regen." VerticalAlignment="Center" TextAlignment="Left" Grid.Row="5" Grid.Column="1"/>
-                <TextBlock Text="1 hp/s." VerticalAlignment="Center" TextAlignment="Right" Grid.Row="5" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.HealthRegen, StringFormat={}{0} mp/s.}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="5" Grid.Column="2"/>
 
-                <TextBlock Text="Eneryg regen." VerticalAlignment="Center" TextAlignment="Left" Grid.Row="6" Grid.Column="1"/>
-                <TextBlock Text="1 hp/s." VerticalAlignment="Center" TextAlignment="Right" Grid.Row="6" Grid.Column="2"/>
+                <TextBlock Text="Energy regen." VerticalAlignment="Center" TextAlignment="Left" Grid.Row="6" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.HealthRegen, StringFormat={}{0} ep/s.}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="6" Grid.Column="2"/>
 
                 <TextBlock Text="Stamina" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="7" Grid.Column="1"/>
-                <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="7" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Stamina}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="7" Grid.Column="2"/>
 
                 <TextBlock Text="Strength" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="8" Grid.Column="1"/>
-                <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="8" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Strength}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="8" Grid.Column="2"/>
 
                 <TextBlock Text="Endurance" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="9" Grid.Column="1"/>
-                <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="9" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Endurance}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="9" Grid.Column="2"/>
 
                 <TextBlock Text="Intellect" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="10" Grid.Column="1"/>
-                <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="10" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Intellect}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="10" Grid.Column="2"/>
 
                 <TextBlock Text="Agility" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="11" Grid.Column="1"/>
-                <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="11" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.Agility}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="11" Grid.Column="2"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="3">
@@ -196,15 +272,12 @@
                     </TextBlock>
                 </Border>
                 <TextBlock Text="Attack power" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="1"/>
-                <TextBlock Text="10" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock Text="{Binding Attributes.AttackPower}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="1" Grid.Column="2"/>
 
-                <TextBlock Text="Attack speed" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="1"/>
-                <TextBlock Text="1/s." VerticalAlignment="Center" TextAlignment="Right" Grid.Row="2" Grid.Column="2"/>
-
-                <TextBlock Text="Crit. hit. %" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="3" Grid.Column="1"/>
-                <TextBlock Text="10 %" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="3" Grid.Column="2"/>
+                <TextBlock Text="Crit. hit chance" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.CriticalHitChance, StringFormat={}{0} %}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="2" Grid.Column="2"/>
                 
-                <Border Grid.ColumnSpan="4" Grid.Row="4">
+                <Border Grid.ColumnSpan="4" Grid.Row="3">
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
@@ -212,81 +285,26 @@
                     </TextBlock>
                 </Border>
 
-                <TextBlock Text="Armor" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="5" Grid.Column="1"/>
-                <TextBlock Text="10" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="5" Grid.Column="2"/>
+                <TextBlock Text="Armor" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="4" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.Armor}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="4" Grid.Column="2"/>
 
-                <TextBlock Text="Dodge %" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="6" Grid.Column="1"/>
-                <TextBlock Text="10 %" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="6" Grid.Column="2"/>
+                <TextBlock Text="Dodge chance" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="5" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.DodgeChance, StringFormat={}{0} %}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="5" Grid.Column="2"/>
 
-                <TextBlock Text="Block %" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="7" Grid.Column="1"/>
-                <TextBlock Text="10 %" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="7" Grid.Column="2"/>
+                <TextBlock Text="Block chance" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="6" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.BlockChance, StringFormat={}{0} %}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="6" Grid.Column="2"/>
 
-                <TextBlock Text="Parry %" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="8" Grid.Column="1"/>
-                <TextBlock Text="10 %" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="8" Grid.Column="2"/>
+                <TextBlock Text="Parry chance" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="7" Grid.Column="1"/>
+                <TextBlock Text="{Binding Attributes.ParryChance, StringFormat={}{0} %}" VerticalAlignment="Center" TextAlignment="Right" Grid.Row="7" Grid.Column="2"/>
 
             </Grid>
+            <luc:SkillDescriptionBar Style="{StaticResource DescriptionBarStyle}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Visibility="{Binding DescriptionBarVisibility}"/>
 
-            <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.725*"/>
-                    <ColumnDefinition Width="0.075*"/>
-                </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="5" Grid.RowSpan="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*"/>
-                    <RowDefinition Height="0.4*"/>
-                    <RowDefinition Height="0.4*"/>
-                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.09*"/>
+                    <RowDefinition Height="0.91*"/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="15">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"/>
-                    </Border.Background>
-                </Border>
-                <Image Grid.Row="1" Grid.Column="1" Source="/Data/Images/skills/mage/relButton/1.jpg"></Image>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="Lvl. 1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Grid Grid.Row="1" Grid.Column="3" Grid.RowSpan="2">
-                    <Grid.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"/>
-                    </Grid.Background>
-                    <TextBlock Text="Here is skill description. Here is skill description. Here is skill description. " TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,5,15,5"/>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="1" Grid.Column="5" Grid.RowSpan="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.08*"/>
-                    <RowDefinition Height="0.02*"/>
-                    <RowDefinition Height="0.11*"/>
-                    <RowDefinition Height="0.02*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                    <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                </Grid.ColumnDefinitions>
                 <Border Grid.RowSpan="22" Grid.ColumnSpan="5" CornerRadius="15">
                     <Border.Background>
                         <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
@@ -299,36 +317,267 @@
                     <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
-                <Image Source="/Data/Images/skills/Mage/relButton/1.jpg" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/2.jpg" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/3.jpg" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/4.jpg" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/5.jpg" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/1.jpg" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/2.jpg" Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/3.jpg" Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Data/Images/skills/Mage/relButton/4.jpg" Grid.Row="18" Grid.Column="1" HorizontalAlignment="Left"/>
-                <Image Source="/Views/Scenes/Images/VisualElements/NameInputBar.png" Grid.Row="20" Grid.Column="1" Grid.ColumnSpan="3" Stretch="Fill"/>
-
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="10" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="12" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="14" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="16" VerticalAlignment="Center"/>
-                <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="18" VerticalAlignment="Center"/>
-
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="8" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="10" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="12" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="14" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="16" VerticalAlignment="Center"/>
-                <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="18" VerticalAlignment="Center"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*"/>
+                        <ColumnDefinition Width="0.17*"/>
+                        <ColumnDefinition Width="0.78*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="SkillViewShortcutsListBox" ItemsSource="{Binding AvailableSkills}" Grid.Column="1" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                             ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+                             SelectedItem="{Binding SelectedSkill}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=AttributesControlUserControl, Path=DataContext.SelectItemFromSkillViewListCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListBox.Background>
+                            <SolidColorBrush Color="Transparent"/>
+                        </ListBox.Background>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <Grid>
+                                        <Image Source="{Binding ImagePath}" Margin="5" Stretch="Uniform" Panel.ZIndex="1" Width="50" Height="45"/>
+                                        <Border BorderBrush="Black" BorderThickness="1" Width="51" Height="46">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="5" ShadowDepth="3" Direction="310"/>
+                                            </Border.Effect>
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox ItemsSource="{Binding AvailableSkills}" Grid.Column="2" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+                        <ListBox.Background>
+                            <SolidColorBrush Color="Transparent"/>
+                        </ListBox.Background>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <TextBlock Text="{Binding Skill.SkillName}" Foreground="White" Margin="15,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Skill.SkillLevel, StringFormat={}Lvl.{0}}" Foreground="White" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.6*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="1" Panel.ZIndex="1">
+                    <TextBlock Text="Shortcuts"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <Grid Grid.Row="1">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding CancelItemSelectionFromSkillViewListCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition />
+                        <RowDefinition Height="0.2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Data/Images/textures/SkillsBarVar2.png"/>
+                    </Grid.Background>
+                    <Grid Grid.Column="1" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="0"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[0].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="1"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[1].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="3" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="2"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[2].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="4" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="3"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[3].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="5" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="4"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[4].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="6" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="5"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[5].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="7" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="6"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[6].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="8" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="7"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[7].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="9" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="8"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[8].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="10" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding SetupCapturedSkillToShortcutCommand}" CommandParameter="9"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[9].ImagePath}"/>
+                            </Button.Background>
+                        </Button>
+                        <Border BorderBrush="Transparent">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

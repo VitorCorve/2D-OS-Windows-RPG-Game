@@ -4,6 +4,7 @@ using GameEngine.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace GameOfFrameworks.Models.UISkillsCollection.Player
 {
@@ -19,9 +20,20 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             PlayerSpecialization = playerModel.Specialization;
             FillDefaultCollection();
         }
-        public List<ISkillView> Build()
+        public List<ISkillView> BuildList()
         {
             var skillList = new List<ISkillView>();
+            foreach (var skillFromPlayerSkillList in PlayerSkillList)
+            {
+                foreach (var skillFromCollection in SkillCollection)
+                    if (skillFromPlayerSkillList.GetType() == skillFromCollection.Skill.GetType())
+                        skillList.Add(skillFromCollection);
+            }
+            return skillList;
+        }
+        public ObservableCollection<ISkillView> BuildObservableCollection()
+        {
+            var skillList = new ObservableCollection<ISkillView>();
             foreach (var skillFromPlayerSkillList in PlayerSkillList)
             {
                 foreach (var skillFromCollection in SkillCollection)

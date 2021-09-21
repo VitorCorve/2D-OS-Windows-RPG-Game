@@ -1,7 +1,10 @@
-﻿using GameEngine.Equipment;
+﻿using GameEngine.CombatEngine;
+using GameEngine.Equipment;
+using GameEngine.EquipmentManagement;
 using GameEngine.Inventory;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Equipment;
+using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
@@ -50,11 +53,11 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
             PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
-            /*            InventoryModel = new PlayerInventoryItemsList(0, 0, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1, 2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1);
-                        EquipmentModel = new WearedEquipment();*/
+            InventoryModel = new PlayerInventoryItemsList(0, 0, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1, 2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1);
+            EquipmentModel = new WearedEquipment();
 
-            InventoryModel = new PlayerInventoryItemsList(ArmoryTemporaryData.SaveData.ItemsInInventory.ConvertToItemsEntityList());
-            EquipmentModel = new WearedEquipment(ArmoryTemporaryData.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());
+/*            InventoryModel = new PlayerInventoryItemsList(ArmoryTemporaryData.SaveData.ItemsInInventory.ConvertToItemsEntityList());
+            EquipmentModel = new WearedEquipment(ArmoryTemporaryData.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());*/
 
             InventoryView = new InventoryViewList();
             EquipmentView = new WearedViewList();
@@ -74,6 +77,11 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             ShowInventoryItemDeletingDialogCommand = new ShowInventoryItemDeletingDialogCommand(this);
             HideInventoryItemDeletingDialogUserControl = new HideInventoryItemDeletingDialogUserControl(this);
             DeleteInventoryItemCommand = new DeleteInventoryItemCommand(this);
+        }
+        public void SaveInventoryChanges()
+        {
+            ArmoryTemporaryData.PlayerEquipment = EquipmentModel;
+            ArmoryTemporaryData.PlayerInventory = InventoryModel;
         }
     }
 }

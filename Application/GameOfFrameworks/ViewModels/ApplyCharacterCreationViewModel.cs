@@ -84,7 +84,7 @@ namespace GameOfFrameworks.ViewModels
         private void InitializeSkills()
         {
             var skillViewBuilder = new SkillViewBuilder(PlayerModel);
-            SkillViewList = skillViewBuilder.Build();
+            SkillViewList = skillViewBuilder.BuildList();
         }
         private void InitializeSkillDataView()
         {

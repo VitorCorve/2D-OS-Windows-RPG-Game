@@ -87,6 +87,7 @@
     <None Remove="Data\Images\skills\warrior\5.jpg" />
     <None Remove="Data\Images\source\coolDownBarBG.png" />
     <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
+    <None Remove="Data\Images\source\SkillShortcutTemplate.png" />
     <None Remove="Data\Images\system\combatReward.png" />
     <None Remove="Data\Images\textures\combatTextBar.png" />
     <None Remove="Data\Images\textures\combatTextBarVar6.png" />
@@ -325,6 +326,7 @@
     <Resource Include="Data\Images\source\coolDownsTextSourceFormVar3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\source\SkillShortcutTemplate.png" />
     <Resource Include="Data\Images\system\combatReward.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -414,7 +416,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

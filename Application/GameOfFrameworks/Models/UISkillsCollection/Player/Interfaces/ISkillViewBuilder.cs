@@ -1,6 +1,7 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
 using GameEngine.Player;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
 {
@@ -9,6 +10,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
         List<ISkillView> SkillCollection { get; }
         List<ISkill> PlayerSkillList { get; }
         SPECIALIZATION PlayerSpecialization { get; }
-        List<ISkillView> Build();
+        List<ISkillView> BuildList();
+        ObservableCollection<ISkillView> BuildObservableCollection();
     }
 }

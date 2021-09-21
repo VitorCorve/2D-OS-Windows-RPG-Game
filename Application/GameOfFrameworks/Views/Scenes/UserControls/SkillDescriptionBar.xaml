@@ -3,23 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:services="clr-namespace:GameOfFrameworks.Models.Services"
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:armoryusercontrolsviewmodels="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels" d:DataContext="{d:DesignInstance Type=armoryusercontrolsviewmodels:AttributesControlViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="500">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
-
         </Style>
+        <services:EnumToStringConverter x:Key="EnumConverter"/>
     </UserControl.Resources>
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}" MinHeight="150" MaxHeight="150">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.35*"/>
             <RowDefinition Height="0.65*"/>
         </Grid.RowDefinitions>
+        <Border Grid.RowSpan="12" CornerRadius="8">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.3"/>
+            </Border.Background>
+        </Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
@@ -29,10 +32,10 @@
                 <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.8*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/Data/Images/skills/mage/relButton/1.jpg" Grid.Row="1" Stretch="Uniform" Margin="7,0,0,0"/>
+            <Image x:Name="SkillImage" Source="{Binding SelectedSkill.ImagePath}" Grid.Row="1" Stretch="Uniform" Margin="7,0,0,0"/>
             <StackPanel Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="Fireball" FontSize="14" Margin="5,0,0,3"/>
-                <TextBlock Text="Lvl.1" Margin="5,0,0,0"/>
+                <TextBlock x:Name="SkillName" Text="{Binding SelectedSkill.Skill.SkillName}" FontSize="14" Margin="5,0,0,3" Foreground="#FF218CBD"/>
+                <TextBlock x:Name="SkillLevel" Text="{Binding SelectedSkill.Skill.SkillLevel, StringFormat={}Lvl.{0}}" Margin="5,0,0,0"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -46,7 +49,15 @@
                 <RowDefinition Height="0.7*"/>
                 <RowDefinition Height="0.15*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="1Description 2Description 3Description 4Description 5Description 6Description 7Description 8Description 9Description 10Description 11Description 12Description 13Description 14Description 15Description 16Description" TextWrapping="WrapWithOverflow"/>
+            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <TextBlock x:Name="SkillDescription" Text="{Binding SelectedSkill.Description}" TextWrapping="WrapWithOverflow"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding SelectedSkill.Skill.AmountOfValue, StringFormat={}Power: {0}}" TextWrapping="WrapWithOverflow" Margin="0,3,3,3" Foreground="#FF218CBD"/>
+                    <TextBlock Text="{Binding SelectedSkill.Skill.CoolDownDuration, StringFormat={}Cooldown: {0} sec.}" TextWrapping="WrapWithOverflow" Margin="3" Foreground="#FF218CBD"/>
+                    <TextBlock Text="{Binding SelectedSkill.Skill.Cost, StringFormat={}Cost: {0}}" TextWrapping="WrapWithOverflow" Margin="3" Foreground="#FF218CBD"/>
+                    <TextBlock Text="{Binding SelectedSkill.Skill.ResourceType.Name, StringFormat={}{0}}" TextWrapping="WrapWithOverflow" Margin="0,3,3,3" Foreground="#FF218CBD"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

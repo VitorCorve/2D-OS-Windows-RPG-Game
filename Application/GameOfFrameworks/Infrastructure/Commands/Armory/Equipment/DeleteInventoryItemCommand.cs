@@ -16,6 +16,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
             var itemToDelete = (EquipmentUserInterfaceViewTemplate)parameter;
             ViewModel.EquipmentHandler.DeleteInventoryItem(itemToDelete);
             ViewModel.InventoryItemDeletingDialogUserControl = System.Windows.Visibility.Hidden;
+            ViewModel.SaveInventoryChanges();
         }
     }
 }
