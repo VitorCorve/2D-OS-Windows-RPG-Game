@@ -4,9 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels"
+             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:LevelUpViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
+        <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter/>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" From="1" To="0.7" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="IsSelected" Value="True"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -17,7 +54,23 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-
+        <Style TargetType="UserControl" x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="Grid">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Page.Loaded">
@@ -80,17 +133,19 @@
     </UserControl.Resources>
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.13*"/>
+            <ColumnDefinition Width="0.01*"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.13*"/>
+            <ColumnDefinition Width="0.03*"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.13*"/>
+            <ColumnDefinition Width="0.53*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.08*"/>
             <RowDefinition Height="0.87*"/>
             <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.01*"/>
         </Grid.RowDefinitions>
+        <uc:SkillLevelUpDescriptionBar Style="{StaticResource UserControlTemplate}" Grid.Column="4" Grid.Row="1" Visibility="{Binding SkillDescriptionBarVisibility}" Margin="0,0,20,0" MaxHeight="300"/>
         <Border Grid.Column="1" Margin="2,7,2,0" Panel.ZIndex="1">
             <Border.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
@@ -98,10 +153,12 @@
             <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
         </Border>
-        <Border CornerRadius="15" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Margin="0,7">
-            <Border.Background>
-                <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
-            </Border.Background>
+        <Border Grid.Row="0" Grid.Column="1" Margin="15,15,15,15" Grid.RowSpan="3" Opacity="0.8">
+            <Rectangle Margin="5,5,5,5" Fill="Black">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="10" Direction="310"/>
+                </Rectangle.Effect>
+            </Rectangle>
         </Border>
         <Border Grid.Column="3" Margin="2,7,2,0" Panel.ZIndex="1">
             <Border.Background>
@@ -109,11 +166,6 @@
             </Border.Background>
             <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
-        </Border>
-        <Border CornerRadius="15" Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" Margin="0,7">
-            <Border.Background>
-                <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
-            </Border.Background>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -134,115 +186,79 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Stamina" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
-            <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="0" Grid.Column="2"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="0" Grid.Column="3" Margin="0,20,0,20"/>
+            <TextBlock Text="{Binding Attributes.Stamina}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="0" Grid.Column="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="0" Grid.Column="3" Margin="0,10,0,10"/>
 
             <TextBlock Text="Strength" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-            <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="2"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="1" Grid.Column="3" Margin="0,20,0,20"/>
-            
+            <TextBlock Text="{Binding Attributes.Strength}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="1" Grid.Column="3" Margin="0,10,0,10"/>
+
             <TextBlock Text="Endurance" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="2"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="2" Grid.Column="3" Margin="0,20,0,20"/>
-            
+            <TextBlock Text="{Binding Attributes.Endurance}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="2" Grid.Column="3" Margin="0,10,0,10"/>
+
             <TextBlock Text="Intellect" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="3" Grid.Column="1"/>
-            <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="3" Grid.Column="2"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="3" Grid.Column="3" Margin="0,20,0,20"/>
+            <TextBlock Text="{Binding Attributes.Intellect}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="3" Grid.Column="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="3" Grid.Column="3" Margin="0,10,0,10"/>
 
             <TextBlock Text="Agility" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="4" Grid.Column="1"/>
-            <TextBlock Text="1" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="4" Grid.Column="2"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="4" Grid.Column="3" Margin="0,20,0,20"/>
+            <TextBlock Text="{Binding Attributes.Agility}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="4" Grid.Column="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="4" Grid.Column="3" Margin="0,10,0,10"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Margin="0,5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.02*"/>
-
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.15*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.15*"/>
-                <ColumnDefinition Width="0.15*"/>
-                <ColumnDefinition Width="0.2*"/>
-                <ColumnDefinition Width="0.1*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="/Data/Images/skills/Mage/relButton/1.jpg" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/2.jpg" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/3.jpg" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/4.jpg" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/5.jpg" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/1.jpg" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left"/>
-            <Image Source="/Data/Images/skills/Mage/relButton/2.jpg" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left"/>
-
-
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" Margin="3,0,0,0"/>
-            <TextBlock Text="Skill name" Grid.Column="2" Grid.Row="12" VerticalAlignment="Center" Margin="3,0,0,0"/>
-
-
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="10" VerticalAlignment="Center"/>
-            <TextBlock Text="Lvl.1" Grid.Column="3" Grid.Row="12" VerticalAlignment="Center"/>
-
-
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="0" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="2" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="4" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="6" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="8" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="10" Grid.Column="4" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Up" Grid.Row="12" Grid.Column="4" Margin="0,6,0,6"/>
-
-
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="0" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="2" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="4" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="6" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="8" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="10" Grid.Column="5" Margin="0,6,0,6"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Learn" Grid.Row="12" Grid.Column="5" Margin="0,6,0,6"/>
-        </Grid>
-        <Border Margin="0,0,0,14" Grid.Row="5" Grid.Column="1">
+        <Border Grid.Row="2" Grid.Column="1">
             <Border.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
             </Border.Background>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available attribute points:"/>
-                <TextBlock Text="10" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding AvailableAttributesPoints}" Margin="10,0,0,0"/>
             </StackPanel>
         </Border>
-        <Border Margin="0,0,0,14" Grid.Row="13" Grid.Column="3">
+        <Border  Grid.Row="2" Grid.Column="3" Panel.ZIndex="1">
             <Border.Background>
                 <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
             </Border.Background>
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available skill points:"/>
-                <TextBlock Text="10" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding AvailableSkillPoints}" Margin="10,0,0,0"/>
             </StackPanel>
         </Border>
+        <Border Grid.Row="0" Grid.Column="3" Margin="15,15,15,15" Grid.RowSpan="3" Opacity="0.8">
+            <Rectangle Margin="5,5,5,5" Fill="Black">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="10" Direction="310"/>
+                </Rectangle.Effect>
+            </Rectangle>
+        </Border>
+        <ListBox Margin="0,10,0,0" Grid.Row="1" Grid.Column="3" Background="Transparent"
+                 ItemsSource="{Binding AvailableSkills}" 
+                 BorderThickness="0" 
+                 ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+                 SelectedIndex="{Binding SkillSelectionIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="50" Margin="0,5,0,5" HorizontalAlignment="Center">
+                        <Grid>
+                            <Image Source="{Binding ImagePath}" Width="50" Panel.ZIndex="1"/>
+                            <Border BorderThickness="2" Background="Black" BorderBrush="Black">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="3" ShadowDepth="3" Direction="310"/>
+                                </Border.Effect>
+                            </Border>
+                        </Grid>
+                        <StackPanel Margin="5,0,0,0" MaxWidth="250" MinWidth="200" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Skill.SkillName}" Margin="1" Foreground="White" FontFamily="Franklin Gothic Book" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Skill.SkillLevel, StringFormat={}Level: {0}}" Margin="1" Foreground="White" FontFamily="Franklin Gothic Book" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Skill.AvailableAtLevel, StringFormat='{}Available at level: {0}'}" Margin="1" Foreground="White" FontFamily="Franklin Gothic Book" FontSize="14" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource ButtonTemplate}" Content="Up" MaxWidth="130" MinWidth="85" Height="40">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

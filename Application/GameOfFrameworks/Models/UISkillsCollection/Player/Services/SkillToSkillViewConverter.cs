@@ -8,29 +8,11 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Services
 {
     public class SkillToSkillViewConverter : ISkillToSkillViewConverter
     {
+        private List<ISkillView> SkillList;
         private ISkillViewListBuilder SkillBuilder;
-        private readonly SPECIALIZATION PlayerSpecialization;
-        public SkillToSkillViewConverter(SPECIALIZATION specialization) => PlayerSpecialization = specialization;
-        public ISkillView Convert(ISkill skill)
+        public SkillToSkillViewConverter(SPECIALIZATION specialization)
         {
-            switch (PlayerSpecialization)
-            {
-                case SPECIALIZATION.Rogue:
-                    SkillBuilder = new RogueSkillViewListBuilder();
-                    break;
-                case SPECIALIZATION.Mage:
-                    SkillBuilder = new MageSkillViewListBuilder();
-                    break;
-                default:
-                    SkillBuilder = new WarriorSkillViewListBuilder();
-                    break;
-
-            }
-            return FindSkillViewTemplate(skill);
-        }
-        public List<ISkillView> ConvertRangeToList(List<ISkill> skillList)
-        {
-            switch (PlayerSpecialization)
+            switch (specialization)
             {
                 case SPECIALIZATION.Rogue:
                     SkillBuilder = new RogueSkillViewListBuilder();
@@ -42,33 +24,20 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Services
                     SkillBuilder = new WarriorSkillViewListBuilder();
                     break;
             }
-            return new List<ISkillView>(FindRange(skillList));
+            SkillList = SkillBuilder.Get();
         }
-        public ObservableCollection<ISkillView> ConvertRangeToObservableCollection(List<ISkill> skillList)
-        {
-            switch (PlayerSpecialization)
-            {
-                case SPECIALIZATION.Rogue:
-                    SkillBuilder = new RogueSkillViewListBuilder();
-                    break;
-                case SPECIALIZATION.Mage:
-                    SkillBuilder = new MageSkillViewListBuilder();
-                    break;
-                default:
-                    SkillBuilder = new WarriorSkillViewListBuilder();
-                    break;
-            }
-            return new ObservableCollection<ISkillView>(FindRange(skillList));
- 
-        }
+        public ISkillView Convert(ISkill skill) => FindSkillViewTemplate(skill);
+        public List<ISkillView> ConvertRangeToList(List<ISkill> skillList) => new List<ISkillView>(FindRange(skillList));
+        public ObservableCollection<ISkillView> ConvertRangeToObservableCollection(List<ISkill> skillList) => new ObservableCollection<ISkillView>(FindRange(skillList));
         private ISkillView FindSkillViewTemplate(ISkill skill)
         {
-            var skillList = SkillBuilder.Get();
-            foreach (var item in skillList)
+            foreach (var item in SkillList)
             {
                 if (item.Skill.SkillName == skill.SkillName)
+                {
                     item.Skill.SkillLevel = skill.SkillLevel;
-                return item;
+                    return item;
+                }
             }
             return new SkillView();
         }

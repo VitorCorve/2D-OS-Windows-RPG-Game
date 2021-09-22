@@ -49,7 +49,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
                 item.Skill.SkillLevel = 1;
             }
             Shortcuts = new ShortcutsListModel();
-            Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.SaveData.Skills.Skills));
+            Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.SaveData.PlayerSkills.Skills));
 
             UpdateAttributesCommand = new UpdateAttributesCommand(this);
             SelectItemFromSkillViewListCommand = new SelectItemFromSkillViewListCommand(this);

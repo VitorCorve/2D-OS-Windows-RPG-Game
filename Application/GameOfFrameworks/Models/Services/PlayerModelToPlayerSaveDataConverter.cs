@@ -11,7 +11,7 @@ namespace GameOfFrameworks.Models.Services
             playerSaveData.Name = playerModelData.Name;
             playerSaveData.Specialization = playerModelData.Specialization;
 
-            if (playerSkillList != null) playerSaveData.Skills = playerSkillList;
+            if (playerSkillList != null) playerSaveData.PlayerSkills = playerSkillList;
  
             playerSaveData.Level = playerModelData.Level;
             playerSaveData.AvailableSkillPoints = playerModelData.PlayerConsumables.SkillPointsValue.Value;

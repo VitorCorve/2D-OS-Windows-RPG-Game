@@ -11,7 +11,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
     public class SkillViewBuilder : ISkillViewBuilder
     {
         public List<ISkillView> SkillCollection { get; private set; } = new ();
-        public List<ISkill> PlayerSkillList { get; private set; }
+        public List<ISkill> PlayerSkillList { get; set; }
         public SPECIALIZATION PlayerSpecialization { get; private set; }
         public SkillViewBuilder(PlayerModelData playerModel)
         {
@@ -38,7 +38,10 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             {
                 foreach (var skillFromCollection in SkillCollection)
                     if (skillFromPlayerSkillList.GetType() == skillFromCollection.Skill.GetType())
+                    {
+                        skillFromCollection.Skill.SkillLevel = skillFromPlayerSkillList.SkillLevel;
                         skillList.Add(skillFromCollection);
+                    }
             }
             return skillList;
         }
@@ -71,6 +74,19 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         {
             var mageSkilllViewListBuilder = new MageSkillViewListBuilder();
             SkillCollection = mageSkilllViewListBuilder.Get();
+        }
+        public void ValidateAvailableSkillList()
+        {
+            if (PlayerSkillList.Count == 0) return;
+
+            foreach (var skill in PlayerSkillList)
+            {
+                foreach (var availableSkill in SkillCollection)
+                {
+                    if (availableSkill.Skill.SkillName == skill.SkillName)
+                        availableSkill.Skill.SkillLevel = skill.SkillLevel;
+                }
+            }
         }
     }
 }

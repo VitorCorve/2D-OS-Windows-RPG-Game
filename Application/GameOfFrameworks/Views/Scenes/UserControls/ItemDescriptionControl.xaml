@@ -11,20 +11,18 @@
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FF00B9FF"/>
-            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="TextBlockAttributes">
             <Setter Property="Foreground" Value="white"/>
-            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalAlignment" Value="left"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="TextBlockAttributesValue">
             <Setter Property="Foreground" Value="Lime"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
         
@@ -139,8 +137,8 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Key, StringFormat={}{0}: }" Grid.Column="0" Style="{StaticResource TextBlockAttributes}"/>
-                            <TextBlock Text="{Binding Value}" Grid.Column="1" Style="{StaticResource TextBlockAttributesValue}"/>
+                            <TextBlock Text="{Binding Key, StringFormat={}{0}: }" Grid.Column="0" Style="{StaticResource TextBlockAttributes}" FontSize="14"/>
+                            <TextBlock Text="{Binding Value}" Grid.Column="1" Style="{StaticResource TextBlockAttributesValue}" FontSize="14"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

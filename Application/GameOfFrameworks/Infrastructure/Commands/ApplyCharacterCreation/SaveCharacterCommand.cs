@@ -15,7 +15,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
         public PlayerSaveData DataToSave { get; private set; }
         public SaveGameService SaveService { get; private set; }
         public PlayerSkillList SkillList { get; private set; } 
-        public GetAvailablePlayerSkills AvailableSkillListManager { get; set; }
+        public AvailableSkillListBuilder AvailableSkillListManager { get; set; }
         public PlayerModelToPlayerSaveDataConverter DataConverter { get; set; }
         public SaveCharacterCommand(PlayerModelData playerModelData, ApplyCharacterCreationViewModel viewModel)
         {
@@ -38,7 +38,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
             DataToSave = new PlayerSaveData();
             SaveService = new SaveGameService();
             SkillList = new PlayerSkillList();
-            AvailableSkillListManager = new GetAvailablePlayerSkills(PlayerModel);
+            AvailableSkillListManager = new AvailableSkillListBuilder(PlayerModel);
             DataConverter = new PlayerModelToPlayerSaveDataConverter();
         }
         private void SetAvailableSkillList() => SkillList.Skills = AvailableSkillListManager.SkillList;
