@@ -1,10 +1,7 @@
-﻿using GameEngine.CombatEngine;
-using GameEngine.Equipment;
-using GameEngine.EquipmentManagement;
+﻿using GameEngine.Equipment;
 using GameEngine.Inventory;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Base;
-using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.LoadGame;
 using GameOfFrameworks.Models.Temporary;
 
@@ -23,6 +20,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
             ArmoryTemporaryData.CharacterEntity = Model.CharacterEntity;
             ArmoryTemporaryData.PlayerModel = new PlayerModelData(Model.SaveData);
             ArmoryTemporaryData.SaveData = Model.SaveData;
+            ArmoryTemporaryData.PlayerAttributes = Model.SaveData.PlayerAttributes;
             ArmoryTemporaryData.PlayerEquipment = wearedEquipment;
             ArmoryTemporaryData.PlayerInventory = playerInventoryItemsList;
         }

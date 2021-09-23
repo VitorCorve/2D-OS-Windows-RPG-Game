@@ -82,6 +82,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             ArmoryTemporaryData.PlayerEquipment = EquipmentModel;
             ArmoryTemporaryData.PlayerInventory = InventoryModel;
+            ArmoryTemporaryData.IsPlayerAttributesUpdated = true;
+            ArmoryTemporaryData.IsPlayerEntityChanged = true;
         }
     }
 }

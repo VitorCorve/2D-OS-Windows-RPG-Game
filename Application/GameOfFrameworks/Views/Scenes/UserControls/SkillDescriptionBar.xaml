@@ -52,10 +52,11 @@
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <TextBlock x:Name="SkillDescription" Text="{Binding SelectedSkill.Description}" TextWrapping="WrapWithOverflow"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding SelectedSkill.Skill.AmountOfValue, StringFormat={}Power: {0}}" TextWrapping="WrapWithOverflow" Margin="0,3,3,3" Foreground="#FF218CBD"/>
+                    <TextBlock Text="{Binding SelectedSkill.Skill.Power, StringFormat={}Power: {0}}" TextWrapping="WrapWithOverflow" Margin="0,3,3,3" Foreground="#FF218CBD"/>
                     <TextBlock Text="{Binding SelectedSkill.Skill.CoolDownDuration, StringFormat={}Cooldown: {0} sec.}" TextWrapping="WrapWithOverflow" Margin="3" Foreground="#FF218CBD"/>
                     <TextBlock Text="{Binding SelectedSkill.Skill.Cost, StringFormat={}Cost: {0}}" TextWrapping="WrapWithOverflow" Margin="3" Foreground="#FF218CBD"/>
                     <TextBlock Text="{Binding SelectedSkill.Skill.ResourceType.Name, StringFormat={}{0}}" TextWrapping="WrapWithOverflow" Margin="0,3,3,3" Foreground="#FF218CBD"/>
+                    <TextBlock Text="{Binding SelectedSkill.Duration}" TextWrapping="WrapWithOverflow" Margin="3" Foreground="#FF218CBD"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

@@ -5,13 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:uc="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels"
              xmlns:luc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Name="AttributesControlUserControl">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="LayoutUpdated">
-            <i:InvokeCommandAction Command="{Binding UpdateAttributesCommand}"/>
+            <i:InvokeCommandAction Command="{Binding UpdateAttributesViewModelCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <UserControl.DataContext>
@@ -201,7 +202,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
-                    <TextBlock Text="Attack" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
                 <TextBlock Text="Health" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="1"/>

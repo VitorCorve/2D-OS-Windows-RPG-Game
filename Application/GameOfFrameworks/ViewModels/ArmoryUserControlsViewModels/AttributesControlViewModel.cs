@@ -1,4 +1,7 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.Armory;
+﻿using GameEngine.CombatEngine;
+using GameEngine.EquipmentManagement;
+using GameEngine.Player;
+using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
 using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.Temporary;
@@ -30,7 +33,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ShortcutsListModel Shortcuts { get => _Shortcuts; set => Set(ref _Shortcuts, value); }
         public bool PopupShortcutIsOpen { get => _PopupShortcutIsOpen; set => Set(ref _PopupShortcutIsOpen, value); }
         public Visibility DescriptionBarVisibility { get => _DescriptionBarVisibility; set => Set(ref _DescriptionBarVisibility, value); }
-        public ICommand UpdateAttributesCommand { get; private set; }
+        public ICommand UpdateAttributesViewModelCommand { get; private set; }
         public ICommand SelectItemFromSkillViewListCommand { get; private set; }
         public ICommand CancelItemSelectionFromSkillViewListCommand { get; private set; }
         public ICommand SetupCapturedSkillToShortcutCommand { get; private set; }
@@ -49,19 +52,33 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
                 item.Skill.SkillLevel = 1;
             }
             Shortcuts = new ShortcutsListModel();
-            Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.SaveData.PlayerSkills.Skills));
 
-            UpdateAttributesCommand = new UpdateAttributesCommand(this);
+            ArmoryTemporaryData.PlayerSkills = new PlayerSkillList();
+            ArmoryTemporaryData.PlayerSkills.Skills = ArmoryTemporaryData.SaveData.PlayerSkills.Skills;
+
+            SetupAttributes();
+
+            Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills));
+
+            UpdateAttributesViewModelCommand = new UpdateAttributesViewModelCommand(this);
             SelectItemFromSkillViewListCommand = new SelectItemFromSkillViewListCommand(this);
             CancelItemSelectionFromSkillViewListCommand = new CancelItemSelectionFromSkillViewListCommand(this);
             SetupCapturedSkillToShortcutCommand = new SetupCapturedSkillToShortcutCommand(this);
             CancelShortcutFocusCommand = new CancelShortcutFocusCommand(this);
             CloseShortcutPopupCommand = new CloseShortcutPopupCommand(this);
+
         }
         private void ValidateSkillDescriptionBar(ISkillView skillView)
         {
             if (skillView?.Skill is null) DescriptionBarVisibility = Visibility.Hidden;
             else DescriptionBarVisibility = Visibility.Visible;
+        }
+        private void SetupAttributes()
+        {
+            var playerEntityConstructor = new PlayerEntityConstructor();
+            var equippmentValues = new EquipmentValue(ArmoryTemporaryData.PlayerEquipment);
+            var playerEntity = playerEntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, ArmoryTemporaryData.SaveData.PlayerAttributes, equippmentValues);
+            Attributes = new AttributesModel(playerEntity, ArmoryTemporaryData.PlayerAttributes, equippmentValues);
         }
     }
 }

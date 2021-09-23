@@ -1,9 +1,11 @@
-﻿using GameEngine.Equipment;
+﻿using GameEngine.CombatEngine;
+using GameEngine.Equipment;
+using GameEngine.EquipmentManagement;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Services.Interfaces;
+using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
-using System.Linq;
 
 namespace GameOfFrameworks.Models.Services
 {
@@ -11,6 +13,7 @@ namespace GameOfFrameworks.Models.Services
     {
         public EquipmentControlViewModel ViewModel { get; private set; }
         public ItemEntityConverter Converter { get; private set; } = new();
+        public PlayerEntityConstructor EntityConstructor { get; } = new();
         public EquipmentManager(EquipmentControlViewModel vm)
         {
             ViewModel = vm;
@@ -32,6 +35,7 @@ namespace GameOfFrameworks.Models.Services
             ViewModel.InventoryModel.ItemsInInventory.Remove(itemEntity);
             WearItemDirectly(viewTemplate);
             ViewModel.EquipmentModel.ItemsList.Add(Converter.ConvertToItemEntity(viewTemplate));
+            UpdatePlayerEntity();
         }
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
@@ -48,6 +52,7 @@ namespace GameOfFrameworks.Models.Services
             ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
             AddItemToInventory(viewTemplate);
             ViewModel.EquipmentView = SortEquipmentByIndex();
+            UpdatePlayerEntity();
         }
         private void InitializeInventoryView()
         {
@@ -105,59 +110,7 @@ namespace GameOfFrameworks.Models.Services
 
             return sortedEquipmentList;
         }
-        public void WearItemDirectly(EquipmentUserInterfaceViewTemplate itemToWear)
-        {
-            switch (itemToWear.EquipmentType)
-            {
-                case EQUIPMENT_TYPE.Helmet:
-                    SetItemToEquipmentSlot(0, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Gloves:
-                    SetItemToEquipmentSlot(1, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.MainWeapon:
-                    SetItemToEquipmentSlot(2, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Shoulder:
-                    SetItemToEquipmentSlot(3, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Bracers:
-                    SetItemToEquipmentSlot(4, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.OffHandWeapon:
-                    SetItemToEquipmentSlot(5, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Necklace:
-                    SetItemToEquipmentSlot(6, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Waist:
-                    SetItemToEquipmentSlot(7, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Artefact:
-                    SetItemToEquipmentSlot(8, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Breastplate:
-                    SetItemToEquipmentSlot(9, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Pants:
-                    SetItemToEquipmentSlot(10, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Ring:
-                    SetItemToEquipmentSlot(11, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Cloak:
-                    SetItemToEquipmentSlot(12, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Boots:
-                    SetItemToEquipmentSlot(13, itemToWear);
-                    return;
-                case EQUIPMENT_TYPE.Earring:
-                    SetItemToEquipmentSlot(14, itemToWear);
-                    return;
-                default:
-                    return;
-            }
-        }
+        public void WearItemDirectly(EquipmentUserInterfaceViewTemplate itemToWear) => SetItemToEquipmentSlot(EquipmentSlotIndexValidator.Validate(itemToWear.EquipmentType), itemToWear);
         private void SetItemToEquipmentSlot(int index, EquipmentUserInterfaceViewTemplate itemToWear)
         {
             if (ViewModel.EquipmentView.EquipmentSlotsList[index].Source != null)
@@ -173,6 +126,7 @@ namespace GameOfFrameworks.Models.Services
                     }
                 }
                 ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
+                UpdatePlayerEntity();
             }
             ViewModel.EquipmentView.EquipmentSlotsList[index] = itemToWear;
             ViewModel.EquipmentView = SortEquipmentByIndex();
@@ -186,6 +140,12 @@ namespace GameOfFrameworks.Models.Services
         {
             ViewModel.InventoryView.InventorySlotsList.Remove(itemToWear);
             ViewModel.InventoryModel.ItemsInInventory.Remove(Converter.ConvertToItemEntity(itemToWear));
+        }
+        private void UpdatePlayerEntity()
+        {
+            var equipment = new EquipmentValue(ViewModel.EquipmentModel);
+            ArmoryTemporaryData.CharacterEntity = EntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, equipment, ArmoryTemporaryData.PlayerAttributes);
+            ArmoryTemporaryData.IsPlayerEntityChanged = true;
         }
     }
 }

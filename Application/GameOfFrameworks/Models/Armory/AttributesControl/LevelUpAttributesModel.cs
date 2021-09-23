@@ -1,4 +1,5 @@
 ﻿using GameEngine.Player.Abstract;
+using GameEngine.Player.Specializatons;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -32,6 +33,39 @@ namespace GameOfFrameworks.Models.Armory.AttributesControl
             Endurance = playerAttributes.Endurance;
             Intellect = playerAttributes.Intellect;
             Agility = playerAttributes.Agility;
+        }
+        public void UpdateAttribute(string attribute)
+        {
+            switch (attribute)
+            {
+                case "Stamina":
+                    Stamina++;
+                    return;
+                case "Strength":
+                    Strength++;
+                    return;
+                case "Endurance":
+                    Endurance++;
+                    return;
+                case "Intellect":
+                    Intellect++;
+                    return;
+                case "Agility":
+                    Agility++;
+                    return;
+            }
+        }
+        public IEntityAttributes ReturnEntityAttributes()
+        {
+            var entityModelTemplate = new EntityModelTemplate();
+
+            entityModelTemplate.Stamina = Stamina;
+            entityModelTemplate.Strength = Strength;
+            entityModelTemplate.Endurance = Endurance;
+            entityModelTemplate.Intellect = Intellect;
+            entityModelTemplate.Agility = Agility;
+
+            return entityModelTemplate;
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.Player;
+using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
 using System;
+using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -16,15 +18,18 @@ namespace GameOfFrameworks.ViewModels
         private PlayerModelData _PlayerModel;
         public PlayerModelData PlayeModel { get => _PlayerModel; set => Set(ref _PlayerModel, value); }
         public PlayerExperienceConverter Converter { get; set; }
+        public ICommand UpdateArmoryViewModelCommand { get; private set; }
         public ArmoryViewModel()
         {
             if (ArmoryTemporaryData.PlayerModel != null) PlayeModel = ArmoryTemporaryData.PlayerModel;
-            else throw new Exception(EmptyDataExp());
+
             if (ArmoryTemporaryData.CharacterEntity != null) CharacterEntity = ArmoryTemporaryData.CharacterEntity;
-            else throw new Exception(EmptyDataExp());
+
             Converter = new PlayerExperienceConverter(PlayeModel);
+
             ProgressBarValue = Converter.Convert();
+
+            UpdateArmoryViewModelCommand = new UpdateArmoryViewModelCommand(this);
         }
-        private string EmptyDataExp() => "Temporary data is empty";
     }
 }

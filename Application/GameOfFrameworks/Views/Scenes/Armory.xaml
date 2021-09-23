@@ -2,14 +2,19 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
       xmlns:usc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Armory">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="LayoutUpdated">
+            <i:InvokeCommandAction Command="{Binding UpdateArmoryViewModelCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Page.DataContext>
         <vm:ArmoryViewModel/>
     </Page.DataContext>
@@ -250,7 +255,7 @@
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Territories" Grid.Row="5" Grid.Column="1"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quests" Grid.Row="6" Grid.Column="1"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Notes" Grid.Row="7" Grid.Column="1"/>
-            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Attributes" Grid.Row="8" Grid.Column="1" Click="AttributesButton_Click"/>
+            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Character" Grid.Row="8" Grid.Column="1" Click="AttributesButton_Click"/>
             <Button x:Name="OptionsButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Options" Grid.Row="9" Grid.Column="1" Click="OptionsButton_Click"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="5">
@@ -281,14 +286,14 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/ButtonTexture.png"/>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayeModel.Name}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayeModel.Level, StringFormat={} Level: {0}}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -339,7 +344,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Column="1" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
                     <Viewbox>
                         <TextBlock Text="{Binding CharacterEntity.HealthPoints.Value, StringFormat={} HP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
@@ -348,7 +353,7 @@
 
                 <Border Grid.Column="3" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
                     <Viewbox>
                         <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value, StringFormat={} MP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
@@ -357,10 +362,10 @@
 
                 <Border Grid.Column="5" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
                     <Viewbox>
-                        <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value, StringFormat={} MP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
+                        <TextBlock Text="{Binding CharacterEntity.EnergyPoints.Value, StringFormat={} EP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
                     </Viewbox>
                 </Border>
             </Grid>
