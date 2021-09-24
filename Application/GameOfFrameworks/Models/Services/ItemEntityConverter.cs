@@ -10,14 +10,7 @@ namespace GameOfFrameworks.Models.Services
         public EquipmentUserInterfaceViewTemplate ConvertToEquipmentUserInterfaceViewTemplate(ItemEntity itemEntity)
         {
             var equipmentUserInterfaceViewTemplate = new EquipmentUserInterfaceViewTemplate();
-            equipmentUserInterfaceViewTemplate.Itemlevel = itemEntity.Attributes.ItemLevel;
-            equipmentUserInterfaceViewTemplate.Source = itemEntity;
-            equipmentUserInterfaceViewTemplate.Attributes = itemEntity.Attributes;
-            equipmentUserInterfaceViewTemplate.ImagePath = itemEntity.Model.ItemAvatarPath;
-            equipmentUserInterfaceViewTemplate.EquipmentType = itemEntity.Model.WearType;
-            equipmentUserInterfaceViewTemplate.ItemName = itemEntity.Model.ItemName;
-            equipmentUserInterfaceViewTemplate.ItemQuality = itemEntity.Model.Quality.ToString();
-            equipmentUserInterfaceViewTemplate.Durability = itemEntity.ItemDurability.Value;
+            equipmentUserInterfaceViewTemplate.Build(itemEntity);
 
             return equipmentUserInterfaceViewTemplate;
         }

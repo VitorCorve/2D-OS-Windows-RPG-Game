@@ -89,6 +89,7 @@
     <None Remove="Data\Images\source\coolDownBarBG.png" />
     <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
     <None Remove="Data\Images\source\LevelUpBackground.png" />
+    <None Remove="Data\Images\source\MerchantInventoryAlternate.png" />
     <None Remove="Data\Images\source\SkillShortcutTemplate.png" />
     <None Remove="Data\Images\source\smallButton.png" />
     <None Remove="Data\Images\system\combatReward.png" />
@@ -115,6 +116,9 @@
     <None Remove="Views\Scenes\background2.jpg" />
     <None Remove="Views\Scenes\combatTextBar.png" />
     <None Remove="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <None Remove="Views\Scenes\Images\Items\Copper.png" />
+    <None Remove="Views\Scenes\Images\Items\Gold.png" />
+    <None Remove="Views\Scenes\Images\Items\Silver.png" />
     <None Remove="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
     <None Remove="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
     <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
@@ -129,6 +133,7 @@
     <None Remove="Views\Scenes\SkillsBarVar2.png" />
     <None Remove="Views\Scenes\titileBar.png" />
     <None Remove="Views\Scenes\titileBarVar3.png" />
+    <None Remove="Views\Scenes\UserControls\Images\merchantInventoryBackground.png" />
     <None Remove="Views\Scenes\UserControls\Images\SkillsBar.png" />
     <None Remove="Views\Scenes\UserControls\inventoryItemframe.png" />
     <None Remove="Views\Scenes\xpBarEmpty.png" />
@@ -331,6 +336,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\source\LevelUpBackground.png" />
+    <Resource Include="Data\Images\source\MerchantInventoryAlternate.png" />
     <Resource Include="Data\Images\source\SkillShortcutTemplate.png" />
     <Resource Include="Data\Images\source\smallButton.png" />
     <Resource Include="Data\Images\system\combatReward.png">
@@ -391,6 +397,9 @@
     </Resource>
     <Resource Include="Views\Scenes\Images\avatarPlug.jpg" />
     <Resource Include="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <Resource Include="Views\Scenes\Images\Items\Copper.png" />
+    <Resource Include="Views\Scenes\Images\Items\Gold.png" />
+    <Resource Include="Views\Scenes\Images\Items\Silver.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -412,6 +421,7 @@
     <Resource Include="Views\Scenes\Images\VisualElements\NameInputBar.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\NewGameBG.jpg" />
     <Resource Include="Views\Scenes\UserControls\Images\inventoryItemframe.png" />
+    <Resource Include="Views\Scenes\UserControls\Images\merchantInventoryBackground.png" />
     <Resource Include="Views\Scenes\UserControls\Images\SkillsBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

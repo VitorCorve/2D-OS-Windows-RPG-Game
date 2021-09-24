@@ -6,6 +6,12 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
 {
     public class EquipmentUserInterfaceViewTemplate : IEquipmentUserInterfaceViewTemplate
     {
+        private string _WearStatus;
+        public string WearColor { get; set; }
+        public string WearStatus { get => _WearStatus; set { _WearStatus = value; ConvertWearColor(value); } }
+        public int CopperPrice { get; set; }
+        public int SilverPrice { get; set; }
+        public int GoldPrice { get; set; }
         public int ItemID { get; set; }
         public int Itemlevel { get; set; }
         public ItemEntity Source { get; set; }
@@ -26,6 +32,14 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             ItemName = itemEntity.Model.ItemName;
             ItemQuality = itemEntity.Model.Quality.ToString();
             Durability = itemEntity.ItemDurability.Value;
+            CopperPrice = itemEntity.Model.Price.CopperValue.Value;
+            SilverPrice = itemEntity.Model.Price.SilverValue.Value;
+            GoldPrice = itemEntity.Model.Price.GoldValue.Value;
+        }
+        private void ConvertWearColor(string wearStatus)
+        {
+            if (wearStatus == "Weared") WearColor = "Lime";
+            else WearColor = "#FF218CBD";
         }
     }
 }

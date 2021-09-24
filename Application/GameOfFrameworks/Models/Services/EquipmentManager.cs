@@ -39,6 +39,7 @@ namespace GameOfFrameworks.Models.Services
         }
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
+            viewTemplate.WearStatus = "Inventory item";
             ViewModel.EquipmentView.EquipmentSlotsList.Remove(viewTemplate);
             var itemEntity = new ItemEntity();
             foreach (var item in ViewModel.EquipmentModel.ItemsList)
@@ -61,8 +62,14 @@ namespace GameOfFrameworks.Models.Services
         }
         private void InitializeEquipmentView()
         {
+            var itemView = new EquipmentUserInterfaceViewTemplate();
             foreach (var item in ViewModel.EquipmentModel.ItemsList)
-                ViewModel.EquipmentView.EquipmentSlotsList.Add(Converter.ConvertToEquipmentUserInterfaceViewTemplate(item));
+            {
+                itemView = Converter.ConvertToEquipmentUserInterfaceViewTemplate(item);
+                itemView.WearStatus = "Weared";
+                ViewModel.EquipmentView.EquipmentSlotsList.Add(itemView);
+            }
+
             ViewModel.EquipmentView = SortEquipmentByIndex();
         }
         public void SelectItemFromEquipment(EQUIPMENT_TYPE wearType)
@@ -128,11 +135,13 @@ namespace GameOfFrameworks.Models.Services
                 ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
                 UpdatePlayerEntity();
             }
+            itemToWear.WearStatus = "Weared";
             ViewModel.EquipmentView.EquipmentSlotsList[index] = itemToWear;
             ViewModel.EquipmentView = SortEquipmentByIndex();
         }
         private void AddItemToInventory(EquipmentUserInterfaceViewTemplate itemToWear)
         {
+            itemToWear.WearStatus = "Inventory item";
             ViewModel.InventoryView.InventorySlotsList.Add(itemToWear);
             ViewModel.InventoryModel.ItemsInInventory.Add(Converter.ConvertToItemEntity(itemToWear));
         }

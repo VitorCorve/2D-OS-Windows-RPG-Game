@@ -65,6 +65,9 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             EquipmentHandler = new EquipmentManager(this);
 
             InitializeCommands();
+
+            ArmoryTemporaryData.PlayerEquipment = EquipmentModel;
+            ArmoryTemporaryData.PlayerInventory = InventoryModel;
         }
         private void InitializeCommands()
         {

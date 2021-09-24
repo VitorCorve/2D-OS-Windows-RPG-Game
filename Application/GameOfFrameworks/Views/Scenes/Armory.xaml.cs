@@ -25,44 +25,30 @@ namespace GameOfFrameworks.Scenes
             InitializeComponent();
         }
 
+        private void EquippmentButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(EquipmentControlElement);
+        private void MerchantButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(MerchantControlElement);
+        private void AttributesButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AttributesControlElement);
+        private void OptionsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(OptionsControlElement);
+        private void LevelUpButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(LevelUpControlElement);
+        public void SetActiveUserControl(UserControl control)
+        {
+            EquipmentControlElement.Visibility = Visibility.Collapsed;
+            MerchantControlElement.Visibility = Visibility.Collapsed;
+            AttributesControlElement.Visibility = Visibility.Collapsed;
+            OptionsControlElement.Visibility = Visibility.Collapsed;
+            LevelUpControlElement.Visibility = Visibility.Collapsed;
+            control.Visibility = Visibility.Visible;
+        }
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
 
         }
-        private void EquippmentButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetActiveUserControl(EquipmentControlElement);
-        }
-
-        public void SetActiveUserControl(UserControl control)
-        {
-            EquipmentControlElement.Visibility = Visibility.Collapsed;
-            AttributesControlElement.Visibility = Visibility.Collapsed;
-            OptionsControlElement.Visibility = Visibility.Collapsed;
-            LevelUpControlElement.Visibility = Visibility.Collapsed;
-            control.Visibility = Visibility.Visible;
-        }
-        private void AttributesButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetActiveUserControl(AttributesControlElement);
-        }
-
-        private void OptionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetActiveUserControl(OptionsControlElement);
-        }
-
         private void HuntButton_Click(object sender, RoutedEventArgs e)
         {
             BattleWindow battleWindow = new BattleWindow();
             NavigationService.Navigate(battleWindow);
-        }
-
-        private void LevelUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetActiveUserControl(LevelUpControlElement);
         }
     }
 }
