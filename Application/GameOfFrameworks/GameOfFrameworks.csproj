@@ -5,8 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.0.2</AssemblyVersion>
+    <FileVersion>1.1.0.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -124,6 +124,8 @@
     <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
     <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
     <None Remove="Views\Scenes\Images\VisualElements\PlayerBar.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <None Remove="Views\Scenes\indicatorBar.png" />
     <None Remove="Views\Scenes\inventoryBackground2.png" />
     <None Remove="Views\Scenes\inventoryItemframe.png" />
@@ -414,6 +416,8 @@
     <Resource Include="Views\Scenes\Images\VisualElements\PlayerBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
+    <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <Resource Include="Views\Scenes\UserControls\Images\inventoryBackground.png" />
     <Resource Include="Views\Scenes\Images\inventoryItemframe.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\ArmoryBG.jpg" />

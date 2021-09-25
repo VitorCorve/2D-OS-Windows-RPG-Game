@@ -4,7 +4,6 @@ using GameEngine.EquipmentManagement;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Services.Interfaces;
 using GameOfFrameworks.Models.Temporary;
-using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 
 namespace GameOfFrameworks.Models.Services
@@ -34,12 +33,11 @@ namespace GameOfFrameworks.Models.Services
             ViewModel.InventoryView.InventorySlotsList.Remove(viewTemplate);
             ViewModel.InventoryModel.ItemsInInventory.Remove(itemEntity);
             WearItemDirectly(viewTemplate);
-            ViewModel.EquipmentModel.ItemsList.Add(Converter.ConvertToItemEntity(viewTemplate));
+            ViewModel.EquipmentModel.Wear(Converter.ConvertToItemEntity(viewTemplate));
             UpdatePlayerEntity();
         }
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
-            viewTemplate.WearStatus = "Inventory item";
             ViewModel.EquipmentView.EquipmentSlotsList.Remove(viewTemplate);
             var itemEntity = new ItemEntity();
             foreach (var item in ViewModel.EquipmentModel.ItemsList)
@@ -66,7 +64,6 @@ namespace GameOfFrameworks.Models.Services
             foreach (var item in ViewModel.EquipmentModel.ItemsList)
             {
                 itemView = Converter.ConvertToEquipmentUserInterfaceViewTemplate(item);
-                itemView.WearStatus = "Weared";
                 ViewModel.EquipmentView.EquipmentSlotsList.Add(itemView);
             }
 
@@ -135,15 +132,13 @@ namespace GameOfFrameworks.Models.Services
                 ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
                 UpdatePlayerEntity();
             }
-            itemToWear.WearStatus = "Weared";
             ViewModel.EquipmentView.EquipmentSlotsList[index] = itemToWear;
             ViewModel.EquipmentView = SortEquipmentByIndex();
         }
         private void AddItemToInventory(EquipmentUserInterfaceViewTemplate itemToWear)
         {
-            itemToWear.WearStatus = "Inventory item";
             ViewModel.InventoryView.InventorySlotsList.Add(itemToWear);
-            ViewModel.InventoryModel.ItemsInInventory.Add(Converter.ConvertToItemEntity(itemToWear));
+            ViewModel.InventoryModel.AddItem(Converter.ConvertToItemEntity(itemToWear));
         }
         public void DeleteInventoryItem(EquipmentUserInterfaceViewTemplate itemToWear)
         {

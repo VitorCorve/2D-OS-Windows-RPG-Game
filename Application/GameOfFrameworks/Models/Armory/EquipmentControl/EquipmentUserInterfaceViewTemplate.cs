@@ -1,14 +1,13 @@
 ﻿using GameEngine.Equipment;
-using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using GameOfFrameworks.Models.Armory.EquipmentControl.Interfaces;
 
-
-namespace GameOfFrameworks.Models.UISkillsCollection.Player
+namespace GameOfFrameworks.Models.Armory.EquipmentControl
 {
     public class EquipmentUserInterfaceViewTemplate : IEquipmentUserInterfaceViewTemplate
     {
-        private string _WearStatus;
+        private WEARED_STATUS _Status;
         public string WearColor { get; set; }
-        public string WearStatus { get => _WearStatus; set { _WearStatus = value; ConvertWearColor(value); } }
+        public WEARED_STATUS Status { get => _Status; set { _Status = value; ConvertWearColor(value); } }
         public int CopperPrice { get; set; }
         public int SilverPrice { get; set; }
         public int GoldPrice { get; set; }
@@ -35,10 +34,11 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             CopperPrice = itemEntity.Model.Price.CopperValue.Value;
             SilverPrice = itemEntity.Model.Price.SilverValue.Value;
             GoldPrice = itemEntity.Model.Price.GoldValue.Value;
+            Status = itemEntity.Model.Status;
         }
-        private void ConvertWearColor(string wearStatus)
+        private void ConvertWearColor(WEARED_STATUS wearStatus)
         {
-            if (wearStatus == "Weared") WearColor = "Lime";
+            if (wearStatus == WEARED_STATUS.Weared) WearColor = "#FF0C894B";
             else WearColor = "#FF218CBD";
         }
     }

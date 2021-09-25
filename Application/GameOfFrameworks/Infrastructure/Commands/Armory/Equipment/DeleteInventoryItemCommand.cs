@@ -1,4 +1,4 @@
-﻿using GameOfFrameworks.Models.UISkillsCollection.Player;
+﻿using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System;
 using System.Windows.Input;

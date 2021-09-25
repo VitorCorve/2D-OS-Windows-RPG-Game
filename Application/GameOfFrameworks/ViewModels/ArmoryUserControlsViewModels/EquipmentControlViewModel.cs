@@ -54,7 +54,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
             InventoryModel = new PlayerInventoryItemsList(0, 0, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1, 2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1);
-            EquipmentModel = new WearedEquipment();
+            EquipmentModel = new WearedEquipment(0, 1, 2);
 
 /*            InventoryModel = new PlayerInventoryItemsList(ArmoryTemporaryData.SaveData.ItemsInInventory.ConvertToItemsEntityList());
             EquipmentModel = new WearedEquipment(ArmoryTemporaryData.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());*/

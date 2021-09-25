@@ -11,6 +11,98 @@
         <vm:MerchantControlViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <Style TargetType="DockPanel" x:Key="ItemToTradeDockpanel">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid" x:Key="ItemToTradeGrid">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.8"
+                                    To="1"
+                                    Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ListBoxItem" x:Key="MechantListBoxItemTemplate">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="ListBoxItemBorder">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF804600"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF0B6068"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:1" From="1" To="0.7" Storyboard.TargetProperty="Opacity" AutoReverse="True" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="IsSelected" Value="True"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBlock" >
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -60,25 +152,23 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.35*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.07*"/>
             <ColumnDefinition Width="1.2*"/>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="0.07*"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="0.35*"/>
         </Grid.ColumnDefinitions>
-        <Border CornerRadius="15" Grid.ColumnSpan="5" Grid.Column="1" Margin="0,30,0,30">
-            <Border.Background>
-                <SolidColorBrush Color="Black" Opacity="0.3"/>
-            </Border.Background>
-        </Border>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition/>
                 <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.38*"/>
+                <RowDefinition Height="0.01*"/>
+                <RowDefinition Height="0.36*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="1" Margin="3">
                 <TextBlock Text="Merchant" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -87,7 +177,7 @@
                 </Border.Background>
             </Border>
             <Grid Grid.Row="2" Margin="3">
-                <Image Source="{Binding Merchant.AvatarPath}" Panel.ZIndex="1" Stretch="Fill"/>
+                <Image Source="{Binding Merchant.AvatarPath}" Panel.ZIndex="1" Stretch="Fill" Style="{StaticResource AvatarImage}"/>
                 <Rectangle Fill="Black">
                     <Rectangle.Effect>
                         <DropShadowEffect BlurRadius="14" ShadowDepth="7" Direction="310"/>
@@ -116,57 +206,95 @@
                 </Border>
             </Grid>
         </Grid>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="3" Margin="3">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition />
+                <RowDefinition Height="0.03*"/>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="1" Margin="3">
-                <TextBlock Text="Inventory" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                </Border.Background>
-            </Border>
-            <Grid Grid.Row="2" Margin="3">
-                <Image Source="/Data/Images/source/MerchantInventoryAlternate.png"/>
-                <Rectangle Fill="Black" Panel.ZIndex="-1">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.05*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1" Grid.Column="1" Visibility="{Binding MerchantItemToTradeDescriptionGridVisibility}" Style="{StaticResource ItemToTradeDockpanel}">
+                    <Image Source="{Binding MecrhantInventorySelect.ImagePath}" Stretch="Uniform" DockPanel.Dock="Left" Margin="5,5,5,0"/>
+                    <TextBlock Text="{Binding MecrhantInventorySelect.ItemName}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                </DockPanel>
+                <Grid Grid.Column="1" Grid.Row="2" Visibility="{Binding MerchantItemToTradeDescriptionGridVisibility}" Style="{StaticResource ItemToTradeGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Quality: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding MecrhantInventorySelect.ItemQuality}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Level: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding MecrhantInventorySelect.Itemlevel}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Type: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding MecrhantInventorySelect.EquipmentType}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="5" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Durability: " FontSize="12" Margin="1" Foreground="#FF218CBD"/>
+                            <TextBlock Text="{Binding MecrhantInventorySelect.Durability, StringFormat={}{0}/100}" Foreground="Lime" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding MecrhantInventorySelect.GoldPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding MecrhantInventorySelect.SilverPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding MecrhantInventorySelect.CopperPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Border Panel.ZIndex="-1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/tradeElementCoverAlt.png"/>
+                    </Border.Background>
+                </Border>
+                <Rectangle Fill="Black" Grid.RowSpan="3" Grid.ColumnSpan="3" Panel.ZIndex="-2">
                     <Rectangle.Effect>
-                        <DropShadowEffect BlurRadius="14" ShadowDepth="5" />
+                        <DropShadowEffect BlurRadius="5" ShadowDepth="3"/>
                     </Rectangle.Effect>
                 </Rectangle>
             </Grid>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40">
-                <Button Style="{StaticResource ButtonTemplate}" Content="Repair All" BorderThickness="0" Margin="3" Width="120" >
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
-                    </Button.Background>
-                </Button>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Repair" BorderThickness="0" Margin="3" Width="120" >
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
-                    </Button.Background>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="4" Margin="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition />
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Row="1" Margin="3">
+            <Border Grid.Row="2" Margin="3">
                 <TextBlock Text="Inventory" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
             </Border>
-            <Grid Grid.Row="2" Margin="3">
-                <ListBox Panel.ZIndex="1" Background="Transparent" BorderThickness="0" ItemsSource="{Binding PlayerItems}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="8">
+            <Grid Grid.Row="3">
+                <ListBox x:Name="MerchantInventoryListBox" Panel.ZIndex="1" Background="Transparent" BorderThickness="0" 
+                         ItemsSource="{Binding MerchantItems}" 
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                         Margin="8"
+                         ItemContainerStyle="{StaticResource MechantListBoxItemTemplate}"
+                         SelectedItem="{Binding MecrhantInventorySelect}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="40">
@@ -188,7 +316,6 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
                                             <TextBlock Text="{Binding CopperPrice}" Foreground="White" VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding WearStatus}" Foreground="{Binding WearColor}" VerticalAlignment="Center" Margin="3"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -196,28 +323,182 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Image Source="/Data/Images/source/MerchantInventoryAlternate.png"/>
-                <Rectangle Fill="Black" Panel.ZIndex="-1">
-                    <Rectangle.Effect>
-                        <DropShadowEffect BlurRadius="14" ShadowDepth="5" />
-                    </Rectangle.Effect>
-                </Rectangle>
+                    <Image Source="/Data/Images/source/MerchantInventoryAlternate.png" Stretch="Fill"/>
+                    <Rectangle Fill="Black" Panel.ZIndex="-1">
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="14" ShadowDepth="5" />
+                        </Rectangle.Effect>
+                    </Rectangle>
             </Grid>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Margin="2">
-                <Button Style="{StaticResource ButtonTemplate}" Content="Sell" BorderThickness="0" Margin="3" Width="120">
+            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Margin="2">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Weapons" BorderThickness="0" Width="85" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Armor" BorderThickness="0" Width="85" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Misc" BorderThickness="0" Width="85">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="5">
+        <Grid Grid.Column="5" Margin="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition />
+                <RowDefinition Height="0.03*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.05*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource ItemToTradeDockpanel}" Visibility="{Binding PlayerItemToTradeDescriptionGridVisibility}">
+                    <Image Source="{Binding PlayerInventorySelect.ImagePath}" Stretch="Uniform" DockPanel.Dock="Left" Margin="5,5,5,0"/>
+                    <TextBlock Text="{Binding PlayerInventorySelect.ItemName}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                </DockPanel>
+                <Grid Grid.Column="1" Grid.Row="2" Visibility="{Binding PlayerItemToTradeDescriptionGridVisibility}" Style="{StaticResource ItemToTradeGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Quality: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding PlayerInventorySelect.ItemQuality}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Level: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding PlayerInventorySelect.Itemlevel}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Type: " Foreground="#FF218CBD" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                            <TextBlock Text="{Binding PlayerInventorySelect.EquipmentType}" Foreground="Lime" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="5" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Durability: " FontSize="12" Margin="1" Foreground="#FF218CBD"/>
+                            <TextBlock Text="{Binding PlayerInventorySelect.Durability, StringFormat={}{0}/100}" Foreground="Lime" FontSize="12" Margin="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding PlayerInventorySelect.GoldPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding PlayerInventorySelect.SilverPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
+                                <TextBlock Text="{Binding PlayerInventorySelect.CopperPrice}" Foreground="White" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Border Panel.ZIndex="-1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/tradeElementCoverAlt.png"/>
+                    </Border.Background>
+                </Border>
+                <Rectangle Fill="Black" Grid.RowSpan="3" Grid.ColumnSpan="3" Panel.ZIndex="-2">
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="5" ShadowDepth="3"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+            </Grid>
+            <Border Grid.Row="2" Margin="3">
+                <TextBlock Text="Inventory" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Border.Background>
+            </Border>
+            <Grid Grid.Row="3">
+                <ListBox x:Name="PlayerInventoryListBox" Panel.ZIndex="1" Background="Transparent" BorderThickness="0" 
+                         ItemsSource="{Binding PlayerItems}" 
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                         Margin="8"
+                         ItemContainerStyle="{StaticResource MechantListBoxItemTemplate}"
+                         SelectedItem="{Binding PlayerInventorySelect}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="40">
+                                <Image Source="{Binding ImagePath}"/>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ItemName}" Foreground="White" HorizontalAlignment="Center" Margin="3"/>
+                                        <TextBlock Text="{Binding ItemQuality}" Foreground="#FF218CBD" HorizontalAlignment="Center" Margin="3"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3"/>
+                                            <TextBlock Text="{Binding GoldPrice}" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3"/>
+                                            <TextBlock Text="{Binding SilverPrice}" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
+                                            <TextBlock Text="{Binding CopperPrice}" Foreground="White" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Status}" Foreground="{Binding WearColor}" VerticalAlignment="Center" Margin="5,3,3,3"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Image Source="/Data/Images/source/MerchantInventoryAlternate.png" Stretch="Fill"/>
+                <Rectangle Fill="Black" Panel.ZIndex="-1">
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="14" ShadowDepth="5" />
+                    </Rectangle.Effect>
+                </Rectangle>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Margin="2">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Repair All" BorderThickness="0" Width="85" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Repair" BorderThickness="0" Width="85" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Sell" BorderThickness="0" Width="85">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition/>
                 <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.38*"/>
+                <RowDefinition Height="0.01*"/>
+                <RowDefinition Height="0.36*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="1" Margin="3">
                 <TextBlock Text="{Binding CharacterName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -226,7 +507,7 @@
                 </Border.Background>
             </Border>
             <Grid Grid.Row="2" Margin="3">
-                <Image Source="{Binding CharacterAvatar}" Panel.ZIndex="1" Stretch="Fill"/>
+                <Image Source="{Binding CharacterAvatar}" Panel.ZIndex="1" Stretch="Fill" Style="{StaticResource AvatarImage}"/>
                 <Rectangle Fill="Black">
                     <Rectangle.Effect>
                         <DropShadowEffect BlurRadius="14" ShadowDepth="7" Direction="310"/>
@@ -254,6 +535,18 @@
                     </StackPanel>
                 </Border>
             </Grid>
+            <StackPanel Grid.Row="5">
+                <Button Style="{StaticResource ButtonTemplate}" Content="I need heal" BorderThickness="0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Recover my mana" BorderThickness="0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

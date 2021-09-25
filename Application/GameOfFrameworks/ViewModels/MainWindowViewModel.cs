@@ -12,7 +12,7 @@ namespace GameOfFrameworks.ViewModels
         public string WindowState { get; set; }
         public MainWindowViewModel()
         {
-            Version = "1.1.0.0";
+            Version = "1.1.0.2";
             var videoSettings = new GameVideoSettings();
             HorizontalWindowResolution = videoSettings.HorizontalVideoResolution;
             VerticalWindowResolution = videoSettings.VerticalVideoResolution;

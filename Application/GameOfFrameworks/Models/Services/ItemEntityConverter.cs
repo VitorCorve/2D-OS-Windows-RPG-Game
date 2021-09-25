@@ -1,5 +1,5 @@
 ﻿using GameEngine.Equipment;
-using GameOfFrameworks.Models.UISkillsCollection.Player;
+using GameOfFrameworks.Models.Armory.EquipmentControl;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -21,11 +21,22 @@ namespace GameOfFrameworks.Models.Services
                 equipmentUserInterfaceViewTemplatesList.Add(ConvertToEquipmentUserInterfaceViewTemplate(item));
             return equipmentUserInterfaceViewTemplatesList;
         }
-        public ObservableCollection<EquipmentUserInterfaceViewTemplate> ConvertRangeIntoObservableCollection(ICollection<ItemEntity> itemsEntityList)
+        public ObservableCollection<EquipmentUserInterfaceViewTemplate> ConvertRangeToObservableCollection(ICollection<ItemEntity> itemsEntityList)
         {
             var equipmentUserInterfaceViewTemplatesList = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
             foreach (var item in itemsEntityList)
                 equipmentUserInterfaceViewTemplatesList.Add(ConvertToEquipmentUserInterfaceViewTemplate(item));
+            return equipmentUserInterfaceViewTemplatesList;
+        }
+        public ObservableCollection<EquipmentUserInterfaceViewTemplate> CreateObservableCollectionByItemsID(params int[] idList)
+        {
+            var equipmentUserInterfaceViewTemplatesList = new ObservableCollection<EquipmentUserInterfaceViewTemplate>();
+
+            for (int i = 0; i < idList.Length; i++)
+            {
+                ItemEntity item = new ItemEntity(idList[i]);
+                equipmentUserInterfaceViewTemplatesList.Add(ConvertToEquipmentUserInterfaceViewTemplate(item));
+            }
             return equipmentUserInterfaceViewTemplatesList;
         }
         public ItemEntity ConvertToItemEntity(EquipmentUserInterfaceViewTemplate equipmentUserInterfaceViewTemplate)

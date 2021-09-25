@@ -1,8 +1,8 @@
 ﻿using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System.Windows.Input;
 using System;
-using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.Services;
+using GameOfFrameworks.Models.Armory.EquipmentControl;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
 {

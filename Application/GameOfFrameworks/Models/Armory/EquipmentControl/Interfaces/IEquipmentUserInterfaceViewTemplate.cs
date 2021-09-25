@@ -1,6 +1,6 @@
 ﻿using GameEngine.Equipment;
 
-namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
+namespace GameOfFrameworks.Models.Armory.EquipmentControl.Interfaces
 {
     public interface IEquipmentUserInterfaceViewTemplate
     {
