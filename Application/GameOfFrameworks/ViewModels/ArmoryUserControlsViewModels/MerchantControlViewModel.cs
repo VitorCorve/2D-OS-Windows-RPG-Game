@@ -9,6 +9,10 @@ using System.Collections.ObjectModel;
 using GameEngine.Player;
 using GameEngine.Equipment;
 using System.Windows;
+using System.Windows.Input;
+using GameOfFrameworks.Infrastructure.Commands.Armory.Merchant;
+using GameEngine.Inventory;
+using GameEngine.MerchantMechanics.Services;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
@@ -20,6 +24,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         private EquipmentUserInterfaceViewTemplate _MecrhantInventorySelect;
         private Visibility _PlayerItemToTradeDescriptionGridVisibility;
         private Visibility _MerchantItemToTradeDescriptionGridVisibility;
+        private int _PlayerItemsInInventoryCount;
         public string CharacterAvatar { get; set; }
         public string CharacterName { get; set; }
         private PlayerConsumablesData _PlayerConsumables;
@@ -28,22 +33,39 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> PlayerItems { get => _PlayerItems; set => Set(ref _PlayerItems, value); }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> MerchantItems { get => _MerchantItems; set => Set(ref _MerchantItems, value); }
         public EquipmentUserInterfaceViewTemplate PlayerInventorySelect { get => _PlayerInventorySelect; set { Set(ref _PlayerInventorySelect, value); ValidatePlayerItemGridVisibility(value); } }
-        public EquipmentUserInterfaceViewTemplate MecrhantInventorySelect { get => _MecrhantInventorySelect; set { Set(ref _MecrhantInventorySelect, value); ValidateMerchantItemGridVisibility(value); } }
+        public EquipmentUserInterfaceViewTemplate MerchantInventorySelect { get => _MecrhantInventorySelect; set { Set(ref _MecrhantInventorySelect, value); ValidateMerchantItemGridVisibility(value); } }
         public PlayerConsumablesData PlayerConsumables { get => _PlayerConsumables; set => Set(ref _PlayerConsumables, value); }
         public PlayerConsumablesData MerchantConsumables { get => _MerchantConsumables; set => Set(ref _MerchantConsumables, value); }
+        public PlayerInventoryItemsList PlayerInventory { get; set; }
+        public MerchantInventoryItemsList MerchantInventory { get; set; }
         public Visibility PlayerItemToTradeDescriptionGridVisibility { get => _PlayerItemToTradeDescriptionGridVisibility; set => Set(ref _PlayerItemToTradeDescriptionGridVisibility, value); }
         public Visibility MerchantItemToTradeDescriptionGridVisibility { get => _MerchantItemToTradeDescriptionGridVisibility; set => Set(ref _MerchantItemToTradeDescriptionGridVisibility, value); }
+        public ICommand SelectItemInPlayerInventoryCommand { get; private set; }
+        public ICommand SelectItemInMerchantInventoryCommand { get; private set; }
+        public ICommand BuyItemCommand { get; private set; }
+        public ICommand SellItemCommand { get; private set; }
+        public MerchantEquipmentHandler EquipmentHandler { get; }
+        public int InventoryCapacity { get; }
+        public int PlayerItemsInInventoryCount { get => _PlayerItemsInInventoryCount; set => Set(ref _PlayerItemsInInventoryCount, value); }
         public MerchantControlViewModel()
         {
-            var playerInventory = ArmoryTemporaryData.PlayerInventory;
-            var playerEquipment = new WearedEquipment(0,1,2);
+            var pricesConverter = new PricesConverter();
+            PlayerInventory = ArmoryTemporaryData.PlayerInventory;
+            PlayerInventory.ItemsInInventory = pricesConverter.Convert(0.8, PlayerInventory.ItemsInInventory);
+            MerchantInventory = new MerchantInventoryItemsList(0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2);
+            MerchantInventory.ItemsInInventory = pricesConverter.Convert(1.2, PlayerInventory.ItemsInInventory);
+            var playerEquipment = new WearedEquipment(0, 1, 2);
+            playerEquipment.ItemsList = pricesConverter.Convert(0.8, playerEquipment.ItemsList);
             var itemEntityConverter = new ItemEntityConverter();
+
+            InventoryCapacity = PlayerInventoryItemsList.MaxItemsInInventory;
+            PlayerItemsInInventoryCount = PlayerInventory.ItemsInInventory.Count;
 
             var playerEquipmentObservableCollection = itemEntityConverter.ConvertRangeToObservableCollection(playerEquipment.ItemsList);
 
-            PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(playerInventory.ItemsInInventory);
+            PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(PlayerInventory.ItemsInInventory);
 
-            MerchantItems = itemEntityConverter.CreateObservableCollectionByItemsID(0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2);
+            MerchantItems = itemEntityConverter.ConvertRangeToObservableCollection(MerchantInventory.ItemsInInventory);
 
             foreach (var item in playerEquipmentObservableCollection)
             {
@@ -62,6 +84,13 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
             PlayerItemToTradeDescriptionGridVisibility = Visibility.Hidden;
             MerchantItemToTradeDescriptionGridVisibility = Visibility.Hidden;
+
+            SelectItemInPlayerInventoryCommand = new SelectItemInPlayerInventoryCommand(this);
+            SelectItemInMerchantInventoryCommand = new SelectItemInMerchantInventoryCommand(this);
+            BuyItemCommand = new BuyItemCommand(this);
+            SellItemCommand = new SellItemCommand(this);
+
+            EquipmentHandler = new MerchantEquipmentHandler(this);
         }
         private void ValidateMerchantItemGridVisibility(EquipmentUserInterfaceViewTemplate itemTemplate)
         {

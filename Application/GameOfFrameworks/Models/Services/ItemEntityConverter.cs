@@ -7,7 +7,7 @@ namespace GameOfFrameworks.Models.Services
 {
     public class ItemEntityConverter
     {
-        public EquipmentUserInterfaceViewTemplate ConvertToEquipmentUserInterfaceViewTemplate(ItemEntity itemEntity)
+        public static EquipmentUserInterfaceViewTemplate ConvertToEquipmentUserInterfaceViewTemplate(ItemEntity itemEntity)
         {
             var equipmentUserInterfaceViewTemplate = new EquipmentUserInterfaceViewTemplate();
             equipmentUserInterfaceViewTemplate.Build(itemEntity);
@@ -39,7 +39,7 @@ namespace GameOfFrameworks.Models.Services
             }
             return equipmentUserInterfaceViewTemplatesList;
         }
-        public ItemEntity ConvertToItemEntity(EquipmentUserInterfaceViewTemplate equipmentUserInterfaceViewTemplate)
+        public static ItemEntity ConvertToItemEntity(EquipmentUserInterfaceViewTemplate equipmentUserInterfaceViewTemplate)
         {
             var itemEntity = new ItemEntity(equipmentUserInterfaceViewTemplate.ItemID);
             itemEntity.ItemDurability.Value = equipmentUserInterfaceViewTemplate.Durability;

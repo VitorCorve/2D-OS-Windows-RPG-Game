@@ -11,7 +11,6 @@ namespace GameOfFrameworks.Models.Services
     public class EquipmentManager : IEquipmentManager
     {
         public EquipmentControlViewModel ViewModel { get; private set; }
-        public ItemEntityConverter Converter { get; private set; } = new();
         public PlayerEntityConstructor EntityConstructor { get; } = new();
         public EquipmentManager(EquipmentControlViewModel vm)
         {
@@ -33,7 +32,7 @@ namespace GameOfFrameworks.Models.Services
             ViewModel.InventoryView.InventorySlotsList.Remove(viewTemplate);
             ViewModel.InventoryModel.ItemsInInventory.Remove(itemEntity);
             WearItemDirectly(viewTemplate);
-            ViewModel.EquipmentModel.Wear(Converter.ConvertToItemEntity(viewTemplate));
+            ViewModel.EquipmentModel.Wear(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             UpdatePlayerEntity();
         }
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
@@ -56,14 +55,14 @@ namespace GameOfFrameworks.Models.Services
         private void InitializeInventoryView()
         {
             foreach (var item in ViewModel.InventoryModel.ItemsInInventory)
-                ViewModel.InventoryView.InventorySlotsList.Add(Converter.ConvertToEquipmentUserInterfaceViewTemplate(item));
+                ViewModel.InventoryView.InventorySlotsList.Add(ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(item));
         }
         private void InitializeEquipmentView()
         {
             var itemView = new EquipmentUserInterfaceViewTemplate();
             foreach (var item in ViewModel.EquipmentModel.ItemsList)
             {
-                itemView = Converter.ConvertToEquipmentUserInterfaceViewTemplate(item);
+                itemView = ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(item);
                 ViewModel.EquipmentView.EquipmentSlotsList.Add(itemView);
             }
 
@@ -138,12 +137,12 @@ namespace GameOfFrameworks.Models.Services
         private void AddItemToInventory(EquipmentUserInterfaceViewTemplate itemToWear)
         {
             ViewModel.InventoryView.InventorySlotsList.Add(itemToWear);
-            ViewModel.InventoryModel.AddItem(Converter.ConvertToItemEntity(itemToWear));
+            ViewModel.InventoryModel.AddItem(ItemEntityConverter.ConvertToItemEntity(itemToWear));
         }
         public void DeleteInventoryItem(EquipmentUserInterfaceViewTemplate itemToWear)
         {
             ViewModel.InventoryView.InventorySlotsList.Remove(itemToWear);
-            ViewModel.InventoryModel.ItemsInInventory.Remove(Converter.ConvertToItemEntity(itemToWear));
+            ViewModel.InventoryModel.ItemsInInventory.Remove(ItemEntityConverter.ConvertToItemEntity(itemToWear));
         }
         private void UpdatePlayerEntity()
         {

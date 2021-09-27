@@ -1,5 +1,7 @@
 ﻿using GameEngine.Equipment;
 using GameOfFrameworks.Models.Armory.EquipmentControl.Interfaces;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GameOfFrameworks.Models.Armory.EquipmentControl
 {
