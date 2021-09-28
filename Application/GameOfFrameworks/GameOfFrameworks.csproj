@@ -116,16 +116,20 @@
     <None Remove="Views\Scenes\background2.jpg" />
     <None Remove="Views\Scenes\combatTextBar.png" />
     <None Remove="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <None Remove="Views\Scenes\Images\Items\Coins.png" />
     <None Remove="Views\Scenes\Images\Items\Copper.png" />
     <None Remove="Views\Scenes\Images\Items\Gold.png" />
+    <None Remove="Views\Scenes\Images\Items\Hammer.png" />
     <None Remove="Views\Scenes\Images\Items\Silver.png" />
     <None Remove="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
     <None Remove="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
     <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\ElementCoverNoShadow.png" />
     <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
     <None Remove="Views\Scenes\Images\VisualElements\PlayerBar.png" />
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\WideElementCover.png" />
     <None Remove="Views\Scenes\indicatorBar.png" />
     <None Remove="Views\Scenes\inventoryBackground2.png" />
     <None Remove="Views\Scenes\inventoryItemframe.png" />
@@ -399,8 +403,10 @@
     </Resource>
     <Resource Include="Views\Scenes\Images\avatarPlug.jpg" />
     <Resource Include="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <Resource Include="Views\Scenes\Images\Items\Coins.png" />
     <Resource Include="Views\Scenes\Images\Items\Copper.png" />
     <Resource Include="Views\Scenes\Images\Items\Gold.png" />
+    <Resource Include="Views\Scenes\Images\Items\Hammer.png" />
     <Resource Include="Views\Scenes\Images\Items\Silver.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -410,6 +416,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Scenes\Images\VisualElements\ElementCover.png" />
+    <Resource Include="Views\Scenes\Images\VisualElements\ElementCoverNoShadow.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\NPCBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -418,6 +425,7 @@
     </Resource>
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
+    <Resource Include="Views\Scenes\Images\VisualElements\WideElementCover.png" />
     <Resource Include="Views\Scenes\UserControls\Images\inventoryBackground.png" />
     <Resource Include="Views\Scenes\Images\inventoryItemframe.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\ArmoryBG.jpg" />

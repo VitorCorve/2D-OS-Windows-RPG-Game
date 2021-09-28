@@ -16,7 +16,7 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
         public MerchantEquipmentHandler(MerchantControlViewModel merchantControlViewModel)
         {
             ViewModel = merchantControlViewModel;
-            Trade = new TradeManager(ViewModel.PlayerConsumables, ViewModel.MerchantConsumables, ViewModel.PlayerInventory, ViewModel.MerchantInventory);
+            Trade = new TradeManager(ViewModel.PlayerConsumables, ViewModel.MerchantConsumables, ViewModel.PlayerInventory, ViewModel.MerchantInventory, ViewModel.PlayerWearedEquipment);
         }
         public TradeManager Trade { get; }
         public void BuyItem(EquipmentUserInterfaceViewTemplate itemTemplate)

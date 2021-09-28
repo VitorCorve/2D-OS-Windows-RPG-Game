@@ -18,6 +18,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
             var item = (EquipmentUserInterfaceViewTemplate)parameter;
             ViewModel.EquipmentHandler.BuyItem(item);
             ViewModel.PlayerItemsInInventoryCount = ViewModel.PlayerInventory.ItemsInInventory.Count;
+            ViewModel.MerchantInventorySelect = null;
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using GameEngine.Equipment;
 using GameOfFrameworks.Models.Armory.EquipmentControl.Interfaces;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GameOfFrameworks.Models.Armory.EquipmentControl
 {
@@ -43,5 +41,6 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
             if (wearStatus == WEARED_STATUS.Weared) WearColor = "#FF0C894B";
             else WearColor = "#FF218CBD";
         }
+        public int ReturnAbsoluteValue() => CopperPrice + (SilverPrice * 100) + (GoldPrice * 10000);
     }
 }

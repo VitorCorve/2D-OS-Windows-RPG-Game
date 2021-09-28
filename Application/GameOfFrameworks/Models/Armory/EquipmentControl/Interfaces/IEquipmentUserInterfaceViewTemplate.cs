@@ -11,5 +11,6 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl.Interfaces
         EQUIPMENT_TYPE EquipmentType { get; }
         string ItemQuality { get; }
         void Build(ItemEntity itemEntity);
+        int ReturnAbsoluteValue();
     }
 }
