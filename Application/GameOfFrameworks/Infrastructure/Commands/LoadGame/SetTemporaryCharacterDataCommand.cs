@@ -17,6 +17,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
         {
             var wearedEquipment = new WearedEquipment(Model.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());
             var playerInventoryItemsList = new PlayerInventoryItemsList(Model.SaveData.ItemsInInventory.ConvertToItemsEntityList());
+            ArmoryTemporaryData.CurrentLocation = new GameEngine.Locations.Location();
+            ArmoryTemporaryData.CurrentLocation.Town = Model.SaveData.CurrentTown;
             ArmoryTemporaryData.CharacterEntity = Model.CharacterEntity;
             ArmoryTemporaryData.PlayerModel = new PlayerModelData(Model.SaveData);
             ArmoryTemporaryData.SaveData = Model.SaveData;

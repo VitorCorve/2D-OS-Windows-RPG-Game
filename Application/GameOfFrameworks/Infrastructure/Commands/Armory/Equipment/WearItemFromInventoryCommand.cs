@@ -19,7 +19,6 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
         }
         public void Execute(object parameter)
         {
-            var itemEntityConverter = new ItemEntityConverter();
             var itemToWear = (EquipmentUserInterfaceViewTemplate)parameter;
             ViewModel.EquipmentHandler.WearItemFromInventory(itemToWear);
             ViewModel.SaveInventoryChanges();

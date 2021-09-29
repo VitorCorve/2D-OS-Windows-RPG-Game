@@ -10,6 +10,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
         public SellItemCommand(MerchantControlViewModel merchantControlViewModel) => ViewModel = merchantControlViewModel;
         public override bool CanExecute(object parameter)
         {
+            if (parameter is null) return false;
             if (ViewModel.PlayerInventory.ItemsInInventory.Count >= 1) return true;
             return false;
         }

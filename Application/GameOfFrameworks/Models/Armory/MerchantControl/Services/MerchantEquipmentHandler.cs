@@ -17,16 +17,23 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
         {
             ViewModel = merchantControlViewModel;
             Trade = new TradeManager(ViewModel.PlayerConsumables, ViewModel.MerchantConsumables, ViewModel.PlayerInventory, ViewModel.MerchantInventory, ViewModel.PlayerWearedEquipment);
+            Trade.MerchantInventory.PricesMultipler = ViewModel.CurrentLocation.Multipliers;
+            Trade.PlayerInventory.PricesMultipler = ViewModel.CurrentLocation.Multipliers;
         }
         public TradeManager Trade { get; }
         public void BuyItem(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
-            Trade.ItemToTrade = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
+            var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
+            Trade.ItemToTrade = itemEntity;
             Trade.Buy();
             ViewModel.MerchantItems.Remove(itemTemplate);
+
+            itemTemplate = ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(itemEntity);
             ViewModel.PlayerItems.Add(itemTemplate);
             RefreshData();
             SaveChanges();
+
+            ViewModel.ShowInventory();
         }
 
         public void RepairAllItems(EquipmentUserInterfaceViewTemplate itemTemplate)
@@ -41,9 +48,12 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
 
         public void SellItem(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
-            Trade.ItemToTrade = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
+            var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
+            Trade.ItemToTrade = itemEntity;
             Trade.Sell();
             ViewModel.PlayerItems.Remove(itemTemplate);
+
+            itemTemplate = ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(itemEntity);
             ViewModel.MerchantItems.Add(itemTemplate);
             RefreshData();
             SaveChanges();
@@ -67,7 +77,9 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
         }
         private void SaveChanges()
         {
+            /*ArmoryTemporaryData.IsMerchantViewModelChanged = true;*/
             ArmoryTemporaryData.PlayerInventory = ViewModel.PlayerInventory;
+            ArmoryTemporaryData.MerchantInventory = ViewModel.MerchantInventory;
         }
         private void RefreshData()
         {

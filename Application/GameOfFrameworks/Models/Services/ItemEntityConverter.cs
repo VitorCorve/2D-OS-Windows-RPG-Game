@@ -42,6 +42,7 @@ namespace GameOfFrameworks.Models.Services
         public static ItemEntity ConvertToItemEntity(EquipmentUserInterfaceViewTemplate equipmentUserInterfaceViewTemplate)
         {
             var itemEntity = new ItemEntity(equipmentUserInterfaceViewTemplate.ItemID);
+            itemEntity.Model.Status = equipmentUserInterfaceViewTemplate.Status;
             itemEntity.ItemDurability.Value = equipmentUserInterfaceViewTemplate.Durability;
             itemEntity.Model.Price.AbsoluteMoneyValue = equipmentUserInterfaceViewTemplate.ReturnAbsoluteValue();
             return itemEntity;

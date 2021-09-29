@@ -1,14 +1,11 @@
-﻿using GameEngine.CombatEngine;
-using GameEngine.Equipment;
-using GameEngine.EquipmentManagement;
+﻿using GameEngine.Equipment;
 using GameEngine.Inventory;
 using GameEngine.Player;
+using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Equipment;
-using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
-using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.ViewModels.Base;
 using System.Collections.Generic;
 using System.Windows;
@@ -41,6 +38,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand ShowInventoryItemDeletingDialogCommand { get; private set; }
         public ICommand HideInventoryItemDeletingDialogUserControl { get; private set; }
         public ICommand DeleteInventoryItemCommand { get; private set; }
+        public ICommand UpdateEquipmentViewModelCommand { get; private set; }
         public Visibility DescriptionToolTipVisibility { get => _DescriptionToolTipVisibility; set => Set(ref _DescriptionToolTipVisibility, value); }
         public Visibility InventoryItemDeletingDialogUserControl { get => _InventoryItemDeletingDialogUserControl; set => Set(ref _InventoryItemDeletingDialogUserControl, value); }
         public PlayerInventoryItemsList InventoryModel { get; set; }
@@ -80,6 +78,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             ShowInventoryItemDeletingDialogCommand = new ShowInventoryItemDeletingDialogCommand(this);
             HideInventoryItemDeletingDialogUserControl = new HideInventoryItemDeletingDialogUserControl(this);
             DeleteInventoryItemCommand = new DeleteInventoryItemCommand(this);
+            UpdateEquipmentViewModelCommand = new UpdateEquipmentViewModelCommand(this);
         }
         public void SaveInventoryChanges()
         {
@@ -87,6 +86,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             ArmoryTemporaryData.PlayerInventory = InventoryModel;
             ArmoryTemporaryData.IsPlayerAttributesUpdated = true;
             ArmoryTemporaryData.IsPlayerEntityChanged = true;
+            ArmoryTemporaryData.IsEquipmentViewModelChanged = true;
         }
     }
 }

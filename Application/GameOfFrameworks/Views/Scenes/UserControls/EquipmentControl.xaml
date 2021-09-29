@@ -9,6 +9,11 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mouseBehaviour="clr-namespace:GameOfFrameworks.Models.Services"
              d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="LayoutUpdated">
+            <i:InvokeCommandAction Command="{Binding UpdateEquipmentViewModelCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <UserControl.DataContext>
         <armoryusercontrolsviewmodels:EquipmentControlViewModel/>
     </UserControl.DataContext>

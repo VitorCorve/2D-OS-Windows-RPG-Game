@@ -21,7 +21,7 @@ namespace GameOfFrameworks.Models.Services
         public void WearItemFromInventory(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
             var itemEntity = new ItemEntity();
-            foreach (var item in ViewModel.EquipmentModel.ItemsList)
+            foreach (var item in ViewModel.InventoryModel.ItemsInInventory)
             {
                 if (item.Model.ID == viewTemplate.ItemID && item.ItemDurability.Value == viewTemplate.Durability)
                 {
@@ -30,7 +30,7 @@ namespace GameOfFrameworks.Models.Services
                 }
             }
             ViewModel.InventoryView.InventorySlotsList.Remove(viewTemplate);
-            ViewModel.InventoryModel.ItemsInInventory.Remove(itemEntity);
+            ViewModel.InventoryModel.RemoveItem(itemEntity);
             WearItemDirectly(viewTemplate);
             ViewModel.EquipmentModel.Wear(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             UpdatePlayerEntity();
@@ -149,6 +149,13 @@ namespace GameOfFrameworks.Models.Services
             var equipment = new EquipmentValue(ViewModel.EquipmentModel);
             ArmoryTemporaryData.CharacterEntity = EntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, equipment, ArmoryTemporaryData.PlayerAttributes);
             ArmoryTemporaryData.IsPlayerEntityChanged = true;
+        }
+        public void Refresh()
+        {
+            ViewModel.InventoryView = new InventoryViewList();
+            ViewModel.EquipmentView = new WearedViewList();
+            InitializeInventoryView();
+            InitializeEquipmentView();
         }
     }
 }

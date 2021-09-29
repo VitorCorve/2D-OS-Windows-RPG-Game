@@ -59,6 +59,9 @@ namespace GameOfFrameworks.Models.LoadGame
             SaveDateTime = SaveData.Date;
             PlayerConsumables = new PlayerConsumablesData(SaveData.Money);
             var playerModelData = new PlayerModelData(SaveData.Specialization, SaveData.Gender, SaveData.Name, SaveData.Level, SaveData.Money);
+
+            playerModelData.CurrentTown = GameEngine.Locations.TOWN.Chartringfall;
+
             CharacterEntity = EntityConstructor.CreatePlayer(playerModelData, SaveData.PlayerAttributes);
             CharacterSpecialization = "Specialization: " + SaveData.Specialization.ToString();
             CharacterGender = "Gender: " + SaveData.Gender.ToString();
