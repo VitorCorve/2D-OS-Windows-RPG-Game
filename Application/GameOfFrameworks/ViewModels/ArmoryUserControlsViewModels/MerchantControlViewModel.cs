@@ -12,8 +12,6 @@ using System.Windows;
 using System.Windows.Input;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Merchant;
 using GameEngine.Inventory;
-using GameEngine.MerchantMechanics.Services;
-using GameOfFrameworks.Infrastructure.Commands.Armory.Options;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
@@ -27,9 +25,6 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         private Visibility _PlayerItemToTradeDescriptionGridVisibility;
         private Visibility _MerchantItemToTradeDescriptionGridVisibility;
         private int _PlayerItemsInInventoryCount;
-        private int _TradeInventoryCapacity;
-        public string CharacterAvatar { get; set; }
-        public string CharacterName { get; set; }
         private PlayerConsumablesData _PlayerConsumables;
         private PlayerConsumablesData _MerchantConsumables;
         private Location _CurrentLocation;
@@ -52,39 +47,34 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand ShowWearedEquipmentCommand { get; private set; }
         public ICommand ShowItemsInInventoryCommand { get; private set; }
         public ICommand UpdateMerchantViewModelCommand { get; private set; }
+        public ICommand RepairAllItemsCommand { get; private set; }
+        public ICommand RepairItemCommand { get; private set; }
         public MerchantEquipmentHandler EquipmentHandler { get; }
-        public int TradeInventoryCapacity { get => _TradeInventoryCapacity; set => Set(ref _TradeInventoryCapacity, value); }
         public int PlayerItemsInInventoryCount { get => _PlayerItemsInInventoryCount; set => Set(ref _PlayerItemsInInventoryCount, value); }
         public Location CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
+        public PlayerModelData PlayerModel { get; set; }
         public MerchantControlViewModel()
         {
-            CurrentLocation = ArmoryTemporaryData.CurrentLocation;
+            var wearedEquipment = ArmoryTemporaryData.PlayerEquipment;
+            foreach (var item in wearedEquipment.ItemsList)
+            {
+                item.ItemDurability.Value = 50;
+            }
+            ArmoryTemporaryData.PlayerEquipment = wearedEquipment;
 
-            RefreshEquipmentView();
+            var merchantViewBuilder = new MerchantViewBuilder();
+            CurrentLocation = ArmoryTemporaryData.CurrentLocation;
+            PlayerModel = ArmoryTemporaryData.PlayerModel;
+            Merchant = merchantViewBuilder.Build(CurrentLocation.Town);
 
             MerchantInventory = new MerchantInventoryItemsList(0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2);
 
-            var itemEntityConverter = new ItemEntityConverter();
+            RefreshEquipmentView();
 
-            TradeInventoryCapacity = PlayerInventoryItemsList.MaxItemsInInventory;
             PlayerItemsInInventoryCount = PlayerInventory.ItemsInInventory.Count;
 
-
-            PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(PlayerInventory.ItemsInInventory);
-            MerchantItems = itemEntityConverter.ConvertRangeToObservableCollection(MerchantInventory.ItemsInInventory);
-
-
-            var playerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
-            playerConsumables.IncreaseValue(332132);
-
             MerchantConsumables = new PlayerConsumablesData(38717271);
-            PlayerConsumables = playerConsumables;
-
-            CharacterAvatar = ArmoryTemporaryData.PlayerModel.AvatarPath.Path;
-            CharacterName = ArmoryTemporaryData.PlayerModel.Name;
-
-            var merchantViewBuilder = new MerchantViewBuilder();
-            Merchant = merchantViewBuilder.Build(CurrentLocation.Town);
+            PlayerConsumables = new PlayerConsumablesData(332132);
 
             PlayerItemToTradeDescriptionGridVisibility = Visibility.Hidden;
             MerchantItemToTradeDescriptionGridVisibility = Visibility.Hidden;
@@ -92,7 +82,12 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             EquipmentHandler = new MerchantEquipmentHandler(this);
 
             InitializeCommands();
-
+        }
+        private void InitalizeInventories()
+        {
+            var itemEntityConverter = new ItemEntityConverter();
+            PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(PlayerInventory.ItemsInInventory);
+            MerchantItems = itemEntityConverter.ConvertRangeToObservableCollection(MerchantInventory.ItemsInInventory);
         }
         private void ValidateMerchantItemGridVisibility(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
@@ -108,13 +103,11 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             var itemEntityConverter = new ItemEntityConverter();
             PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(PlayerInventory.ItemsInInventory);
-            TradeInventoryCapacity = PlayerInventoryItemsList.MaxItemsInInventory;
         }
         public void ShowWearedEquipment()
         {
             var itemEntityConverter = new ItemEntityConverter();
             PlayerItems = itemEntityConverter.ConvertRangeToObservableCollection(PlayerWearedEquipment.ItemsList);
-            TradeInventoryCapacity = 15;
         }
         private void InitializeCommands()
         {
@@ -126,11 +119,14 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             ShowWearedEquipmentCommand = new ShowWearedEquipmentCommand(this);
             ShowItemsInInventoryCommand = new ShowItemsInInventoryCommand(this);
             UpdateMerchantViewModelCommand = new UpdateMerchantViewModelCommand(this);
+            RepairAllItemsCommand = new RepairAllItemsCommand(this);
+            RepairItemCommand = new RepairItemCommand(this);
         }
         public void RefreshEquipmentView()
         {
             PlayerInventory = ArmoryTemporaryData.PlayerInventory;
             PlayerWearedEquipment = ArmoryTemporaryData.PlayerEquipment;
+            InitalizeInventories();
         }
     }
 }

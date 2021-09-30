@@ -1,26 +1,23 @@
-﻿using GameEngine.Equipment;
-using GameEngine.MerchantMechanics;
+﻿using GameEngine.MerchantMechanics;
+using GameEngine.MerchantMechanics.Services;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Armory.MerchantControl.Interfaces;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
-using System;
-using System.Collections.Generic;
 
 namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
 {
     public class MerchantEquipmentHandler : IMerchantEquipmentHandler
     {
         public MerchantControlViewModel ViewModel { get; }
+        public BlacksmithingService Blacksmith { get; } = new();
+        public TradeManager Trade { get; }
         public MerchantEquipmentHandler(MerchantControlViewModel merchantControlViewModel)
         {
             ViewModel = merchantControlViewModel;
             Trade = new TradeManager(ViewModel.PlayerConsumables, ViewModel.MerchantConsumables, ViewModel.PlayerInventory, ViewModel.MerchantInventory, ViewModel.PlayerWearedEquipment);
-            Trade.MerchantInventory.PricesMultipler = ViewModel.CurrentLocation.Multipliers;
-            Trade.PlayerInventory.PricesMultipler = ViewModel.CurrentLocation.Multipliers;
         }
-        public TradeManager Trade { get; }
         public void BuyItem(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
             var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
@@ -35,17 +32,6 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
 
             ViewModel.ShowInventory();
         }
-
-        public void RepairAllItems(EquipmentUserInterfaceViewTemplate itemTemplate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RepairItem(EquipmentUserInterfaceViewTemplate itemTemplate)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SellItem(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
             var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
@@ -58,37 +44,43 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
             RefreshData();
             SaveChanges();
         }
-        private ItemEntity FindItem(EquipmentUserInterfaceViewTemplate template, List<ItemEntity> itemsList)
+
+        public void RepairAllItems()
         {
-            var itemEntity = new ItemEntity();
-            foreach (ItemEntity item in itemsList)
-            {
-                if (item.Model.ID == template.ItemID && item.ItemDurability.Value == template.Durability)
-                {
-                    itemEntity = item;
-                    break;
-                }
-            }
-            return itemEntity;
+            Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
+            ViewModel.PlayerWearedEquipment = Blacksmith.RepairWearedEquipment(ViewModel.PlayerWearedEquipment);
+            RefreshData();
+            SaveChanges();
         }
-        private void AddItemToPlayerInventory(EquipmentUserInterfaceViewTemplate template)
+        public void SetItemRepairCostValue(EquipmentUserInterfaceViewTemplate itemTemplate) => Blacksmith.SetRepairCostValue(ItemEntityConverter.ConvertToItemEntity(itemTemplate));
+        public void SetItemRepairCostValue() => Blacksmith.SetRepairCostValue(ViewModel.PlayerWearedEquipment);
+        public void SetPlayerMoneyValue() => Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
+        public EquipmentUserInterfaceViewTemplate RepairItem(EquipmentUserInterfaceViewTemplate itemTemplate)
         {
-            ViewModel.PlayerItems.Add(template);
+            var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
+            Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
+            Blacksmith.RepairItem(itemEntity);
+            RefreshData();
+            SaveChanges();
+            return ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(itemEntity);
         }
         private void SaveChanges()
         {
-            /*ArmoryTemporaryData.IsMerchantViewModelChanged = true;*/
+            ViewModel.PlayerModel.PlayerConsumables = ViewModel.PlayerConsumables;
+            ArmoryTemporaryData.PlayerModel = ViewModel.PlayerModel;
             ArmoryTemporaryData.PlayerInventory = ViewModel.PlayerInventory;
+            ArmoryTemporaryData.PlayerEquipment = ViewModel.PlayerWearedEquipment;
             ArmoryTemporaryData.MerchantInventory = ViewModel.MerchantInventory;
+            ArmoryTemporaryData.IsMerchantViewModelChanged = true;
         }
         private void RefreshData()
         {
             var playerConsumables = ViewModel.PlayerConsumables;
             var merchantConsumables = ViewModel.MerchantConsumables;
-            ViewModel.PlayerConsumables = null;
-            ViewModel.MerchantConsumables = null;
             ViewModel.PlayerConsumables = playerConsumables;
             ViewModel.MerchantConsumables = merchantConsumables;
+            ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerConsumables));
+            ViewModel.OnPropertyChanged(nameof(ViewModel.MerchantConsumables));
         }
     }
 }

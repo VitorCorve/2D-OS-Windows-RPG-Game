@@ -4,7 +4,6 @@ using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
-using System;
 using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels

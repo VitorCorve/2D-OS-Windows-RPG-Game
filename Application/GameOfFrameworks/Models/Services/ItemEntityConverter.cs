@@ -44,7 +44,6 @@ namespace GameOfFrameworks.Models.Services
             var itemEntity = new ItemEntity(equipmentUserInterfaceViewTemplate.ItemID);
             itemEntity.Model.Status = equipmentUserInterfaceViewTemplate.Status;
             itemEntity.ItemDurability.Value = equipmentUserInterfaceViewTemplate.Durability;
-            itemEntity.Model.Price.AbsoluteMoneyValue = equipmentUserInterfaceViewTemplate.ReturnAbsoluteValue();
             return itemEntity;
         }
         public List<ItemEntity> ConvertRangeItemEntityList(ICollection<EquipmentUserInterfaceViewTemplate> equipmentUserInterfaceViewTemplate)

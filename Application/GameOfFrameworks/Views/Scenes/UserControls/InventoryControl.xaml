@@ -1297,13 +1297,19 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value, StringFormat={}Gold: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="5">
-                        </TextBlock>
-                    <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value, StringFormat={}Silver: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Margin="5">
-                        </TextBlock>
-                    <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value, StringFormat={}Copper: {0}}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="2" Margin="5">
-                        </TextBlock>
-                    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0" HorizontalAlignment="Right">
+                        <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3"/>
+                        <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
+                        <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3"/>
+                        <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0" Grid.Column="2">
+                        <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
+                        <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                    </StackPanel>
+                </Grid>
                 </Border>
             </Grid>
         </Grid>

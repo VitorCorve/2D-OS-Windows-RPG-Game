@@ -8,7 +8,10 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Interfaces
         MerchantControlViewModel ViewModel { get; }
         void BuyItem(EquipmentUserInterfaceViewTemplate itemTemplate);
         void SellItem(EquipmentUserInterfaceViewTemplate itemTemplate);
-        void RepairItem(EquipmentUserInterfaceViewTemplate itemTemplate);
-        void RepairAllItems(EquipmentUserInterfaceViewTemplate itemTemplate);
+        void SetItemRepairCostValue();
+        void SetItemRepairCostValue(EquipmentUserInterfaceViewTemplate itemTemplate);
+        void SetPlayerMoneyValue();
+        void RepairAllItems();
+        EquipmentUserInterfaceViewTemplate RepairItem(EquipmentUserInterfaceViewTemplate itemTemplate);
     }
 }

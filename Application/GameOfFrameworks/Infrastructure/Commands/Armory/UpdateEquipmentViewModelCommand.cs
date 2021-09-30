@@ -10,20 +10,20 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
         public UpdateEquipmentViewModelCommand(EquipmentControlViewModel armoryViewModel) => ViewModel = armoryViewModel;
         public override bool CanExecute(object parameter)
         {
-            if (ArmoryTemporaryData.IsEquipmentViewModelChanged)
+            if (ArmoryTemporaryData.IsMerchantViewModelChanged)
             {
-                ArmoryTemporaryData.IsEquipmentViewModelChanged = false;
+                ArmoryTemporaryData.IsMerchantViewModelChanged = false;
                 return true;
             }
             else return false;
         }
         public override void Execute(object parameter)
         {
-            ViewModel.InventoryModel = null;
-            ViewModel.EquipmentModel = null;
             ViewModel.InventoryModel = ArmoryTemporaryData.PlayerInventory;
             ViewModel.EquipmentModel = ArmoryTemporaryData.PlayerEquipment;
-            //ViewModel.EquipmentHandler.Refresh();
+            ViewModel.PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
+            ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerConsumables));
+            ViewModel.EquipmentHandler.Refresh();
         }
     }
 }

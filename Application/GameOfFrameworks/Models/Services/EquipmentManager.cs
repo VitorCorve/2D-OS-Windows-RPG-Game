@@ -12,25 +12,17 @@ namespace GameOfFrameworks.Models.Services
     {
         public EquipmentControlViewModel ViewModel { get; private set; }
         public PlayerEntityConstructor EntityConstructor { get; } = new();
-        public EquipmentManager(EquipmentControlViewModel vm)
+        private ItemEntityConverter Converter { get; } = new ();
+        public EquipmentManager(EquipmentControlViewModel viewModel)
         {
-            ViewModel = vm;
+            ViewModel = viewModel;
             InitializeInventoryView();
             InitializeEquipmentView();
         }
         public void WearItemFromInventory(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
-            var itemEntity = new ItemEntity();
-            foreach (var item in ViewModel.InventoryModel.ItemsInInventory)
-            {
-                if (item.Model.ID == viewTemplate.ItemID && item.ItemDurability.Value == viewTemplate.Durability)
-                {
-                    itemEntity = item;
-                    break;
-                }
-            }
             ViewModel.InventoryView.InventorySlotsList.Remove(viewTemplate);
-            ViewModel.InventoryModel.RemoveItem(itemEntity);
+            ViewModel.InventoryModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             WearItemDirectly(viewTemplate);
             ViewModel.EquipmentModel.Wear(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             UpdatePlayerEntity();
@@ -38,34 +30,15 @@ namespace GameOfFrameworks.Models.Services
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
             ViewModel.EquipmentView.EquipmentSlotsList.Remove(viewTemplate);
-            var itemEntity = new ItemEntity();
-            foreach (var item in ViewModel.EquipmentModel.ItemsList)
-            {
-                if (item.Model.ID == viewTemplate.ItemID && item.ItemDurability.Value == viewTemplate.Durability)
-                {
-                    itemEntity = item;
-                    break;
-                }
-            }
-            ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
+            ViewModel.EquipmentModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             AddItemToInventory(viewTemplate);
             ViewModel.EquipmentView = SortEquipmentByIndex();
             UpdatePlayerEntity();
         }
-        private void InitializeInventoryView()
-        {
-            foreach (var item in ViewModel.InventoryModel.ItemsInInventory)
-                ViewModel.InventoryView.InventorySlotsList.Add(ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(item));
-        }
+        private void InitializeInventoryView() => ViewModel.InventoryView.InventorySlotsList = Converter.ConvertRangeToObservableCollection(ViewModel.InventoryModel.ItemsInInventory);
         private void InitializeEquipmentView()
         {
-            var itemView = new EquipmentUserInterfaceViewTemplate();
-            foreach (var item in ViewModel.EquipmentModel.ItemsList)
-            {
-                itemView = ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(item);
-                ViewModel.EquipmentView.EquipmentSlotsList.Add(itemView);
-            }
-
+            ViewModel.EquipmentView.EquipmentSlotsList = Converter.ConvertRangeToObservableCollection(ViewModel.EquipmentModel.ItemsList);
             ViewModel.EquipmentView = SortEquipmentByIndex();
         }
         public void SelectItemFromEquipment(EQUIPMENT_TYPE wearType)
@@ -119,16 +92,7 @@ namespace GameOfFrameworks.Models.Services
             if (ViewModel.EquipmentView.EquipmentSlotsList[index].Source != null)
             {
                 AddItemToInventory(ViewModel.EquipmentView.EquipmentSlotsList[index]);
-                var itemEntity = new ItemEntity();
-                foreach (var item in ViewModel.EquipmentModel.ItemsList)
-                {
-                    if (item.Model.ID == itemToWear.ItemID && item.ItemDurability.Value == itemToWear.Durability)
-                    {
-                        itemEntity = item;
-                        break;
-                    }
-                }
-                ViewModel.EquipmentModel.ItemsList.Remove(itemEntity);
+                ViewModel.EquipmentModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(itemToWear));
                 UpdatePlayerEntity();
             }
             ViewModel.EquipmentView.EquipmentSlotsList[index] = itemToWear;

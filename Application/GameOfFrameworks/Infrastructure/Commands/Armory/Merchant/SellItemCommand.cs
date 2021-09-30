@@ -11,8 +11,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
         public override bool CanExecute(object parameter)
         {
             if (parameter is null) return false;
-            if (ViewModel.PlayerInventory.ItemsInInventory.Count >= 1) return true;
-            return false;
+            return true;
         }
         public override void Execute(object parameter)
         {

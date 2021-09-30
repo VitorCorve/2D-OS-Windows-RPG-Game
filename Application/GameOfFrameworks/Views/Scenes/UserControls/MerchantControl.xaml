@@ -9,6 +9,11 @@
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1600"
              Name="MecrhantControlElement">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="LayoutUpdated">
+            <i:InvokeCommandAction Command="{Binding UpdateMerchantViewModelCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <UserControl.DataContext>
         <vm:MerchantControlViewModel/>
     </UserControl.DataContext>
@@ -217,7 +222,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding RepairItemCommand}" CommandParameter="{Binding PlayerInventorySelect}" Height="Auto">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Repair" Margin="0,0,5,0"/>
@@ -228,7 +233,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding RepairAllItemsCommand}"  Height="Auto">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Repair All" Margin="0,0,5,0"/>
@@ -509,7 +514,7 @@
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Grid.Background>
                     <TextBlock Text="{Binding PlayerItems.Count, StringFormat={}{0}/}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="15"/>
-                    <TextBlock Text="{Binding TradeInventoryCapacity}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
+                    <TextBlock Text="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
                 </Grid>
                 <Button Style="{StaticResource ButtonTemplate}" Content="Weared" BorderThickness="0" Grid.Column="2" Command="{Binding ShowWearedEquipmentCommand}">
                     <Button.Background>
@@ -604,13 +609,13 @@
                 <RowDefinition Height="0.41*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="1" Margin="3">
-                <TextBlock Text="{Binding CharacterName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding PlayerModel.Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border.Background>
                     <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                 </Border.Background>
             </Border>
             <Grid Grid.Row="2" Margin="3">
-                <Image Source="{Binding CharacterAvatar}" Panel.ZIndex="1" Stretch="Fill" Style="{StaticResource AvatarImage}"/>
+                <Image Source="{Binding PlayerModel.AvatarPath.Path}" Panel.ZIndex="1" Stretch="Fill" Style="{StaticResource AvatarImage}"/>
                 <Rectangle Fill="Black">
                     <Rectangle.Effect>
                         <DropShadowEffect BlurRadius="14" ShadowDepth="7" Direction="310"/>
