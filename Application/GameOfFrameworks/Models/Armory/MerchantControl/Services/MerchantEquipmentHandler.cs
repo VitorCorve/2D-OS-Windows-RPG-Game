@@ -1,4 +1,5 @@
-﻿using GameEngine.MerchantMechanics;
+﻿using GameEngine.Equipment;
+using GameEngine.MerchantMechanics;
 using GameEngine.MerchantMechanics.Services;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Armory.MerchantControl.Interfaces;
@@ -47,22 +48,31 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
 
         public void RepairAllItems()
         {
-            Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
-            ViewModel.PlayerWearedEquipment = Blacksmith.RepairWearedEquipment(ViewModel.PlayerWearedEquipment);
-            RefreshData();
+            Blacksmith.PlayerAbsoluteMoneyValue = ViewModel.PlayerConsumables.AbsoluteMoneyValue;
+            Blacksmith.RepairWearedEquipment(ViewModel.PlayerWearedEquipment);
+            ViewModel.PlayerConsumables.ConvertValues(ViewModel.PlayerConsumables.AbsoluteMoneyValue - ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+            ViewModel.MerchantConsumables.ConvertValues(ViewModel.MerchantConsumables.AbsoluteMoneyValue + ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+
+            Blacksmith.PlayerAbsoluteMoneyValue = ViewModel.PlayerConsumables.AbsoluteMoneyValue;
+            Blacksmith.RepairInventoryItems(ViewModel.PlayerInventory);
+            ViewModel.PlayerConsumables.ConvertValues(ViewModel.PlayerConsumables.AbsoluteMoneyValue - ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+            ViewModel.MerchantConsumables.ConvertValues(ViewModel.MerchantConsumables.AbsoluteMoneyValue + ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+
+            ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerConsumables));
+            ViewModel.OnPropertyChanged(nameof(ViewModel.MerchantConsumables));
             SaveChanges();
         }
-        public void SetItemRepairCostValue(EquipmentUserInterfaceViewTemplate itemTemplate) => Blacksmith.SetRepairCostValue(ItemEntityConverter.ConvertToItemEntity(itemTemplate));
         public void SetItemRepairCostValue() => Blacksmith.SetRepairCostValue(ViewModel.PlayerWearedEquipment);
-        public void SetPlayerMoneyValue() => Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
-        public EquipmentUserInterfaceViewTemplate RepairItem(EquipmentUserInterfaceViewTemplate itemTemplate)
+        public void SetPlayerMoneyValue() => Blacksmith.PlayerAbsoluteMoneyValue = ViewModel.PlayerConsumables.AbsoluteMoneyValue;
+        public void RepairItem(ItemEntity itemEntity)
         {
-            var itemEntity = ItemEntityConverter.ConvertToItemEntity(itemTemplate);
-            Blacksmith.PlayerConsumables = ViewModel.PlayerConsumables;
+            SetPlayerMoneyValue();
             Blacksmith.RepairItem(itemEntity);
-            RefreshData();
+            ViewModel.PlayerConsumables.ConvertValues(ViewModel.PlayerConsumables.AbsoluteMoneyValue - ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+            ViewModel.MerchantConsumables.ConvertValues(ViewModel.MerchantConsumables.AbsoluteMoneyValue + ViewModel.EquipmentHandler.Blacksmith.RepairCostValue);
+            ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerConsumables));
+            ViewModel.OnPropertyChanged(nameof(ViewModel.MerchantConsumables));
             SaveChanges();
-            return ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(itemEntity);
         }
         private void SaveChanges()
         {
@@ -75,12 +85,31 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
         }
         private void RefreshData()
         {
-            var playerConsumables = ViewModel.PlayerConsumables;
-            var merchantConsumables = ViewModel.MerchantConsumables;
-            ViewModel.PlayerConsumables = playerConsumables;
-            ViewModel.MerchantConsumables = merchantConsumables;
             ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerConsumables));
             ViewModel.OnPropertyChanged(nameof(ViewModel.MerchantConsumables));
+        }
+        public void FindAndRepair(EquipmentUserInterfaceViewTemplate itemTemplate)
+        {
+            if (itemTemplate.Status == WEARED_STATUS.Weared)
+            {
+                foreach (var item in ViewModel.PlayerWearedEquipment.ItemsList)
+                {
+                    if (item.Model.ID == itemTemplate.ItemID && item.ItemDurability.Value == itemTemplate.Durability)
+                    {
+                        RepairItem(item);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in ViewModel.PlayerInventory.ItemsInInventory)
+                {
+                    if (item.Model.ID == itemTemplate.ItemID && item.ItemDurability.Value == itemTemplate.Durability)
+                    {
+                        RepairItem(item);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.Base;
+﻿using GameEngine.Equipment;
+using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
 {
-    public class RepairAllItemsCommand : Command
+    public class CalculateTotalRepairCostValueCommand : Command
     {
         private MerchantControlViewModel ViewModel { get; }
-        public RepairAllItemsCommand(MerchantControlViewModel merchantControlViewModel) => ViewModel = merchantControlViewModel;
+        public CalculateTotalRepairCostValueCommand(MerchantControlViewModel merchantControlViewModel) => ViewModel = merchantControlViewModel;
         public override bool CanExecute(object parameter)
         {
             foreach (var item in ViewModel.PlayerWearedEquipment.ItemsList)
@@ -21,14 +22,16 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
         }
         public override void Execute(object parameter)
         {
-            ViewModel.EquipmentHandler.RepairAllItems();
-
-            if (ViewModel.PlayerInventorySelect != null)
+            int repairCostValue = 0;
+            foreach (var item in ViewModel.PlayerWearedEquipment.ItemsList)
             {
-                ViewModel.PlayerInventorySelect.Durability = 100;
+                repairCostValue += 100 - item.ItemDurability.Value;
             }
-            ViewModel.OnPropertyChanged(nameof(ViewModel.PlayerInventorySelect));
-            ViewModel.ShowInventory();
+            foreach (var item in ViewModel.PlayerInventory.ItemsInInventory)
+            {
+                repairCostValue += 100 - item.ItemDurability.Value;
+            }
+            ViewModel.RepairCostValue = new CostValue(repairCostValue);
         }
     }
 }

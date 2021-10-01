@@ -28,6 +28,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         private PlayerConsumablesData _PlayerConsumables;
         private PlayerConsumablesData _MerchantConsumables;
         private Location _CurrentLocation;
+        private CostValue _RepairCostValue;
         public MerchantView Merchant { get; set; }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> PlayerItems { get => _PlayerItems; set => Set(ref _PlayerItems, value); }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> MerchantItems { get => _MerchantItems; set => Set(ref _MerchantItems, value); }
@@ -38,6 +39,11 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public PlayerInventoryItemsList PlayerInventory { get; set; }
         public WearedEquipment PlayerWearedEquipment { get; set; }
         public MerchantInventoryItemsList MerchantInventory { get; set; }
+        public MerchantEquipmentHandler EquipmentHandler { get; }
+        public int PlayerItemsInInventoryCount { get => _PlayerItemsInInventoryCount; set => Set(ref _PlayerItemsInInventoryCount, value); }
+        public Location CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
+        public PlayerModelData PlayerModel { get; set; }
+        public CostValue RepairCostValue { get => _RepairCostValue; set => Set(ref _RepairCostValue, value); }
         public Visibility PlayerItemToTradeDescriptionGridVisibility { get => _PlayerItemToTradeDescriptionGridVisibility; set => Set(ref _PlayerItemToTradeDescriptionGridVisibility, value); }
         public Visibility MerchantItemToTradeDescriptionGridVisibility { get => _MerchantItemToTradeDescriptionGridVisibility; set => Set(ref _MerchantItemToTradeDescriptionGridVisibility, value); }
         public ICommand SelectItemInPlayerInventoryCommand { get; private set; }
@@ -49,19 +55,10 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand UpdateMerchantViewModelCommand { get; private set; }
         public ICommand RepairAllItemsCommand { get; private set; }
         public ICommand RepairItemCommand { get; private set; }
-        public MerchantEquipmentHandler EquipmentHandler { get; }
-        public int PlayerItemsInInventoryCount { get => _PlayerItemsInInventoryCount; set => Set(ref _PlayerItemsInInventoryCount, value); }
-        public Location CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
-        public PlayerModelData PlayerModel { get; set; }
+        public ICommand CalculateItemRepairCostValueCommand { get; private set; }
+        public ICommand CalculateTotalRepairCostValueCommand { get; private set; }
         public MerchantControlViewModel()
         {
-            var wearedEquipment = ArmoryTemporaryData.PlayerEquipment;
-            foreach (var item in wearedEquipment.ItemsList)
-            {
-                item.ItemDurability.Value = 50;
-            }
-            ArmoryTemporaryData.PlayerEquipment = wearedEquipment;
-
             var merchantViewBuilder = new MerchantViewBuilder();
             CurrentLocation = ArmoryTemporaryData.CurrentLocation;
             PlayerModel = ArmoryTemporaryData.PlayerModel;
@@ -82,6 +79,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             EquipmentHandler = new MerchantEquipmentHandler(this);
 
             InitializeCommands();
+
+            RepairCostValue = new CostValue(0);
         }
         private void InitalizeInventories()
         {
@@ -121,6 +120,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             UpdateMerchantViewModelCommand = new UpdateMerchantViewModelCommand(this);
             RepairAllItemsCommand = new RepairAllItemsCommand(this);
             RepairItemCommand = new RepairItemCommand(this);
+            CalculateItemRepairCostValueCommand = new CalculateItemRepairCostValueCommand(this);
+            CalculateTotalRepairCostValueCommand = new CalculateTotalRepairCostValueCommand(this);
         }
         public void RefreshEquipmentView()
         {

@@ -92,7 +92,7 @@ namespace GameOfFrameworks.Models.Services
             if (ViewModel.EquipmentView.EquipmentSlotsList[index].Source != null)
             {
                 AddItemToInventory(ViewModel.EquipmentView.EquipmentSlotsList[index]);
-                ViewModel.EquipmentModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(itemToWear));
+                ViewModel.EquipmentModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(ViewModel.EquipmentView.EquipmentSlotsList[index]));
                 UpdatePlayerEntity();
             }
             ViewModel.EquipmentView.EquipmentSlotsList[index] = itemToWear;

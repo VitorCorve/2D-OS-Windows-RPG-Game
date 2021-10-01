@@ -54,8 +54,18 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             InventoryModel = new PlayerInventoryItemsList(0, 0, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1, 2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0, 2, 1, 2, 2, 1, 0, 0, 0, 0, 1);
             EquipmentModel = new WearedEquipment(0, 1, 2);
 
-/*            InventoryModel = new PlayerInventoryItemsList(ArmoryTemporaryData.SaveData.ItemsInInventory.ConvertToItemsEntityList());
-            EquipmentModel = new WearedEquipment(ArmoryTemporaryData.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());*/
+            foreach (var item in InventoryModel.ItemsInInventory)
+            {
+                item.ItemDurability.Value = 30;
+            }
+
+            foreach (var item in EquipmentModel.ItemsList)
+            {
+                item.ItemDurability.Value = 50;
+            }
+
+            /*            InventoryModel = new PlayerInventoryItemsList(ArmoryTemporaryData.SaveData.ItemsInInventory.ConvertToItemsEntityList());
+                        EquipmentModel = new WearedEquipment(ArmoryTemporaryData.SaveData.ItemsOnCharacter.ConvertToItemsEntityList());*/
 
             InventoryView = new InventoryViewList();
             EquipmentView = new WearedViewList();
