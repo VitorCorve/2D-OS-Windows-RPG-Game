@@ -97,6 +97,7 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
                     if (item.Model.ID == itemTemplate.ItemID && item.ItemDurability.Value == itemTemplate.Durability)
                     {
                         RepairItem(item);
+                        break;
                     }
                 }
             }
@@ -107,6 +108,7 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
                     if (item.Model.ID == itemTemplate.ItemID && item.ItemDurability.Value == itemTemplate.Durability)
                     {
                         RepairItem(item);
+                        break;
                     }
                 }
             }

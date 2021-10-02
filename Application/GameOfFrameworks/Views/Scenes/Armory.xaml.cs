@@ -30,6 +30,7 @@ namespace GameOfFrameworks.Scenes
         private void AttributesButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AttributesControlElement);
         private void OptionsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(OptionsControlElement);
         private void LevelUpButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(LevelUpControlElement);
+        private void MapButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(MapControlElement);
         public void SetActiveUserControl(UserControl control)
         {
             EquipmentControlElement.Visibility = Visibility.Collapsed;
@@ -37,6 +38,7 @@ namespace GameOfFrameworks.Scenes
             AttributesControlElement.Visibility = Visibility.Collapsed;
             OptionsControlElement.Visibility = Visibility.Collapsed;
             LevelUpControlElement.Visibility = Visibility.Collapsed;
+            MapControlElement.Visibility = Visibility.Collapsed;
             control.Visibility = Visibility.Visible;
         }
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)

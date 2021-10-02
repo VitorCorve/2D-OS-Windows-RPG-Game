@@ -250,7 +250,7 @@
             <Button x:Name="HuntButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Hunt" Grid.Row="0" Grid.Column="1" Click="HuntButton_Click"/>
             <Button x:Name="EquippmentButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Equipment" Grid.Row="1" Grid.Column="1" Click="EquippmentButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Merchant" Grid.Row="2" Grid.Column="1" Click="MerchantButton_Click"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Towns" Grid.Row="3" Grid.Column="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Map" Grid.Row="3" Grid.Column="1" Click="MapButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Territories" Grid.Row="4" Grid.Column="1"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quests" Grid.Row="5" Grid.Column="1"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Notes" Grid.Row="6" Grid.Column="1"/>
@@ -383,6 +383,7 @@
             <local:OptionsControl Style="{StaticResource UserControlTemplate}" x:Name="OptionsControlElement" Visibility="Collapsed"></local:OptionsControl>
             <local:LevelUpControl Style="{StaticResource UserControlTemplate}" x:Name="LevelUpControlElement" Visibility="Collapsed"></local:LevelUpControl>
             <local:MerchantControl Style="{StaticResource UserControlTemplate}" x:Name="MerchantControlElement" Visibility="Collapsed"></local:MerchantControl>
+            <local:MapControl Style="{StaticResource UserControlTemplate}" x:Name="MapControlElement" Visibility="Collapsed"></local:MapControl>
         </Grid>
         <Grid Grid.Row="10" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Margin="0,10,0,0" Click="MainMenuButton_Click"/>

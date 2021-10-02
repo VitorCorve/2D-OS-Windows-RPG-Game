@@ -130,6 +130,14 @@
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <None Remove="Views\Scenes\Images\VisualElements\WideElementCover.png" />
+    <None Remove="Views\Scenes\Images\WorldMap\Castle.png" />
+    <None Remove="Views\Scenes\Images\WorldMap\map.jpeg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\AnvilrestCut.jpg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\ChartringfallCut.jpg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\Dark_FortressCut.jpg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\ElfinelCut.jpg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\FrozencoreCut.jpg" />
+    <None Remove="Views\Scenes\Images\WorldMap\Towns\RoughwarkCut.jpg" />
     <None Remove="Views\Scenes\indicatorBar.png" />
     <None Remove="Views\Scenes\inventoryBackground2.png" />
     <None Remove="Views\Scenes\inventoryItemframe.png" />
@@ -426,6 +434,14 @@
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\WideElementCover.png" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Castle.png" />
+    <Resource Include="Views\Scenes\Images\WorldMap\map.jpeg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\AnvilrestCut.jpg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\ChartringfallCut.jpg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\Dark_FortressCut.jpg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\ElfinelCut.jpg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\FrozencoreCut.jpg" />
+    <Resource Include="Views\Scenes\Images\WorldMap\Towns\RoughwarkCut.jpg" />
     <Resource Include="Views\Scenes\UserControls\Images\inventoryBackground.png" />
     <Resource Include="Views\Scenes\Images\inventoryItemframe.png" />
     <Resource Include="Views\Scenes\Images\ScenesBackground\ArmoryBG.jpg" />
@@ -450,6 +466,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Commands\Armory\Map\" />
     <Folder Include="Infrastructure\UserApplicationSettings\" />
     <Folder Include="ViewModels\CustomControls\" />
   </ItemGroup>

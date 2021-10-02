@@ -31,7 +31,9 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
             {
                 repairCostValue += 100 - item.ItemDurability.Value;
             }
+            ViewModel.RepairCostValue = null;
             ViewModel.RepairCostValue = new CostValue(repairCostValue);
+            ViewModel.OnPropertyChanged(nameof(ViewModel.RepairCostValue));
         }
     }
 }
