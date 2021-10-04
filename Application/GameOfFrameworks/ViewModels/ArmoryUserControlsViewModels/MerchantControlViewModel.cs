@@ -1,5 +1,4 @@
-﻿using GameEngine.Locations;
-using GameOfFrameworks.Models.Services;
+﻿using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Armory.MerchantControl;
 using GameOfFrameworks.Models.Armory.MerchantControl.Services;
 using GameOfFrameworks.Models.Temporary;
@@ -13,6 +12,7 @@ using System.Windows.Input;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Merchant;
 using GameEngine.Inventory;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
+using GameEngine.Locations.Interfaces;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
@@ -27,7 +27,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         private int _PlayerItemsInInventoryCount;
         private PlayerConsumablesData _PlayerConsumables;
         private PlayerConsumablesData _MerchantConsumables;
-        private Location _CurrentLocation;
+        private ILocation _CurrentLocation;
         private CostValue _RepairCostValue;
         public MerchantView Merchant { get; set; }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> PlayerItems { get => _PlayerItems; set => Set(ref _PlayerItems, value); }
@@ -41,7 +41,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public MerchantInventoryItemsList MerchantInventory { get; set; }
         public MerchantEquipmentHandler EquipmentHandler { get; }
         public int PlayerItemsInInventoryCount { get => _PlayerItemsInInventoryCount; set => Set(ref _PlayerItemsInInventoryCount, value); }
-        public Location CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
+        public ILocation CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
         public PlayerModelData PlayerModel { get; set; }
         public CostValue RepairCostValue { get => _RepairCostValue; set => Set(ref _RepairCostValue, value); }
         public Visibility PlayerItemToTradeDescriptionGridVisibility { get => _PlayerItemToTradeDescriptionGridVisibility; set => Set(ref _PlayerItemToTradeDescriptionGridVisibility, value); }

@@ -2,7 +2,7 @@
 using GameEngine.Data;
 using GameEngine.Equipment;
 using GameEngine.Inventory;
-using GameEngine.Locations;
+using GameEngine.Locations.Interfaces;
 using GameEngine.Player;
 using GameEngine.Player.Abstract;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
@@ -12,7 +12,7 @@ namespace GameOfFrameworks.Models.Temporary
 {
     public static class ArmoryTemporaryData
     {
-        public static Location CurrentLocation { get; set; }
+        public static ILocation CurrentLocation { get; set; }
         public static PlayerEntity CharacterEntity { get; set; }
         public static PlayerModelData PlayerModel { get; set; }
         public static PlayerSaveData SaveData { get; set; }

@@ -466,7 +466,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Commands\Armory\Map\" />
     <Folder Include="Infrastructure\UserApplicationSettings\" />
     <Folder Include="ViewModels\CustomControls\" />
   </ItemGroup>
