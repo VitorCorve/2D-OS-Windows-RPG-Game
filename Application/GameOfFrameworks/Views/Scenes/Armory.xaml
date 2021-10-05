@@ -207,7 +207,7 @@
     </Page.Resources>
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/Scenes/Images/ScenesBackground/ArmoryBG.jpg"/>
+            <ImageBrush ImageSource="{Binding CurrentLocation.LocationBGImagePresenterPath}"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
@@ -287,14 +287,14 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding PlayeModel.Name}" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock Text="{Binding PlayerModel.Name}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1">
                     <Border.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Border.Background>
-                    <TextBlock Text="{Binding PlayeModel.Level, StringFormat={} Level: {0}}" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock Text="{Binding PlayerModel.Level, StringFormat={} Level: {0}}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
             </Grid>
@@ -324,7 +324,7 @@
                         <DropShadowEffect BlurRadius="100" ShadowDepth="18" Direction="310" Color="black"/>
                     </Border.Effect>
                 </Border>
-                <Image Style="{StaticResource AvatarImage}" Source="{Binding PlayeModel.AvatarPath.Path}" Stretch="Fill"/>
+                <Image Style="{StaticResource AvatarImage}" Source="{Binding PlayerModel.AvatarPath.Path}" Stretch="Fill"/>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>

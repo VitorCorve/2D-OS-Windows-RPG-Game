@@ -7,11 +7,13 @@ using GameEngine.Player;
 using GameEngine.Player.Abstract;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace GameOfFrameworks.Models.Temporary
 {
     public static class ArmoryTemporaryData
     {
+        public static Page Instance { get; set; }
         public static ILocation CurrentLocation { get; set; }
         public static PlayerEntity CharacterEntity { get; set; }
         public static PlayerModelData PlayerModel { get; set; }
@@ -27,5 +29,6 @@ namespace GameOfFrameworks.Models.Temporary
         public static bool IsPlayerEntityChanged { get; set; }
         public static bool IsPlayerAttributesUpdated { get; set; }
         public static bool IsPlayerSkillsUpdated { get; set; }
+        public static bool IsLocationChanged { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using GameOfFrameworks.Models.Services;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
+using System.Windows.Controls;
+
 
 namespace GameOfFrameworks.Scenes.UserControls
 {

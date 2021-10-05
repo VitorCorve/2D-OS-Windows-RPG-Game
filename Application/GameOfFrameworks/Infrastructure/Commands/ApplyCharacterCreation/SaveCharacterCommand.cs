@@ -44,7 +44,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
         private void SetAvailableSkillList() => SkillList.Skills = AvailableSkillListManager.SkillList;
         private void SetupCharacterAttributes() => DataToSave.PlayerAttributes = ViewModel.CharacterBasicAttributes;
         private void ConvertData() => DataToSave = DataConverter.Convert(PlayerModel, SkillList);
-        private void SaveData() => SaveService.Save(DataToSave);
         private void SetDataSaveTime() => DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
+        private void SaveData() => SaveService.Save(DataToSave);
     }
 }

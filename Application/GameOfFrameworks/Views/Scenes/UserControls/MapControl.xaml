@@ -159,7 +159,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Frozencore" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black"/>
+                                <TextBlock Text="Frozencore" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding FrozencoreTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -179,7 +179,7 @@
                         <Button.Content>
                             <StackPanel>
                                 <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                                <TextBlock Text="Roughwark" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="#FF9C0303"/>
+                                    <TextBlock Text="Roughwark" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding RoughwarkTownElement.Color}"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -188,7 +188,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Ironhide" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black"/>
+                                <TextBlock Text="Ironhide" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding IronhideTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -208,7 +208,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Anvilrest" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black"/>
+                                <TextBlock Text="Anvilrest" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding AnvilrestTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -216,7 +216,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Elfinel" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black" />
+                                <TextBlock Text="Elfinel" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding ElfinelTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -234,7 +234,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Chartringfall" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black"/>
+                            <TextBlock Text="Chartringfall" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding ChartringfallTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -242,7 +242,7 @@
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
-                            <TextBlock Text="Dark Fortress" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="Black"/>
+                                <TextBlock Text="Dark Fortress" HorizontalAlignment="Center" FontSize="18" FontFamily="Viner Hand ITC" Foreground="{Binding DarkFortressTownElement.Color}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>

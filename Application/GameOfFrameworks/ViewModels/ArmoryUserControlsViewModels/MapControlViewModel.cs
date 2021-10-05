@@ -1,9 +1,13 @@
-﻿using GameEngine.Locations;
+﻿using GalaSoft.MvvmLight.Views;
+using GameEngine.Locations;
 using GameEngine.Locations.Interfaces;
 using GameEngine.Locations.Services;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Map;
+using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.Models.UIVisualisation;
 using GameOfFrameworks.ViewModels.Base;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -22,12 +26,22 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand HideCharacterTravelingControlCommand { get; private set; }
         public ICommand ShowCharacterTravelingControlCommand { get; private set; }
         public ICommand TravelToSelectedLocationCommand { get; private set; }
+        public TownMapElementView IronhideTownElement { get; set; } = new(TOWN.Ironhide);
+        public TownMapElementView RoughwarkTownElement { get; set; } = new(TOWN.Roughwark);
+        public TownMapElementView FrozencoreTownElement { get; set; } = new(TOWN.Frozencore);
+        public TownMapElementView AnvilrestTownElement { get; set; } = new(TOWN.Anvilrest);
+        public TownMapElementView ElfinelTownElement { get; set; } = new(TOWN.Elfinel);
+        public TownMapElementView DarkFortressTownElement { get; set; } = new(TOWN.Dark_Fortress);
+        public TownMapElementView ChartringfallTownElement { get; set; } = new(TOWN.Chartringfall);
+        public List<TownMapElementView> Towns { get; set; } = new();
+        public INavigationService NavigationService { get; set; }
         public MapControlViewModel()
         {
             CurrentLocation = ArmoryTemporaryData.CurrentLocation;
             CharacterTravelingControlVisibility = Visibility.Hidden;
             SelectedLocation = LocationBuilderService.Build(CurrentLocation.Town);
             InitializeCommands();
+            InitializeTownElements();
         }
         private void InitializeCommands()
         {
@@ -35,6 +49,16 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             HideCharacterTravelingControlCommand = new HideCharacterTravelingControlCommand(this);
             ShowCharacterTravelingControlCommand = new ShowCharacterTravelingControlCommand(this);
             TravelToSelectedLocationCommand = new TravelToSelectedLocationCommand(this);
+        }
+        private void InitializeTownElements()
+        {
+            Towns.Add(IronhideTownElement);
+            Towns.Add(RoughwarkTownElement);
+            Towns.Add(FrozencoreTownElement);
+            Towns.Add(AnvilrestTownElement);
+            Towns.Add(ElfinelTownElement);
+            Towns.Add(DarkFortressTownElement);
+            Towns.Add(ChartringfallTownElement);
         }
     }
 }

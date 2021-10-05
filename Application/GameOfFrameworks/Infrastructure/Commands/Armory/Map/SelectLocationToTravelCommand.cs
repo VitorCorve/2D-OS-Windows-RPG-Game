@@ -13,7 +13,13 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
         public bool CanExecute(object parameter) => true;
         public void Execute(object parameter)
         {
-            ViewModel.SelectedLocation = ViewModel.LocationBuilderService.Build((TOWN)Enum.Parse(typeof(TOWN), (string)parameter));
+            var town = (TOWN)Enum.Parse(typeof(TOWN), (string)parameter);
+            ViewModel.SelectedLocation = ViewModel.LocationBuilderService.Build(town);
+            foreach (var item in ViewModel.Towns)
+            {
+                if (item.Name == town) item.IsSelected = true;
+                else item.IsSelected = false;
+            }
         }
     }
 }

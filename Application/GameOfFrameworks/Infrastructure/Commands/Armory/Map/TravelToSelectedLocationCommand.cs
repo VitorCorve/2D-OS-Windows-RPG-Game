@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System;
 using System.Windows;
@@ -16,6 +17,9 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
         {
             ArmoryTemporaryData.CurrentLocation = ViewModel.SelectedLocation;
             ViewModel.CharacterTravelingControlVisibility = Visibility.Hidden;
+            ArmoryTemporaryData.Instance.NavigationService.Navigate(new GameOfFrameworks.Scenes.Armory());
+            var armoryViewModel = new ArmoryViewModel();
+            armoryViewModel.SaveGameCommand.Execute(null);
         }
     }
 }
