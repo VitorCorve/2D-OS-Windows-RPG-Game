@@ -20,6 +20,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
                 if (item.Name == town) item.IsSelected = true;
                 else item.IsSelected = false;
             }
+            ViewModel.CheckLocation();
         }
     }
 }

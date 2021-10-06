@@ -9,11 +9,6 @@
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1600"
              Name="MecrhantControlElement">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="LayoutUpdated">
-            <i:InvokeCommandAction Command="{Binding UpdateMerchantViewModelCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <UserControl.DataContext>
         <vm:MerchantControlViewModel/>
     </UserControl.DataContext>

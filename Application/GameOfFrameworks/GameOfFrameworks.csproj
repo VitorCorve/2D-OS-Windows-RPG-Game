@@ -5,7 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
-    <AssemblyVersion>1.1.0.2</AssemblyVersion>
+    <AssemblyVersion>1.1.0.4</AssemblyVersion>
     <FileVersion>1.1.0.2</FileVersion>
   </PropertyGroup>
 
@@ -127,6 +127,7 @@
     <None Remove="Views\Scenes\Images\VisualElements\ElementCoverNoShadow.png" />
     <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
     <None Remove="Views\Scenes\Images\VisualElements\PlayerBar.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\saveGameShortcut.png" />
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <None Remove="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <None Remove="Views\Scenes\Images\VisualElements\WideElementCover.png" />
@@ -431,6 +432,7 @@
     <Resource Include="Views\Scenes\Images\VisualElements\PlayerBar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\Scenes\Images\VisualElements\saveGameShortcut.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCover.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\tradeElementCoverAlt.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\WideElementCover.png" />

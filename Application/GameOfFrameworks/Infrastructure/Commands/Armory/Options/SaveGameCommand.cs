@@ -3,6 +3,7 @@ using GameEngine.Data.Interfaces;
 using GameEngine.Data.Services;
 using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using System;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
@@ -18,6 +19,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
             PrepareSaveData();
             SetDataSaveTime();
             SaveData();
+            MainWindowViewModel.ShowSaveGameNotificationCommand.Execute(null);
         }
         private void InitializeManagers()
         {
@@ -32,9 +34,10 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
                 ArmoryTemporaryData.CurrentLocation,
                 ArmoryTemporaryData.PlayerInventory,
                 ArmoryTemporaryData.PlayerEquipment,
-                ArmoryTemporaryData.PlayerSkills);
+                ArmoryTemporaryData.PlayerSkills,
+                ArmoryTemporaryData.PlayerAttributes);
         }
         private void SetDataSaveTime() => DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
-        private void SaveData() => SaveService.Save(DataToSave);
+        private void SaveData() => SaveService.Save(DataToSave, true);
     }
 }

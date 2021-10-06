@@ -8,15 +8,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
     {
         public ArmoryViewModel ViewModel { get; set; }
         public UpdateArmoryViewModelCommand(ArmoryViewModel AamoryViewModel) => ViewModel = AamoryViewModel;
-        public override bool CanExecute(object parameter)
-        {
-            if (ArmoryTemporaryData.IsPlayerEntityChanged)
-            {
-                ArmoryTemporaryData.IsPlayerEntityChanged = false;
-                return true;
-            }
-            else return false;
-        }
+        public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
             ViewModel.CharacterEntity = null;

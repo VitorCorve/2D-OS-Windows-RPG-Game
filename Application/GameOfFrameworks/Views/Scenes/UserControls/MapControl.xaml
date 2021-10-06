@@ -272,7 +272,7 @@
                     <TextBlock Text="{Binding SelectedLocation.Town, Converter={StaticResource townNamesConverter}}" HorizontalAlignment="Center" FontSize="22" FontFamily="Viner Hand ITC" Foreground="White" VerticalAlignment="Center"/>
                 <Image Style="{StaticResource LocationImagePresenter}" Source="{Binding SelectedLocation.LocationImagePresenterPath}" Grid.Row="1" Margin="10"/>
                 <TextBlock Text="{Binding SelectedLocation.LocationDescription}" Grid.Row="2" HorizontalAlignment="Center" FontSize="14" Foreground="White" TextWrapping="Wrap" Margin="16"/>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Travel" Grid.Row="3" Height="50" Margin="10,0,10,0" Command="{Binding ShowCharacterTravelingControlCommand}"/>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Travel" Grid.Row="3" Height="50" Margin="10,0,10,0" Visibility="{Binding TravelingButtonElementVisibility}" Command="{Binding ShowCharacterTravelingControlCommand}"/>
             </Grid>
         </Grid>
         </Grid>

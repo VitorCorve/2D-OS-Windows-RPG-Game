@@ -3,7 +3,6 @@ using GameEngine.Locations;
 using GameEngine.Locations.Interfaces;
 using GameEngine.Locations.Services;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Map;
-using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UIVisualisation;
 using GameOfFrameworks.ViewModels.Base;
@@ -16,12 +15,14 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
     public class MapControlViewModel : ViewModel
     {
         private Visibility _CharacterTravelingControlVisibility;
+        private Visibility _TravelingButtonElementVisibility;
         private ILocation _CurrentLocation;
         private ILocation _SelectedLocation;
         public ILocation SelectedLocation { get => _SelectedLocation; set => Set(ref _SelectedLocation, value); }
         public ILocation CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
         public LocationBuilder LocationBuilderService { get; set; } = new();
         public Visibility CharacterTravelingControlVisibility { get => _CharacterTravelingControlVisibility; set => Set(ref _CharacterTravelingControlVisibility, value); }
+        public Visibility TravelingButtonElementVisibility { get => _TravelingButtonElementVisibility; set => Set(ref _TravelingButtonElementVisibility, value); }
         public ICommand SelectLocationToTravelCommand { get; private set; }
         public ICommand HideCharacterTravelingControlCommand { get; private set; }
         public ICommand ShowCharacterTravelingControlCommand { get; private set; }
@@ -34,7 +35,6 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public TownMapElementView DarkFortressTownElement { get; set; } = new(TOWN.Dark_Fortress);
         public TownMapElementView ChartringfallTownElement { get; set; } = new(TOWN.Chartringfall);
         public List<TownMapElementView> Towns { get; set; } = new();
-        public INavigationService NavigationService { get; set; }
         public MapControlViewModel()
         {
             CurrentLocation = ArmoryTemporaryData.CurrentLocation;
@@ -42,6 +42,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             SelectedLocation = LocationBuilderService.Build(CurrentLocation.Town);
             InitializeCommands();
             InitializeTownElements();
+            CheckLocation();
         }
         private void InitializeCommands()
         {
@@ -59,6 +60,11 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             Towns.Add(ElfinelTownElement);
             Towns.Add(DarkFortressTownElement);
             Towns.Add(ChartringfallTownElement);
+        }
+        public void CheckLocation()
+        {
+            if (SelectedLocation.Town == CurrentLocation.Town) TravelingButtonElementVisibility = Visibility.Hidden;
+            else TravelingButtonElementVisibility = Visibility.Visible;
         }
     }
 }

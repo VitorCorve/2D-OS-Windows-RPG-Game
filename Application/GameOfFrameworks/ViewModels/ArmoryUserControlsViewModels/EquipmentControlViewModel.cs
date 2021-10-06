@@ -38,7 +38,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand ShowInventoryItemDeletingDialogCommand { get; private set; }
         public ICommand HideInventoryItemDeletingDialogUserControl { get; private set; }
         public ICommand DeleteInventoryItemCommand { get; private set; }
-        public ICommand UpdateEquipmentViewModelCommand { get; private set; }
+        public static ICommand UpdateEquipmentViewModelCommand { get; private set; }
         public Visibility DescriptionToolTipVisibility { get => _DescriptionToolTipVisibility; set => Set(ref _DescriptionToolTipVisibility, value); }
         public Visibility InventoryItemDeletingDialogUserControl { get => _InventoryItemDeletingDialogUserControl; set => Set(ref _InventoryItemDeletingDialogUserControl, value); }
         public PlayerInventoryItemsList InventoryModel { get; set; }
@@ -94,9 +94,10 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             ArmoryTemporaryData.PlayerEquipment = EquipmentModel;
             ArmoryTemporaryData.PlayerInventory = InventoryModel;
-            ArmoryTemporaryData.IsPlayerAttributesUpdated = true;
-            ArmoryTemporaryData.IsPlayerEntityChanged = true;
-            ArmoryTemporaryData.IsEquipmentViewModelChanged = true;
+            ArmoryViewModel.UpdateArmoryViewModelCommand.Execute(null);
+            MerchantControlViewModel.UpdateMerchantViewModelCommand.Execute(null);
+            AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
+            LevelUpViewModel.UpdatePlayerAttributeCommand.Execute(null);
         }
     }
 }

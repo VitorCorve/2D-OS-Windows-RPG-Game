@@ -32,8 +32,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ISkillView SelectedSkill { get => _SelectedSkill; set => Set(ref _SelectedSkill, value); }
         public Visibility SkillDescriptionBarVisibility { get => _SkillDescriptionBarVisibility; set => Set(ref _SkillDescriptionBarVisibility, value); }
         public PlayerConsumablesData PlayerConsumables { get; set; }
-        public ICommand UpdatePlayerAttributeCommand { get; private set; }
-        public ICommand UpdatePlayerSkillCommand { get; private set; }
+        public static ICommand UpdatePlayerAttributeCommand { get; private set; }
+        public static ICommand UpdatePlayerSkillCommand { get; private set; }
         public bool IsAttributeLevelUpAvailable { get => _IsAttributeLevelUpAvailable; set => Set(ref _IsAttributeLevelUpAvailable,  value); }
         public bool IsSkilLevelUpAvailable { get => _IsSkilLevelUpAvailable; set => Set(ref _IsSkilLevelUpAvailable, value); }
         public double AttributesLevelUpButtonsOpacity { get => _AttributesLevelUpButtonsOpacity; set => Set(ref _AttributesLevelUpButtonsOpacity, value); }

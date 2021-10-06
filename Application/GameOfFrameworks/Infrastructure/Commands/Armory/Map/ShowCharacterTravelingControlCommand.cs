@@ -11,6 +11,10 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
         public event EventHandler CanExecuteChanged;
         public ShowCharacterTravelingControlCommand(MapControlViewModel mapControlViewModel) => ViewModel = mapControlViewModel;
         public bool CanExecute(object parameter) => true;
-        public void Execute(object parameter) => ViewModel.CharacterTravelingControlVisibility = Visibility.Visible;
+        public void Execute(object parameter)
+        {
+            if (ViewModel.SelectedLocation.Town == ViewModel.CurrentLocation.Town) return;
+            ViewModel.CharacterTravelingControlVisibility = Visibility.Visible;
+        }
     }
 }

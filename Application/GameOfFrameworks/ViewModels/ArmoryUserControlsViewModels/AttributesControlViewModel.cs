@@ -3,6 +3,7 @@ using GameEngine.EquipmentManagement;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
+using GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp;
 using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
@@ -33,7 +34,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ShortcutsListModel Shortcuts { get => _Shortcuts; set => Set(ref _Shortcuts, value); }
         public bool PopupShortcutIsOpen { get => _PopupShortcutIsOpen; set => Set(ref _PopupShortcutIsOpen, value); }
         public Visibility DescriptionBarVisibility { get => _DescriptionBarVisibility; set => Set(ref _DescriptionBarVisibility, value); }
-        public ICommand UpdateAttributesViewModelCommand { get; private set; }
+        public static ICommand UpdateAttributesViewModelCommand { get; private set; }
+        public static ICommand UpdateAttributesViewModelAvailableSkillsCommand { get; private set; }
         public ICommand SelectItemFromSkillViewListCommand { get; private set; }
         public ICommand CancelItemSelectionFromSkillViewListCommand { get; private set; }
         public ICommand SetupCapturedSkillToShortcutCommand { get; private set; }
@@ -66,6 +68,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             SetupCapturedSkillToShortcutCommand = new SetupCapturedSkillToShortcutCommand(this);
             CancelShortcutFocusCommand = new CancelShortcutFocusCommand(this);
             CloseShortcutPopupCommand = new CloseShortcutPopupCommand(this);
+            UpdateAttributesViewModelAvailableSkillsCommand = new UpdateAttributesViewModelAvailableSkillsCommand(this);
 
         }
         private void ValidateSkillDescriptionBar(ISkillView skillView)

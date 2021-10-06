@@ -75,7 +75,10 @@ namespace GameOfFrameworks.Models.LoadGame
             foreach (var item in directoryInfo.EnumerateFiles())
             {
                 var gameSave = new GameSaveModel();
-                gameSave.Name = DataDeserializer.Deserialize(item.FullName).Name;
+                var playerSavedata = DataDeserializer.Deserialize(item.FullName);
+
+                if (playerSavedata.IsAutoSave) gameSave.Name = "Autosave";
+                else gameSave.Name = playerSavedata.Name;
                 gameSave.Path = item.FullName;
                 GameSaves.Add(gameSave);
             }

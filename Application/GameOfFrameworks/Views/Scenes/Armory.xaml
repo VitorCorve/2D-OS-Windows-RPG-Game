@@ -10,11 +10,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Armory">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="LayoutUpdated">
-            <i:InvokeCommandAction Command="{Binding UpdateArmoryViewModelCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <Page.DataContext>
         <vm:ArmoryViewModel/>
     </Page.DataContext>

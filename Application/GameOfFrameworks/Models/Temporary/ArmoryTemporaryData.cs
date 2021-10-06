@@ -24,11 +24,5 @@ namespace GameOfFrameworks.Models.Temporary
         public static PlayerSkillList PlayerSkills { get; set; }
         public static IEntityAttributes PlayerAttributes { get; set; }
         public static ObservableCollection<ISkillView> AvailableSkills { get; set; }
-        public static bool IsEquipmentViewModelChanged { get; set; }
-        public static bool IsMerchantViewModelChanged { get; set; }
-        public static bool IsPlayerEntityChanged { get; set; }
-        public static bool IsPlayerAttributesUpdated { get; set; }
-        public static bool IsPlayerSkillsUpdated { get; set; }
-        public static bool IsLocationChanged { get; set; }
     }
 }

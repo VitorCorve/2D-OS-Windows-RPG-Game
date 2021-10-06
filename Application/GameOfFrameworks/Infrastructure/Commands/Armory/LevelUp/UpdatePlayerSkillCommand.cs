@@ -49,7 +49,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
             ViewModel.PlayerConsumables.SkillPointsValue.Value--;
 
             ArmoryTemporaryData.AvailableSkills = ViewModel.AvailableSkills;
-            ArmoryTemporaryData.IsPlayerSkillsUpdated = true;
+            AttributesControlViewModel.UpdateAttributesViewModelAvailableSkillsCommand.Execute(null);
         }
     }
 }

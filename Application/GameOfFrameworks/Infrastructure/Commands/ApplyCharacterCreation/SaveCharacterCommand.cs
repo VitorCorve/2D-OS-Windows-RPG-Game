@@ -32,6 +32,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
             SetupCharacterAttributes();
             SetDataSaveTime();
             SaveData();
+            MainWindowViewModel.ShowSaveGameNotificationCommand.Execute(null);
         }
         private void InitializeManagers()
         {

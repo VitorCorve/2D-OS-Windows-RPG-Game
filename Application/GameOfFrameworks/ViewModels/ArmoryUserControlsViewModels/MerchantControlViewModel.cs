@@ -52,7 +52,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand SellItemCommand { get; private set; }
         public ICommand ShowWearedEquipmentCommand { get; private set; }
         public ICommand ShowItemsInInventoryCommand { get; private set; }
-        public ICommand UpdateMerchantViewModelCommand { get; private set; }
+        public static ICommand UpdateMerchantViewModelCommand { get; private set; }
         public ICommand RepairAllItemsCommand { get; private set; }
         public ICommand RepairItemCommand { get; private set; }
         public ICommand CalculateItemRepairCostValueCommand { get; private set; }

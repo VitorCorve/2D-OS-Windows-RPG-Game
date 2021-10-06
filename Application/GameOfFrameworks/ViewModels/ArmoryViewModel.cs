@@ -2,7 +2,6 @@
 using GameEngine.Locations.Interfaces;
 using GameEngine.Locations.Services;
 using GameEngine.Player;
-using GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Options;
 using GameOfFrameworks.Models.Services;
@@ -23,8 +22,8 @@ namespace GameOfFrameworks.ViewModels
         public PlayerModelData PlayerModel { get => _PlayerModel; set => Set(ref _PlayerModel, value); }
         public PlayerExperienceConverter Converter { get; set; }
         public ILocation CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
-        public ICommand UpdateArmoryViewModelCommand { get; private set; }
-        public ICommand SaveGameCommand { get; private set; }
+        public static ICommand UpdateArmoryViewModelCommand { get; private set; }
+        public static ICommand SaveGameCommand { get; private set; }
         public ArmoryViewModel()
         {
             var locationBuilder = new LocationBuilder();

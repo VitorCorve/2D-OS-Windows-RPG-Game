@@ -26,7 +26,6 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
             ViewModel.PlayerConsumables.AttributePointsValue.Value--;
             ViewModel.AvailableAttributesPoints--;
             ArmoryTemporaryData.PlayerAttributes = ViewModel.Attributes.ReturnEntityAttributes();
-            ArmoryTemporaryData.IsPlayerAttributesUpdated = true;
         }
     }
 }

@@ -19,12 +19,55 @@
     <Window.Background>
         <SolidColorBrush Color="Black"/>
     </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="SaveGameShortcutImage">
+
+        </Style>
+        <Storyboard x:Key="Storyboard" BeginTime="00:00:00.000" Duration="00:00:10.000">
+            <DoubleAnimation Storyboard.TargetName="RotateImage" 
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" 
+                             From="0" To="360" BeginTime="00:00:05.000" Duration="00:00:05.000" />
+        </Storyboard>
+        <Style TargetType="TextBlock" x:Key="GameSaveText">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
         </Frame>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="40" Visibility="{Binding SaveGameNotifyVisibility}" Opacity="{Binding SaveGameNotifyOpacity}">
+            <TextBlock Style="{StaticResource GameSaveText}" Text="Autosave" Foreground="White" Margin="10" />
+            <Image x:Name="SaveGameShortcutElement" Source="/Views/Scenes/Images/VisualElements/saveGameShortcut.png" Width="35" RenderTransformOrigin=".5,.5">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0"/>
+                </Image.RenderTransform>
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsEnabled" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    From="0"
+                                    To="360"
+                                    Duration="0:0:0.5"
+                                    RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </StackPanel>
     </Grid>
 </Window>

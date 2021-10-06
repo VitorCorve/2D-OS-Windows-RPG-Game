@@ -1,10 +1,13 @@
-﻿using GameEngine.Equipment;
+﻿using GameEngine.CombatEngine;
+using GameEngine.Equipment;
+using GameEngine.EquipmentManagement;
 using GameEngine.MerchantMechanics;
 using GameEngine.MerchantMechanics.Services;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.Armory.MerchantControl.Interfaces;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 
 namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
@@ -42,10 +45,11 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
 
             itemTemplate = ItemEntityConverter.ConvertToEquipmentUserInterfaceViewTemplate(itemEntity);
             ViewModel.MerchantItems.Add(itemTemplate);
+
+            if (itemTemplate.Status is WEARED_STATUS.Weared) UpdateArmoryPlayerStats();
             RefreshData();
             SaveChanges();
         }
-
         public void RepairAllItems()
         {
             Blacksmith.PlayerAbsoluteMoneyValue = ViewModel.PlayerConsumables.AbsoluteMoneyValue;
@@ -74,14 +78,25 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
             ViewModel.OnPropertyChanged(nameof(ViewModel.MerchantConsumables));
             SaveChanges();
         }
+        private void UpdateArmoryPlayerStats()
+        {
+            var playerEntityConstructor = new PlayerEntityConstructor();
+            var equippmentValues = new EquipmentValue(ViewModel.PlayerWearedEquipment);
+            var playerEntity = playerEntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, ArmoryTemporaryData.PlayerAttributes, equippmentValues);
+
+            ArmoryTemporaryData.CharacterEntity = playerEntity;
+            ArmoryTemporaryData.PlayerModel = ViewModel.PlayerModel;
+        }
         private void SaveChanges()
         {
             ViewModel.PlayerModel.PlayerConsumables = ViewModel.PlayerConsumables;
-            ArmoryTemporaryData.PlayerModel = ViewModel.PlayerModel;
             ArmoryTemporaryData.PlayerInventory = ViewModel.PlayerInventory;
             ArmoryTemporaryData.PlayerEquipment = ViewModel.PlayerWearedEquipment;
             ArmoryTemporaryData.MerchantInventory = ViewModel.MerchantInventory;
-            ArmoryTemporaryData.IsMerchantViewModelChanged = true;
+            ArmoryViewModel.UpdateArmoryViewModelCommand.Execute(null);
+            EquipmentControlViewModel.UpdateEquipmentViewModelCommand.Execute(null);
+            AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
+            LevelUpViewModel.UpdatePlayerAttributeCommand.Execute(null);
         }
         private void RefreshData()
         {

@@ -112,7 +112,6 @@ namespace GameOfFrameworks.Models.Services
         {
             var equipment = new EquipmentValue(ViewModel.EquipmentModel);
             ArmoryTemporaryData.CharacterEntity = EntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, equipment, ArmoryTemporaryData.PlayerAttributes);
-            ArmoryTemporaryData.IsPlayerEntityChanged = true;
         }
         public void Refresh()
         {
