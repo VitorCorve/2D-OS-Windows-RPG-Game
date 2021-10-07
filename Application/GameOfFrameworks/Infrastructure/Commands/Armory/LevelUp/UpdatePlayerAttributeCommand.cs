@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System;
 using System.Windows.Input;
@@ -26,6 +27,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
             ViewModel.PlayerConsumables.AttributePointsValue.Value--;
             ViewModel.AvailableAttributesPoints--;
             ArmoryTemporaryData.PlayerAttributes = ViewModel.Attributes.ReturnEntityAttributes();
+            AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
+            ArmoryViewModel.UpdateArmoryViewModelCommand.Execute(null);
         }
     }
 }

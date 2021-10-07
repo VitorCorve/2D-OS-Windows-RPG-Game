@@ -383,6 +383,6 @@
         <Grid Grid.Row="10" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Margin="0,10,0,0" Click="MainMenuButton_Click"/>
         </Grid>
-        <Button x:Name="LevelUpButton" Style="{StaticResource LevelUpButtonTemplate}" Content="Level up" Grid.Row="2" Grid.Column="5" VerticalAlignment="Top" Margin="0,10,0,0" Click="LevelUpButton_Click"/>
+        <Button x:Name="LevelUpButton" Style="{StaticResource ButtonTemplate}" Content="Skillbook" Grid.Row="2" Grid.Column="5" VerticalAlignment="Top" Margin="30,10,30,0" Click="LevelUpButton_Click"/>
     </Grid>
 </Page>

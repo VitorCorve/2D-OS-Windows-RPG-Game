@@ -1,5 +1,6 @@
 ﻿using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
@@ -11,8 +12,10 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
+            var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
+
             ViewModel.AvailableSkills = null;
-            ViewModel.AvailableSkills = ArmoryTemporaryData.AvailableSkills;
+            ViewModel.AvailableSkills = skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills);
         }
     }
 }

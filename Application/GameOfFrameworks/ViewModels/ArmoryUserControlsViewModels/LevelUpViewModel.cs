@@ -1,7 +1,9 @@
 ﻿using GameEngine.LevelUpMechanics.Services;
 using GameEngine.Player;
+using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
 using GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp;
 using GameOfFrameworks.Models.Armory.AttributesControl;
+using GameOfFrameworks.Models.Armory.Interfaces;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
@@ -12,7 +14,7 @@ using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
-    public class LevelUpViewModel : ViewModel
+    public class LevelUpViewModel : ViewModel, ISkillListViewModel
     {
         private int _SkillSelectionIndex;
         private int _AvailableSkillPoints;
@@ -34,6 +36,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public PlayerConsumablesData PlayerConsumables { get; set; }
         public static ICommand UpdatePlayerAttributeCommand { get; private set; }
         public static ICommand UpdatePlayerSkillCommand { get; private set; }
+        public static ICommand SortSkillsCommand { get; private set; }
         public bool IsAttributeLevelUpAvailable { get => _IsAttributeLevelUpAvailable; set => Set(ref _IsAttributeLevelUpAvailable,  value); }
         public bool IsSkilLevelUpAvailable { get => _IsSkilLevelUpAvailable; set => Set(ref _IsSkilLevelUpAvailable, value); }
         public double AttributesLevelUpButtonsOpacity { get => _AttributesLevelUpButtonsOpacity; set => Set(ref _AttributesLevelUpButtonsOpacity, value); }
@@ -45,6 +48,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
 
             PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
+
+            // debug
             PlayerConsumables.AttributePointsValue.Value = 10;
             PlayerConsumables.SkillPointsValue.Value = 10;
 
@@ -58,6 +63,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
             InitializeCommands();
             ValidateSkillsLevelUpPreparedness();
+            SortSkillsCommand.Execute(null);
         }
         private void SelectSkill(int index)
         {
@@ -96,7 +102,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             foreach (var skill in AvailableSkills)
             {
-                skill.PlayerLevel = ArmoryTemporaryData.SaveData.Level + 10;
+                skill.PlayerLevel = ArmoryTemporaryData.PlayerModel.Level;
                 skill.CheckIsLevelUpReady();
             }
         }
@@ -104,6 +110,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             UpdatePlayerAttributeCommand = new UpdatePlayerAttributeCommand(this);
             UpdatePlayerSkillCommand = new UpdatePlayerSkillCommand(this);
+            SortSkillsCommand = new SortSkillsCommand(this);
         }
     }
 }

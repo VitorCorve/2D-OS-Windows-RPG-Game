@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Infrastructure.Commands.Base;
+using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System;
 
@@ -29,6 +30,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Attributes
             ViewModel.Shortcuts.SkillViewList[SelectedIndex] = ViewModel.MouseCapturedSkill;
             ViewModel.MouseCapturedSkill = null;
             ViewModel.SelectedSkill = ViewModel.Shortcuts.SkillViewList[SelectedIndex];
+            ArmoryTemporaryData.SkillsShortcuts = ViewModel.Shortcuts;
         }
         private void ShowSkillDescription(int selectedIndex)
         {

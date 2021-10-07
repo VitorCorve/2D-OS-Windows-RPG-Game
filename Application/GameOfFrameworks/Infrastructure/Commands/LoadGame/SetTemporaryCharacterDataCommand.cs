@@ -25,6 +25,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
             ArmoryTemporaryData.PlayerAttributes = Model.SaveData.PlayerAttributes;
             ArmoryTemporaryData.PlayerEquipment = wearedEquipment;
             ArmoryTemporaryData.PlayerInventory = playerInventoryItemsList;
+            ArmoryTemporaryData.PlayerSkills = Model.SaveData.PlayerSkills;
         }
     }
 }

@@ -37,7 +37,7 @@
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
         </Frame>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
         </StackPanel>

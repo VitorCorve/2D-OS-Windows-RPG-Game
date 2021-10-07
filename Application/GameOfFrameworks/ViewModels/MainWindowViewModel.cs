@@ -21,7 +21,7 @@ namespace GameOfFrameworks.ViewModels
         public static ICommand ShowSaveGameNotificationCommand { get; private set; }
         public MainWindowViewModel()
         {
-            Version = "1.1.0.4";
+            Version = "1.1.0.6";
             var videoSettings = new GameVideoSettings();
             HorizontalWindowResolution = videoSettings.HorizontalVideoResolution;
             VerticalWindowResolution = videoSettings.VerticalVideoResolution;

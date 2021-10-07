@@ -23,6 +23,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
         }
         public void Execute(object parameter)
         {
+            if (parameter is null) return;
+
             var skillToRiseUp = (ISkillView)parameter;
 
             var skillViewToSkillConverter = new SkillViewToSkillConverter();
@@ -38,17 +40,26 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
                     break;
                 }
             }
+            foreach (var playerSkill in ArmoryTemporaryData.PlayerSkills.Skills)
+            {
+                if (skillToRiseUp.Skill.Skill_ID == playerSkill.Skill_ID)
+                {
+                    playerSkill.SkillLevel++;
+                    break;
+                }
+            }
 
             ViewModel.AvailableSkills = null;
             ViewModel.SelectedSkill = null;
             ViewModel.SelectedSkill = selectedSkill;
             ViewModel.AvailableSkills = skillViewList;
 
-            ArmoryTemporaryData.PlayerSkills.Skills = skillViewToSkillConverter.ConvertRange(ViewModel.AvailableSkills);
+            ArmoryTemporaryData.AvailableSkills = ViewModel.AvailableSkills;
             ViewModel.AvailableSkillPoints--;
             ViewModel.PlayerConsumables.SkillPointsValue.Value--;
 
             ArmoryTemporaryData.AvailableSkills = ViewModel.AvailableSkills;
+            AttributesControlViewModel.UpdateShortcutsCommand.Execute(null);
             AttributesControlViewModel.UpdateAttributesViewModelAvailableSkillsCommand.Execute(null);
         }
     }

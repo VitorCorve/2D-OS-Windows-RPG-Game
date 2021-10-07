@@ -5,8 +5,8 @@ using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
 using GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp;
 using GameOfFrameworks.Models.Armory.AttributesControl;
+using GameOfFrameworks.Models.Armory.Interfaces;
 using GameOfFrameworks.Models.Temporary;
-using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
 using GameOfFrameworks.ViewModels.Base;
@@ -16,7 +16,7 @@ using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
-    public class AttributesControlViewModel : ViewModel
+    public class AttributesControlViewModel : ViewModel, ISkillListViewModel
     {
         private ShortcutsListModel _Shortcuts;
         private ISkillView _SelectedSkill;
@@ -41,18 +41,15 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ICommand SetupCapturedSkillToShortcutCommand { get; private set; }
         public ICommand CancelShortcutFocusCommand { get; private set; }
         public ICommand CloseShortcutPopupCommand { get; private set; }
+        public static ICommand UpdateShortcutsCommand { get; private set; }
+        public static ICommand SortSkillsCommand { get; private set; }
         public AttributesControlViewModel()
         {
             DescriptionBarVisibility = Visibility.Hidden;
-            var skillViewBuilder = new SkillViewBuilder(ArmoryTemporaryData.PlayerModel);
 
             var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
-            AvailableSkills = skillViewBuilder.BuildObservableCollection();
+            AvailableSkills = skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills);
 
-            foreach (var item in AvailableSkills)
-            {
-                item.Skill.SkillLevel = 1;
-            }
             Shortcuts = new ShortcutsListModel();
 
             ArmoryTemporaryData.PlayerSkills = new PlayerSkillList();
@@ -62,6 +59,10 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
             Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills));
 
+            InitializeCommands();
+        }
+        private void InitializeCommands()
+        {
             UpdateAttributesViewModelCommand = new UpdateAttributesViewModelCommand(this);
             SelectItemFromSkillViewListCommand = new SelectItemFromSkillViewListCommand(this);
             CancelItemSelectionFromSkillViewListCommand = new CancelItemSelectionFromSkillViewListCommand(this);
@@ -69,7 +70,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             CancelShortcutFocusCommand = new CancelShortcutFocusCommand(this);
             CloseShortcutPopupCommand = new CloseShortcutPopupCommand(this);
             UpdateAttributesViewModelAvailableSkillsCommand = new UpdateAttributesViewModelAvailableSkillsCommand(this);
-
+            UpdateShortcutsCommand = new UpdateShortcutsCommand(this);
+            SortSkillsCommand = new SortSkillsCommand(this);
         }
         private void ValidateSkillDescriptionBar(ISkillView skillView)
         {

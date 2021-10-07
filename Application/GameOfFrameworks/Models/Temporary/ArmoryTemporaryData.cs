@@ -5,6 +5,7 @@ using GameEngine.Inventory;
 using GameEngine.Locations.Interfaces;
 using GameEngine.Player;
 using GameEngine.Player.Abstract;
+using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -24,5 +25,6 @@ namespace GameOfFrameworks.Models.Temporary
         public static PlayerSkillList PlayerSkills { get; set; }
         public static IEntityAttributes PlayerAttributes { get; set; }
         public static ObservableCollection<ISkillView> AvailableSkills { get; set; }
+        public static ShortcutsListModel SkillsShortcuts { get; set; }
     }
 }
