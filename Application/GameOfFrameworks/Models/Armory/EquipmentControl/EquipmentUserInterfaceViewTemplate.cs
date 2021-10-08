@@ -38,7 +38,7 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
         }
         private void ConvertWearColor(WEARED_STATUS wearStatus)
         {
-            if (wearStatus == WEARED_STATUS.Weared) WearColor = "#FF17FF00";
+            if (wearStatus == WEARED_STATUS.Weared) WearColor = "#FF21BDAF";
             else WearColor = "#FF218CBD";
         }
         public int ReturnAbsoluteValue() => CopperPrice + (SilverPrice * 100) + (GoldPrice * 10000);

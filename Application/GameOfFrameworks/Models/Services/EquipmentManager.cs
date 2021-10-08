@@ -66,7 +66,7 @@ namespace GameOfFrameworks.Models.Services
             {
                 var equipmentViewTemplate = new EquipmentUserInterfaceViewTemplate();
                 sortedEquipmentList.EquipmentSlotsList.Add(equipmentViewTemplate);
-            }
+             }
 
             sortedEquipmentList.EquipmentSlotsList[0] = GetItemFromEquipment(EQUIPMENT_TYPE.Helmet) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[1] = GetItemFromEquipment(EQUIPMENT_TYPE.Gloves) ?? new EquipmentUserInterfaceViewTemplate();

@@ -4,6 +4,7 @@ using GameEngine.Locations.Services;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Options;
+using GameOfFrameworks.Infrastructure.Commands.LoadGame;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
@@ -24,6 +25,7 @@ namespace GameOfFrameworks.ViewModels
         public ILocation CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
         public static ICommand UpdateArmoryViewModelCommand { get; private set; }
         public static ICommand SaveGameCommand { get; private set; }
+        public static ICommand LoadAutoSaveDataCommand { get; private set; }
         public ArmoryViewModel()
         {
             var locationBuilder = new LocationBuilder();
@@ -39,6 +41,7 @@ namespace GameOfFrameworks.ViewModels
 
             UpdateArmoryViewModelCommand = new UpdateArmoryViewModelCommand(this);
             SaveGameCommand = new SaveGameCommand();
+            LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
         }
     }
 }

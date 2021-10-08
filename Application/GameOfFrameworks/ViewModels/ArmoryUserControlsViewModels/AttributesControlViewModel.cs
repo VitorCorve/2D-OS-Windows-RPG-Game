@@ -50,14 +50,21 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
             AvailableSkills = skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills);
 
-            Shortcuts = new ShortcutsListModel();
-
             ArmoryTemporaryData.PlayerSkills = new PlayerSkillList();
             ArmoryTemporaryData.PlayerSkills.Skills = ArmoryTemporaryData.SaveData.PlayerSkills.Skills;
 
             SetupAttributes();
 
-            Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills));
+            if (ArmoryTemporaryData.SkillsShortcuts is null)
+            {
+                Shortcuts = new ShortcutsListModel();
+                Shortcuts.Initialize(skillToSkillViewConverter.ConvertRangeToObservableCollection(ArmoryTemporaryData.PlayerSkills.Skills));
+            }
+            else
+            {
+                Shortcuts = ArmoryTemporaryData.SkillsShortcuts;
+            }
+
 
             InitializeCommands();
         }
