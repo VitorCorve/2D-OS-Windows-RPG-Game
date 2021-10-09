@@ -1,6 +1,8 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.Data;
 using GameEngine.Data.Services;
+using GameEngine.Equipment;
+using GameEngine.EquipmentManagement;
 using GameEngine.Player;
 using GameOfFrameworks.ViewModels.Base;
 using System;
@@ -62,7 +64,7 @@ namespace GameOfFrameworks.Models.LoadGame
 
             playerModelData.CurrentTown = GameEngine.Locations.TOWN.Chartringfall;
 
-            CharacterEntity = EntityConstructor.CreatePlayer(playerModelData, SaveData.PlayerAttributes);
+            CharacterEntity = EntityConstructor.CreatePlayer(playerModelData, SaveData.PlayerAttributes, GetEquipmentValue(SaveData));
             CharacterSpecialization = "Specialization: " + SaveData.Specialization.ToString();
             CharacterGender = "Gender: " + SaveData.Gender.ToString();
         }
@@ -84,5 +86,10 @@ namespace GameOfFrameworks.Models.LoadGame
             }
         }
         public void CleanGameSavesList() => GameSaves.RemoveAt(SaveSelectionIndex);
+        public EquipmentValue GetEquipmentValue(PlayerSaveData playerSaveData)
+        {
+            if (playerSaveData.ItemsOnCharacter is null) return null;
+            else return new EquipmentValue(new WearedEquipment(playerSaveData.ItemsOnCharacter.ConvertToWearedEquipmentItemsList()));
+        }
     }
 }

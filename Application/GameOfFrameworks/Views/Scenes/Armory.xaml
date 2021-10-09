@@ -379,6 +379,7 @@
             <local:LevelUpControl Style="{StaticResource UserControlTemplate}" x:Name="LevelUpControlElement" Visibility="Collapsed"></local:LevelUpControl>
             <local:MerchantControl Style="{StaticResource UserControlTemplate}" x:Name="MerchantControlElement" Visibility="Collapsed"></local:MerchantControl>
             <local:MapControl Style="{StaticResource UserControlTemplate}" x:Name="MapControlElement" Visibility="Collapsed"></local:MapControl>
+            <local:SaveGameControl Style="{StaticResource UserControlTemplate}" x:Name="SaveGameControlElement" Visibility="Collapsed"></local:SaveGameControl>
         </Grid>
         <Grid Grid.Row="10" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Margin="0,10,0,0" Click="MainMenuButton_Click"/>

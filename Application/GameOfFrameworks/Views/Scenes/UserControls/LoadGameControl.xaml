@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.LoadGameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:options="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options" 
+             d:DataContext="{d:DesignInstance Type=options:OptionsControlViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="648" d:DesignWidth="1152">
+    <UserControl.Resources>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.7"
+                                    To="1"
+                                    Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.15*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="Grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Border Panel.ZIndex="-1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCoverNoShadow.png"/>
+                </Border.Background>
+            </Border>
+            <Border Panel.ZIndex="-2" Grid.ColumnSpan="3" Grid.RowSpan="3">
+                <Border.Background>
+                    <SolidColorBrush Color="Black"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="50" Direction="310" ShadowDepth="16"/>
+                </Border.Effect>
+            </Border>
+            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding Model.SaveData.AvatarPath.Path}" Stretch="Fill"/>
+            <Border Panel.ZIndex="-1">
+                <Border.Background>
+                    <SolidColorBrush Color="Black"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="50" Direction="310" ShadowDepth="16"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="5" Grid.Row="1">
+            <Border Panel.ZIndex="-1" CornerRadius="10">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                </Border.Background>
+            </Border>
+            <StackPanel Margin="10">
+                <TextBlock Text="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="CharacterName" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Level" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Specialization" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="Warrior" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Health" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Location" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="Roughwark" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Date" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                <Border Height="30">
+                    <TextBlock Text="09.10.21 14:36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    </Border.Background>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Margin="30,0,30,0" Command="{Binding ShowOptionsControlCommand}"/>
+        <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" Content="Load" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="30,0,30,0"/>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,10,0"/>
+            <Button x:Name="RewriteButton" Style="{StaticResource ButtonTemplate}" Content="Rewrite" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -29,7 +29,7 @@ namespace GameOfFrameworks.Models.LoadGame
                 Model.PlayerConsumables.ConvertValues(Model.SaveData.Money);
 
                 var playerModelData = new PlayerModelData(Model.SaveData.Specialization, Model.SaveData.Gender, Model.SaveData.Name, Model.SaveData.Level, Model.SaveData.Money);
-                Model.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, Model.SaveData.PlayerAttributes);
+                Model.CharacterEntity = playerEntityConstructor.CreatePlayer(playerModelData, Model.SaveData.PlayerAttributes, Model.GetEquipmentValue(Model.SaveData));
             }
         }
         public void MoveToNextSaveSelectionIndex()

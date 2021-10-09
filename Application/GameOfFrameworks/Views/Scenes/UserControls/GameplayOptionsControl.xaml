@@ -1,13 +1,12 @@
-﻿<Page x:Class="GameOfFrameworks.Scenes.GameOptions"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-      mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1000"
-      Title="GameOptions">
-    <Page.Resources>
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.GameplayOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="648" d:DesignWidth="1152">
+    <UserControl.Resources>
         <Style TargetType="UserControl"  x:Key="UserControlTemplate">
             <Style.Triggers>
                 <Trigger Property="Visibility" Value="Visible">
@@ -93,11 +92,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-    </Page.Resources>
+    </UserControl.Resources>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/Scenes/Images/ScenesBackground/OptionsBG.jpg"/>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.35*"/>
@@ -123,10 +119,10 @@
             </Border.Background>
         </Border>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15" Click="VideoSettingsButton_Click"/>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15" Click="AudioSettingsButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Game" Grid.Row="0" Margin="15"/>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15" Click="MainMenuButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="3">
             <Grid.RowDefinitions>
@@ -149,8 +145,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Style="{StaticResource ButtonTemplate}" Content="Save settings" Grid.Column="1"/>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Default setting" Grid.Column="3" Click="MainMenuButton_Click"/>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Default setting" Grid.Column="3"/>
             </Grid>
         </Grid>
     </Grid>
-</Page>
+</UserControl>

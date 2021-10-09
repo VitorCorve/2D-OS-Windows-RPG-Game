@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -19,9 +20,13 @@ namespace GameOfFrameworks.Scenes
         private void EquippmentButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(EquipmentControlElement);
         private void MerchantButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(MerchantControlElement);
         private void AttributesButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AttributesControlElement);
-        private void OptionsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(OptionsControlElement);
         private void LevelUpButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(LevelUpControlElement);
         private void MapButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(MapControlElement);
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetActiveUserControl(OptionsControlElement);
+            OptionsControlViewModel.ShowOptionsControlCommand.Execute(null);
+        }
         public void SetActiveUserControl(UserControl control)
         {
             EquipmentControlElement.Visibility = Visibility.Collapsed;
