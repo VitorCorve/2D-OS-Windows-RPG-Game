@@ -29,6 +29,7 @@ namespace GameOfFrameworks.Scenes
         }
         public void SetActiveUserControl(UserControl control)
         {
+            if (control.Visibility == Visibility.Visible) return;
             EquipmentControlElement.Visibility = Visibility.Collapsed;
             MerchantControlElement.Visibility = Visibility.Collapsed;
             AttributesControlElement.Visibility = Visibility.Collapsed;

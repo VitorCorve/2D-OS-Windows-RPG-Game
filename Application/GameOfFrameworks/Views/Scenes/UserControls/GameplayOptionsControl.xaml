@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
              d:DesignHeight="648" d:DesignWidth="1152">
     <UserControl.Resources>
         <Style TargetType="UserControl"  x:Key="UserControlTemplate">
@@ -102,13 +103,13 @@
             <ColumnDefinition Width="0.05*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.07*"/>
             <RowDefinition/>
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="3" Margin="30,5,30,1">
+        <Border Grid.Row="0" Grid.Column="3" CornerRadius="12" VerticalAlignment="Center" Height="30">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <SolidColorBrush Color="Black" Opacity="0.3"/>
             </Border.Background>
             <TextBlock Text="Video settings" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
@@ -119,8 +120,8 @@
             </Border.Background>
         </Border>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15"/>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15" Click="VideoSettingsButton_Click"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15" Click="AudioSettingsButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Game" Grid.Row="0" Margin="15"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15"/>
         </StackPanel>
@@ -134,8 +135,8 @@
                     <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
                 </Border.Background>
             </Border>
-            <local:VideoSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="VideoSettingsControlElement" Visibility="Visible"/>
-            <local:AudioSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="AudioSettingsControlElement" Visibility="Collapsed"/>
+            <local:VideoSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="VideoSettingsControlElement" Visibility="Collapsed"/>
+            <local:AudioSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="AudioSettingsControlElement" Visibility="Visible"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

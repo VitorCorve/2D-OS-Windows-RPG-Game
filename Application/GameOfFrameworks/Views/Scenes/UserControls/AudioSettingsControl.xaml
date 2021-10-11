@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="585" d:DesignWidth="1040">
     <UserControl.Resources>
         <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
             <Setter Property="Template">
@@ -110,97 +110,89 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.12*"/>
-                <RowDefinition Height="0.68*"/>
-            </Grid.RowDefinitions>
-            <Grid Margin="5,2,0,2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="General sound volume" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
-                </Slider>
-                <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
-                    </Border.Background>
-                    <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="2" Margin="5,2,0,2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="Music volume" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
-                </Slider>
-                <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
-                    </Border.Background>
-                    <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="4" Margin="5,2,0,2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="222*"/>
-                    <ColumnDefinition Width="33*"/>
-                    <ColumnDefinition Width="7*"/>
-                </Grid.ColumnDefinitions>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="Sound effects volume" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
-                </Slider>
-                <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
-                    </Border.Background>
-                    <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
+            <StackPanel>
+                <Grid Margin="5,2,0,2" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <TextBlock Text="General sound volume" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
+                    </Slider>
+                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        </Border.Background>
+                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </Grid>
+                <Grid Height="40" Margin="5,2,0,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <TextBlock Text="Music volume" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
+                    </Slider>
+                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        </Border.Background>
+                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </Grid>
+                <Grid Height="40" Margin="5,2,0,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <TextBlock Text="Sound effects volume" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
+                    </Slider>
+                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        </Border.Background>
+                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

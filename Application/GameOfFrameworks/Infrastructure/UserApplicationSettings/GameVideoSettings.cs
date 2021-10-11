@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace GameOfFrameworks.Infrastructure.UserApplicationSettings
 {
@@ -9,7 +10,7 @@ namespace GameOfFrameworks.Infrastructure.UserApplicationSettings
         public int HorizontalVideoResolution { get; set; }
         public int VerticalVideoResolution { get; set; }
         public int UserResolutionSetting { get; set; }
-        public string UserWindowStyleSetting { get; set; }
+        public WindowStyle UserWindowStyleSetting { get; set; }
         public string UserWindowStateSetting { get; set; }
         public Dictionary<int, int> VideoResolutionsDictionary { get; private set; } = new Dictionary<int, int>();
         public GameVideoSettings()
@@ -23,7 +24,7 @@ namespace GameOfFrameworks.Infrastructure.UserApplicationSettings
         private bool CheckUserSettings()
         {
             UserWindowStateSetting = "Maximized";
-            UserWindowStyleSetting = "None";
+            UserWindowStyleSetting = WindowStyle.None;
             UserResolutionSetting = 2;
             return true;
         }

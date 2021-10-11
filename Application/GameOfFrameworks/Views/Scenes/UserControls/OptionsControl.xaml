@@ -35,5 +35,6 @@
         <uc:SaveGameControl x:Name="SaveGameControlElement" Style="{StaticResource UserControlTemplate}" Visibility="{Binding SaveGameControlVisibility}"/>
         <uc:LoadGameControl x:Name="LoadGameControlElement" Style="{StaticResource UserControlTemplate}" Visibility="{Binding LoadGameControlVisibility}"/>
         <uc:GameplayOptionsControl x:Name="GameplayOptionsControlElement" Style="{StaticResource UserControlTemplate}" Visibility="{Binding GameplayOptionsControlVisibility}"/>
+        <uc:LeaveGameConfirmationControl x:Name="LeaveGameConfirmationControlElement" Style="{StaticResource UserControlTemplate}" Visibility="{Binding LeaveGameConfirmationControlVisibility}" Panel.ZIndex="1" Width="300" Height="120" Opacity="0.4"/>
     </Grid>
 </UserControl>

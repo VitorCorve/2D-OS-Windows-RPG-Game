@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace GameOfFrameworks.Scenes.UserControls
 {
@@ -11,5 +12,17 @@ namespace GameOfFrameworks.Scenes.UserControls
         {
             InitializeComponent();
         }
+        public void MainMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        public void SetActiveUserControl(UserControl control)
+        {
+            if (control.Visibility == Visibility.Visible) return;
+            AudioSettingsControlElement.Visibility = Visibility.Collapsed;
+            VideoSettingsControlElement.Visibility = Visibility.Collapsed;
+            control.Visibility = Visibility.Visible;
+        }
+        public void VideoSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(VideoSettingsControlElement);
+        public void AudioSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AudioSettingsControlElement);
     }
 }

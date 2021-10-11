@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:MainWindowViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -43,7 +47,7 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -126,71 +130,66 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.8*"/>
-            </Grid.RowDefinitions>
-            <Grid Margin="5,2,0,2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="Resolution" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.075*"/>
-                    <ColumnDefinition Width="0.075*"/>
-                </Grid.ColumnDefinitions>
-                <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
-                    </Border.Background>
-                    <TextBlock Text="1360 x 768" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-                <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
-                <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
-            </Grid>
-            <Grid Grid.Row="2" Margin="5,2,0,2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="Window mode" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.85*"/>
-                    <ColumnDefinition Width="0.075*"/>
-                    <ColumnDefinition Width="0.075*"/>
-                </Grid.ColumnDefinitions>
-                <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
-                    </Border.Background>
-                    <TextBlock Text="Fullscreen" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-                <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
-                <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
-            </Grid>
+            <StackPanel>
+                <Grid Margin="5,2,0,2" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <TextBlock Text="Resolution" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
+                        <Border.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                        </Border.Background>
+                        <TextBlock Text="1360 x 768" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                    <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
+                    <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
+                </Grid>
+                <Grid Margin="5,2,0,2" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        </Border.Background>
+                        <TextBlock Text="Window mode" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
+                        <Border.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                        </Border.Background>
+                        <TextBlock Text="Fullscreen" VerticalAlignment="Center" TextAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                    <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
+                    <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2" Command="{Binding SetWindowModeWindowedCommand}"/>
+                </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

@@ -9,10 +9,10 @@
         Title="MainWindow" 
         Height="{Binding VerticalWindowResolution, Mode=TwoWay}" 
         Width="{Binding HorizontalWindowResolution, Mode=TwoWay}" 
-        WindowStartupLocation="CenterOwner" 
-        WindowStyle="{Binding WindowStyle}" 
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="{Binding WindowStyle, Mode=TwoWay}" 
         ResizeMode="NoResize" 
-        WindowState="{Binding WindowState}">
+        WindowState="{Binding WindowState, Mode=TwoWay}">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -40,6 +40,7 @@
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
+            <Button Width="120" Height="20" Content="Change window mode" Command="{Binding SetWindowModeWindowedCommand}"></Button>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="40" Visibility="{Binding SaveGameNotifyVisibility}" Opacity="{Binding SaveGameNotifyOpacity}">
             <TextBlock Style="{StaticResource GameSaveText}" Text="Autosave" Foreground="White" Margin="10" />
