@@ -1,5 +1,7 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.Armory.Options;
+﻿using GalaSoft.MvvmLight.Command;
+using GameOfFrameworks.Infrastructure.Commands.Armory.Options;
 using GameOfFrameworks.ViewModels.Base;
+using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 
@@ -25,12 +27,14 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
         public static ICommand ShowConfirmMoveToMainMenuControlCommand { get; private set; }
         public static ICommand HideLeaveGameConfirmationControlCommand { get; private set; }
         public static ICommand ExecuteTemporaryCommand { get; private set; }
+        public ICommand SaveSettings { get; set; }
         public ICommand TemporaryCommand { get; set; }
         public OptionsControlViewModel()
         {
             SaveGameControlVisibility = Visibility.Hidden;
             LoadGameControlVisibility = Visibility.Hidden;
             LeaveGameConfirmationControlVisibility = Visibility.Hidden;
+            GameplayOptionsControlVisibility = Visibility.Hidden;
             InitializeCommands();
         }
         public void HideControls()
@@ -51,6 +55,12 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
             ShowConfirmMoveToMainMenuControlCommand = new ShowConfirmMoveToMainMenuControlCommand(this);
             HideLeaveGameConfirmationControlCommand = new HideLeaveGameConfirmationControlCommand(this);
             ExecuteTemporaryCommand = new ExecuteTemporaryCommand(this);
+            SaveSettings = new RelayCommand(Save);
+        }
+        private void Save()
+        {
+            MainWindowViewModel.SaveApplicationSettingsCommand.Execute(null);
+            MainWindowViewModel.ShowNotificationCommand.Execute("Settings saved");
         }
     }
 }

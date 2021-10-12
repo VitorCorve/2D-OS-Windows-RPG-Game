@@ -19,7 +19,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
             ViewModel.CharacterTravelingControlVisibility = Visibility.Hidden;
             ArmoryViewModel.SaveGameCommand.Execute(null);
             ArmoryTemporaryData.Instance.NavigationService.Navigate(new GameOfFrameworks.Scenes.Armory());
-            MainWindowViewModel.ShowSaveGameNotificationCommand.Execute(null);
+            MainWindowViewModel.ShowNotificationCommand.Execute("Autosave...");
             ArmoryViewModel.LoadAutoSaveDataCommand.Execute(null);
         }
     }

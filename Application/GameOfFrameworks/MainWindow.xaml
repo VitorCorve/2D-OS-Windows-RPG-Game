@@ -7,12 +7,12 @@
         xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="{Binding VerticalWindowResolution, Mode=TwoWay}" 
-        Width="{Binding HorizontalWindowResolution, Mode=TwoWay}" 
+        Height="{Binding Settings.Resolution.Height, Mode=TwoWay}" 
+        Width="{Binding Settings.Resolution.Width, Mode=TwoWay}" 
         WindowStartupLocation="CenterScreen"
-        WindowStyle="{Binding WindowStyle, Mode=TwoWay}" 
+        WindowStyle="{Binding Settings.WindowStyle.Style, Mode=TwoWay}" 
         ResizeMode="NoResize" 
-        WindowState="{Binding WindowState, Mode=TwoWay}">
+        WindowState="{Binding Settings.WindowStyle.State, Mode=TwoWay}">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -40,11 +40,10 @@
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
-            <Button Width="120" Height="20" Content="Change window mode" Command="{Binding SetWindowModeWindowedCommand}"></Button>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="40" Visibility="{Binding SaveGameNotifyVisibility}" Opacity="{Binding SaveGameNotifyOpacity}">
-            <TextBlock Style="{StaticResource GameSaveText}" Text="Autosave" Foreground="White" Margin="10" />
-            <Image x:Name="SaveGameShortcutElement" Source="/Views/Scenes/Images/VisualElements/saveGameShortcut.png" Width="35" RenderTransformOrigin=".5,.5">
+            <TextBlock Style="{StaticResource GameSaveText}" Text="{Binding NotifyMessage}" Foreground="White" Margin="10" />
+            <Image x:Name="NotificationElement" Source="/Views/Scenes/Images/VisualElements/saveGameShortcut.png" Width="35" RenderTransformOrigin=".5,.5">
                 <Image.RenderTransform>
                     <RotateTransform Angle="0"/>
                 </Image.RenderTransform>

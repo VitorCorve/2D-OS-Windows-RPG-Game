@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
-             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels"
+             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
-        <viewmodels:MainWindowViewModel/>
+        <vm:VideoSettingsControlViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -150,15 +150,26 @@
                         <ColumnDefinition Width="0.15*"/>
                         <ColumnDefinition Width="0.15*"/>
                     </Grid.ColumnDefinitions>
-                    <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2">
+                    <Border CornerRadius="6" Grid.RowSpan="3" Margin="10,2,5,2" Opacity="{Binding ChangingResolutionControlsOpacity}">
                         <Border.Background>
                             <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
                         </Border.Background>
-                        <TextBlock Text="1360 x 768" VerticalAlignment="Center" TextAlignment="Center">
-                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="{Binding CanChangeResolution}">
+                            <TextBlock Text="{Binding Width}"/>
+                            <TextBlock Text=" x "/>
+                            <TextBlock Text="{Binding Height}"/>
+                        </StackPanel>
                     </Border>
-                    <Button x:Name="PreviousButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
-                    <Button x:Name="NextButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2"/>
+                    <Button x:Name="PreviousButton" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"
+                            Style="{StaticResource ChangeResolutionButtonTemplate}"
+                            Command="{Binding SelectPreviousResolutionCommand}" 
+                            IsEnabled="{Binding CanChangeResolution}"
+                            Opacity="{Binding ChangingResolutionControlsOpacity}"/>
+                    <Button x:Name="NextButton" Content="&gt;" Grid.Column="2" Margin="0,2,7,2" 
+                             Style="{StaticResource ChangeResolutionButtonTemplate}"
+                            Command="{Binding SelectNextResolutionCommand}" 
+                            IsEnabled="{Binding CanChangeResolution}"
+                            Opacity="{Binding ChangingResolutionControlsOpacity}"/>
                 </Grid>
                 <Grid Margin="5,2,0,2" Height="40">
                     <Grid.ColumnDefinitions>
@@ -183,11 +194,11 @@
                         <Border.Background>
                             <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
                         </Border.Background>
-                        <TextBlock Text="Fullscreen" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock Text="{Binding WindowState}" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
-                    <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2"/>
-                    <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2" Command="{Binding SetWindowModeWindowedCommand}"/>
+                    <Button x:Name="PreviousScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&lt;" Grid.Column="1" Margin="2,2,5,2" Command="{Binding SelectPreviousWindowModeCommand}"/>
+                    <Button x:Name="NextScreenButton" Style="{StaticResource ChangeResolutionButtonTemplate}" Content="&gt;" Grid.Column="2" Margin="0,2,7,2" Command="{Binding SelectNextWindowModeCommand}"/>
                 </Grid>
             </StackPanel>
         </Grid>
