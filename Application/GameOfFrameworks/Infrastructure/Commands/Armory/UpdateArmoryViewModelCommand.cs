@@ -12,6 +12,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
         public override void Execute(object parameter)
         {
             ViewModel.CharacterEntity = null;
+            ViewModel.PlayerModel = null;
+            ViewModel.PlayerModel = ArmoryTemporaryData.PlayerModel;
             ViewModel.CharacterEntity = ArmoryTemporaryData.CharacterEntity;
         }
     }

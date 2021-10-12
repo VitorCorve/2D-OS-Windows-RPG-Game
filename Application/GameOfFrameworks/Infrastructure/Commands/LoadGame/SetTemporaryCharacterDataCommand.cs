@@ -1,4 +1,5 @@
-﻿using GameEngine.Equipment;
+﻿using GameEngine.Console;
+using GameEngine.Equipment;
 using GameEngine.Inventory;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Base;
@@ -7,6 +8,7 @@ using GameOfFrameworks.Models.LoadGame;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
+using GameOfFrameworks.ViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
 {

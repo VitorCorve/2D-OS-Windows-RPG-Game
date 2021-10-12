@@ -11,10 +11,6 @@ namespace GameOfFrameworks
             InitializeComponent();
             MainFrame.Content = new Scenes.RunGame();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+        private void Button_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
     }
 }

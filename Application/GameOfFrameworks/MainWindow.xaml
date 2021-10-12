@@ -13,6 +13,9 @@
         WindowStyle="{Binding Settings.WindowStyle.Style, Mode=TwoWay}" 
         ResizeMode="NoResize" 
         WindowState="{Binding Settings.WindowStyle.State, Mode=TwoWay}">
+    <Window.InputBindings>
+        <KeyBinding Key="OemTilde" Command="{Binding EngageConsole}"/>
+    </Window.InputBindings>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -20,9 +23,7 @@
         <SolidColorBrush Color="Black"/>
     </Window.Background>
     <Window.Resources>
-        <Style TargetType="Image" x:Key="SaveGameShortcutImage">
-
-        </Style>
+        <Style TargetType="Image" x:Key="SaveGameShortcutImage"/>
         <Storyboard x:Key="Storyboard" BeginTime="00:00:00.000" Duration="00:00:10.000">
             <DoubleAnimation Storyboard.TargetName="RotateImage" 
                              Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" 
@@ -40,7 +41,28 @@
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" Foreground="White" Margin="10"/>
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
+            <Button Width="80" Height="20" Content="Console" Margin="30,0,30,0" Command="{Binding EngageConsole}"></Button>
         </StackPanel>
+        <DockPanel FocusManager.FocusedElement="{Binding ElementName=ConsoleCommandTextBox}" x:Name="Console" Height="380" VerticalAlignment="Top" Visibility="{Binding ConsoleVisibility}">
+            <DockPanel.Background>
+                <SolidColorBrush Color="black" Opacity="0.6"/>
+            </DockPanel.Background>
+            <StackPanel VerticalAlignment="Bottom">
+                <ListBox ItemsSource="{Binding ConsoleNotificationsList.Commands}" Height="300" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Foreground="White">
+
+                </ListBox>
+                <TextBox x:Name="ConsoleCommandTextBox" Focusable="True" Text="{Binding ConsoleCommand, UpdateSourceTrigger=PropertyChanged}" Height="30" Background="Transparent" Foreground="White" BorderThickness="0" Margin="5" >
+                    <TextBox.InputBindings>
+                        <KeyBinding
+                            Key="Return"
+                            Command="{Binding ExecuteConsoleCommand}"
+                            CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}"/>
+                        <KeyBinding Key="Up" Command="{Binding ShowPreviousConsoleCommand}"/>
+                        <KeyBinding Key="Down" Command="{Binding ShowNextConsoleCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+        </DockPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="40" Visibility="{Binding SaveGameNotifyVisibility}" Opacity="{Binding SaveGameNotifyOpacity}">
             <TextBlock Style="{StaticResource GameSaveText}" Text="{Binding NotifyMessage}" Foreground="White" Margin="10" />
             <Image x:Name="NotificationElement" Source="/Views/Scenes/Images/VisualElements/saveGameShortcut.png" Width="35" RenderTransformOrigin=".5,.5">

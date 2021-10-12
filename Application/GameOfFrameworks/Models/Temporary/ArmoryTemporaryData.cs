@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine;
+using GameEngine.Console;
 using GameEngine.Data;
 using GameEngine.Equipment;
 using GameEngine.Inventory;
@@ -14,6 +15,7 @@ namespace GameOfFrameworks.Models.Temporary
 {
     public static class ArmoryTemporaryData
     {
+        public static ConsoleEngine Console { get; set; }
         public static Page Instance { get; set; }
         public static ILocation CurrentLocation { get; set; }
         public static PlayerEntity CharacterEntity { get; set; }

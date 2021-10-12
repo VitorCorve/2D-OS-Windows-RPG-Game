@@ -1,4 +1,5 @@
 ﻿using GameEngine.CombatEngine;
+using GameEngine.Console;
 using GameEngine.Locations.Interfaces;
 using GameEngine.Locations.Services;
 using GameEngine.Player;
@@ -42,6 +43,7 @@ namespace GameOfFrameworks.ViewModels
             UpdateArmoryViewModelCommand = new UpdateArmoryViewModelCommand(this);
             SaveGameCommand = new SaveGameCommand();
             LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
+            ArmoryTemporaryData.Console = ConsoleHandlerService.SetupConsoleConfiguration();
         }
     }
 }
