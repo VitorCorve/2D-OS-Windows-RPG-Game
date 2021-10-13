@@ -12,8 +12,16 @@ namespace GameOfFrameworks.Infrastructure.Commands.MainWindow
         public override void Execute(object parameter)
         {
             if (ArmoryTemporaryData.Console is null) return;
-            if (ViewModel.ConsoleVisibility == System.Windows.Visibility.Hidden) ViewModel.ConsoleVisibility = System.Windows.Visibility.Visible;
-            else ViewModel.ConsoleVisibility = System.Windows.Visibility.Hidden;
+            if (ViewModel.ConsoleVisibility == System.Windows.Visibility.Hidden)
+            {
+                ViewModel.ConsoleVisibility = System.Windows.Visibility.Visible;
+                ViewModel.IsConsoleTextBoxFocused = true;
+            }
+            else
+            {
+                ViewModel.ConsoleVisibility = System.Windows.Visibility.Hidden;
+                ViewModel.IsConsoleTextBoxFocused = false;
+            }
         }
     }
 }

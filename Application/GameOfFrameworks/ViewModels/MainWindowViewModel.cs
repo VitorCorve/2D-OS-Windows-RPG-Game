@@ -18,6 +18,7 @@ namespace GameOfFrameworks.ViewModels
         private string _ConsoleNotifyMessage;
         private string _ConsoleCommand;
         private double _SaveGameNotifyOpacity;
+        private bool _IsConsoleTextBoxFocused;
         public string Version { get; }
         public ConsoleCommandsList ConsoleNotificationsList { get => _ConsoleNotificationsList; set => Set(ref _ConsoleNotificationsList, value); }
         public ConsoleCommandsList CommandsList { get => _CommandsList; set => Set(ref _CommandsList, value); }
@@ -41,6 +42,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand ExecuteConsoleCommand { get; private set; }
         public int ConsoleCommandSelectionIndex { get; set; }
         public int ConsoleCommandCount { get; set; }
+        public bool IsConsoleTextBoxFocused { get => _IsConsoleTextBoxFocused; set => Set(ref _IsConsoleTextBoxFocused, value); }
         public MainWindowViewModel()
         {
             Version = "1.1.0.8";

@@ -18,12 +18,11 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
                 return true;
             }
             return false;
-
         }
         public void Execute(object parameter)
         {
             string attribute = (string)parameter;
-            ViewModel.Attributes.UpdateAttribute(attribute);
+            ViewModel.Attributes.UpdateAttribute(ArmoryTemporaryData.PlayerAttributes, attribute);
             ViewModel.PlayerConsumables.AttributePointsValue.Value--;
             ViewModel.AvailableAttributesPoints--;
             ArmoryTemporaryData.PlayerAttributes = ViewModel.Attributes.ReturnEntityAttributes();

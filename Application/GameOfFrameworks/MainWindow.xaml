@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfFrameworks"
         xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
+        xmlns:services="clr-namespace:GameOfFrameworks.Models.Services"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="{Binding Settings.Resolution.Height, Mode=TwoWay}" 
@@ -23,6 +24,17 @@
         <SolidColorBrush Color="Black"/>
     </Window.Background>
     <Window.Resources>
+        <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="Image" x:Key="SaveGameShortcutImage"/>
         <Storyboard x:Key="Storyboard" BeginTime="00:00:00.000" Duration="00:00:10.000">
             <DoubleAnimation Storyboard.TargetName="RotateImage" 
@@ -43,15 +55,21 @@
             <Button Width="40" Height="20" Content="Close" Click="Button_Click"></Button>
             <Button Width="80" Height="20" Content="Console" Margin="30,0,30,0" Command="{Binding EngageConsole}"></Button>
         </StackPanel>
-        <DockPanel FocusManager.FocusedElement="{Binding ElementName=ConsoleCommandTextBox}" x:Name="Console" Height="380" VerticalAlignment="Top" Visibility="{Binding ConsoleVisibility}">
+        <DockPanel x:Name="Console" Height="380" VerticalAlignment="Top" Visibility="{Binding ConsoleVisibility}" FocusManager.FocusedElement="{Binding ElementName=ConsoleCommandTextBox}">
             <DockPanel.Background>
                 <SolidColorBrush Color="black" Opacity="0.6"/>
             </DockPanel.Background>
             <StackPanel VerticalAlignment="Bottom">
-                <ListBox ItemsSource="{Binding ConsoleNotificationsList.Commands}" Height="300" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Foreground="White">
+                <ListBox Height="300" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Foreground="White" 
+                         ItemsSource="{Binding ConsoleNotificationsList.Commands}"
+                         ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                         services:ListBoxBehavior.ScrollOnNewItem="True">
 
                 </ListBox>
-                <TextBox x:Name="ConsoleCommandTextBox" Focusable="True" Text="{Binding ConsoleCommand, UpdateSourceTrigger=PropertyChanged}" Height="30" Background="Transparent" Foreground="White" BorderThickness="0" Margin="5" >
+                <TextBox Height="30" Background="Transparent" Foreground="White" BorderThickness="0" Margin="5" 
+                         x:Name="ConsoleCommandTextBox" Text="{Binding ConsoleCommand, UpdateSourceTrigger=PropertyChanged}"
+                         services:FocusExtension.IsFocused="{Binding IsConsoleTextBoxFocused}">
                     <TextBox.InputBindings>
                         <KeyBinding
                             Key="Return"

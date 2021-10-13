@@ -84,7 +84,6 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             ArmoryViewModel.UpdateArmoryViewModelCommand.Execute(null);
             MerchantControlViewModel.UpdateMerchantViewModelCommand.Execute(null);
             AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
-            LevelUpViewModel.UpdatePlayerAttributeCommand.Execute(null);
         }
     }
 }

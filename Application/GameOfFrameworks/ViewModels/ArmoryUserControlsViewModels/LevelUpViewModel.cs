@@ -40,8 +40,6 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public bool IsAttributeLevelUpAvailable { get => _IsAttributeLevelUpAvailable; set => Set(ref _IsAttributeLevelUpAvailable,  value); }
         public bool IsSkilLevelUpAvailable { get => _IsSkilLevelUpAvailable; set => Set(ref _IsSkilLevelUpAvailable, value); }
         public double AttributesLevelUpButtonsOpacity { get => _AttributesLevelUpButtonsOpacity; set => Set(ref _AttributesLevelUpButtonsOpacity, value); }
-
-
         public LevelUpViewModel()
         {
             SkillDescriptionBarVisibility = Visibility.Hidden;

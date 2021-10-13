@@ -10,7 +10,9 @@ namespace GameOfFrameworks.Models.Services
             return new ConsoleEngine(ArmoryTemporaryData.CharacterEntity,
                 ArmoryTemporaryData.PlayerModel,
                 ArmoryTemporaryData.PlayerInventory,
-                ArmoryTemporaryData.PlayerEquipment);
+                ArmoryTemporaryData.PlayerEquipment,
+                ArmoryTemporaryData.PlayerSkills,
+                ArmoryTemporaryData.PlayerAttributes);
         }
         public static void UpdateArmory(ConsoleEngine consoleEngine)
         {
@@ -18,6 +20,8 @@ namespace GameOfFrameworks.Models.Services
             ArmoryTemporaryData.PlayerModel = consoleEngine.Model;
             ArmoryTemporaryData.PlayerInventory = consoleEngine.Inventory;
             ArmoryTemporaryData.PlayerEquipment = consoleEngine.Equipment;
+            ArmoryTemporaryData.PlayerSkills = consoleEngine.Skills;
+            ArmoryTemporaryData.PlayerAttributes = consoleEngine.Attributes;
         }
     }
 }

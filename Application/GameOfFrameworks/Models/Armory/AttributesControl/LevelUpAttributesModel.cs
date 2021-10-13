@@ -26,16 +26,10 @@ namespace GameOfFrameworks.Models.Armory.AttributesControl
             OnPropertyChanged(propertyName);
             return true;
         }
-        public LevelUpAttributesModel(IEntityAttributes playerAttributes)
+        public LevelUpAttributesModel(IEntityAttributes playerAttributes) => Initialize(playerAttributes);
+        public void UpdateAttribute(IEntityAttributes playerAttributes, string attribute)
         {
-            Stamina = playerAttributes.Stamina;
-            Strength = playerAttributes.Strength;
-            Endurance = playerAttributes.Endurance;
-            Intellect = playerAttributes.Intellect;
-            Agility = playerAttributes.Agility;
-        }
-        public void UpdateAttribute(string attribute)
-        {
+            Initialize(playerAttributes);
             switch (attribute)
             {
                 case "Stamina":
@@ -66,6 +60,14 @@ namespace GameOfFrameworks.Models.Armory.AttributesControl
             entityModelTemplate.Agility = Agility;
 
             return entityModelTemplate;
+        }
+        private void Initialize(IEntityAttributes playerAttributes)
+        {
+            Stamina = playerAttributes.Stamina;
+            Strength = playerAttributes.Strength;
+            Endurance = playerAttributes.Endurance;
+            Intellect = playerAttributes.Intellect;
+            Agility = playerAttributes.Agility;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace GameOfFrameworks.Models.Services
         public ObservableCollection<string> Commands { get; set; } = new();
         public void AddNewCommandToViewList(List<string> command)
         {
-            if (Commands.Count < 12)
+            if (Commands.Count < 30)
             {
                 foreach (var item in command)
                 {
