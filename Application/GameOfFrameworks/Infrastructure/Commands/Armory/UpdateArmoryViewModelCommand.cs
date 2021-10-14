@@ -7,7 +7,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
     public class UpdateArmoryViewModelCommand : Command
     {
         public ArmoryViewModel ViewModel { get; set; }
-        public UpdateArmoryViewModelCommand(ArmoryViewModel AamoryViewModel) => ViewModel = AamoryViewModel;
+        public UpdateArmoryViewModelCommand(ArmoryViewModel armoryViewModel) => ViewModel = armoryViewModel;
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {

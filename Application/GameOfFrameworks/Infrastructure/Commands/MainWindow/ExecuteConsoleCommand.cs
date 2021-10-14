@@ -25,6 +25,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.MainWindow
             AttributesControlViewModel.UpdateAttributesViewModelAvailableSkillsCommand.Execute(null);
             EquipmentControlViewModel.UpdateEquipmentViewModelCommand.Execute(null);
             MerchantControlViewModel.UpdateMerchantViewModelCommand.Execute(null);
+            LevelUpViewModel.UpdateLevelUpViewModelCommand.Execute(null);
         }
     }
 }

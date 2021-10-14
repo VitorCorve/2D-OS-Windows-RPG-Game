@@ -1,5 +1,6 @@
 ﻿using GameEngine.LevelUpMechanics.Services;
 using GameEngine.Player;
+using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
 using GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp;
 using GameOfFrameworks.Models.Armory.AttributesControl;
@@ -25,18 +26,18 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         private bool _IsAttributeLevelUpAvailable;
         private bool _IsSkilLevelUpAvailable;
         private double _AttributesLevelUpButtonsOpacity;
+        private PlayerConsumablesData _PlayerConsumables;
         public int SkillSelectionIndex { get => _SkillSelectionIndex; set { Set(ref _SkillSelectionIndex, value); SelectSkill(value); } }
-        public int AvailableSkillPoints { get => _AvailableSkillPoints; set { Set(ref _AvailableSkillPoints, value); ValidateSkillLevelingOpportunity(); } }
-        public int AvailableAttributesPoints { get => _AvailableAttributesPoints; set { Set(ref _AvailableAttributesPoints, value); ValidateAttributesLevelingOpportunity(); } }
         public LevelUpAttributesModel Attributes { get => _Attributes; set => Set(ref _Attributes, value); }
         private ObservableCollection<ISkillView> _AvailableSkills;
         public ObservableCollection<ISkillView> AvailableSkills { get => _AvailableSkills; set => Set(ref _AvailableSkills, value); }
         public ISkillView SelectedSkill { get => _SelectedSkill; set => Set(ref _SelectedSkill, value); }
         public Visibility SkillDescriptionBarVisibility { get => _SkillDescriptionBarVisibility; set => Set(ref _SkillDescriptionBarVisibility, value); }
-        public PlayerConsumablesData PlayerConsumables { get; set; }
+        public PlayerConsumablesData PlayerConsumables { get => _PlayerConsumables; set { Set(ref _PlayerConsumables, value); UpdateAvailablePointsValue();} }
         public static ICommand UpdatePlayerAttributeCommand { get; private set; }
         public static ICommand UpdatePlayerSkillCommand { get; private set; }
         public static ICommand SortSkillsCommand { get; private set; }
+        public static ICommand UpdateLevelUpViewModelCommand { get; private set; }
         public bool IsAttributeLevelUpAvailable { get => _IsAttributeLevelUpAvailable; set => Set(ref _IsAttributeLevelUpAvailable,  value); }
         public bool IsSkilLevelUpAvailable { get => _IsSkilLevelUpAvailable; set => Set(ref _IsSkilLevelUpAvailable, value); }
         public double AttributesLevelUpButtonsOpacity { get => _AttributesLevelUpButtonsOpacity; set => Set(ref _AttributesLevelUpButtonsOpacity, value); }
@@ -44,23 +45,16 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             SkillDescriptionBarVisibility = Visibility.Hidden;
             var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
-
             PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
-            // debug
-            PlayerConsumables.AttributePointsValue.Value = 10;
-            PlayerConsumables.SkillPointsValue.Value = 10;
-
             Attributes = new LevelUpAttributesModel(ArmoryTemporaryData.SaveData.PlayerAttributes);
-            AvailableSkillPoints = PlayerConsumables.SkillPointsValue.Value;
-            AvailableAttributesPoints = PlayerConsumables.AttributePointsValue.Value;
             var skillLevelingListBuilder = new SkillLevelingListBuilder();
             var skillList = skillLevelingListBuilder.GetDefaultSkillList(ArmoryTemporaryData.SaveData.Specialization);
             var validatedSkillList = skillLevelingListBuilder.ValidateLevels(skillList, ArmoryTemporaryData.SaveData.PlayerSkills.Skills);
             AvailableSkills = skillToSkillViewConverter.ConvertRangeToObservableCollection(validatedSkillList);
 
             InitializeCommands();
-            ValidateSkillsLevelUpPreparedness();
+            UpdateAvailablePointsValue();
             SortSkillsCommand.Execute(null);
         }
         private void SelectSkill(int index)
@@ -74,7 +68,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         }
         private void ValidateAttributesLevelingOpportunity()
         {
-            if (AvailableAttributesPoints > 0)
+            if (PlayerConsumables.AttributePointsValue.Value > 0)
             {
                 AttributesLevelUpButtonsOpacity = 1;
                 IsAttributeLevelUpAvailable = true;
@@ -89,26 +83,39 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         {
             if (AvailableSkills is null) return;
 
-            if (AvailableSkillPoints <= 0)
+            if (PlayerConsumables.SkillPointsValue.Value <= 0)
             {
-                foreach (var skillView in AvailableSkills)
+                var skillList = AvailableSkills;
+                AvailableSkills = null;
+                foreach (var skillView in skillList)
                     skillView.Disable();
+                AvailableSkills = skillList;
             }
             else ValidateSkillsLevelUpPreparedness();
         }
         private void ValidateSkillsLevelUpPreparedness()
         {
-            foreach (var skill in AvailableSkills)
+            var skillList = AvailableSkills;
+            AvailableSkills = null;
+            foreach (var skill in skillList)
             {
                 skill.PlayerLevel = ArmoryTemporaryData.PlayerModel.Level;
                 skill.CheckIsLevelUpReady();
             }
+            AvailableSkills = skillList;
+        }
+        private void UpdateAvailablePointsValue()
+        {
+            if (PlayerConsumables is null) return;
+            ValidateAttributesLevelingOpportunity();
+            ValidateSkillLevelingOpportunity();
         }
         private void InitializeCommands()
         {
             UpdatePlayerAttributeCommand = new UpdatePlayerAttributeCommand(this);
             UpdatePlayerSkillCommand = new UpdatePlayerSkillCommand(this);
             SortSkillsCommand = new SortSkillsCommand(this);
+            UpdateLevelUpViewModelCommand = new UpdateLevelUpViewModelCommand(this);
         }
     }
 }

@@ -12,15 +12,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
         public LevelUpViewModel ViewModel { get; }
         public event EventHandler CanExecuteChanged;
         public UpdatePlayerSkillCommand(LevelUpViewModel levelUpViewModel) => ViewModel = levelUpViewModel;
-        public bool CanExecute(object parameter)
-        {
-            if (ViewModel.PlayerConsumables.SkillPointsValue.Value > 0)
-            {
-                return true;
-            }
-            return false;
-
-        }
+        public bool CanExecute(object parameter) => true;
         public void Execute(object parameter)
         {
             if (parameter is null) return;
@@ -55,12 +47,12 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
             ViewModel.AvailableSkills = skillViewList;
 
             ArmoryTemporaryData.AvailableSkills = ViewModel.AvailableSkills;
-            ViewModel.AvailableSkillPoints--;
             ViewModel.PlayerConsumables.SkillPointsValue.Value--;
 
             ArmoryTemporaryData.AvailableSkills = ViewModel.AvailableSkills;
             AttributesControlViewModel.UpdateShortcutsCommand.Execute(null);
             AttributesControlViewModel.UpdateAttributesViewModelAvailableSkillsCommand.Execute(null);
+            LevelUpViewModel.UpdateLevelUpViewModelCommand.Execute(null);
         }
     }
 }

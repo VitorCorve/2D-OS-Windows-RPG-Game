@@ -1,5 +1,4 @@
 ﻿using GameEngine.CombatEngine;
-using GameEngine.Console;
 using GameEngine.Locations.Interfaces;
 using GameEngine.Locations.Services;
 using GameEngine.Player;

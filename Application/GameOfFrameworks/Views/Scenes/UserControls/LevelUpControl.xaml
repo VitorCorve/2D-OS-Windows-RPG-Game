@@ -230,7 +230,7 @@
             </Border.Background>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available attribute points:"/>
-                <TextBlock Text="{Binding AvailableAttributesPoints}" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding PlayerConsumables.AttributePointsValue.Value}" Margin="10,0,0,0"/>
             </StackPanel>
         </Border>
         <Border  Grid.Row="3" Grid.Column="3" Panel.ZIndex="1">
@@ -239,7 +239,7 @@
             </Border.Background>
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available skill points:"/>
-                <TextBlock Text="{Binding AvailableSkillPoints}" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding PlayerConsumables.SkillPointsValue.Value}" Margin="10,0,0,0"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" CornerRadius="15" Opacity="0.3">

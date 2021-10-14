@@ -96,7 +96,7 @@ namespace GameOfFrameworks.Models.Armory.MerchantControl.Services
             ArmoryViewModel.UpdateArmoryViewModelCommand.Execute(null);
             EquipmentControlViewModel.UpdateEquipmentViewModelCommand.Execute(null);
             AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
-            LevelUpViewModel.UpdatePlayerAttributeCommand.Execute(null);
+            LevelUpViewModel.UpdateLevelUpViewModelCommand.Execute(null);
         }
         private void RefreshData()
         {
