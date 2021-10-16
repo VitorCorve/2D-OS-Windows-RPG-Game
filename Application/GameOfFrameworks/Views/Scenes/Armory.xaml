@@ -18,7 +18,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Border ClipToBounds="True"  BorderThickness="2" BorderBrush="Black">
+                        <Border ClipToBounds="True"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid x:Name="PART_Track" ClipToBounds="True" Margin="{TemplateBinding Height}">
                                 <Rectangle  x:Name="PART_Indicator" HorizontalAlignment="Left" Height="{TemplateBinding Height}" RenderTransformOrigin="0,0">
                                     <Rectangle.Fill>
@@ -305,7 +305,7 @@
                         <TextBlock Text="{Binding PlayerModel.Experience, StringFormat={} Exp: {0}}" Foreground="White"/>
                         <TextBlock Text="{Binding PlayerModel.MaxExperience, StringFormat={}/{0}}" Foreground="White"/>
                     </StackPanel>
-                    <ProgressBar Style="{StaticResource ExperienceProgressBar}" Value="{Binding ProgressBarValue}">
+                    <ProgressBar Style="{StaticResource ExperienceProgressBar}" Value="{Binding ProgressBar.Value}" BorderBrush="{Binding ProgressBar.Brush}" BorderThickness="{Binding ProgressBar.Thickness}">
                     </ProgressBar>
                 </Grid>
             </Grid>

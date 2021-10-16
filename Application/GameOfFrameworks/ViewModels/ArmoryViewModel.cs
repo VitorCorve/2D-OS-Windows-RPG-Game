@@ -15,8 +15,8 @@ namespace GameOfFrameworks.ViewModels
     public class ArmoryViewModel : ViewModel
     {
         private ILocation _CurrentLocation;
-        private int _ProgressBarValue;
-        public int ProgressBarValue { get => _ProgressBarValue; set => Set(ref _ProgressBarValue, value); }
+        private AnimatedProgressBar _ProgressBar;
+        public AnimatedProgressBar ProgressBar { get => _ProgressBar; set => Set(ref _ProgressBar, value); }
         private PlayerEntity _CharacterEntity;
         public PlayerEntity CharacterEntity { get => _CharacterEntity; set => Set(ref _CharacterEntity, value); }
         private PlayerModelData _PlayerModel;
@@ -37,12 +37,20 @@ namespace GameOfFrameworks.ViewModels
 
             Converter = new PlayerExperienceConverter(PlayerModel);
 
-            ProgressBarValue = Converter.Convert();
+            ProgressBar = new AnimatedProgressBar();
+            _ProgressBar.Value = Converter.Convert();
 
             UpdateArmoryViewModelCommand = new UpdateArmoryViewModelCommand(this);
             SaveGameCommand = new SaveGameCommand();
             LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
             ArmoryTemporaryData.Console = ConsoleHandlerService.SetupConsoleConfiguration();
+            PlayerModel.NewLevelGainded += NotifyLevelUp;
+
+        }
+        private void NotifyLevelUp()
+        {
+            //debug
+            //MainWindowViewModel.ShowNotificationCommand.Execute("New level gained");
         }
     }
 }

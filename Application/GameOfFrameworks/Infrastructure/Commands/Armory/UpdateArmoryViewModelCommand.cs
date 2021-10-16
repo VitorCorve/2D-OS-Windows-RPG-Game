@@ -15,6 +15,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
             ViewModel.PlayerModel = null;
             ViewModel.PlayerModel = ArmoryTemporaryData.PlayerModel;
             ViewModel.CharacterEntity = ArmoryTemporaryData.CharacterEntity;
+            ViewModel.ProgressBar.Value = ViewModel.Converter.Convert();
         }
     }
 }

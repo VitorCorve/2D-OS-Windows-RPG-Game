@@ -4,20 +4,16 @@ namespace GameOfFrameworks.Models.Services
 {
     public class PlayerExperienceConverter
     {
-        public int PlayerMaxExperience { get; set; }
-        public int PlayerCurrentExperience { get; set; }
-        public PlayerExperienceConverter(PlayerModelData playerModel)
-        {
-            PlayerMaxExperience = playerModel.MaxExperience;
-            PlayerCurrentExperience = playerModel.Experience;
-        }
+        private readonly PlayerModelData Model;
+        public PlayerExperienceConverter(PlayerModelData playerModel) => Model = playerModel;
         public int Convert()
         {
-            double maxExp = (double)PlayerMaxExperience;
-            double currExp = (double)PlayerCurrentExperience;
-            double progressBarValue = currExp / (maxExp / 100);
+            double currentExperience = Model.Experience;
+            double maxExperience = Model.MaxExperience;
+            double progressBarValue = currentExperience / GetPercentage(maxExperience);
             int value = (int)progressBarValue;
             return value;
         }
+        private double GetPercentage(double value) => value / 100;
     }
 }
