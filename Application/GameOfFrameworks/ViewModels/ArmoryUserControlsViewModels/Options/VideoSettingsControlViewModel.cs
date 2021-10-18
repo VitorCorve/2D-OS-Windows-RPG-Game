@@ -28,17 +28,17 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
             SelectNextResolutionCommand = new RelayCommand(SetNextDisplayResolution);
             SelectPreviousResolutionCommand = new RelayCommand(SetPreviousDisplayResolution);
             DisplayWindowState();
-            DisplayDisplayResolutionState();
+            UpdateDisplayResolutionState();
         }
         private void SetNextDisplayResolution()
         {
             MainWindowViewModel.SelectNextDisplayResolutionCommand.Execute(null);
-            DisplayDisplayResolutionState();
+            UpdateDisplayResolutionState();
         }
         private void SetPreviousDisplayResolution()
         {
             MainWindowViewModel.SelectPreviousDisplayResolutionCommand.Execute(null);
-            DisplayDisplayResolutionState();
+            UpdateDisplayResolutionState();
         }
         private void SetNextWindowStyle()
         {
@@ -65,7 +65,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
                 ChangingResolutionControlsOpacity = 0.3;
             }
         }
-        private void DisplayDisplayResolutionState()
+        private void UpdateDisplayResolutionState()
         {
             Width = MainWindowViewModel.Settings.Resolution.Width;
             Height = MainWindowViewModel.Settings.Resolution.Height;

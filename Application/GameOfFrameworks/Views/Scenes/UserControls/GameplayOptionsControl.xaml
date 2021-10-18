@@ -145,7 +145,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Save settings" Grid.Column="1" Command="{Binding SaveSettings}"/>
+                <Button Style="{StaticResource ButtonTemplate}" Content="Save settings" Grid.Column="1" Command="{Binding SaveSettingsCommand}"/>
                 <Button Style="{StaticResource ButtonTemplate}" Content="Default setting" Grid.Column="3"/>
             </Grid>
         </Grid>

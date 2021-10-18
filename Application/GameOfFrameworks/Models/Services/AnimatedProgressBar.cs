@@ -40,9 +40,9 @@ namespace GameOfFrameworks.Models.Services
             if (_Value < UpdatedValue)
             {
                 _Value++;
-                if (Thickness < 3)
+                if (Thickness < 2.5)
                 {
-                    Thickness += 0.5;
+                    Thickness += 0.1;
                 }
                 OnPropertyChanged(nameof(Value));
             }
@@ -84,7 +84,7 @@ namespace GameOfFrameworks.Models.Services
             {
                 ThicknessAnimationTimer.Stop();
             }
-            else Thickness -= 0.5;
+            else Thickness -= 0.1;
         }
     }
 }
