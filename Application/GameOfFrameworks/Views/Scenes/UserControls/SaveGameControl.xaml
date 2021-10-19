@@ -20,7 +20,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF0B6068"/>
+                                <Setter TargetName="ListBoxItemBorder" Property="BorderBrush" Value="Gray"/>
                             </Trigger>
                             <Trigger Property="IsFocused" Value="True">
                                 <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF804600"/>
@@ -152,8 +152,9 @@
             <RowDefinition/>
             <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.RowSpan="3" Grid.ColumnSpan="7" Panel.ZIndex="1" Visibility="{Binding OverwriteControlVisibility}">
+        <Grid Grid.RowSpan="3" Grid.ColumnSpan="7" Panel.ZIndex="1">
             <uc:OverwriteSaveConfirmationControl Style="{StaticResource UserControlTemplate}" Height="120" Width="300" Visibility="{Binding OverwriteControlVisibility}"/>
+            <uc:ConfirmGameplaySaveGameDeletingControl Style="{StaticResource UserControlTemplate}" Height="120" Width="300" Visibility="{Binding DeletingControlVisibility}"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1" x:Name="Grid">
             <Grid.ColumnDefinitions>
@@ -187,7 +188,13 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="2"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Level: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text="{Binding SaveData.Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Date: " Foreground="white" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding SaveData.Date}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -274,12 +281,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="OvervriteButton" Style="{StaticResource ButtonTemplate}" Content="Overwrite" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Command="{Binding GameplaySaveGameCommand}" Margin="6"/>
-            <Button x:Name="SaveButton" Style="{StaticResource ButtonTemplate}" Content="New" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="6"/>
+            <Button x:Name="OverwriteButton" Style="{StaticResource ButtonTemplate}" Content="Overwrite" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Command="{Binding GameplayOverwriteSaveGameCommand}" Margin="6"/>
+            <Button x:Name="SaveButton" Style="{StaticResource ButtonTemplate}" Content="New" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="6" Command="{Binding SaveGameCommand}"/>
         </Grid>
         
         <Grid Grid.Row="2" Grid.Column="3">
-            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0"/>
+            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding ConfirmSaveGameDeletingCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

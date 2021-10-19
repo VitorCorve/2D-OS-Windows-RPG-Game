@@ -17,7 +17,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Map
         {
             ArmoryTemporaryData.CurrentLocation = ViewModel.SelectedLocation;
             ViewModel.CharacterTravelingControlVisibility = Visibility.Hidden;
-            ArmoryViewModel.SaveGameCommand.Execute(null);
+            ArmoryViewModel.SaveGameCommand.Execute(true);
             ArmoryTemporaryData.Instance.NavigationService.Navigate(new GameOfFrameworks.Scenes.Armory());
             MainWindowViewModel.ShowNotificationCommand.Execute("Autosave...");
             ArmoryViewModel.LoadAutoSaveDataCommand.Execute(null);

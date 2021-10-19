@@ -10,11 +10,13 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
 {
     public class SaveGameCommand : Command
     {
+        private object Parameter;
         private PlayerSaveData DataToSave;
         private SaveGameService SaveService;
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
+            Parameter = parameter;
             InitializeManagers();
             PrepareSaveData();
             SetDataSaveTime();
@@ -40,6 +42,6 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
                 ArmoryTemporaryData.CharacterEntity);
         }
         private void SetDataSaveTime() => DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
-        private void SaveData() => SaveService.Save(DataToSave, true);
+        private void SaveData() => SaveService.Save(DataToSave, (bool)Parameter);
     }
 }

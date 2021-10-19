@@ -8,6 +8,7 @@ using GameOfFrameworks.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace GameOfFrameworks.Models.LoadGame
 {
@@ -82,14 +83,29 @@ namespace GameOfFrameworks.Models.LoadGame
                 if (playerSavedata.IsAutoSave) gameSave.Name = "Autosave";
                 else gameSave.Name = playerSavedata.Name;
                 gameSave.Path = item.FullName;
+                gameSave.Date = playerSavedata.Date;
                 GameSaves.Add(gameSave);
             }
+            SortSaves();
         }
         public void CleanGameSavesList() => GameSaves.RemoveAt(SaveSelectionIndex);
         public EquipmentValue GetEquipmentValue(PlayerSaveData playerSaveData)
         {
             if (playerSaveData.ItemsOnCharacter is null) return null;
             else return new EquipmentValue(new WearedEquipment(playerSaveData.ItemsOnCharacter.ConvertToWearedEquipmentItemsList()));
+        }
+        private void SortSaves()
+        {
+            var orderSavesByDate = from i in GameSaves
+                                   orderby i.Date descending
+                                   select i;
+
+            var saves = new ObservableCollection<GameSaveModel>();
+
+            foreach (var item in orderSavesByDate)
+                saves.Add(item);
+
+            GameSaves = saves;
         }
     }
 }

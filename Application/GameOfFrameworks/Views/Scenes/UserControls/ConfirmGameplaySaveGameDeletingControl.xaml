@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.OverwriteSaveConfirmationControl"
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.ConfirmGameplaySaveGameDeletingControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -89,12 +89,13 @@
                 <RowDefinition Height="0.65*"/>
             </Grid.RowDefinitions>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBlock Text="Overwrite save?" VerticalAlignment="Center" TextAlignment="Center" Margin="3"/>
+                <TextBlock Text="Delete save?" VerticalAlignment="Center" TextAlignment="Center" Margin="3"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding OverwriteSaveGameCommand}"/>
-                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideSavingOverwriteControlCommand}"/>
+                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding DeleteSaveGameCommand}"/>
+                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideSaveDeletingControlCommand}"/>
             </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
+

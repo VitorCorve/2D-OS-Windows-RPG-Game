@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace GameOfFrameworks.Scenes.UserControls
@@ -24,5 +25,9 @@ namespace GameOfFrameworks.Scenes.UserControls
         }
         public void VideoSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(VideoSettingsControlElement);
         public void AudioSettingsButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(AudioSettingsControlElement);
+        public void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            OptionsControlViewModel.ShowOptionsControlCommand.Execute(null);
+        }
     }
 }

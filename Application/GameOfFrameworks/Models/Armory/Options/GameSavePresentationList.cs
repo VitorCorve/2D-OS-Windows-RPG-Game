@@ -34,9 +34,10 @@ namespace GameOfFrameworks.Models.Armory.Options
 
             foreach (var item in Directory.EnumerateFiles())
             {
-                var saveGamePresentationModel = new SaveGamePresentationModel();
-
-                saveGamePresentationModel.Path = item.FullName;
+                SaveGamePresentationModel saveGamePresentationModel = new SaveGamePresentationModel
+                {
+                    Path = item.FullName
+                };
                 saveGamePresentationModel.SaveData = Deserializer.Deserialize(saveGamePresentationModel.Path);
                 saveGamePresentationModel.Name = saveGamePresentationModel.SaveData.Name;
 
@@ -44,10 +45,10 @@ namespace GameOfFrameworks.Models.Armory.Options
             }
             SortSaves();
         }
-        public void DeleteSave(int index)
+        public void DeleteSelectedSave()
         {
-            string fileToRemovePath = Saves[index].Path;
-            Saves.RemoveAt(index);
+            string fileToRemovePath = Saves[SelectionIndex].Path;
+            Saves.RemoveAt(SelectionIndex);
             File.Delete(fileToRemovePath);
             SortSaves();
         }

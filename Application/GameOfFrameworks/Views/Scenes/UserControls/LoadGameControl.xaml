@@ -3,11 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:options="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options" 
+             xmlns:options="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options"
+             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              d:DataContext="{d:DesignInstance Type=options:OptionsControlViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="648" d:DesignWidth="1152">
     <UserControl.Resources>
+        <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="ListBoxItemBorder">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ListBoxItemBorder" Property="BorderBrush" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF804600"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF0B6068"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:1" From="1" To="0.7" Storyboard.TargetProperty="Opacity" AutoReverse="True" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -75,10 +114,27 @@
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
-        <Style TargetType="TextBox">
+        <Style TargetType="TextBlock" >
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="UserControl" x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -96,6 +152,10 @@
             <RowDefinition/>
             <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="3" Grid.ColumnSpan="7" Panel.ZIndex="1">
+            <uc:ConfirmLoadGameControl Style="{StaticResource UserControlTemplate}" Height="120" Width="300" Visibility="{Binding LoadGameConfirmationControlVisibility}"/>
+            <uc:ConfirmGameplaySaveGameDeletingControl Style="{StaticResource UserControlTemplate}" Height="120" Width="300" Visibility="{Binding DeletingControlVisibility}"/>
+        </Grid>
         <Grid Grid.Row="1" Grid.Column="1" x:Name="Grid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -120,16 +180,27 @@
                     <DropShadowEffect BlurRadius="50" Direction="310" ShadowDepth="16"/>
                 </Border.Effect>
             </Border>
-            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">
+            <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" 
+                     ItemsSource="{Binding SavesList.Saves}" 
+                     SelectedIndex="{Binding SavesList.SelectionIndex, Mode=TwoWay}"
+                     ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Level: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text="{Binding SaveData.Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Date: " Foreground="white" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding SaveData.Date}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="3">
-            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding Model.SaveData.AvatarPath.Path}" Stretch="Fill"/>
+            <Image x:Name="CharacterAvatar" Style="{StaticResource AvatarImage}" Source="{Binding SavesList.SaveModel.AvatarPath}" Stretch="Fill"/>
             <Border Panel.ZIndex="-1">
                 <Border.Background>
                     <SolidColorBrush Color="Black"/>
@@ -148,56 +219,56 @@
             <StackPanel Margin="10">
                 <TextBlock Text="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="CharacterName" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Level" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Level}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Specialization" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="Warrior" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Specialization}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Health" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Health}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Mana}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Energy}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Location" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="Roughwark" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Location}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Date" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
-                    <TextBlock Text="09.10.21 14:36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SavesList.SaveModel.Date}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Border.Background>
@@ -205,10 +276,9 @@
             </StackPanel>
         </Grid>
         <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Margin="30,0,30,0" Command="{Binding ShowOptionsControlCommand}"/>
-        <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" Content="Load" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="30,0,30,0"/>
+        <Button x:Name="LoadButton" Style="{StaticResource ButtonTemplate}" Content="Load" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="30,0,30,0" Command="{Binding ShowLoadingGameConfirmationControlCommand}"/>
         <Grid Grid.Row="2" Grid.Column="1">
-            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0"/>
-
+            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding ConfirmSaveGameDeletingCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

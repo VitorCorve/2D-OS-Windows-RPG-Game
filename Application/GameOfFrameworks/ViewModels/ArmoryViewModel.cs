@@ -25,6 +25,7 @@ namespace GameOfFrameworks.ViewModels
         public ILocation CurrentLocation { get => _CurrentLocation; set => Set(ref _CurrentLocation, value); }
         public static ICommand UpdateArmoryViewModelCommand { get; private set; }
         public static ICommand SaveGameCommand { get; private set; }
+        public static ICommand LoadSaveDataCommand { get; private set; }
         public static ICommand LoadAutoSaveDataCommand { get; private set; }
         public ArmoryViewModel()
         {
@@ -42,6 +43,7 @@ namespace GameOfFrameworks.ViewModels
 
             UpdateArmoryViewModelCommand = new UpdateArmoryViewModelCommand(this);
             SaveGameCommand = new SaveGameCommand();
+            LoadSaveDataCommand = new LoadSaveDataCommand();
             LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
             ArmoryTemporaryData.Console = ConsoleHandlerService.SetupConsoleConfiguration();
             PlayerModel.NewLevelGainded += NotifyLevelUp;

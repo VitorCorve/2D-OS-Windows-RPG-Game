@@ -123,7 +123,7 @@
             <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15" Click="VideoSettingsButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15" Click="AudioSettingsButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Game" Grid.Row="0" Margin="15"/>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15" Click="BackButton_Click"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="3">
             <Grid.RowDefinitions>
