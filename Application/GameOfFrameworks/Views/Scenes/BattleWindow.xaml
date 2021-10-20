@@ -133,12 +133,9 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.25*"/>
-                    <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="0.25*"/>
-                </Grid.ColumnDefinitions>
-                <USR:SkillsBar Grid.Column="1"/>
+                <Viewbox VerticalAlignment="Bottom">
+                    <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130"/>
+                </Viewbox>
             </Grid>
             <USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>
 

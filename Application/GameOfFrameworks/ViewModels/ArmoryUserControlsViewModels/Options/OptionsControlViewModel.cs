@@ -84,7 +84,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
             ConfirmSaveGameDeletingCommand = new ConfirmSaveGameDeletingCommand(this);
             HideSaveDeletingControlCommand = new HideSaveDeletingControlCommand(this);
             SaveGameCommand = new RelayCommand(SaveGame);
-            LoadGameCommand = new RelayCommand(LoadGame);
+            LoadGameCommand = new RelayCommand(() => ArmoryViewModel.LoadSaveDataCommand.Execute(SavesList.Saves[SavesList.SelectionIndex].Path));
             SaveSettingsCommand = new RelayCommand(SaveSettings);
             OverwriteSaveGameCommand = new RelayCommand(OverwriteSaveGame);
             DeleteSaveGameCommand = new RelayCommand(DeleteSaveGame);
@@ -114,10 +114,6 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
         {
             SavesList.DeleteSelectedSave();
             DeletingControlVisibility = Visibility.Hidden;
-        }
-        private void LoadGame()
-        {
-            ArmoryViewModel.LoadSaveDataCommand.Execute(SavesList.Saves[SavesList.SelectionIndex].Path);
         }
     }
 }

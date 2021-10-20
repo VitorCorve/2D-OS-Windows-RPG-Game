@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="280" d:DesignWidth="380">
     <UserControl.Resources>
@@ -22,68 +23,14 @@
                 <ColumnDefinition Width="0.03*"/>
                 <ColumnDefinition Width="0.37*"/>
                 <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="0.55*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.30*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/Views/Scenes/Images/VisualElements/NPCBar.png" Grid.Column="0" Grid.Row="0" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-            <Image Source="/Data/Images/textures/SkillsBarVar2.png" Grid.Row="1" Grid.Column="1" Stretch="Fill"/>
-            <Grid Grid.Row="1" Grid.Column="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.13*"/>
-                        <RowDefinition Height="0.74*"/>
-                        <RowDefinition Height="0.13*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.028*"/>
-                        <ColumnDefinition Width="0.938*"/>
-                        <ColumnDefinition Width="0.028*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Data/Images/skills/mage/relButton/1.jpg" Grid.Column="0"/>
-                        <Image Source="/Data/Images/skills/mage/relButton/2.jpg" Grid.Column="1"/>
-                        <Image Source="/Data/Images/skills/mage/relButton/3.jpg" Grid.Column="2"/>
-                        <Image Source="/Data/Images/skills/mage/relButton/4.jpg" Grid.Column="3"/>
-                        <Image Source="/Data/Images/skills/mage/relButton/5.jpg" Grid.Column="4"/>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="2" Grid.Column="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="/Data/Images/source/coolDownBarBG.png"/>
-                    <Viewbox Margin="5">
-                        <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="0.0"/>
-                    </Viewbox>
-                    <Image Source="/Data/Images/source/coolDownBarBG.png" Grid.Column="1"/>
-                    <Viewbox Grid.Column="1" Margin="5">
-                        <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="0.0"/>
-                    </Viewbox>
-                    <Image Source="/Data/Images/source/coolDownBarBG.png" Grid.Column="2"/>
-                    <Viewbox Grid.Column="2" Margin="5">
-                        <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="0.0"/>
-                    </Viewbox>
-                    <Image Source="/Data/Images/source/coolDownBarBG.png" Grid.Column="3"/>
-                    <Viewbox Grid.Column="3" Margin="5">
-                        <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="0.0"/>
-                    </Viewbox>
-                    <Image Source="/Data/Images/source/coolDownBarBG.png" Grid.Column="4"/>
-                    <Viewbox Grid.Column="4" Margin="5">
-                        <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="0.0"/>
-                    </Viewbox>
-                </Grid>
+            <Image Source="/Views/Scenes/Images/VisualElements/NPCBar.png" Grid.Column="1" Grid.Row="0" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <Viewbox>
+                    <uc:ShortcutsBarReflected  Width="685" Height="130"/>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
@@ -111,7 +58,7 @@
                     <TextBlock Style="{StaticResource CoolDownsTextTemplate}"  Text="1000" Margin="1"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Row="0" Grid.Column="3">
+            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.6*"/>
                     <RowDefinition Height="0.1*"/>

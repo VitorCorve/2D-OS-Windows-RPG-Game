@@ -1,5 +1,10 @@
-﻿using GameEngine.Data;
+﻿using GameEngine.CombatEngine;
+using GameEngine.Data;
+using GameEngine.Data.Interfaces;
 using GameEngine.Data.Services;
+using GameEngine.Equipment;
+using GameEngine.Inventory;
+using GameEngine.Locations;
 using GameEngine.Player;
 using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.Models.Services;
@@ -10,6 +15,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
 {
     public class SaveCharacterCommand : Command
     {
+        private readonly PlayerEntity Entity;
         public ApplyCharacterCreationViewModel ViewModel { get; set; }
         public PlayerModelData PlayerModel { get; set; }
         public PlayerSaveData DataToSave { get; private set; }
@@ -21,31 +27,24 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
         {
             PlayerModel = playerModelData;
             ViewModel = viewModel;
+            var playerEntityConstructor = new PlayerEntityConstructor();
+            Entity = playerEntityConstructor.CreatePlayer(PlayerModel, ViewModel.CharacterBasicAttributes);
         }
 
         public override bool CanExecute(object parameter) => true;
         public override void Execute(object parameter)
         {
-            InitializeManagers();
-            SetAvailableSkillList();
-            ConvertData();
-            SetupCharacterAttributes();
-            SetDataSaveTime();
-            SaveData();
-            MainWindowViewModel.ShowNotificationCommand.Execute(null);
-        }
-        private void InitializeManagers()
-        {
-            DataToSave = new PlayerSaveData();
-            SaveService = new SaveGameService();
             SkillList = new PlayerSkillList();
             AvailableSkillListManager = new AvailableSkillListBuilder(PlayerModel);
-            DataConverter = new PlayerModelToPlayerSaveDataConverter();
+            SkillList.Skills = AvailableSkillListManager.SkillList;
+
+            var playerSaveDataBuilder = new PlayerSaveDataBuilder();
+            DataToSave = playerSaveDataBuilder.Build(PlayerModel, new Location(), new PlayerInventoryItemsList(), new WearedEquipment(), SkillList, ViewModel.CharacterBasicAttributes, null, Entity);
+
+            DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
+            var saveService = new SaveGameService();
+            saveService.Save(DataToSave, false);
+            MainWindowViewModel.ShowNotificationCommand.Execute(null);
         }
-        private void SetAvailableSkillList() => SkillList.Skills = AvailableSkillListManager.SkillList;
-        private void SetupCharacterAttributes() => DataToSave.PlayerAttributes = ViewModel.CharacterBasicAttributes;
-        private void ConvertData() => DataToSave = DataConverter.Convert(PlayerModel, SkillList);
-        private void SetDataSaveTime() => DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
-        private void SaveData() => SaveService.Save(DataToSave);
     }
 }

@@ -71,7 +71,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             PlayerItemsInInventoryCount = PlayerInventory.ItemsInInventory.Count;
 
             MerchantConsumables = new PlayerConsumablesData(38717271);
-            PlayerConsumables = new PlayerConsumablesData(332132);
+            PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
             PlayerItemToTradeDescriptionGridVisibility = Visibility.Hidden;
             MerchantItemToTradeDescriptionGridVisibility = Visibility.Hidden;

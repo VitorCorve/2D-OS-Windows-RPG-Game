@@ -1,6 +1,8 @@
 ﻿using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.Models.Armory.EquipmentControl;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
+using System;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
 {
@@ -15,10 +17,19 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Merchant
         }
         public override void Execute(object parameter)
         {
-            var item = (EquipmentUserInterfaceViewTemplate)parameter;
-            ViewModel.EquipmentHandler.BuyItem(item);
-            ViewModel.PlayerItemsInInventoryCount = ViewModel.PlayerInventory.ItemsInInventory.Count;
-            ViewModel.MerchantInventorySelect = null;
+            try
+            {
+                var item = (EquipmentUserInterfaceViewTemplate)parameter;
+                ViewModel.EquipmentHandler.BuyItem(item);
+                ViewModel.PlayerItemsInInventoryCount = ViewModel.PlayerInventory.ItemsInInventory.Count;
+                ViewModel.MerchantInventorySelect = null;
+            }
+            catch (Exception e)
+            {
+
+                MainWindowViewModel.ShowNotificationCommand.Execute(e.Message);
+            }
+
         }
     }
 }
