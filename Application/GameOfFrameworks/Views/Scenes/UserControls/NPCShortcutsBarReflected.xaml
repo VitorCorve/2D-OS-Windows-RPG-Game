@@ -1,0 +1,331 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.NPCShortcutsBarReflected"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             mc:Ignorable="d" d:DesignWidth="685" Height="130">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="32"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Page.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.6"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CooldownElement" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition />
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Data/Images/textures/SkillsBarVar2.png"/>
+            </Grid.Background>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[0].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[1].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="3" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[2].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="4" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[3].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="5" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[4].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="6" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[5].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="7" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[6].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="8" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[7].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="9" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[8].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="10" Grid.Row="1">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[9].ImagePath}"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Transparent">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Data/Images/source/SkillShortcutTemplate.png" Stretch="Uniform"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="3" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="4" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="5" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="6" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="7" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="8" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="9" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="10" Grid.Row="1">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                    <Button.Content>
+                        <TextBlock Text="1"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

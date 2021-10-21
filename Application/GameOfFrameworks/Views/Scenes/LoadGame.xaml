@@ -151,7 +151,7 @@
         <uc:CharacterLoadConfirmationDialog x:Name="LoadingConfirmationDialog" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource UserControlTemplate}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="150" Opacity="0.97" Panel.ZIndex="1" Visibility="Hidden"/>
         <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Panel.ZIndex="1" MaxHeight="35" MaxWidth="200">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
             </Border.Background>
             <TextBlock Text="Characters" VerticalAlignment="Center" TextAlignment="Center" >
             </TextBlock>
@@ -203,7 +203,7 @@
             </Grid.RowDefinitions>
             <Border Height="35" Margin="0,20,0,0" VerticalAlignment="Top">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="{Binding Model.SaveDateTime}" VerticalAlignment="Center" TextAlignment="Center" FontSize="15">
                 </TextBlock>
@@ -230,7 +230,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="1" Grid.Column="1" Panel.ZIndex="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Info" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -296,7 +296,7 @@
                 <TextBlock Text="Level" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding Model.SaveData.Level}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -310,7 +310,7 @@
                 <TextBlock Text="HP" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding Model.CharacterEntity.HealthPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -324,7 +324,7 @@
                 <TextBlock Text="MP" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding Model.CharacterEntity.ManaPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -338,7 +338,7 @@
                 <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding Model.CharacterEntity.EnergyPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -352,7 +352,7 @@
                 <TextBlock Text="Gold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <Grid>
                         <Grid.ColumnDefinitions>

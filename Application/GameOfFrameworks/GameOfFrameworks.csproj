@@ -92,6 +92,8 @@
     <None Remove="Data\Images\source\MerchantInventoryAlternate.png" />
     <None Remove="Data\Images\source\SkillShortcutTemplate.png" />
     <None Remove="Data\Images\source\smallButton.png" />
+    <None Remove="Data\Images\source\titileBar.png" />
+    <None Remove="Data\Images\source\titileBarVar2.png" />
     <None Remove="Data\Images\system\combatReward.png" />
     <None Remove="Data\Images\textures\combatTextBar.png" />
     <None Remove="Data\Images\textures\combatTextBarVar6.png" />
@@ -116,6 +118,7 @@
     <None Remove="Views\Scenes\background2.jpg" />
     <None Remove="Views\Scenes\combatTextBar.png" />
     <None Remove="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <None Remove="Views\Scenes\Images\Buttons\InfoTexture.png" />
     <None Remove="Views\Scenes\Images\inventoryItemframe.png" />
     <None Remove="Views\Scenes\Images\Items\Coins.png" />
     <None Remove="Views\Scenes\Images\Items\Copper.png" />
@@ -355,6 +358,8 @@
     <Resource Include="Data\Images\source\MerchantInventoryAlternate.png" />
     <Resource Include="Data\Images\source\SkillShortcutTemplate.png" />
     <Resource Include="Data\Images\source\smallButton.png" />
+    <Resource Include="Data\Images\source\titileBar.png" />
+    <Resource Include="Data\Images\source\titileBarVar2.png" />
     <Resource Include="Data\Images\system\combatReward.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -413,6 +418,7 @@
     </Resource>
     <Resource Include="Views\Scenes\Images\avatarPlug.jpg" />
     <Resource Include="Views\Scenes\Images\Buttons\buttonTexture.png" />
+    <Resource Include="Views\Scenes\Images\Buttons\InfoTexture.png" />
     <Resource Include="Views\Scenes\Images\inventoryItemframe.png" />
     <Resource Include="Views\Scenes\Images\Items\Coins.png" />
     <Resource Include="Views\Scenes\Images\Items\Copper.png" />

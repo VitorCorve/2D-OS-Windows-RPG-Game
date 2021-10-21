@@ -74,7 +74,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="1" Grid.Column="1">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/ButtonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
         </Border.Background>
         <TextBlock Text="Loot" VerticalAlignment="Center" TextAlignment="Center">
         </TextBlock>

@@ -5,11 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:USR="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
+      xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
+      xmlns:services="clr-namespace:GameOfFrameworks.Models.Services"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="BattleWindow">
-
+    <Page.DataContext>
+        <vm:BattleWindowViewModel/>
+    </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
+            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -123,11 +138,14 @@
                     </Grid.RowDefinitions>
                     <Border Grid.Row="1">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/ButtonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <Viewbox>
-                            <TextBlock Text="Player vs Enemy" VerticalAlignment="Center" TextAlignment="Center" Margin="35,10,35,10">
-                            </TextBlock>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="35,10,35,10">
+                                <TextBlock Text="{Binding PlayerBar.Name}" VerticalAlignment="Center" TextAlignment="Center"/>
+                                <TextBlock Text=" vs " VerticalAlignment="Center" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding NPCBar.Name}" VerticalAlignment="Center" TextAlignment="Center"/>
+                            </StackPanel>
                         </Viewbox>
                     </Border>
                 </Grid>
@@ -137,8 +155,12 @@
                     <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130"/>
                 </Viewbox>
             </Grid>
-            <USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>
-
+            <!--<USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>-->
+            <ListBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding CombatText.Text}" Background="Transparent" Foreground="White" FontSize="16"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     services:ListBoxBehavior.ScrollOnNewItem="True"
+                     ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+            </ListBox>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>

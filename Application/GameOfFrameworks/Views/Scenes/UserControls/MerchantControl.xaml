@@ -182,7 +182,7 @@
             <Border Grid.Row="1" Margin="3">
                 <TextBlock Text="Merchant" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
             </Border>
             <Grid Grid.Row="2" Margin="3">
@@ -196,7 +196,7 @@
             <Grid Grid.Row="3" Margin="3">
                 <Border Grid.Row="1" Margin="0,5,0,5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
@@ -562,7 +562,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Grid.Background>
                     <TextBlock Text="{Binding PlayerItems.Count, StringFormat={}{0}/}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="15"/>
                     <TextBlock Text="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
@@ -662,7 +662,7 @@
             <Border Grid.Row="1" Margin="3">
                 <TextBlock Text="{Binding PlayerModel.Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
             </Border>
             <Grid Grid.Row="2" Margin="3">
@@ -676,7 +676,7 @@
             <Grid Grid.Row="3" Margin="3">
                 <Border Grid.Row="1" Margin="0,5,0,5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Margin="5,0,5,0">

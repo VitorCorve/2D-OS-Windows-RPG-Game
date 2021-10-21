@@ -118,7 +118,7 @@
                     </Grid.ColumnDefinitions>
                     <Border>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="General sound volume" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
@@ -133,7 +133,7 @@
                     </Slider>
                     <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
@@ -145,7 +145,7 @@
                     </Grid.ColumnDefinitions>
                     <Border>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="Music volume" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
@@ -160,7 +160,7 @@
                     </Slider>
                     <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
@@ -172,7 +172,7 @@
                     </Grid.ColumnDefinitions>
                     <Border>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="Sound effects volume" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
@@ -187,7 +187,7 @@
                     </Slider>
                     <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>

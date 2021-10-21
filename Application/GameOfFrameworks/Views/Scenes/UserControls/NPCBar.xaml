@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="280" d:DesignWidth="380">
     <UserControl.Resources>
@@ -29,7 +29,7 @@
             <Image Source="/Views/Scenes/Images/VisualElements/NPCBar.png" Grid.Column="1" Grid.Row="0" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
             <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2">
                 <Viewbox>
-                    <uc:ShortcutsBarReflected  Width="685" Height="130"/>
+                    <uc:NPCShortcutsBarReflected  Width="685" Height="130"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
@@ -45,17 +45,17 @@
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition Height="0.13*"/>
                 </Grid.RowDefinitions>
-                <Image Source="/Data/Images/textures/healthIndicator/healthBar.png" Grid.Row="1" Grid.Column="2"/>
+                <Image Source="/Data/Images/textures/healthIndicator/healthBar.png" Grid.Row="1" Grid.Column="2" Stretch="UniformToFill" Width="{Binding NPCBar.Health}" HorizontalAlignment="Left"/>
                 <Image Source="/Data/Images/textures/manaIndicator/manaBar.png" Grid.Row="2" Grid.Column="2"/>
                 <Image Source="/Data/Images/textures/energyIndicator/energyBar.png" Grid.Row="3" Grid.Column="2"/>
                 <Viewbox Grid.Row="1" Grid.Column="1">
-                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}"  Text="1000" Margin="1"/>
+                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="{Binding NPCBar.Health}" Margin="1"/>
                 </Viewbox>
                 <Viewbox Grid.Row="2" Grid.Column="1">
-                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}"  Text="1000" Margin="1"/>
+                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}"  Text="{Binding NPCBar.Mana}" Margin="1"/>
                 </Viewbox>
                 <Viewbox Grid.Row="3" Grid.Column="1">
-                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}"  Text="1000" Margin="1"/>
+                    <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="{Binding NPCBar.Energy}" Margin="1"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2">
@@ -74,7 +74,7 @@
                     <ColumnDefinition Width="0.255*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Row="2" Grid.Column="3">
-                    <TextBlock Text="99" Foreground="Black"/>
+                    <TextBlock Text="{Binding NPCBar.Level}" Foreground="Black"/>
                 </Viewbox>
                 <Image Source="/Data/Images/characters/mageFemale/avatar4.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Stretch="Uniform"/>
             </Grid>

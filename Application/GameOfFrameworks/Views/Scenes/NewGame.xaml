@@ -232,7 +232,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Row="1" Grid.Column="1">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <Viewbox>
                             <TextBlock Text="Character Creation" VerticalAlignment="Center" TextAlignment="Center" Margin="10">

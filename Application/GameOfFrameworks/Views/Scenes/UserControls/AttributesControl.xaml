@@ -195,7 +195,7 @@
                 </Border>
                 <Border Grid.ColumnSpan="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -262,7 +262,7 @@
                 </Border>
                 <Border Grid.ColumnSpan="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Attack" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -275,7 +275,7 @@
                 
                 <Border Grid.ColumnSpan="4" Grid.Row="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Defense" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -308,7 +308,7 @@
                 </Border>
                 <Border Grid.ColumnSpan="5">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -372,7 +372,7 @@
                 <Border Grid.Column="1" Panel.ZIndex="1">
                     <TextBlock Text="Shortcuts"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <Grid Grid.Row="1">

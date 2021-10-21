@@ -178,7 +178,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="{Binding PlayerModel.Name}" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -210,7 +210,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Info" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -237,7 +237,7 @@
                 <TextBlock Text="Gender" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="15,0,15,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerModel.Gender}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -245,7 +245,7 @@
                 <TextBlock Text="Class" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
                 <Border Margin="15,0,15,0" Grid.Row="3">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerModel.Specialization}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -367,7 +367,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Bio" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -390,7 +390,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Row="2" Grid.Column="1">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                 </Border.Background>
                 <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center" >
                 </TextBlock>
@@ -428,7 +428,7 @@
                 <TextBlock Text="Stamina" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding CharacterBasicAttributes.Stamina}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -443,7 +443,7 @@
                 <TextBlock Text="Intellect" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding CharacterBasicAttributes.Intellect}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -458,7 +458,7 @@
                 <TextBlock Text="Health" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerEntity.HealthPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -473,7 +473,7 @@
                 <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerEntity.ManaPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -488,7 +488,7 @@
                 <TextBlock Text="Strength" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding CharacterBasicAttributes.Strength}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -503,7 +503,7 @@
                 <TextBlock Text="Endurance" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding CharacterBasicAttributes.Endurance}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -518,7 +518,7 @@
                 <TextBlock Text="Attack" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerEntity.Attack.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -533,7 +533,7 @@
                 <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerEntity.EnergyPoints.Value}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -548,7 +548,7 @@
                 <TextBlock Text="Agility" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding CharacterBasicAttributes.Agility}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>
@@ -563,7 +563,7 @@
                 <TextBlock Text="Dodge" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
                 <Border Margin="5,0,5,0" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerEntity.DodgeChance.Value, StringFormat='\{0\} %'}" VerticalAlignment="Center" TextAlignment="Center" >
                     </TextBlock>

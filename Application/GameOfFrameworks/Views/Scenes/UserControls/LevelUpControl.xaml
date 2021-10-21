@@ -149,7 +149,7 @@
         <uc:SkillLevelUpDescriptionBar Style="{StaticResource UserControlTemplate}" Grid.Column="4" Grid.Row="2" Visibility="{Binding SkillDescriptionBarVisibility}"  Margin="14,0,18,0" MaxHeight="350"/>
         <Border Grid.Column="1" Panel.ZIndex="1" Grid.Row="1">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
             </Border.Background>
             <TextBlock Text="Attributes" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
@@ -161,7 +161,7 @@
         </Border>
         <Border Grid.Column="3" Panel.ZIndex="1" Grid.Row="1">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
             </Border.Background>
             <TextBlock Text="Skills" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
@@ -226,7 +226,7 @@
         </Grid>
         <Border Grid.Row="3" Grid.Column="1">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
             </Border.Background>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available attribute points:"/>
@@ -235,7 +235,7 @@
         </Border>
         <Border  Grid.Row="3" Grid.Column="3" Panel.ZIndex="1">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
             </Border.Background>
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Available skill points:"/>

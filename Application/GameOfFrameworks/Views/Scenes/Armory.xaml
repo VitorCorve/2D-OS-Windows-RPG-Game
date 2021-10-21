@@ -280,14 +280,14 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerModel.Name}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <TextBlock Text="{Binding PlayerModel.Level, StringFormat={} Level: {0}}" VerticalAlignment="Center" TextAlignment="Center">
                     </TextBlock>
@@ -338,7 +338,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Column="1" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <Viewbox>
                         <TextBlock Text="{Binding CharacterEntity.HealthPoints.Value, StringFormat={} HP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
@@ -347,7 +347,7 @@
 
                 <Border Grid.Column="3" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <Viewbox>
                         <TextBlock Text="{Binding CharacterEntity.ManaPoints.Value, StringFormat={} MP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>
@@ -356,7 +356,7 @@
 
                 <Border Grid.Column="5" Grid.Row="1">
                     <Border.Background>
-                        <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                     <Viewbox>
                         <TextBlock Text="{Binding CharacterEntity.EnergyPoints.Value, StringFormat={} EP:{0}}" VerticalAlignment="Center" TextAlignment="Center" Margin="5,10,5,10"/>

@@ -221,56 +221,56 @@
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Level" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Level}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Specialization" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Specialization}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Health" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Health}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Mana}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Energy" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Energy}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Location" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Location}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
                 <TextBlock Text="Date" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                 <Border Height="30">
                     <TextBlock Text="{Binding SavesList.SaveModel.Date}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                     </Border.Background>
                 </Border>
             </StackPanel>

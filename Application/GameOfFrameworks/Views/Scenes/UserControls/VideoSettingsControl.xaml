@@ -138,7 +138,7 @@
                     </Grid.ColumnDefinitions>
                     <Border>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="Resolution" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
@@ -178,7 +178,7 @@
                     </Grid.ColumnDefinitions>
                     <Border>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
                         <TextBlock Text="Window mode" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
