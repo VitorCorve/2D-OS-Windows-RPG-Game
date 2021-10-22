@@ -190,10 +190,10 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
-                            <TextBlock Text=" Level: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text=" Lvl: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
                             <TextBlock Text="{Binding SaveData.Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
-                            <TextBlock Text=" Date: " Foreground="white" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding SaveData.Date}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2"/>
+                            <TextBlock Text=" Date: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text="{Binding SaveData.DateShort}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

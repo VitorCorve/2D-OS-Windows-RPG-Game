@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
              mc:Ignorable="d" d:DesignWidth="685" Height="130">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -208,9 +208,9 @@
                 <ImageBrush ImageSource="/Data/Images/textures/SkillsBarVar2.png"/>
             </Grid.Background>
             <Grid Grid.Column="1" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="0">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[0].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[0].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -220,9 +220,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="2" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="1">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[1].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[1].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -232,9 +232,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="3" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="2">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[2].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[2].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -244,9 +244,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="4" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="3">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[3].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[3].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -256,9 +256,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="5" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="4">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[4].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[4].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -268,9 +268,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="6" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="5">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[5].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[5].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -280,9 +280,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="7" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="6">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[6].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[6].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -292,9 +292,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="8" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="7">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[7].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[7].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -304,9 +304,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="9" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="8">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[8].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[8].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -316,9 +316,9 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="10" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="9">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Shortcuts.SkillViewList[9].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[9].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">

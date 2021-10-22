@@ -42,6 +42,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.ApplyCharacterCreation
             DataToSave = playerSaveDataBuilder.Build(PlayerModel, new Location(), new PlayerInventoryItemsList(), new WearedEquipment(), SkillList, ViewModel.CharacterBasicAttributes, null, Entity);
 
             DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
+            DataToSave.DateShort = DateTime.Now.ToString("yy.MM.dd");
             var saveService = new SaveGameService();
             saveService.Save(DataToSave, false);
             MainWindowViewModel.ShowNotificationCommand.Execute(null);

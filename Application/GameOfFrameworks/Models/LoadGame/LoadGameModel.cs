@@ -84,6 +84,8 @@ namespace GameOfFrameworks.Models.LoadGame
                 else gameSave.Name = playerSavedata.Name;
                 gameSave.Path = item.FullName;
                 gameSave.Date = playerSavedata.Date;
+                gameSave.DateShort = playerSavedata.DateShort;
+                gameSave.Level = playerSavedata.Level;
                 GameSaves.Add(gameSave);
             }
             SortSaves();

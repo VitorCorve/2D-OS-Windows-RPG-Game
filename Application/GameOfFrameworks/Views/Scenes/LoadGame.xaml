@@ -173,7 +173,13 @@
             <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Model.GameSaves}" SelectedIndex="{Binding Model.SaveSelectionIndex}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Lvl: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text="{Binding Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                            <TextBlock Text=" Date: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                            <TextBlock Text="{Binding DateShort,StringFormat={} {0}}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2" VerticalAlignment="Center"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

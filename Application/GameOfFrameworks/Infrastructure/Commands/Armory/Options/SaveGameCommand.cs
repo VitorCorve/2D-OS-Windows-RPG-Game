@@ -41,7 +41,11 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Options
                 ShortcutsConverter.ConvertToList(ArmoryTemporaryData.SkillsShortcuts),
                 ArmoryTemporaryData.CharacterEntity);
         }
-        private void SetDataSaveTime() => DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
+        private void SetDataSaveTime()
+        {
+            DataToSave.Date = DateTime.Now.ToString("yy.MM.dd H:mm:ss");
+            DataToSave.DateShort = DateTime.Now.ToString("yy.MM.dd");
+        }
         private void SaveData() => SaveService.Save(DataToSave, (bool)Parameter);
     }
 }

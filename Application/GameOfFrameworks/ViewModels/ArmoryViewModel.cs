@@ -8,6 +8,7 @@ using GameOfFrameworks.Infrastructure.Commands.LoadGame;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
+using System.Timers;
 using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels
@@ -47,8 +48,17 @@ namespace GameOfFrameworks.ViewModels
             LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
             ArmoryTemporaryData.Console = ConsoleHandlerService.SetupConsoleConfiguration();
             PlayerModel.NewLevelGainded += NotifyLevelUp;
-
+            var timer = new Timer(1000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
         }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            CharacterEntity = null;
+            CharacterEntity = ArmoryTemporaryData.CharacterEntity;
+        }
+
         private void NotifyLevelUp()
         {
             //debug

@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,6 +47,7 @@ namespace GameOfFrameworks.Scenes
         }
         private void HuntButton_Click(object sender, RoutedEventArgs e)
         {
+            ArmoryViewModel.SaveGameCommand.Execute(true);
             BattleWindow battleWindow = new BattleWindow();
             NavigationService.Navigate(battleWindow);
         }

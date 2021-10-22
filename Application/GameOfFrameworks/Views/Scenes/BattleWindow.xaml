@@ -127,8 +127,8 @@
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
-            <USR:ItemDescriptionControl Grid.Row="1"/>
-            <USR:LootBar Grid.Row="1" Grid.Column="1"/>
+            <!--<USR:ItemDescriptionControl Grid.Row="1" Visibility="Hidden"/>-->
+            <USR:LootBar Grid.Row="1" Grid.Column="1" Visibility="Hidden"/>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -168,14 +168,11 @@
                 <RowDefinition Height="0.7*"/>
             </Grid.RowDefinitions>
             <USR:NPCBar/>
-            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,25">
-                <Button Style="{StaticResource ButtonTemplate}" Content="Menu"/>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Fight"/>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Kill"/>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Restore HP"/>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Fight again"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                <Button Content="Out" Style="{StaticResource ButtonTemplate}" Command="{Binding BackToArmoryCommand}"/>
             </StackPanel>
         </Grid>
         <USR:SkillDescriptionBar VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+        
     </Grid>
 </Page>

@@ -9,6 +9,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
 {
     public class UpdatePlayerSkillCommand : ICommand
     {
+        private SkillViewToSkillConverter Converter;
         public LevelUpViewModel ViewModel { get; }
         public event EventHandler CanExecuteChanged;
         public UpdatePlayerSkillCommand(LevelUpViewModel levelUpViewModel) => ViewModel = levelUpViewModel;
@@ -19,7 +20,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
 
             var skillToRiseUp = (ISkillView)parameter;
 
-            var skillViewToSkillConverter = new SkillViewToSkillConverter();
+            Converter = new SkillViewToSkillConverter();
 
             var skillViewList = ViewModel.AvailableSkills;
             var selectedSkill = ViewModel.SelectedSkill;
@@ -32,14 +33,24 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp
                     break;
                 }
             }
-            foreach (var playerSkill in ArmoryTemporaryData.PlayerSkills.Skills)
+            if (skillToRiseUp.Skill.SkillLevel == 1)
             {
-                if (skillToRiseUp.Skill.Skill_ID == playerSkill.Skill_ID)
+                var newSkill = Converter.Convert(skillToRiseUp);
+                newSkill.SkillLevel = 1;
+                ArmoryTemporaryData.PlayerSkills.Skills.Add(newSkill);
+            }
+            else
+            {
+                foreach (var playerSkill in ArmoryTemporaryData.PlayerSkills.Skills)
                 {
-                    playerSkill.SkillLevel++;
-                    break;
+                    if (skillToRiseUp.Skill.Skill_ID == playerSkill.Skill_ID)
+                    {
+                        playerSkill.SkillLevel++;
+                        break;
+                    }
                 }
             }
+
 
             ViewModel.AvailableSkills = null;
             ViewModel.SelectedSkill = null;

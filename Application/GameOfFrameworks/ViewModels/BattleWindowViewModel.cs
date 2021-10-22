@@ -1,5 +1,8 @@
 ﻿using GameEngine.BattleMaster;
+using GameEngine.CombatEngine;
 using GameEngine.CombatEngine.Services;
+using GameOfFrameworks.Infrastructure.Commands.BattleScene;
+using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.BattleScene;
 using GameOfFrameworks.Models.BattleScene.Services;
 using GameOfFrameworks.Models.Temporary;
@@ -7,6 +10,8 @@ using GameOfFrameworks.ViewModels.Base;
 using System;
 using System.Timers;
 using System.Windows;
+using System.Windows.Input;
+using System.Linq;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -20,9 +25,13 @@ namespace GameOfFrameworks.ViewModels
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
+        public ICommand BackToArmoryCommand { get; private set; }
+        public ICommand UseSkillCommand { get; private set; }
         public CombatTextListBox CombatText { get; set; } = new();
+        public ShortcutsListModel SkillShortcuts { get; set; }
         public BattleWindowViewModel()
         {
+            SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;
             Master = new BattleMaster(ArmoryTemporaryData.SaveData);
             EffectsObserver = new SkillEffectObserver(ArmoryTemporaryData.SaveData);
             AbilitiesObserverService = new SpecialAbilitiesObserverService(Master.PlayerCombatManager.Dealer, ArmoryTemporaryData.PlayerSkills.Skills);
@@ -36,6 +45,8 @@ namespace GameOfFrameworks.ViewModels
             {
                 item.Log += Notification;
             }
+            BackToArmoryCommand = new BackToArmoryCommand(this);
+            UseSkillCommand = new UseSkillCommand(this);
         }
 
         private void Notification(string message)
@@ -44,10 +55,30 @@ namespace GameOfFrameworks.ViewModels
                 System.Windows.Threading.DispatcherPriority.Background,
                 new Action(() =>
                 {
-                    CombatText.AddMessage(message);
+                    CombatText.AddMessage(message.Replace("_", " "));
                 }));
             PlayerBar.UpdateValues();
             NPCBar.UpdateValues();
         }
+        public PlayerEntity GetPlayerEntity() => Master.PlayerCombatManager.Dealer;
+        public void Action(int skillIndex) => Master.UseSkill(skillIndex);
+        public int GetSkillIndex(int ID)
+        {
+            int count = 0;
+
+            foreach (var item in Master.SkillList)
+            {
+                if (item.Skill_ID == ID)
+                {
+                    return count;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public void StopFight() => Master.StopFight();
     }
 }

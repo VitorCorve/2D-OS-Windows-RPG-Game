@@ -67,8 +67,14 @@ namespace GameOfFrameworks.Models.Armory.Options
         }
         private void BuildModel(int index)
         {
+            index = ValidateIndex(index);
             SaveModel = new();
             SaveModel.Show(Saves[index].SaveData);
+        }
+        private int ValidateIndex(int index)
+        {
+            if (index < 0) return 0;
+            else return index;
         }
     }
 }
