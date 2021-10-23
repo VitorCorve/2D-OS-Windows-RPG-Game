@@ -7,14 +7,14 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
     public class SkillView : ISkillView
     {
         private ISkill _Skill;
-        public ISkill Skill { get => _Skill; set { _Skill = value; CheckIsSkillAsISkillDuration(); } }
+        public ISkill Skill { get => _Skill; set { _Skill = value; CheckIsISkillDuration(); } }
         public string ImagePath { get; set; }
         public string Description { get; set; }
         public double Opacity { get; private set; }
         public bool LevelUpReady { get; private set; }
         public int PlayerLevel { get; set; }
         public string Duration { get; private set; }
-        private void CheckIsSkillAsISkillDuration()
+        private void CheckIsISkillDuration()
         {
             if (Skill is ISkillDuration duration)
             {

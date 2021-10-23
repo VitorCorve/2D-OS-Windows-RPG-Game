@@ -156,11 +156,33 @@
                 </Viewbox>
             </Grid>
             <!--<USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>-->
-            <ListBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding CombatText.Text}" Background="Transparent" Foreground="White" FontSize="16"
+            <Grid Grid.Row="2" Grid.Column="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.6*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox ItemsSource="{Binding CombatText.Text}" Background="Black" Foreground="Cyan" FontSize="14"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     services:ListBoxBehavior.ScrollOnNewItem="True"
+                     ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Margin="3"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="EventTimeListbox" Grid.Column="1" ItemsSource="{Binding CombatText.Time}" Background="Black" Foreground="Cyan" FontSize="14"
                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      services:ListBoxBehavior.ScrollOnNewItem="True"
                      ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
-            </ListBox>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Margin="3"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>

@@ -12,6 +12,9 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq;
+using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using System.Collections.Generic;
+using GameOfFrameworks.Models.UISkillsCollection.Player;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -29,9 +32,11 @@ namespace GameOfFrameworks.ViewModels
         public ICommand UseSkillCommand { get; private set; }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
+        public EffectsListModel Effects { get; set; } = new();
         public BattleWindowViewModel()
         {
             SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;
+            Effects.Initialize(SkillShortcuts.SkillViewList);
             Master = new BattleMaster(ArmoryTemporaryData.SaveData);
             EffectsObserver = new SkillEffectObserver(ArmoryTemporaryData.SaveData);
             AbilitiesObserverService = new SpecialAbilitiesObserverService(Master.PlayerCombatManager.Dealer, ArmoryTemporaryData.PlayerSkills.Skills);

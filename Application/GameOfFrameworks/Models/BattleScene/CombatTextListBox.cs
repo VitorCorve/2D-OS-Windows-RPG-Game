@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -8,6 +9,7 @@ namespace GameOfFrameworks.Models.BattleScene
     public class CombatTextListBox
     {
         public ObservableCollection<string> Text { get; set; } = new();
+        public ObservableCollection<string> Time { get; set; } = new();
         public void AddMessage(string message)
         {
             /*            if (Text.Count > 10)
@@ -20,6 +22,7 @@ namespace GameOfFrameworks.Models.BattleScene
                             Text.Add(message);
                         }*/
             Text.Add(message);
+            Time.Add(DateTime.Now.ToString("H:mm:ss"));
         }
     }
 }

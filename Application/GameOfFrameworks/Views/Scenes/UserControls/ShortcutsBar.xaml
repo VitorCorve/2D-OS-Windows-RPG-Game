@@ -114,72 +114,72 @@
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[0].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[0].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="2" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[1].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[1].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="3" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[2].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[2].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="4" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[3].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[3].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="5" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[4].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[4].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="6" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[5].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[5].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="7" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[6].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[6].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="8" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[7].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[7].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="9" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[8].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[8].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
             <Grid Grid.Column="10" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" Visibility="{Binding Effects.SkillEffectViewList[9].CooldownStatement}">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.SkillEffectViewList[9].CooldownCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
