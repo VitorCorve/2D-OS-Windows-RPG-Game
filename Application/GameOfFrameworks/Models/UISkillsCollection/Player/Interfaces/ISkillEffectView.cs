@@ -14,5 +14,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
         Timer DurationTimer { get; }
         Timer CooldownTimer { get; }
         void Activate();
+        void Hide();
+        void Show();
     }
 }

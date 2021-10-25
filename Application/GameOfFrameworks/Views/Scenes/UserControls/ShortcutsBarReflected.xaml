@@ -120,10 +120,10 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/Data/Images/textures/SkillsBarVar2.png"/>
             </Grid.Background>
-            <Grid Grid.Column="1" Grid.Row="1">
+            <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[0].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[0].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[0].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -132,10 +132,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="1">
+            <Grid Grid.Column="2" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[1].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[1].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[1].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -144,10 +144,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="3" Grid.Row="1">
+            <Grid Grid.Column="3" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[2].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[2].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[2].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -156,10 +156,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="4" Grid.Row="1">
+            <Grid Grid.Column="4" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[3].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[3].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[3].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -168,10 +168,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="5" Grid.Row="1">
+            <Grid Grid.Column="5" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[4].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[4].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[4].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -180,10 +180,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="6" Grid.Row="1">
+            <Grid Grid.Column="6" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[5].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[5].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[5].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -192,10 +192,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="7" Grid.Row="1">
+            <Grid Grid.Column="7" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[6].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[6].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[6].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -204,10 +204,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="8" Grid.Row="1">
+            <Grid Grid.Column="8" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[7].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[7].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[7].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -216,10 +216,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="9" Grid.Row="1">
+            <Grid Grid.Column="9" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[8].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[8].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[8].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -228,10 +228,10 @@
                     </Border.Background>
                 </Border>
             </Grid>
-            <Grid Grid.Column="10" Grid.Row="1">
+            <Grid Grid.Column="10" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[9].DurationStatement}">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Background>
-                        <ImageBrush ImageSource="{Binding Effects.SkillEffectViewList[9].ImagePath}"/>
+                        <ImageBrush ImageSource="{Binding Effects.BuffsList.EffectsList[9].ImagePath}"/>
                     </Button.Background>
                 </Button>
                 <Border BorderBrush="Transparent">
@@ -256,73 +256,73 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+            <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[0].DurationStatement}">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" >
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[0].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="1">
-                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
+            <Grid Grid.Column="2" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[1].DurationStatement}">
+                <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent" >
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[1].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="3" Grid.Row="1">
+            <Grid Grid.Column="3" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[2].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[2].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="4" Grid.Row="1">
+            <Grid Grid.Column="4" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[3].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[3].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="5" Grid.Row="1">
+            <Grid Grid.Column="5" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[4].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[4].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="6" Grid.Row="1">
+            <Grid Grid.Column="6" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[5].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[5].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="7" Grid.Row="1">
+            <Grid Grid.Column="7" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[6].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[6].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="8" Grid.Row="1">
+            <Grid Grid.Column="8" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[7].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[7].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="9" Grid.Row="1">
+            <Grid Grid.Column="9" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[8].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[8].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Column="10" Grid.Row="1">
+            <Grid Grid.Column="10" Grid.Row="1" Visibility="{Binding Effects.BuffsList.EffectsList[9].DurationStatement}">
                 <Button Style="{StaticResource CooldownElement}" Panel.ZIndex="1" BorderBrush="Transparent">
                     <Button.Content>
-                        <TextBlock Text="1"/>
+                        <TextBlock Text="{Binding Effects.BuffsList.EffectsList[9].DurationCount}"/>
                     </Button.Content>
                 </Button>
             </Grid>

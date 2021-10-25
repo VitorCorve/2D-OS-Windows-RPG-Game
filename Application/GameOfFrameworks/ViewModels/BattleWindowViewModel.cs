@@ -22,17 +22,17 @@ namespace GameOfFrameworks.ViewModels
     {
         private PlayerBarView _NPCBar;
         private PlayerBarView _PlayerBar;
-        public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
-        public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
         private readonly BattleMaster Master;
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
-        public ICommand BackToArmoryCommand { get; private set; }
-        public ICommand UseSkillCommand { get; private set; }
+        public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
+        public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
+        public ICommand BackToArmoryCommand { get; private set; }
+        public ICommand UseSkillCommand { get; private set; }
         public BattleWindowViewModel()
         {
             SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;

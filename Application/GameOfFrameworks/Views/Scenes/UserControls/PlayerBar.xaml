@@ -30,7 +30,7 @@
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <Grid>
                     <Viewbox>
-                        <uc:ShortcutsBarReflected  Width="685" Height="130"/>
+                        <uc:PlayerActiveEffectsControl Width="685" Height="130"/>
                     </Viewbox>
                 </Grid>
             </Grid>

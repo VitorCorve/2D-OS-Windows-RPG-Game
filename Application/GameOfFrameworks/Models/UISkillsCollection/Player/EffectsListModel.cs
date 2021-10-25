@@ -10,6 +10,8 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         private ObservableCollection<ISkillEffectView> _SkillEffectViewList;
         public ObservableCollection<ISkillEffectView> SkillEffectViewList { get => _SkillEffectViewList; set => Set(ref _SkillEffectViewList, value); }
         public event PropertyChangedEventHandler PropertyChanged;
+        public GrowingEffectsListView BuffsList { get; set; } = new();
+        public GrowingEffectsListView DebuffsList { get; set; } = new();
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
@@ -31,7 +33,8 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         {
             for (int i = 0; i < playerSkills.Count; i++)
             {
-                SkillEffectViewList[i] = new SkillEffectView(playerSkills[i]);
+                SkillEffectViewList[i] = new SkillEffectView(playerSkills[i], BuffsList, DebuffsList);
+                SkillEffectViewList[i].Hide();
             }
         }
     }

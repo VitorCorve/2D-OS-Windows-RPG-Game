@@ -8,7 +8,12 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
     {
         private readonly BattleWindowViewModel ViewModel;
         public UseSkillCommand(BattleWindowViewModel battleWindowViewModel) => ViewModel = battleWindowViewModel;
-        public override bool CanExecute(object parameter) => parameter != null;
+        public override bool CanExecute(object parameter)
+        {
+            if (parameter is null) return false;
+            if (ViewModel.SkillShortcuts.SkillViewList[int.Parse((string)parameter)].Skill is null) return false;
+            return true;
+        }
         public override void Execute(object parameter)
         {
             ViewModel.Action(ViewModel.GetSkillIndex(GetSkillID(int.Parse((string)parameter))));

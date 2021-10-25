@@ -1,4 +1,5 @@
-﻿using GameEngine.CombatEngine.Interfaces.SkillMechanics;
+﻿using GameEngine.CombatEngine.Interfaces;
+using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -9,11 +10,15 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
 {
     public class SkillEffectView : ISkillEffectView, INotifyPropertyChanged
     {
+        private readonly GrowingEffectsListView BuffsList;
+        private readonly GrowingEffectsListView DebuffsList;
         private readonly double Duration;
         private readonly double Cooldown;
+        private readonly bool IDurationInterface;
+        private readonly bool IDebuffSkill;
+        private readonly bool IBuffSkill;
         private Visibility _CooldownStatement;
         private Visibility _DurationStatement;
-        private bool IDurationInterface;
         private double _DurationCount;
         private double _CooldownCount;
         public int ID { get; set; }
@@ -25,9 +30,16 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         public Timer DurationTimer { get; set; }
         public Timer CooldownTimer { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-        public SkillEffectView() { }
-        public SkillEffectView(ISkillView skillView)
+        public SkillEffectView()
         {
+            CooldownStatement = Visibility.Hidden;
+            DurationStatement = Visibility.Hidden;
+        }
+        public SkillEffectView(ISkillView skillView, GrowingEffectsListView buffsList, GrowingEffectsListView debuffsList)
+        {
+            BuffsList = buffsList;
+            DebuffsList = debuffsList;
+
             CooldownStatement = Visibility.Hidden;
             DurationStatement = Visibility.Hidden;
 
@@ -35,16 +47,28 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             {
                 return;
             }
+
             ID = skillView.Skill.Skill_ID;
 
-            if (skillView.Skill is ISkillDuration)
+            if (skillView.Skill is IDebuffSkill)
             {
-                Duration = ((ISkillDuration)skillView.Skill).Duration;
+                IDebuffSkill = true;
+            }
+
+            if (skillView.Skill is IBuffSkill)
+            {
+                IBuffSkill = true;
+            }
+
+            if (skillView.Skill is ISkillDuration duration)
+            {
+                Duration = duration.Duration;
                 DurationTimer = new Timer(1000);
                 DurationTimer.Elapsed += DurationTimer_Tick;
                 IDurationInterface = true;
                 DurationCount = Duration;
             }
+
             Cooldown = skillView.Skill.CoolDownDuration;
             CooldownTimer = new Timer(1000);
             CooldownTimer.Elapsed += CooldownTimer_Tick;
@@ -58,6 +82,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
                 CooldownTimer.Stop();
                 CooldownCount = Cooldown;
                 CooldownStatement = Visibility.Hidden;
+                BuffsList.RemoveFrom(ID);
             }
             else CooldownCount -= 1.0;
         }
@@ -66,8 +91,10 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             if (DurationCount == 0)
             {
                 DurationTimer.Stop();
-                DurationCount = Cooldown;
+                DurationCount = Duration;
                 DurationStatement = Visibility.Hidden;
+                if (IDebuffSkill) DebuffsList.RemoveFrom(ID);
+                if (IBuffSkill) DebuffsList.RemoveFrom(ID);
             }
             else DurationCount -= 1.0;
         }
@@ -79,10 +106,24 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
                 DurationTimer.Start();
                 DurationStatement = Visibility.Visible;
             }
-
             CooldownTimer.Start();
             CooldownStatement = Visibility.Visible;
+
+            if (IDebuffSkill) DebuffsList.AddNew(this);
+            if (IBuffSkill) BuffsList.AddNew(this);
         }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public void Hide()
+        {
+            CooldownStatement = Visibility.Hidden;
+            DurationStatement = Visibility.Hidden;
+        }
+
+        public void Show()
+        {
+            CooldownStatement = Visibility.Visible;
+            DurationStatement = Visibility.Visible;
+        }
     }
 }
