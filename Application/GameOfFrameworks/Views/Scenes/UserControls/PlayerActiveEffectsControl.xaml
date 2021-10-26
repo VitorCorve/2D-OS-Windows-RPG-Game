@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
-             mc:Ignorable="d" d:DesignWidth="685" Height="130">
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
+             mc:Ignorable="d" d:DesignWidth="685" Height="130"
+             Name="PlayerActiveEffectsControlElement">
     <UserControl.Resources>
         <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
             <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -15,6 +19,11 @@
                         <Border Name="ListBoxItemBorder">
                             <ContentPresenter/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -106,7 +115,7 @@
     </Style>
     </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{Binding Effects.BuffsList.EffectsList}" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+        <ListBox Name="PlayerEffectsElement" ItemsSource="{Binding Effects.BuffsList.EffectsList}" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -114,13 +123,22 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="0">
+                    <StackPanel Margin="2" VerticalAlignment="Center">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseEnter">
+                                <i:InvokeCommandAction Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.SetSelectedSkillCommand}"
+                                                           CommandParameter="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.SelectedSkill}"/>
+                            </i:EventTrigger>
+                            <!--<i:EventTrigger EventName="MouseLeave">
+                                <i:InvokeCommandAction Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.HideSkillDescriptionCommand}"/>
+                            </i:EventTrigger>-->
+                        </i:Interaction.Triggers>
                         <Button Style="{StaticResource ButtonTemplate}" Visibility="{Binding DurationStatement}" Height="60" Width="70">
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding ImagePath}"/>
                             </Button.Background>
                         </Button>
-                        <Button Style="{StaticResource CooldownElement}" BorderBrush="Transparent" Visibility="{Binding DurationStatement}" Height="60" Width="70">
+                        <Button Style="{StaticResource CooldownElement}" BorderBrush="Transparent" Visibility="{Binding DurationStatement}" Height="50" Width="60">
                             <Button.Content>
                                 <TextBlock Text="{Binding DurationCount}"/>
                             </Button.Content>

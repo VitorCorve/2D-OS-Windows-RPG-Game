@@ -8,31 +8,36 @@ using GameOfFrameworks.Models.BattleScene.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
 using System;
-using System.Timers;
 using System.Windows;
 using System.Windows.Input;
-using System.Linq;
-using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
-using System.Collections.Generic;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
+using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using GalaSoft.MvvmLight.Command;
 
 namespace GameOfFrameworks.ViewModels
 {
     public class BattleWindowViewModel : ViewModel
     {
+        private Visibility _SkillDescriptionVisibility;
+        private ISkillView _SelectedSkill;
         private PlayerBarView _NPCBar;
         private PlayerBarView _PlayerBar;
         private readonly BattleMaster Master;
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
+        public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
+        public ISkillView SelectedSkill { get => _SelectedSkill; set { _SelectedSkill = value; OnPropertyChanged(); } }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
         public ICommand BackToArmoryCommand { get; private set; }
         public ICommand UseSkillCommand { get; private set; }
+        public ICommand SelectSkillByIndexCommand { get; private set; }
+        public ICommand SetSelectedSkillCommand { get; private set; }
+        public ICommand HideSkillDescriptionCommand { get; private set; }
         public BattleWindowViewModel()
         {
             SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;
@@ -52,6 +57,10 @@ namespace GameOfFrameworks.ViewModels
             }
             BackToArmoryCommand = new BackToArmoryCommand(this);
             UseSkillCommand = new UseSkillCommand(this);
+            SelectSkillByIndexCommand = new SelectSkillByIndexCommand(this);
+            SetSelectedSkillCommand = new SetSelectedSkillCommand(this);
+            HideSkillDescriptionCommand = new HideSkillDescriptionCommand(this);
+            SkillDescriptionVisibility = Visibility.Hidden;
         }
 
         private void Notification(string message)
@@ -66,7 +75,7 @@ namespace GameOfFrameworks.ViewModels
             NPCBar.UpdateValues();
         }
         public PlayerEntity GetPlayerEntity() => Master.PlayerCombatManager.Dealer;
-        public void Action(int skillIndex) => Master.UseSkill(skillIndex);
+        public void UseSkillByIndex(int skillIndex) => Master.UseSkill(skillIndex);
         public int GetSkillIndex(int ID)
         {
             int count = 0;

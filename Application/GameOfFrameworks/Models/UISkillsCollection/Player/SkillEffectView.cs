@@ -1,6 +1,7 @@
 ﻿using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Interfaces.SkillMechanics;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Timers;
@@ -82,7 +83,6 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
                 CooldownTimer.Stop();
                 CooldownCount = Cooldown;
                 CooldownStatement = Visibility.Hidden;
-                BuffsList.RemoveFrom(ID);
             }
             else CooldownCount -= 1.0;
         }
@@ -93,8 +93,8 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
                 DurationTimer.Stop();
                 DurationCount = Duration;
                 DurationStatement = Visibility.Hidden;
-                if (IDebuffSkill) DebuffsList.RemoveFrom(ID);
-                if (IBuffSkill) DebuffsList.RemoveFrom(ID);
+                if (IDebuffSkill) Action(() => DebuffsList.RemoveFrom(ID));
+                if (IBuffSkill) Action(() => BuffsList.RemoveFrom(ID));
             }
             else DurationCount -= 1.0;
         }
@@ -124,6 +124,15 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         {
             CooldownStatement = Visibility.Visible;
             DurationStatement = Visibility.Visible;
+        }
+        private void Action(Action func = null)
+        {
+            Application.Current.Dispatcher.BeginInvoke(
+            System.Windows.Threading.DispatcherPriority.Background,
+            new Action(() =>
+            {
+                func?.Invoke();
+            }));
         }
     }
 }

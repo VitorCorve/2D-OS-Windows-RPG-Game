@@ -29,9 +29,11 @@
             <Image Source="/Views/Scenes/Images/VisualElements/PlayerBar.png" Grid.Column="0" Grid.Row="0" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <Grid>
-                    <Viewbox>
-                        <uc:PlayerActiveEffectsControl Width="685" Height="130"/>
+                    <Viewbox Panel.ZIndex="1">
+                        <uc:PlayerActiveEffectsControl Width="685" Height="130" Margin="5"/>
                     </Viewbox>
+                    <Border Background="Black" Panel.ZIndex="-1" CornerRadius="6" Opacity="0.6" Margin="0,5,0,5" Visibility="{Binding Effects.BuffsList.Statement}">
+                    </Border>
                 </Grid>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3">
@@ -69,7 +71,7 @@
                     <RowDefinition Height="0.076*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.255*"/>
+                    <ColumnDefinition Width="0.24*"/>
                     <ColumnDefinition Width="0.07*"/>
                     <ColumnDefinition Width="0.16*"/>
                     <ColumnDefinition Width="0.36*"/>

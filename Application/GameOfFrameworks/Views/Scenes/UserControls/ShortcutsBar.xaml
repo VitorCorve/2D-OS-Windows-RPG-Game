@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
              mc:Ignorable="d" d:DesignWidth="685" Height="130">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -208,7 +209,15 @@
                 <ImageBrush ImageSource="/Data/Images/textures/SkillsBarVar2.png"/>
             </Grid.Background>
             <Grid Grid.Column="1" Grid.Row="1">
-                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="0">
+                <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="0" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="0"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[0].ImagePath}"/>
                     </Button.Background>
@@ -221,6 +230,14 @@
             </Grid>
             <Grid Grid.Column="2" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="1">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="1"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[1].ImagePath}"/>
                     </Button.Background>
@@ -233,6 +250,14 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="2">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="2"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[2].ImagePath}"/>
                     </Button.Background>
@@ -245,6 +270,14 @@
             </Grid>
             <Grid Grid.Column="4" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="3">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="3"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[3].ImagePath}"/>
                     </Button.Background>
@@ -257,6 +290,14 @@
             </Grid>
             <Grid Grid.Column="5" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="4">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="4"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[4].ImagePath}"/>
                     </Button.Background>
@@ -269,6 +310,14 @@
             </Grid>
             <Grid Grid.Column="6" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="5"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[5].ImagePath}"/>
                     </Button.Background>
@@ -281,6 +330,14 @@
             </Grid>
             <Grid Grid.Column="7" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="6">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="6"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[6].ImagePath}"/>
                     </Button.Background>
@@ -292,6 +349,14 @@
                 </Border>
             </Grid>
             <Grid Grid.Column="8" Grid.Row="1">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="7"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="7">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[7].ImagePath}"/>
@@ -305,6 +370,14 @@
             </Grid>
             <Grid Grid.Column="9" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="8">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="8"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[8].ImagePath}"/>
                     </Button.Background>
@@ -317,6 +390,14 @@
             </Grid>
             <Grid Grid.Column="10" Grid.Row="1">
                 <Button Style="{StaticResource ButtonTemplate}" Panel.ZIndex="1" BorderBrush="Transparent" Command="{Binding UseSkillCommand}" CommandParameter="9">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectSkillByIndexCommand}" CommandParameter="9"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding HideSkillDescriptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillShortcuts.SkillViewList[9].ImagePath}"/>
                     </Button.Background>

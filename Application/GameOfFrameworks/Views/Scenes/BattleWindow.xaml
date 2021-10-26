@@ -9,11 +9,29 @@
       xmlns:services="clr-namespace:GameOfFrameworks.Models.Services"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="BattleWindow">
+      Title="BattleWindow"
+      Name="BattleWindowControlElement">
     <Page.DataContext>
         <vm:BattleWindowViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <Style TargetType="UserControl" x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
             <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
             <Setter Property="Opacity" Value="1"/>
@@ -190,11 +208,14 @@
                 <RowDefinition Height="0.7*"/>
             </Grid.RowDefinitions>
             <USR:NPCBar/>
-            <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150">
                 <Button Content="Out" Style="{StaticResource ButtonTemplate}" Command="{Binding BackToArmoryCommand}"/>
             </StackPanel>
         </Grid>
-        <USR:SkillDescriptionBar VerticalAlignment="Bottom" Margin="0,0,0,15"/>
-        
+        <USR:BattleSceneSkillDescriptionBar 
+            Style="{StaticResource UserControlTemplate}" 
+            VerticalAlignment="Bottom"
+            Visibility="{Binding SkillDescriptionVisibility}"
+            Margin="10"/>
     </Grid>
 </Page>

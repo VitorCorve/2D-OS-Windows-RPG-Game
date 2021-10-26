@@ -1,5 +1,6 @@
 ﻿using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,10 +15,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection
         public Visibility Statement { get => _Statement; set { _Statement = value; OnPropertyChanged(); } }
         public ObservableCollection<SkillEffectView> EffectsList { get; set; } = new();
         public event PropertyChangedEventHandler PropertyChanged;
-        public GrowingEffectsListView()
-        {
-            Statement = Visibility.Hidden;
-        }
+        public GrowingEffectsListView() => Statement = Visibility.Hidden;
         public void AddNew(SkillEffectView skillEffectView)
         {
             foreach (var item in EffectsList)
@@ -32,13 +30,14 @@ namespace GameOfFrameworks.Models.UISkillsCollection
         }
         public void RemoveFrom(int ID)
         {
-            foreach (var item in EffectsList)
+            foreach (var item in   EffectsList)
             {
                 if (item.ID == ID)
                 {
                     EffectToRemove = item;
                 }
             }
+            
             EffectsList.Remove(EffectToRemove);
             EffectToRemove = null;
 

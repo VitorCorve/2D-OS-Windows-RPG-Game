@@ -28,9 +28,13 @@
             </Grid.ColumnDefinitions>
             <Image Source="/Views/Scenes/Images/VisualElements/NPCBar.png" Grid.Column="1" Grid.Row="0" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
             <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2">
-                <Viewbox>
-                    <uc:NPCShortcutsBarReflected  Width="685" Height="130"/>
-                </Viewbox>
+                <Grid>
+                    <Viewbox Panel.ZIndex="1">
+                        <uc:NPCActiveEffectsControl Width="685" Height="130" Margin="5"/>
+                    </Viewbox>
+                    <Border Background="Black" Panel.ZIndex="-1" CornerRadius="6" Opacity="0.6" Margin="0,5,0,5" Visibility="{Binding Effects.DebuffsList.Statement}">
+                    </Border>
+                </Grid>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
@@ -71,7 +75,7 @@
                     <ColumnDefinition Width="0.36*"/>
                     <ColumnDefinition Width="0.16*"/>
                     <ColumnDefinition Width="0.07*"/>
-                    <ColumnDefinition Width="0.255*"/>
+                    <ColumnDefinition Width="0.24*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Row="2" Grid.Column="3">
                     <TextBlock Text="{Binding NPCBar.Level}" Foreground="Black"/>
