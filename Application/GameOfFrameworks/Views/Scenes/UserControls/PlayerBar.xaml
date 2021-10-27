@@ -49,9 +49,12 @@
                     <RowDefinition Height="0.08*"/>
                     <RowDefinition Height="0.13*"/>
                 </Grid.RowDefinitions>
-                <Image Source="/Data/Images/textures/healthIndicator/healthBar.png" Grid.Row="1" Stretch="UniformToFill" Width="{Binding PlayerBar.Health}" HorizontalAlignment="Left"/>
-                    <Image Source="/Data/Images/textures/manaIndicator/manaBar.png" Grid.Row="2"/>
-                    <Image Source="/Data/Images/textures/energyIndicator/energyBar.png" Grid.Row="3"/>
+                <Image Source="/Data/Images/textures/healthIndicator/healthBar.png" Grid.Row="1" Panel.ZIndex="1" Width="{Binding PlayerBar.HealthPercent}" Stretch="UniformToFill" HorizontalAlignment="Left" Margin="1"/>
+                <Image Source="/Data/Images/textures/healthIndicator/hpBar0.png" Grid.Row="1"/>
+                <Image Source="/Data/Images/textures/manaIndicator/manaBar.png" Grid.Row="2" Panel.ZIndex="1" Width="{Binding PlayerBar.ManaPercent}" Stretch="UniformToFill" HorizontalAlignment="Left" Margin="1"/>
+                <Image Source="/Data/Images/textures/healthIndicator/hpBar0.png" Grid.Row="2"/>
+                <Image Source="/Data/Images/textures/energyIndicator/energyBar.png" Grid.Row="3" Panel.ZIndex="1" Width="{Binding PlayerBar.EnergyPercent}" Stretch="UniformToFill" HorizontalAlignment="Left" Margin="1"/>
+                <Image Source="/Data/Images/textures/healthIndicator/hpBar0.png" Grid.Row="3"/>
             <Viewbox Grid.Row="1" Grid.Column="1">
                     <TextBlock Style="{StaticResource CoolDownsTextTemplate}" Text="{Binding PlayerBar.Health}" Margin="1"/>
                 </Viewbox>

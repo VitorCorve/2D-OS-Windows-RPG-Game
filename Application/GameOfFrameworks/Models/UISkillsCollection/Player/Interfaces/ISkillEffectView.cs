@@ -5,6 +5,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces
 {
     public interface ISkillEffectView
     {
+        ISkillView SkillView { get; set; }
         Visibility CooldownStatement { get; set; }
         Visibility DurationStatement { get; set; }
         int ID { get; }

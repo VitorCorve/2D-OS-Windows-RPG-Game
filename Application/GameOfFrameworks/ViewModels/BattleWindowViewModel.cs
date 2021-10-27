@@ -12,7 +12,6 @@ using System.Windows;
 using System.Windows.Input;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
-using GalaSoft.MvvmLight.Command;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -20,6 +19,7 @@ namespace GameOfFrameworks.ViewModels
     {
         private Visibility _SkillDescriptionVisibility;
         private ISkillView _SelectedSkill;
+        private ISkillEffectView _SelectedSkillEffect;
         private PlayerBarView _NPCBar;
         private PlayerBarView _PlayerBar;
         private readonly BattleMaster Master;
@@ -30,6 +30,7 @@ namespace GameOfFrameworks.ViewModels
         public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
         public ISkillView SelectedSkill { get => _SelectedSkill; set { _SelectedSkill = value; OnPropertyChanged(); } }
+        public ISkillEffectView SelectedSkillEffect { get => _SelectedSkillEffect; set { _SelectedSkillEffect = value; OnPropertyChanged(); } }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
@@ -38,6 +39,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand SelectSkillByIndexCommand { get; private set; }
         public ICommand SetSelectedSkillCommand { get; private set; }
         public ICommand HideSkillDescriptionCommand { get; private set; }
+        public ICommand SelectSkillFromSelectedSkillEffectCommand { get; private set; }
         public BattleWindowViewModel()
         {
             SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;
@@ -60,6 +62,7 @@ namespace GameOfFrameworks.ViewModels
             SelectSkillByIndexCommand = new SelectSkillByIndexCommand(this);
             SetSelectedSkillCommand = new SetSelectedSkillCommand(this);
             HideSkillDescriptionCommand = new HideSkillDescriptionCommand(this);
+            SelectSkillFromSelectedSkillEffectCommand = new SelectSkillFromSelectedSkillEffectCommand(this);
             SkillDescriptionVisibility = Visibility.Hidden;
         }
 

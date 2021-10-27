@@ -22,11 +22,13 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         private Visibility _DurationStatement;
         private double _DurationCount;
         private double _CooldownCount;
+        private ISkillView _SkillView;
         public int ID { get; set; }
         public double DurationCount { get => _DurationCount; set { _DurationCount = value; OnPropertyChanged(); } }
         public double CooldownCount { get => _CooldownCount; set { _CooldownCount = value; OnPropertyChanged(); } }
         public Visibility CooldownStatement { get => _CooldownStatement; set { _CooldownStatement = value; OnPropertyChanged(); } }
         public Visibility DurationStatement { get => _DurationStatement; set { _DurationStatement = value; OnPropertyChanged(); } }
+        public ISkillView SkillView { get => _SkillView; set { _SkillView = value; OnPropertyChanged(); } }
         public string ImagePath { get; set; }
         public Timer DurationTimer { get; set; }
         public Timer CooldownTimer { get; set; }
@@ -38,6 +40,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         }
         public SkillEffectView(ISkillView skillView, GrowingEffectsListView buffsList, GrowingEffectsListView debuffsList)
         {
+            SkillView = skillView;
             BuffsList = buffsList;
             DebuffsList = debuffsList;
 
@@ -98,7 +101,6 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             }
             else DurationCount -= 1.0;
         }
-
         public void Activate()
         {
             if (IDurationInterface)
@@ -113,13 +115,11 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
             if (IBuffSkill) BuffsList.AddNew(this);
         }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         public void Hide()
         {
             CooldownStatement = Visibility.Hidden;
             DurationStatement = Visibility.Hidden;
         }
-
         public void Show()
         {
             CooldownStatement = Visibility.Visible;

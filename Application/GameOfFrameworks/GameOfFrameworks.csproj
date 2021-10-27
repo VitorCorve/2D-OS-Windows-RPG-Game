@@ -102,6 +102,7 @@
     <None Remove="Data\Images\textures\genders\female.png" />
     <None Remove="Data\Images\textures\genders\male.png" />
     <None Remove="Data\Images\textures\healthIndicator\healthBar.png" />
+    <None Remove="Data\Images\textures\healthIndicator\hpBar0.png" />
     <None Remove="Data\Images\textures\indicatorBar.png" />
     <None Remove="Data\Images\textures\inventoryBackground.png" />
     <None Remove="Data\Images\textures\inventoryBackground2.png" />
@@ -378,6 +379,9 @@
     <Resource Include="Data\Images\textures\genders\female.png" />
     <Resource Include="Data\Images\textures\genders\male.png" />
     <Resource Include="Data\Images\textures\healthIndicator\healthBar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\textures\healthIndicator\hpBar0.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\textures\indicatorBar.png">

@@ -115,7 +115,13 @@
     </Style>
     </UserControl.Resources>
     <Grid>
-        <ListBox Name="PlayerEffectsElement" ItemsSource="{Binding Effects.BuffsList.EffectsList}" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+        <ListBox 
+            x:Name="PlayerEffectsElement" 
+            ItemsSource="{Binding Effects.BuffsList.EffectsList}" 
+            BorderThickness="0" 
+            Background="Transparent"
+            ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+            SelectedItem="{Binding SelectedSkillEffect, Mode=TwoWay}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -124,16 +130,18 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="2" VerticalAlignment="Center">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseEnter">
-                                <i:InvokeCommandAction Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.SetSelectedSkillCommand}"
-                                                           CommandParameter="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.SelectedSkill}"/>
-                            </i:EventTrigger>
-                            <!--<i:EventTrigger EventName="MouseLeave">
-                                <i:InvokeCommandAction Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.HideSkillDescriptionCommand}"/>
-                            </i:EventTrigger>-->
-                        </i:Interaction.Triggers>
                         <Button Style="{StaticResource ButtonTemplate}" Visibility="{Binding DurationStatement}" Height="60" Width="70">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction 
+                                        Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.SelectSkillFromSelectedSkillEffectCommand}"
+                                        CommandParameter="{Binding SkillView}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:InvokeCommandAction 
+                                    Command="{Binding ElementName=PlayerActiveEffectsControlElement, Path=DataContext.HideSkillDescriptionCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding ImagePath}"/>
                             </Button.Background>

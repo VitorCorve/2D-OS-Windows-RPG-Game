@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
-             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" 
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
-             mc:Ignorable="d" d:DesignWidth="685" Height="130">
+             mc:Ignorable="d" d:DesignWidth="685" Height="130"
+             Name="NPCActiveEffectsControlElement">
     <UserControl.Resources>
         <Style TargetType="ListBoxItem" x:Key="SkillViewListBoxItem">
             <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -113,7 +115,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{Binding Effects.DebuffsList.EffectsList}" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource SkillViewListBoxItem}" SelectedItem="{Binding SelectedSkill}">
+        <ListBox Name="NPCEffectsElement" ItemsSource="{Binding Effects.DebuffsList.EffectsList}" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -122,6 +124,17 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="2" VerticalAlignment="Center">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction 
+                                        Command="{Binding ElementName=NPCActiveEffectsControlElement, Path=DataContext.SelectSkillFromSelectedSkillEffectCommand}"
+                                        CommandParameter="{Binding SkillView}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseLeave">
+                                <i:InvokeCommandAction 
+                                    Command="{Binding ElementName=NPCActiveEffectsControlElement, Path=DataContext.HideSkillDescriptionCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Button Style="{StaticResource ButtonTemplate}" Visibility="{Binding DurationStatement}" Height="60" Width="70">
                             <Button.Background>
                                 <ImageBrush ImageSource="{Binding ImagePath}"/>
