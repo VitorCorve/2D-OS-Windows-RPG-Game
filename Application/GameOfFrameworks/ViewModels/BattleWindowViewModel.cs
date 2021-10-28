@@ -50,7 +50,7 @@ namespace GameOfFrameworks.ViewModels
             PlayerBar = new PlayerBarView(Master.PlayerCombatManager.Dealer, Master.Observers[0].Player1Level, Master.Observers[0].DealerName);
             NPCBar = new PlayerBarView(Master.PlayerCombatManager.Target, Master.Observers[0].Player2Level, Master.Observers[0].TargetName.ToString().Replace("_", " "));
             Observer = new ValuesObserver(PlayerBar, NPCBar);
-            Master.StartFight();
+            //Master.StartFight();
             Observer.Start();
 
             foreach (var item in Master.Observers)
@@ -64,6 +64,8 @@ namespace GameOfFrameworks.ViewModels
             HideSkillDescriptionCommand = new HideSkillDescriptionCommand(this);
             SelectSkillFromSelectedSkillEffectCommand = new SelectSkillFromSelectedSkillEffectCommand(this);
             SkillDescriptionVisibility = Visibility.Hidden;
+
+            // do not forget to change 14th line in BackToArmoryCommand
         }
 
         private void Notification(string message)

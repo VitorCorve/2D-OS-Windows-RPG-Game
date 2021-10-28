@@ -5,6 +5,7 @@ using GameEngine.Data;
 using GameEngine.Player;
 using GameEngine.Player.ConditionResources;
 using GameOfFrameworks.Models.BattleScene.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Timers;
@@ -20,9 +21,12 @@ namespace GameOfFrameworks.Models.BattleScene
         private int _MaxHealth;
         private int _MaxMana;
         private int _MaxEnergy;
-        private int _HealthPercent;
-        private int _ManaPercent;
-        private int _EnergyPercent;
+        private string _HealthPercentFill;
+        private string _ManaPercentFill;
+        private string _EnergyPercentFill;
+        private string _HealthPercentEmpty;
+        private string _ManaPercentEmpty;
+        private string _EnergyPercentEmptyl;
         public string Name { get; private set; }
         public int Level { get; private set; }
         public IConditionResourceType HP { get; private set; }
@@ -34,9 +38,12 @@ namespace GameOfFrameworks.Models.BattleScene
         public int MaxHealth { get => _MaxHealth; set { _MaxHealth = value; OnPropertyChanged(); } }
         public int MaxMana { get => _MaxMana; set { _MaxMana = value; OnPropertyChanged(); } }
         public int MaxEnergy { get => _MaxEnergy; set { _MaxEnergy = value; OnPropertyChanged(); } }
-        public int HealthPercent { get => _HealthPercent; set { _HealthPercent = value; OnPropertyChanged(); } }
-        public int ManaPercent { get => _ManaPercent; set { _ManaPercent = value; OnPropertyChanged(); } }
-        public int EnergyPercent { get => _EnergyPercent; set { _EnergyPercent = value; OnPropertyChanged(); } }
+        public string HealthPercentFill { get => _HealthPercentFill; set { _HealthPercentFill = value; OnPropertyChanged(); } }
+        public string ManaPercentFill { get => _ManaPercentFill; set { _ManaPercentFill = value; OnPropertyChanged(); } }
+        public string EnergyPercentFill { get => _EnergyPercentFill; set { _EnergyPercentFill = value; OnPropertyChanged(); } }
+        public string HealthPercentEmpty { get => _HealthPercentEmpty; set { _HealthPercentEmpty = value; OnPropertyChanged(); } }
+        public string ManaPercentEmpty { get => _ManaPercentEmpty; set { _ManaPercentEmpty = value; OnPropertyChanged(); } }
+        public string EnergyPercentEmpty { get => _EnergyPercentEmptyl; set { _EnergyPercentEmptyl = value; OnPropertyChanged(); } }
         public PlayerBarView(PlayerEntity playerEntity, int level, string name)
         {
             MaxHealth = playerEntity.HealthPoints.MaxValue;
@@ -53,15 +60,26 @@ namespace GameOfFrameworks.Models.BattleScene
             Health = HP.Value;
             Mana = MP.Value;
             Energy = ENRG.Value;
-            HealthPercent = (int)GetPercentage(Health, MaxHealth);
-            ManaPercent = (int)GetPercentage(Mana, MaxMana);
-            EnergyPercent = (int)GetPercentage(Energy, MaxEnergy);
+            HealthPercentFill = GetFillPercentage(Health, MaxHealth);
+            ManaPercentFill = GetFillPercentage(Mana, MaxMana);
+            EnergyPercentFill = GetFillPercentage(Energy, MaxEnergy);
+
+            HealthPercentEmpty = GetEpmtyPercentage(Health, MaxHealth);
+            ManaPercentEmpty = GetEpmtyPercentage(Mana, MaxMana);
+            EnergyPercentEmpty = GetEpmtyPercentage(Energy, MaxEnergy);
         }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        private double GetPercentage(int value, int maxValue)
+        private string GetFillPercentage(int value, int maxValue)
         {
             double percent = maxValue / 100.0;
-            return value / percent;
+            double result = Math.Round(value / percent / 100.0, 3);
+            return $"{result}*";
+        }
+        private string GetEpmtyPercentage(int value, int maxValue)
+        {
+            double percent = maxValue / 100.0;
+            double result = Math.Round(1.0 - (value / percent / 100.0), 3);
+            return $"{result}*";
         }
     }
 }
