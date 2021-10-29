@@ -12,6 +12,10 @@ using System.Windows;
 using System.Windows.Input;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
+using GameEngine.SpecializationMechanics.UniversalSkills;
+using System.Collections.Generic;
+using GameEngine.CombatEngine.Interfaces;
+using System.Timers;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -26,6 +30,7 @@ namespace GameOfFrameworks.ViewModels
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
+        private List<ISkill> _SkillsList;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
@@ -34,6 +39,7 @@ namespace GameOfFrameworks.ViewModels
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
+        public List<ISkill> SkillsList { get => _SkillsList; set { _SkillsList = value; OnPropertyChanged(); } }
         public ICommand BackToArmoryCommand { get; private set; }
         public ICommand UseSkillCommand { get; private set; }
         public ICommand SelectSkillByIndexCommand { get; private set; }
@@ -66,6 +72,23 @@ namespace GameOfFrameworks.ViewModels
             SkillDescriptionVisibility = Visibility.Hidden;
 
             // do not forget to change 14th line in BackToArmoryCommand
+            // cooldowns didn't dissapear after game exit
+            SkillsList = ArmoryTemporaryData.PlayerSkills.Skills;
+            var timer = new Timer(20);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(
+            System.Windows.Threading.DispatcherPriority.Background,
+                new Action(() =>
+            {
+                SkillsList = null;
+                SkillsList = ArmoryTemporaryData.PlayerSkills.Skills;
+                OnPropertyChanged(nameof(SkillsList));
+            }));
         }
 
         private void Notification(string message)
@@ -99,5 +122,18 @@ namespace GameOfFrameworks.ViewModels
             return count;
         }
         public void StopFight() => Master.StopFight();
+        public bool IsSkillReadyToUse(int ID)
+        {
+            var validateSkillUse = new ValidateEntityCanExecuteActionService(Master.PlayerCombatManager.Dealer);
+
+            foreach (var item in Master.SkillList)
+            {
+                if (item.Skill_ID == ID)
+                {
+                    return validateSkillUse.CheckStatement(item);
+                }
+            }
+            return false;
+        }
     }
 }

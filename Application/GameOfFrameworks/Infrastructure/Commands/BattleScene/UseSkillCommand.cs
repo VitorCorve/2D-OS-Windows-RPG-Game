@@ -15,8 +15,11 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         }
         public override void Execute(object parameter)
         {
+            if (ViewModel.IsSkillReadyToUse(GetSkillID(int.Parse((string)parameter))))
+            {
+                ViewModel.Effects.SkillEffectViewList[int.Parse((string)parameter)].Activate();
+            }
             ViewModel.UseSkillByIndex(ViewModel.GetSkillIndex(GetSkillID(int.Parse((string)parameter))));
-            ViewModel.Effects.SkillEffectViewList[int.Parse((string)parameter)].Activate();
         }
         private int GetSkillID(int shortcutsBarItemIndex) => ViewModel.SkillShortcuts.SkillViewList[shortcutsBarItemIndex].Skill.Skill_ID;
     }

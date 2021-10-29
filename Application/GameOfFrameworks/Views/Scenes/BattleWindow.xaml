@@ -211,6 +211,18 @@
             <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150">
                 <Button Content="Out" Style="{StaticResource ButtonTemplate}" Command="{Binding BackToArmoryCommand}"/>
             </StackPanel>
+            <StackPanel Grid.Row="1" Width="400" Height="400">
+                <ListBox ItemsSource="{Binding SkillsList}" Background="Black">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding SkillName}" FontSize="14" Foreground="Cyan"/>
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding CoolDown}" FontSize="14" FontWeight="Bold" Foreground="Cyan"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </Grid>
         <USR:BattleSceneSkillDescriptionBar 
             Style="{StaticResource UserControlTemplate}" 

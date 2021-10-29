@@ -81,7 +81,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         }
         private void CooldownTimer_Tick(object sender, ElapsedEventArgs e)
         {
-            if (CooldownCount == 0)
+            if (CooldownCount == 1)
             {
                 CooldownTimer.Stop();
                 CooldownCount = Cooldown;
@@ -91,7 +91,7 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player
         }
         private void DurationTimer_Tick(object sender, ElapsedEventArgs e)
         {
-            if (DurationCount == 0)
+            if (DurationCount == 1)
             {
                 DurationTimer.Stop();
                 DurationCount = Duration;
