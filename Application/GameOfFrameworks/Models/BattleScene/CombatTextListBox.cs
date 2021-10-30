@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 
 namespace GameOfFrameworks.Models.BattleScene
 {
     public class CombatTextListBox
     {
-        public ObservableCollection<string> Text { get; set; } = new();
-        public ObservableCollection<string> Time { get; set; } = new();
-        public void AddMessage(string message)
+        public ObservableCollection<CombatTextMessageView> CombatTextMessagesCollection { get; set; } = new();
+        public void AddMessage(string actionImageView, string message, string skillUseImageView)
         {
-            /*            if (Text.Count > 10)
-                        {
-                            Text.RemoveAt(0);
-                            Text.Add(message);
-                        }
-                        else
-                        {
-                            Text.Add(message);
-                        }*/
-            Text.Add(message);
-            Time.Add(DateTime.Now.ToString("H:mm:ss"));
+            CombatTextMessageView combatTextMessage = new CombatTextMessageView();
+
+            combatTextMessage.Message = message;
+            combatTextMessage.ActionImageView = actionImageView;
+            combatTextMessage.SkillUseImageView = skillUseImageView;
+            combatTextMessage.Time = DateTime.Now.ToString("H:mm:ss");
+            CombatTextMessagesCollection.Add(combatTextMessage);
         }
     }
 }

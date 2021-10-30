@@ -12,10 +12,13 @@ using System.Windows;
 using System.Windows.Input;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
-using GameEngine.SpecializationMechanics.UniversalSkills;
 using System.Collections.Generic;
 using GameEngine.CombatEngine.Interfaces;
 using System.Timers;
+using GameEngine.CombatEngine.Actions;
+using GameOfFrameworks.Models.Services;
+using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
+using GameEngine.SpecializationMechanics.UniversalSkills;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -30,6 +33,7 @@ namespace GameOfFrameworks.ViewModels
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
+        private readonly BattleSkillUseViewImageHandler SkillUseViewImageHandler;
         private List<ISkill> _SkillsList;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
@@ -77,6 +81,10 @@ namespace GameOfFrameworks.ViewModels
             var timer = new Timer(20);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
+            var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
+            SkillUseViewImageHandler = new BattleSkillUseViewImageHandler();
+            SkillUseViewImageHandler.BattleSceneSkills = skillToSkillViewConverter.ConvertRangeToList(ArmoryTemporaryData.PlayerSkills.Skills);
+            SkillUseViewImageHandler.BattleSceneSkills.Add(skillToSkillViewConverter.Convert(new RegularAttack()));
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -91,13 +99,13 @@ namespace GameOfFrameworks.ViewModels
             }));
         }
 
-        private void Notification(string message)
+        private void Notification(ACTION_TYPE actionType, string message, ISkill skill)
         {
             Application.Current.Dispatcher.BeginInvoke(
                 System.Windows.Threading.DispatcherPriority.Background,
                 new Action(() =>
                 {
-                    CombatText.AddMessage(message.Replace("_", " "));
+                    CombatText.AddMessage(BattleActionTypeViewImageHandler.Handle(actionType), message, SkillUseViewImageHandler.GetImagePath(skill));
                 }));
             PlayerBar.UpdateValues();
             NPCBar.UpdateValues();

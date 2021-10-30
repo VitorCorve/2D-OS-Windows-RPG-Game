@@ -1,4 +1,5 @@
-﻿using GameEngine.SpecializationMechanics.Warrior.Skills;
+﻿using GameEngine.SpecializationMechanics.UniversalSkills;
+using GameEngine.SpecializationMechanics.Warrior.Skills;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -38,11 +39,16 @@ namespace GameOfFrameworks.Models.UISkillsCollection.Player.Services
             skill5View.ImagePath = $"{Environment.CurrentDirectory}\\Data\\Images\\skills\\warrior\\relButton\\5.jpg";
             skill5View.Description = File.ReadAllText($"{Environment.CurrentDirectory}\\Data\\skills\\Description\\Warrior\\LastManStanding.txt");
 
+            var skill6View = new SkillView();
+            skill6View.Skill = new RegularAttack();
+            skill6View.ImagePath = $"{Environment.CurrentDirectory}\\Data\\Images\\items\\sword.png";
+
             userUISkillList.Add(skill1View);
             userUISkillList.Add(skill2View);
             userUISkillList.Add(skill3View);
             userUISkillList.Add(skill4View);
             userUISkillList.Add(skill5View);
+            userUISkillList.Add(skill6View);
 
             return userUISkillList;
         }
