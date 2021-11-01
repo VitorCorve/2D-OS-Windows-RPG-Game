@@ -1,4 +1,5 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.Base;
+﻿using GameEngine.CombatEngine;
+using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.ViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
@@ -15,12 +16,36 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         }
         public override void Execute(object parameter)
         {
-            if (ViewModel.IsSkillReadyToUse(GetSkillID(int.Parse((string)parameter))))
+            if (IsSkillReadyToUse(GetSkillID(int.Parse((string)parameter))))
             {
                 ViewModel.Effects.SkillEffectViewList[int.Parse((string)parameter)].Activate();
             }
-            ViewModel.UseSkillByIndex(ViewModel.GetSkillIndex(GetSkillID(int.Parse((string)parameter))));
+            ViewModel.UseSkillByIndex(GetSkillIndex(GetSkillID(int.Parse((string)parameter))));
         }
         private int GetSkillID(int shortcutsBarItemIndex) => ViewModel.SkillShortcuts.SkillViewList[shortcutsBarItemIndex].Skill.Skill_ID;
+        public bool IsSkillReadyToUse(int ID)
+        {
+            var validateSkillUse = new ValidateEntityCanExecuteActionService(ViewModel.Master.PlayerCombatManager.Dealer);
+
+            foreach (var item in ViewModel.Master.SkillList)
+            {
+                if (item.Skill_ID == ID)
+                    return validateSkillUse.CheckStatement(item);
+            }
+            return false;
+        }
+        public int GetSkillIndex(int ID)
+        {
+            int count = 0;
+
+            foreach (var item in ViewModel.Master.SkillList)
+            {
+                if (item.Skill_ID == ID)
+                    return count;
+                else
+                    count++;
+            }
+            return count;
+        }
     }
 }

@@ -183,6 +183,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding DealerImageMiniature}" Width="30" Margin="1"/>
                                 <Image Source="{Binding ActionImageView}" Width="30" Margin="1"/>
                                 <Image Source="{Binding SkillUseImageView}" Width="30" Margin="1"/>
                                 <TextBlock Text="{Binding Message}" FontSize="14" Foreground="Cyan" Margin="1"/>

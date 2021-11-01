@@ -17,5 +17,9 @@ namespace GameOfFrameworks.Models.BattleScene
             combatTextMessage.Time = DateTime.Now.ToString("H:mm:ss");
             CombatTextMessagesCollection.Add(combatTextMessage);
         }
+        public void AddMessage(CombatTextMessageView message)
+        {
+            CombatTextMessagesCollection.Add(message);
+        }
     }
 }

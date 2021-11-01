@@ -183,6 +183,7 @@
             <ListBox x:Name="SaveGamesListBox" BorderThickness="0" Grid.Row="1" Grid.Column="1" 
                      ItemsSource="{Binding SavesList.Saves}" 
                      SelectedIndex="{Binding SavesList.SelectionIndex, Mode=TwoWay}"
+                     SelectedItem="{Binding SelectedSaveGame, Mode=TwoWay}"
                      ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">

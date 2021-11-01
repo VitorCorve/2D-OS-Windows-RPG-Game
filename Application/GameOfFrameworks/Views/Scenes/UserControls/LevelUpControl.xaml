@@ -254,10 +254,10 @@
                  SelectedIndex="{Binding SkillSelectionIndex}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Height="45" Margin="0,5,0,5" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
                         <Grid>
-                            <Image Source="{Binding ImagePath}" Width="50" Height="45" Panel.ZIndex="1" Stretch="Uniform" />
-                            <Border BorderBrush="Black" BorderThickness="1" Width="51" Height="46">
+                            <Image Source="{Binding ImagePath}" Margin="5" Width="50" Height="45" Panel.ZIndex="1" Stretch="Uniform"/>
+                            <Border BorderBrush="Black" BorderThickness="1" Width="50" Height="45" Panel.ZIndex="-1">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="5" ShadowDepth="3" Direction="310"/>
                                 </Border.Effect>

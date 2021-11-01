@@ -29,6 +29,8 @@ namespace GameOfFrameworks.Models.BattleScene
         private string _EnergyPercentEmptyl;
         public string Name { get; private set; }
         public int Level { get; private set; }
+        public string AvatarPath { get; private set; }
+        public string MiniaturePath { get; private set; }
         public IConditionResourceType HP { get; private set; }
         public IConditionResourceType MP { get; private set; }
         public IConditionResourceType ENRG { get; private set; }
@@ -44,7 +46,7 @@ namespace GameOfFrameworks.Models.BattleScene
         public string HealthPercentEmpty { get => _HealthPercentEmpty; set { _HealthPercentEmpty = value; OnPropertyChanged(); } }
         public string ManaPercentEmpty { get => _ManaPercentEmpty; set { _ManaPercentEmpty = value; OnPropertyChanged(); } }
         public string EnergyPercentEmpty { get => _EnergyPercentEmptyl; set { _EnergyPercentEmptyl = value; OnPropertyChanged(); } }
-        public PlayerBarView(PlayerEntity playerEntity, int level, string name)
+        public PlayerBarView(PlayerEntity playerEntity, int level, string name, string avatarPath, string miniaturePath)
         {
             MaxHealth = playerEntity.HealthPoints.MaxValue;
             MaxMana = playerEntity.ManaPoints.MaxValue;
@@ -54,6 +56,8 @@ namespace GameOfFrameworks.Models.BattleScene
             ENRG = playerEntity.EnergyPoints;
             Level = level;
             Name = name;
+            AvatarPath = avatarPath;
+            MiniaturePath = miniaturePath;
         }
         public void UpdateValues()
         {

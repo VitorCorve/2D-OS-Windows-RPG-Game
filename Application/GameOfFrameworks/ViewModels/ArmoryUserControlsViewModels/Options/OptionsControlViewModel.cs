@@ -17,6 +17,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
         private Visibility _OverwriteControlVisibility;
         private Visibility _DeletingControlVisibility;
         private Visibility _LoadGameConfirmationControlVisibility;
+        private SaveGamePresentationModel _SelectedSaveGame;
         private GameSavePresentationList _SavesList;
         public Visibility OptionsMenuControlVisibility { get => _OptionsMenuControlVisibility; set => Set(ref _OptionsMenuControlVisibility, value); }
         public Visibility SaveGameControlVisibility { get => _SaveGameControlVisibility; set => Set(ref _SaveGameControlVisibility, value); }
@@ -26,6 +27,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
         public Visibility OverwriteControlVisibility { get => _OverwriteControlVisibility; set => Set(ref _OverwriteControlVisibility, value); }
         public Visibility DeletingControlVisibility { get => _DeletingControlVisibility; set => Set(ref _DeletingControlVisibility, value); }
         public Visibility LoadGameConfirmationControlVisibility { get => _LoadGameConfirmationControlVisibility; set => Set(ref _LoadGameConfirmationControlVisibility, value); }
+        public SaveGamePresentationModel SelectedSaveGame { get => _SelectedSaveGame; set => Set(ref _SelectedSaveGame, value); }
         public GameSavePresentationList SavesList { get => _SavesList; set => Set(ref _SavesList, value); }
         public static ICommand ShowSaveGameControlCommand { get; private set; }
         public static ICommand ShowLoadGameControlCommand { get; private set; }
@@ -100,6 +102,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
             MainWindowViewModel.ShowNotificationCommand.Execute("Game saved");
             SavesList.FillSavesCollection();
             SavesList.SelectionIndex = 0;
+            SelectedSaveGame = SavesList.Saves[SavesList.SelectionIndex];
         }
         private void OverwriteSaveGame()
         {
@@ -109,11 +112,14 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options
             MainWindowViewModel.ShowNotificationCommand.Execute("Game saved");
             SavesList.FillSavesCollection();
             SavesList.SelectionIndex = 0;
+            SelectedSaveGame = SavesList.Saves[SavesList.SelectionIndex];
         }
         private void DeleteSaveGame()
         {
             SavesList.DeleteSelectedSave();
             DeletingControlVisibility = Visibility.Hidden;
+            SavesList.SelectionIndex = 0;
+            SelectedSaveGame = SavesList.Saves[SavesList.SelectionIndex];
         }
     }
 }

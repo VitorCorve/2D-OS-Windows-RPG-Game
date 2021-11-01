@@ -101,7 +101,7 @@
                 <Viewbox Grid.Row="2" Grid.Column="1">
                     <TextBlock Text="{Binding PlayerBar.Level}" Foreground="Black"/>
                 </Viewbox>
-                <Image Source="/Data/Images/characters/mageFemale/avatar4.png" Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Stretch="Uniform"/>
+                <Image Source="{Binding PlayerBar.MiniaturePath}" Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Stretch="Uniform"/>
             </Grid>
         </Grid>
     </Grid>

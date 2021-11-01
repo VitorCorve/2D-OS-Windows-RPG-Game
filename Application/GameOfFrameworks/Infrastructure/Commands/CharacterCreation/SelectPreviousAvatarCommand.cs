@@ -18,6 +18,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.CharacterCreation
         {
             ViewModel.AvatarSelectionValue--;
             ViewModel.CharacterData.AvatarPath.Path = ViewModel.AvatarsList[ViewModel.AvatarSelectionValue].Path;
+            ViewModel.CharacterData.AvatarPath.MiniaturePath = ViewModel.AvatarsList[ViewModel.AvatarSelectionValue].MiniaturePath;
             ViewModel.OnPropertyChanged(nameof(CharacterData));
         }
     }
