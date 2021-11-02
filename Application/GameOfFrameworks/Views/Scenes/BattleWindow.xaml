@@ -115,10 +115,9 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-
     <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
         <Grid.Background>
-            <ImageBrush ImageSource="/Data/Images/battlescenes/scene1.jpg"/>
+            <ImageBrush ImageSource="{Binding BackgroundImagePath}"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
@@ -141,13 +140,15 @@
                 <RowDefinition Height="0.13*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.25*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.13*"/>
+                <ColumnDefinition Width="0.16*"/>
+                <ColumnDefinition Width="0.51*"/>
+                <ColumnDefinition Width="0.16*"/>
+                <ColumnDefinition Width="0.13*"/>
             </Grid.ColumnDefinitions>
-            <!--<USR:ItemDescriptionControl Grid.Row="1" Visibility="Hidden"/>-->
-            <USR:LootBar Grid.Row="1" Grid.Column="1" Visibility="Hidden"/>
-            <Grid Grid.Row="0" Grid.Column="1">
+            <!--<USR:ItemDescriptionControl Grid.Row="1" Visibility="Hidden" Grid.ColumnSpan="2"/>-->
+            <USR:LootBar Grid.Row="1" Grid.Column="2" Visibility="Hidden"/>
+            <Grid Grid.Row="0" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -168,31 +169,62 @@
                     </Border>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="3" Grid.Column="1">
+            <Grid Grid.Row="3" Grid.Column="2">
                 <Viewbox VerticalAlignment="Bottom">
                     <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130"/>
                 </Viewbox>
             </Grid>
             <!--<USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>-->
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListBox ItemsSource="{Binding CombatText.CombatTextMessagesCollection}" Background="Black" Foreground="Cyan" FontSize="14"
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                <ListBox ItemsSource="{Binding CombatText.CombatTextMessagesCollection}" Foreground="Cyan" FontSize="14" Background="Transparent"
                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                      services:ListBoxBehavior.ScrollOnNewItem="True"
-                     ItemContainerStyle="{StaticResource SkillViewListBoxItem}">
+                     ItemContainerStyle="{StaticResource SkillViewListBoxItem}"
+                     BorderThickness="0"
+                     Margin="4">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding DealerImageMiniature}" Width="30" Margin="1"/>
-                                <Image Source="{Binding ActionImageView}" Width="30" Margin="1"/>
-                                <Image Source="{Binding SkillUseImageView}" Width="30" Margin="1"/>
-                                <TextBlock Text="{Binding Message}" FontSize="14" Foreground="Cyan" Margin="1"/>
-                                <TextBlock Text=" "/>
-                                <TextBlock Text="{Binding Time}" FontSize="14" Foreground="Orange" Margin="1"/>
-                            </StackPanel>
+                            <Grid MinWidth="350" MaxWidth="700" Margin="0,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="0.6*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding DealerImageMiniature}" Width="35" Grid.Column="0" Margin="2"/>
+                                <Image Source="{Binding ActionImageView}" Width="35" Grid.Column="1" Margin="2"/>
+                                <Image Source="{Binding SkillUseImageView}" Width="35" Grid.Column="2" Margin="2"/>
+                                <TextBlock Text="{Binding Message}" FontSize="16" Foreground="White" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Time}" FontSize="16" Foreground="White" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border Grid.ColumnSpan="5" CornerRadius="8" Opacity="0.7" Panel.ZIndex="-1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.0,1" StartPoint="0.9,0">
+                                            <GradientStop Color="#FF24565B" Offset="1"/>
+                                            <GradientStop Color="#FF4D4D4D" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" Panel.ZIndex="-1" Grid.ColumnSpan="3">
+                <Border CornerRadius="8" Panel.ZIndex="1">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.7"/>
+                    </Border.Background>
+                </Border>
+                <Rectangle>
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                    </Rectangle.Fill>
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Direction="310" Color="black"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
         </Grid>
         <Grid Grid.Column="2">
@@ -203,18 +235,6 @@
             <USR:NPCBar/>
             <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150">
                 <Button Content="Out" Style="{StaticResource ButtonTemplate}" Command="{Binding BackToArmoryCommand}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Width="400" Height="400">
-                <ListBox ItemsSource="{Binding SkillsList}" Background="Black">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding SkillName}" FontSize="14" Foreground="Cyan"/>
-                                <TextBlock HorizontalAlignment="Left" Text="{Binding CoolDown}" FontSize="14" FontWeight="Bold" Foreground="Cyan"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
             </StackPanel>
         </Grid>
         <USR:BattleSceneSkillDescriptionBar 

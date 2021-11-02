@@ -10,14 +10,17 @@ namespace GameOfFrameworks.Models.Services
 {
     public class CombatTextMessageCreator
     {
+        private readonly string TargetMiniatureAvatarPath;
         private static BattleSkillUseViewImageHandler SkillImageHandler;
-        public CombatTextMessageCreator()
+        public CombatTextMessageCreator(string targetMiniatureAvatarPath)
         {
             var skillToSkillViewConverter = new SkillToSkillViewConverter(ArmoryTemporaryData.PlayerModel.Specialization);
 
             SkillImageHandler = new();
             SkillImageHandler.BattleSceneSkills = skillToSkillViewConverter.ConvertRangeToList(ArmoryTemporaryData.PlayerSkills.Skills);
             SkillImageHandler.BattleSceneSkills.Add(skillToSkillViewConverter.Convert(new RegularAttack()));
+
+            TargetMiniatureAvatarPath = targetMiniatureAvatarPath;
         }
         public CombatTextMessageView Create(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill)
         {
@@ -33,7 +36,7 @@ namespace GameOfFrameworks.Models.Services
             }
             else
             {
-                combatTextMessage.DealerImageMiniature = null;
+                combatTextMessage.DealerImageMiniature = TargetMiniatureAvatarPath;
             }
             return combatTextMessage;
         }

@@ -93,6 +93,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="HotkeyElement" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryItemframe.png" Stretch="Uniform"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -185,7 +205,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition/>
@@ -408,6 +428,112 @@
                     </Border.Background>
                 </Border>
             </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="1"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="Q" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="2"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="E" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="3"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="Z" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="4"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="R" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="5"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="Z" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="6"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="C" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="7"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="X" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="8"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="V" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="9"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="A" FontSize="15"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource HotkeyElement}" 
+                    BorderBrush="Transparent" 
+                    VerticalAlignment="Top"
+                    Grid.Column="10"
+                    Height="25">
+                <Button.Content>
+                    <TextBlock Text="S" FontSize="15"/>
+                </Button.Content>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

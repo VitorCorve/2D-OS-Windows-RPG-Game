@@ -12,13 +12,9 @@ using System.Windows;
 using System.Windows.Input;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
-using System.Collections.Generic;
 using GameEngine.CombatEngine.Interfaces;
-using System.Timers;
 using GameEngine.CombatEngine.Actions;
 using GameOfFrameworks.Models.Services;
-using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
-using GameEngine.SpecializationMechanics.UniversalSkills;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -33,7 +29,6 @@ namespace GameOfFrameworks.ViewModels
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
         private readonly CombatTextMessageCreator MessageCreator;
-        private List<ISkill> _SkillsList;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
@@ -43,7 +38,7 @@ namespace GameOfFrameworks.ViewModels
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
         public BattleMaster Master { get; set; }
-        public List<ISkill> SkillsList { get => _SkillsList; set { _SkillsList = value; OnPropertyChanged(); } }
+        public string BackgroundImagePath { get; set; }
         public ICommand BackToArmoryCommand { get; private set; }
         public ICommand UseSkillCommand { get; private set; }
         public ICommand SelectSkillByIndexCommand { get; private set; }
@@ -52,6 +47,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand SelectSkillFromSelectedSkillEffectCommand { get; private set; }
         public BattleWindowViewModel()
         {
+            BackgroundImagePath = BattleSceneBackgroundSelector.GetPath();
             var saveData = ArmoryTemporaryData.SaveData;
             var skills = ArmoryTemporaryData.PlayerSkills.Skills;
 
@@ -66,12 +62,13 @@ namespace GameOfFrameworks.ViewModels
             var playerAvatar = ArmoryTemporaryData.SaveData.AvatarPath;
             var enemyLevel = Master.Observers[0].Player2Level;
             var enemyName = Master.Observers[0].TargetName.ToString().Replace("_", " ");
+            var enemyAvatar = Master.GetNPCModel().Avatar;
 
             EffectsObserver = new SkillEffectObserver(saveData);
             AbilitiesObserverService = new SpecialAbilitiesObserverService(player, skills);
 
             PlayerBar = new PlayerBarView(player, playerLevel, playerName, playerAvatar.Path, playerAvatar.MiniaturePath);
-            NPCBar = new PlayerBarView(enemy, enemyLevel, enemyName, playerAvatar.Path, playerAvatar.MiniaturePath);
+            NPCBar = new PlayerBarView(enemy, enemyLevel, enemyName, enemyAvatar.Path, enemyAvatar.MiniaturePath);
 
             Observer = new ValuesObserver(PlayerBar, NPCBar);
 
@@ -89,27 +86,9 @@ namespace GameOfFrameworks.ViewModels
 
             // do not forget to change 14th line in BackToArmoryCommand
             // cooldowns didn't dissapear after game exit
-            SkillsList = skills;
 
-            var timer = new Timer(20);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-
-            MessageCreator = new();
+            MessageCreator = new(enemyAvatar.MiniaturePath);
         }
-
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Application.Current.Dispatcher.BeginInvoke(
-            System.Windows.Threading.DispatcherPriority.Background,
-                new Action(() =>
-            {
-                SkillsList = null;
-                SkillsList = ArmoryTemporaryData.PlayerSkills.Skills;
-                OnPropertyChanged(nameof(SkillsList));
-            }));
-        }
-
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill)
         {
             Application.Current.Dispatcher.BeginInvoke(

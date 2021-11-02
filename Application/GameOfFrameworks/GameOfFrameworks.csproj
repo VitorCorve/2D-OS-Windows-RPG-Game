@@ -85,6 +85,7 @@
     <None Remove="Data\Images\skills\warrior\3.jpg" />
     <None Remove="Data\Images\skills\warrior\4.jpg" />
     <None Remove="Data\Images\skills\warrior\5.jpg" />
+    <None Remove="Data\Images\source\combatTextPanelBackgroundVar5.png" />
     <None Remove="Data\Images\source\combatTextPanelBackgroundVar7.png" />
     <None Remove="Data\Images\source\coolDownBarBG.png" />
     <None Remove="Data\Images\source\coolDownsTextSourceFormVar3.png" />
@@ -348,6 +349,7 @@
     <Resource Include="Data\Images\skills\warrior\3.jpg" />
     <Resource Include="Data\Images\skills\warrior\4.jpg" />
     <Resource Include="Data\Images\skills\warrior\5.jpg" />
+    <Resource Include="Data\Images\source\combatTextPanelBackgroundVar5.png" />
     <Resource Include="Data\Images\source\combatTextPanelBackgroundVar7.png" />
     <Resource Include="Data\Images\source\coolDownBarBG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
