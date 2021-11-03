@@ -131,6 +131,7 @@
                 <RowDefinition Height="0.17*"/>
             </Grid.RowDefinitions>
             <USR:PlayerBar/>
+            <USR:PlayerPreviewBar Grid.Row="1"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -155,15 +156,12 @@
                         <RowDefinition Height="0.8*"/>
                         <RowDefinition Height="0.1*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="1">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
-                        </Border.Background>
+                    <Border Grid.Row="1" Background="Black" Opacity="0.8" CornerRadius="8">
                         <Viewbox>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="35,10,35,10">
-                                <TextBlock Text="{Binding PlayerBar.Name}" VerticalAlignment="Center" TextAlignment="Center"/>
-                                <TextBlock Text=" vs " VerticalAlignment="Center" TextAlignment="Center"/>
-                                <TextBlock Text="{Binding NPCBar.Name}" VerticalAlignment="Center" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding PlayerBar.Name}" VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+                                <TextBlock Text=" vs " VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+                                <TextBlock Text="{Binding NPCBar.Name}" VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
                             </StackPanel>
                         </Viewbox>
                     </Border>
@@ -196,13 +194,13 @@
                                 <Image Source="{Binding DealerImageMiniature}" Width="35" Grid.Column="0" Margin="2"/>
                                 <Image Source="{Binding ActionImageView}" Width="35" Grid.Column="1" Margin="2"/>
                                 <Image Source="{Binding SkillUseImageView}" Width="35" Grid.Column="2" Margin="2"/>
-                                <TextBlock Text="{Binding Message}" FontSize="16" Foreground="White" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding Time}" FontSize="16" Foreground="White" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Message}" FontSize="14" Foreground="White" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Time}" FontSize="14" Foreground="White" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <Border Grid.ColumnSpan="5" CornerRadius="8" Opacity="0.7" Panel.ZIndex="-1">
                                     <Border.Background>
                                         <LinearGradientBrush EndPoint="0.0,1" StartPoint="0.9,0">
-                                            <GradientStop Color="#FF24565B" Offset="1"/>
-                                            <GradientStop Color="#FF4D4D4D" Offset="0"/>
+                                            <GradientStop Color="#FF1B1B1B" Offset="1"/>
+                                            <GradientStop Color="#FF111111" Offset="0"/>
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
@@ -230,10 +228,12 @@
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.53*"/>
+                <RowDefinition Height="0.17*"/>
             </Grid.RowDefinitions>
             <USR:NPCBar/>
-            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150">
+            <USR:NPCPreviewBar Grid.Row="1"/>
+            <StackPanel Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150">
                 <Button Content="Out" Style="{StaticResource ButtonTemplate}" Command="{Binding BackToArmoryCommand}"/>
             </StackPanel>
         </Grid>

@@ -23,21 +23,23 @@ namespace GameOfFrameworks.ViewModels
         private Visibility _SkillDescriptionVisibility;
         private ISkillView _SelectedSkill;
         private ISkillEffectView _SelectedSkillEffect;
-        private PlayerBarView _NPCBar;
-        private PlayerBarView _PlayerBar;
+        private PlayerBarModel _NPCBar;
+        private PlayerBarModel _PlayerBar;
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
         private readonly CombatTextMessageCreator MessageCreator;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
-        public PlayerBarView NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
-        public PlayerBarView PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
+        public PlayerBarModel NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
+        public PlayerBarModel PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
         public ISkillView SelectedSkill { get => _SelectedSkill; set { _SelectedSkill = value; OnPropertyChanged(); } }
         public ISkillEffectView SelectedSkillEffect { get => _SelectedSkillEffect; set { _SelectedSkillEffect = value; OnPropertyChanged(); } }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
         public BattleMaster Master { get; set; }
+        public CharacterPreviewBarModel PlayerPreviewBar { get; set; }
+        public CharacterPreviewBarModel NPCPreviewBar { get; set; }
         public string BackgroundImagePath { get; set; }
         public ICommand BackToArmoryCommand { get; private set; }
         public ICommand UseSkillCommand { get; private set; }
@@ -45,6 +47,10 @@ namespace GameOfFrameworks.ViewModels
         public ICommand SetSelectedSkillCommand { get; private set; }
         public ICommand HideSkillDescriptionCommand { get; private set; }
         public ICommand SelectSkillFromSelectedSkillEffectCommand { get; private set; }
+        public ICommand ShowAttributesControlCommand { get; private set; }
+        public ICommand HideAttributesControlCommand { get; private set; }
+        public CharacterPreviewBarAnimationManager PlayerPreviewBarAnimationManager { get; set; }
+        public CharacterPreviewBarAnimationManager NPCPreviewBarAnimationManager { get; set; }
         public BattleWindowViewModel()
         {
             BackgroundImagePath = BattleSceneBackgroundSelector.GetPath();
@@ -67,8 +73,11 @@ namespace GameOfFrameworks.ViewModels
             EffectsObserver = new SkillEffectObserver(saveData);
             AbilitiesObserverService = new SpecialAbilitiesObserverService(player, skills);
 
-            PlayerBar = new PlayerBarView(player, playerLevel, playerName, playerAvatar.Path, playerAvatar.MiniaturePath);
-            NPCBar = new PlayerBarView(enemy, enemyLevel, enemyName, enemyAvatar.Path, enemyAvatar.MiniaturePath);
+            PlayerBar = new PlayerBarModel(player, playerLevel, playerName, playerAvatar.Path, playerAvatar.MiniaturePath);
+            NPCBar = new PlayerBarModel(enemy, enemyLevel, enemyName, enemyAvatar.Path, enemyAvatar.MiniaturePath);
+
+            PlayerPreviewBar = new CharacterPreviewBarModel(player, ArmoryTemporaryData.PlayerAttributes, ArmoryTemporaryData.PlayerModel);
+            NPCPreviewBar = new CharacterPreviewBarModel(enemy, Master.GetNPCEntity(), Master.GetNPCModel());
 
             Observer = new ValuesObserver(PlayerBar, NPCBar);
 
@@ -88,6 +97,9 @@ namespace GameOfFrameworks.ViewModels
             // cooldowns didn't dissapear after game exit
 
             MessageCreator = new(enemyAvatar.MiniaturePath);
+
+            PlayerPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(PlayerPreviewBar, SERVICE_OWNER.Player);
+            NPCPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(NPCPreviewBar, SERVICE_OWNER.Enemy);
         }
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill)
         {
@@ -110,6 +122,9 @@ namespace GameOfFrameworks.ViewModels
             SetSelectedSkillCommand = new SetSelectedSkillCommand(this);
             HideSkillDescriptionCommand = new HideSkillDescriptionCommand(this);
             SelectSkillFromSelectedSkillEffectCommand = new SelectSkillFromSelectedSkillEffectCommand(this);
+            HideAttributesControlCommand = new HideAttributesControlCommand(this);
+            ShowAttributesControlCommand = new ShowAttributesControlCommand(this);
+
         }
     }
 }

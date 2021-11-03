@@ -1,18 +1,13 @@
-﻿using GameEngine.Abstract;
-using GameEngine.CombatEngine;
+﻿using GameEngine.CombatEngine;
 using GameEngine.CombatEngine.Interfaces;
-using GameEngine.Data;
-using GameEngine.Player;
-using GameEngine.Player.ConditionResources;
 using GameOfFrameworks.Models.BattleScene.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Timers;
 
 namespace GameOfFrameworks.Models.BattleScene
 {
-    public class PlayerBarView : ICharacterBarView, INotifyPropertyChanged
+    public class PlayerBarModel : ICharacterBarModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private int _Health;
@@ -46,7 +41,7 @@ namespace GameOfFrameworks.Models.BattleScene
         public string HealthPercentEmpty { get => _HealthPercentEmpty; set { _HealthPercentEmpty = value; OnPropertyChanged(); } }
         public string ManaPercentEmpty { get => _ManaPercentEmpty; set { _ManaPercentEmpty = value; OnPropertyChanged(); } }
         public string EnergyPercentEmpty { get => _EnergyPercentEmptyl; set { _EnergyPercentEmptyl = value; OnPropertyChanged(); } }
-        public PlayerBarView(PlayerEntity playerEntity, int level, string name, string avatarPath, string miniaturePath)
+        public PlayerBarModel(PlayerEntity playerEntity, int level, string name, string avatarPath, string miniaturePath)
         {
             MaxHealth = playerEntity.HealthPoints.MaxValue;
             MaxMana = playerEntity.ManaPoints.MaxValue;

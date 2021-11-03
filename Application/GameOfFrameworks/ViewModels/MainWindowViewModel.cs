@@ -45,7 +45,7 @@ namespace GameOfFrameworks.ViewModels
         public bool IsConsoleTextBoxFocused { get => _IsConsoleTextBoxFocused; set => Set(ref _IsConsoleTextBoxFocused, value); }
         public MainWindowViewModel()
         {
-            Version = "1.1.0.8";
+            Version = "1.1.1.2";
 
             var settingsHandlerService = new SettingsHandlerService();
             Settings = settingsHandlerService.Load();

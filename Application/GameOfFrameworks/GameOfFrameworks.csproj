@@ -5,8 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
-    <AssemblyVersion>1.1.0.8</AssemblyVersion>
-    <FileVersion>1.1.0.8</FileVersion>
+    <AssemblyVersion>1.1.1.2</AssemblyVersion>
+    <FileVersion>1.1.1.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -129,6 +129,8 @@
     <None Remove="Views\Scenes\Images\Items\Silver.png" />
     <None Remove="Views\Scenes\Images\ScenesBackground\ApplyCharacterBG.jpg" />
     <None Remove="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
+    <None Remove="Views\Scenes\Images\VisualElements\CharacterPreviewBarHeader.png" />
+    <None Remove="Views\Scenes\Images\VisualElements\CharacterPreviewBarHeaderRotated.png" />
     <None Remove="Views\Scenes\Images\VisualElements\combatTextPanel.png" />
     <None Remove="Views\Scenes\Images\VisualElements\ElementCoverNoShadow.png" />
     <None Remove="Views\Scenes\Images\VisualElements\NPCBar.png" />
@@ -435,6 +437,8 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Scenes\Images\ScenesBackground\OptionsBG.jpg" />
+    <Resource Include="Views\Scenes\Images\VisualElements\CharacterPreviewBarHeader.png" />
+    <Resource Include="Views\Scenes\Images\VisualElements\CharacterPreviewBarHeaderRotated.png" />
     <Resource Include="Views\Scenes\Images\VisualElements\combatTextPanel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.PlayerPreviewBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="650">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="Parameter">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#FF3E8285"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Value">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style TargetType="Image" x:Key="AvatarImage">
+            <Style.Triggers>
+                <Trigger Property="IsVisible"  Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.6"
+                                    To="1"
+                                    Duration="0:0:2.5" AutoReverse="True" RepeatBehavior="Forever"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.48*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.12*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="{Binding PlayerPreviewBar.Name}"/>
+            <Border.Background>
+                <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/CharacterPreviewBarHeader.png" Opacity="0.8"/>
+            </Border.Background>
+        </Border>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="Black"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="5" Direction="310" Color="black"/>
+                </Border.Effect>
+            </Border>
+            <Image Style="{StaticResource AvatarImage}" Source="{Binding PlayerPreviewBar.AvatarPath}" Stretch="Fill">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <i:InvokeCommandAction Command="{Binding ShowAttributesControlCommand}"
+                                               CommandParameter="{Binding PlayerPreviewBarAnimationManager}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <i:InvokeCommandAction Command="{Binding HideAttributesControlCommand}"
+                                               CommandParameter="{Binding PlayerPreviewBarAnimationManager}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Image>
+        </Grid>
+        <Border Grid.Column="1" Grid.Row="3">
+            <TextBlock Text="{Binding PlayerPreviewBar.Specialization}" Foreground="Red"/>
+            <Border.Background>
+                <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/CharacterPreviewBarHeaderRotated.png" Opacity="0.8"/>
+            </Border.Background>
+        </Border>
+        <Grid Grid.Column="2" Grid.Row="2" Visibility="{Binding PlayerPreviewBar.AttributesGridVisibility}" Opacity="{Binding PlayerPreviewBar.AttributesGridOpacity}" Margin="{Binding PlayerPreviewBar.AttributesGridMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Strength" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Strength}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Stamina" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Stamina}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Endurance" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Endurance}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Intellect" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Intellect}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Agility" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Agility}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Armor" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.Armor}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource Parameter}" Text="Damage" Grid.Column="1" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+                <TextBlock Style="{StaticResource Value}" Text="{Binding PlayerPreviewBar.DamageValue}" HorizontalAlignment="Left" Margin="15,0,0,0" Opacity="{Binding PlayerPreviewBar.AttributesOpacity}"/>
+            </Grid>
+            <Border Background="Black" Opacity="0.8" Grid.RowSpan="7" Panel.ZIndex="-1"/>
+        </Grid>
+    </Grid>
+</UserControl>

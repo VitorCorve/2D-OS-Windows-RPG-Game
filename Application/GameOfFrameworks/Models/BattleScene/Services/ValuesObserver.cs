@@ -11,12 +11,12 @@ namespace GameOfFrameworks.Models.BattleScene.Services
 {
     public class ValuesObserver : IValuesObserver
     {
-        public ICharacterBarView PlayerBar { get; private set; }
+        public ICharacterBarModel PlayerBar { get; private set; }
 
-        public ICharacterBarView NPCBar { get; private set; }
+        public ICharacterBarModel NPCBar { get; private set; }
 
         public Timer Timer { get; private set; }
-        public ValuesObserver(ICharacterBarView playerBarView, ICharacterBarView npcBarView)
+        public ValuesObserver(ICharacterBarModel playerBarView, ICharacterBarModel npcBarView)
         {
             PlayerBar = playerBarView;
             NPCBar = npcBarView;

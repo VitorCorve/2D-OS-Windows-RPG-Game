@@ -5,8 +5,8 @@ namespace GameOfFrameworks.Models.BattleScene.Interfaces
 {
     public interface IValuesObserver
     {
-        ICharacterBarView PlayerBar { get; }
-        ICharacterBarView NPCBar { get; }
+        ICharacterBarModel PlayerBar { get; }
+        ICharacterBarModel NPCBar { get; }
         Timer Timer { get; }
         void Update(object sender, ElapsedEventArgs e);
         void Start();

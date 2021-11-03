@@ -2,7 +2,7 @@
 
 namespace GameOfFrameworks.Models.BattleScene.Interfaces
 {
-    public interface ICharacterBarView
+    public interface ICharacterBarModel
     {
         string Name { get; }
         int Level { get; }
