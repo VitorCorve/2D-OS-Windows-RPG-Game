@@ -1309,7 +1309,7 @@
                         <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
                         <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
                     </StackPanel>
-                </Grid>
+                    </Grid>
                 </Border>
             </Grid>
         </Grid>

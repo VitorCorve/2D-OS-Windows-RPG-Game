@@ -15,6 +15,10 @@ using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
 using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Actions;
 using GameOfFrameworks.Models.Services;
+using GameEngine.LootMaster;
+using System.Collections.ObjectModel;
+using GameOfFrameworks.Models.Armory.EquipmentControl;
+using System.Collections.Generic;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -25,10 +29,14 @@ namespace GameOfFrameworks.ViewModels
         private ISkillEffectView _SelectedSkillEffect;
         private PlayerBarModel _NPCBar;
         private PlayerBarModel _PlayerBar;
+        private ObservableCollection<EquipmentUserInterfaceViewTemplate> _LootList;
+        private EquipmentUserInterfaceViewTemplate _SelectedItem;
+        private Dictionary<string, string> _ItemDescription;
         private readonly ValuesObserver Observer;
         private readonly SkillEffectObserver EffectsObserver;
         private readonly SpecialAbilitiesObserverService AbilitiesObserverService;
         private readonly CombatTextMessageCreator MessageCreator;
+        private readonly LootMaster Loot;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public PlayerBarModel NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarModel PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
@@ -51,6 +59,9 @@ namespace GameOfFrameworks.ViewModels
         public ICommand HideAttributesControlCommand { get; private set; }
         public CharacterPreviewBarAnimationManager PlayerPreviewBarAnimationManager { get; set; }
         public CharacterPreviewBarAnimationManager NPCPreviewBarAnimationManager { get; set; }
+        public ObservableCollection<EquipmentUserInterfaceViewTemplate> LootList { get => _LootList; set { _LootList = value; OnPropertyChanged(); } }
+        public EquipmentUserInterfaceViewTemplate SelectedItem { get => _SelectedItem; set { _SelectedItem = value; CreateItemDescription(); OnPropertyChanged(); } }
+        public Dictionary<string, string> ItemDescription { get => _ItemDescription; set => Set(ref _ItemDescription, value); }
         public BattleWindowViewModel()
         {
             BackgroundImagePath = BattleSceneBackgroundSelector.GetPath();
@@ -100,6 +111,11 @@ namespace GameOfFrameworks.ViewModels
 
             PlayerPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(PlayerPreviewBar, SERVICE_OWNER.Player);
             NPCPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(NPCPreviewBar, SERVICE_OWNER.Enemy);
+
+            Loot = new LootMaster(ArmoryTemporaryData.PlayerModel.PlayerGrade, ArmoryTemporaryData.PlayerInventory, ArmoryTemporaryData.PlayerModel.PlayerConsumables);
+            Loot.ThrowItems();
+            var itemEntityConverter = new ItemEntityConverter();
+            LootList = itemEntityConverter.ConvertRangeToObservableCollection(Loot.Loot);
         }
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill)
         {
@@ -114,6 +130,11 @@ namespace GameOfFrameworks.ViewModels
         }
         public PlayerEntity GetPlayerEntity() => Master.PlayerCombatManager.Dealer;
         public void UseSkillByIndex(int skillIndex) => Master.UseSkill(skillIndex);
+        private void CreateItemDescription()
+        {
+            var itemDescriptionBuilder = new ItemDescriptionBuilder();
+            ItemDescription = itemDescriptionBuilder.Build(ItemEntityConverter.ConvertToItemEntity(SelectedItem));
+        }
         private void InitializeCommands()
         {
             BackToArmoryCommand = new BackToArmoryCommand(this);

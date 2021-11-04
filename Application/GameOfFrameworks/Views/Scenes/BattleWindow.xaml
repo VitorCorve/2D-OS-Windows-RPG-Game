@@ -147,8 +147,8 @@
                 <ColumnDefinition Width="0.16*"/>
                 <ColumnDefinition Width="0.13*"/>
             </Grid.ColumnDefinitions>
-            <!--<USR:ItemDescriptionControl Grid.Row="1" Visibility="Hidden" Grid.ColumnSpan="2"/>-->
-            <USR:LootBar Grid.Row="1" Grid.Column="2" Visibility="Hidden"/>
+            <USR:LootItemDescriptionControl Grid.Row="1" Visibility="Visible" Grid.ColumnSpan="2"/>
+            <USR:LootBar Grid.Row="1" Grid.Column="2" Visibility="Visible"/>
             <Grid Grid.Row="0" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
