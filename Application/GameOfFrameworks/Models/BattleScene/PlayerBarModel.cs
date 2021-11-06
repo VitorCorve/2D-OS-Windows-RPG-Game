@@ -10,6 +10,7 @@ namespace GameOfFrameworks.Models.BattleScene
     public class PlayerBarModel : ICharacterBarModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private int _Level;
         private int _Health;
         private int _Mana;
         private int _Energy;
@@ -23,12 +24,12 @@ namespace GameOfFrameworks.Models.BattleScene
         private string _ManaPercentEmpty;
         private string _EnergyPercentEmptyl;
         public string Name { get; private set; }
-        public int Level { get; private set; }
         public string AvatarPath { get; private set; }
         public string MiniaturePath { get; private set; }
         public IConditionResourceType HP { get; private set; }
         public IConditionResourceType MP { get; private set; }
         public IConditionResourceType ENRG { get; private set; }
+        public int Level { get => _Level; set { _Level = value; OnPropertyChanged(); } }
         public int Health { get => _Health; set { _Health = value; OnPropertyChanged(); } }
         public int Mana { get => _Mana; set { _Mana = value; OnPropertyChanged(); } }
         public int Energy { get => _Energy; set { _Energy = value; OnPropertyChanged(); } }

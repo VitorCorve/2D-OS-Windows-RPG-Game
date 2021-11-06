@@ -90,24 +90,38 @@
         </Style>
     </UserControl.Resources>
     <Grid Height="400" Width="200">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.02*"/>
             <RowDefinition Height="0.08*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.67*"/>
         </Grid.RowDefinitions>
+        <Border Grid.RowSpan="4" BorderThickness="5" BorderBrush="Black" Opacity="0.8">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-141.34" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF0F0F0F"/>
+                    <GradientStop Color="#FF1B1B1B" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.RowSpan="4" Background="Black" Panel.ZIndex="-1" Opacity="0.5"/>
         <Grid Grid.Column="0" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
                 <ColumnDefinition Width="0.9*"/>
                 <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1">
+            <Border Grid.Column="1" CornerRadius="8">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    <SolidColorBrush Color="Black" Opacity="0.8"/>
                 </Border.Background>
                 <TextBlock Text="{Binding SelectedItem.ItemName}" VerticalAlignment="Center" TextAlignment="Center" Foreground="{Binding SelectedItem.ItemQualityColor}">
                 </TextBlock>

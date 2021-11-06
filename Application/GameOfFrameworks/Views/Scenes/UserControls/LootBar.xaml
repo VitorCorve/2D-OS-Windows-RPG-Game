@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls" 
+             xmlns:viewmodels="clr-namespace:GameOfFrameworks.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BattleWindowViewModel}"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="200">
+             d:DesignHeight="300" d:DesignWidth="170"
+             Name="LootBarControlElement">
     <UserControl.Resources>
         <Style TargetType="ListBoxItem" x:Key="LootListBoxItemTemplate">
             <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -55,7 +59,6 @@
             <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style x:Key="ButtonTemplate" TargetType="Button">
-
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -101,19 +104,38 @@
             <ColumnDefinition Width="0.9*"/>
             <ColumnDefinition Width="0.05*"/>
         </Grid.ColumnDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.015*"/>
-            <RowDefinition Height="0.02*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.002*"/>
             <RowDefinition Height="0.03*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.015*"/>
             <RowDefinition Height="0.03*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" Grid.Column="1">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeave">
+                <i:InvokeCommandAction Command="{Binding HideLootItemBarVisibilityCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="5" BorderThickness="5" BorderBrush="Black" Opacity="0.8">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-141.34" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF0F0F0F"/>
+                    <GradientStop Color="#FF1B1B1B" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="5" Background="Black" Panel.ZIndex="-1" Opacity="0.5"/>
+        <Border Grid.Row="1" Grid.Column="1" Height="35" CornerRadius="8">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.8"/>
             </Border.Background>
             <TextBlock Text="Loot" VerticalAlignment="Center" TextAlignment="Center">
             </TextBlock>
@@ -124,11 +146,18 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemContainerStyle="{StaticResource LootListBoxItemTemplate}"
                  SelectedItem="{Binding SelectedItem}"
+                 SelectedIndex="{Binding SelectedItemIndex}"
                  Background="Transparent" 
-                 BorderThickness="0">
+                 BorderThickness="0" 
+                 Margin="0,15,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=LootBarControlElement, Path=DataContext.PickUpItemCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Image Source="{Binding ImagePath}" Width="50"/>
                         <TextBlock Text="{Binding ItemName}" FontSize="14" Foreground="{Binding ItemQualityColor}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
                     </StackPanel>
@@ -142,18 +171,18 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0" HorizontalAlignment="Right">
-                <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3"/>
-                <TextBlock Text="{Binding PlayerConsumables.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                <Image Source="/Views/Scenes/Images/Items/Gold.png" Stretch="Uniform" Margin="3" Width="20"/>
+                <TextBlock Text="{Binding MoneyReward.GoldValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
-                <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3"/>
-                <TextBlock Text="{Binding PlayerConsumables.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                <Image Source="/Views/Scenes/Images/Items/Silver.png" Stretch="Uniform" Margin="3" Width="20"/>
+                <TextBlock Text="{Binding MoneyReward.SilverValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0" Grid.Column="2">
-                <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3"/>
-                <TextBlock Text="{Binding PlayerConsumables.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
+                <Image Source="/Views/Scenes/Images/Items/Copper.png" Stretch="Uniform" Margin="3" Width="20"/>
+                <TextBlock Text="{Binding MoneyReward.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Close" Grid.Row="7" Grid.Column="1" FontSize="14"/>
+        <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Close" Grid.Row="7" Grid.Column="1" FontSize="14" Height="35" Command="{Binding CloseLootBarCommand}"/>
     </Grid>
 </UserControl>

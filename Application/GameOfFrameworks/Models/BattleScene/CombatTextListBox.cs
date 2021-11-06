@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace GameOfFrameworks.Models.BattleScene
 {
@@ -20,6 +21,20 @@ namespace GameOfFrameworks.Models.BattleScene
         public void AddMessage(CombatTextMessageView message)
         {
             CombatTextMessagesCollection.Add(message);
+        }
+        public async void AddMessage(CombatTextMessageView message, bool delayed, int value)
+        {
+            await Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(value);
+
+                Application.Current.Dispatcher.BeginInvoke(
+                System.Windows.Threading.DispatcherPriority.Background,
+                new Action(() =>
+                {
+                    CombatTextMessagesCollection.Add(message);
+                }));
+            });
         }
     }
 }

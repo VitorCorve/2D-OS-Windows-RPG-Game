@@ -37,8 +37,12 @@ namespace GameOfFrameworks.Models.Services
                     return Environment.CurrentDirectory + "\\Data\\Images\\combatText\\noEnergy.jpg";
                 case ACTION_TYPE.Not_Enought_Mana:
                     return Environment.CurrentDirectory + "\\Data\\Images\\combatText\\noMana.jpg";
+                case ACTION_TYPE.Experience:
+                    return Environment.CurrentDirectory + "\\Data\\Images\\combatText\\combatXP.jpg";
                 case ACTION_TYPE.Not_Enought_Health:
                     break;
+                case ACTION_TYPE.LevelUp:
+                    return Environment.CurrentDirectory + "\\Data\\Images\\combatText\\levelUp.jpg";
                 default:
                     break;
             }

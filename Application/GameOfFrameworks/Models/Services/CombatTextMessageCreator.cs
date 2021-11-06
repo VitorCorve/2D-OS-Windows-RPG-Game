@@ -5,11 +5,15 @@ using GameOfFrameworks.Models.BattleScene;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Services;
 using System;
+using System.Timers;
 
 namespace GameOfFrameworks.Models.Services
 {
     public class CombatTextMessageCreator
     {
+        private delegate void Delayed(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill);
+        private Timer DelayedTimer;
+        private int Count;
         private readonly string TargetMiniatureAvatarPath;
         private static BattleSkillUseViewImageHandler SkillImageHandler;
         public CombatTextMessageCreator(string targetMiniatureAvatarPath)
