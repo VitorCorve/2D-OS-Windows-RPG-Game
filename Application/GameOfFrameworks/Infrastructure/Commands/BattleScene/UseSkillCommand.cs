@@ -22,6 +22,22 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
             }
             ViewModel.UseSkillByIndex(GetSkillIndex(GetSkillID(int.Parse((string)parameter))));
         }
+        public void Execute(int parameter)
+        {
+            if (IsExists(parameter))
+            {
+                if (IsSkillReadyToUse(GetSkillID(parameter)))
+                {
+                    ViewModel.Effects.SkillEffectViewList[parameter].Activate();
+                }
+                ViewModel.UseSkillByIndex(GetSkillIndex(GetSkillID(parameter)));
+            }
+            else
+            {
+                return;
+            }
+
+        }
         private int GetSkillID(int shortcutsBarItemIndex) => ViewModel.SkillShortcuts.SkillViewList[shortcutsBarItemIndex].Skill.Skill_ID;
         public bool IsSkillReadyToUse(int ID)
         {
@@ -47,5 +63,6 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
             }
             return count;
         }
+        private bool IsExists(int index) => ViewModel.SkillShortcuts.SkillViewList[index].Skill != null;
     }
 }

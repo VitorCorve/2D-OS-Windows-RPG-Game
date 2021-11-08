@@ -14,6 +14,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
             //ViewModel.StopFight();
             ArmoryTemporaryData.CharacterEntity = ViewModel.GetPlayerEntity();
             BattleWindowTemporaryData.Instance.NavigationService.Navigate(new GameOfFrameworks.Scenes.Armory());
+            BattleWindowTemporaryData.IsActive = false;
         }
     }
 }

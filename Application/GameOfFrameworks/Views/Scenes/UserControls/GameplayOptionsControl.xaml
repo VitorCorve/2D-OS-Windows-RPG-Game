@@ -122,7 +122,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Button Style="{StaticResource ButtonTemplate}" Content="Video" Grid.Row="0" Margin="15" Click="VideoSettingsButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Sound" Grid.Row="0" Margin="15" Click="AudioSettingsButton_Click"/>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Game" Grid.Row="0" Margin="15"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Controls" Grid.Row="0" Margin="15" Click="ControlsButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="0" Margin="15" Click="BackButton_Click"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="3">
@@ -137,6 +137,7 @@
             </Border>
             <local:VideoSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="VideoSettingsControlElement" Visibility="Visible"/>
             <local:AudioSettingsControl Style="{StaticResource UserControlTemplate}" x:Name="AudioSettingsControlElement" Visibility="Collapsed"/>
+            <local:ControlsControl Style="{StaticResource UserControlTemplate}" x:Name="ControlsControlElement" Visibility="Collapsed"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

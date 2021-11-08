@@ -1,5 +1,6 @@
 ﻿using GameOfFrameworks.ApplicationData;
 using GameOfFrameworks.ApplicationData.Services;
+using GameOfFrameworks.Infrastructure.Commands.BattleScene;
 using GameOfFrameworks.Infrastructure.Commands.MainWindow;
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.ViewModels.Base;
@@ -40,6 +41,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand ShowPreviousConsoleCommand { get; private set; }
         public ICommand ShowNextConsoleCommand { get; private set; }
         public ICommand ExecuteConsoleCommand { get; private set; }
+        public ICommand RecognizeKeyDownCommand { get; private set; }
         public int ConsoleCommandSelectionIndex { get; set; }
         public int ConsoleCommandCount { get; set; }
         public bool IsConsoleTextBoxFocused { get => _IsConsoleTextBoxFocused; set => Set(ref _IsConsoleTextBoxFocused, value); }
@@ -61,12 +63,14 @@ namespace GameOfFrameworks.ViewModels
             SelectNextDisplayResolutionCommand = new SelectNextDisplayResolutionCommand();
             SelectPreviousDisplayResolutionCommand = new SelectPreviousDisplayResolutionCommand();
             SaveApplicationSettingsCommand = new SaveApplicationSettingsCommand();
+            RecognizeKeyDownCommand = new RecognizeKeyDownCommand();
 
             NotifyVisibility = Visibility.Hidden;
             ConsoleVisibility = Visibility.Hidden;
 
             ConsoleNotificationsList = new ConsoleCommandsList();
             CommandsList = new ConsoleCommandsList();
+
         }
     }
 }

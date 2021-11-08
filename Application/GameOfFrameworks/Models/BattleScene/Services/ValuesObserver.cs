@@ -22,6 +22,7 @@ namespace GameOfFrameworks.Models.BattleScene.Services
             NPCBar = npcBarView;
             Timer = new Timer(10);
             Timer.Elapsed += Update;
+            Start();
         }
         public void Update(object sender, ElapsedEventArgs e)
         {

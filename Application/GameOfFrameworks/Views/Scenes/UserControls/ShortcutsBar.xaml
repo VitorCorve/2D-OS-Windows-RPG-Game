@@ -114,7 +114,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="ShortcutsGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.8*"/>
             <RowDefinition Height="1.3*"/>
@@ -450,7 +450,7 @@
                     Grid.Column="1"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="Q" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[0].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -459,7 +459,7 @@
                     Grid.Column="2"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="E" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[1].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -468,7 +468,7 @@
                     Grid.Column="3"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="Z" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[2].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -477,7 +477,7 @@
                     Grid.Column="4"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="R" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[3].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -486,7 +486,7 @@
                     Grid.Column="5"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="Z" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[4].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -495,7 +495,7 @@
                     Grid.Column="6"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="C" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[5].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -504,7 +504,7 @@
                     Grid.Column="7"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="X" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[6].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -513,7 +513,7 @@
                     Grid.Column="8"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="V" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[7].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -522,7 +522,7 @@
                     Grid.Column="9"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="A" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[8].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource HotkeyElement}" 
@@ -531,7 +531,7 @@
                     Grid.Column="10"
                     Height="25">
                 <Button.Content>
-                    <TextBlock Text="S" FontSize="15"/>
+                    <TextBlock Text="{Binding Bindings.Bindings[9].Name}" FontSize="15"/>
                 </Button.Content>
             </Button>
         </Grid>

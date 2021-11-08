@@ -1,29 +1,29 @@
-﻿using GameEngine.BattleMaster;
+﻿using GalaSoft.MvvmLight.Command;
+using GameEngine.BattleMaster;
 using GameEngine.CombatEngine;
+using GameEngine.CombatEngine.Actions;
+using GameEngine.CombatEngine.Interfaces;
 using GameEngine.CombatEngine.Services;
+using GameEngine.Experience;
+using GameEngine.LootMaster;
+using GameEngine.Player;
+using GameEngine.SpecializationMechanics.Services;
+using GameOfFrameworks.ApplicationData;
 using GameOfFrameworks.Infrastructure.Commands.BattleScene;
 using GameOfFrameworks.Models.Armory.AttributesControl;
+using GameOfFrameworks.Models.Armory.EquipmentControl;
 using GameOfFrameworks.Models.BattleScene;
 using GameOfFrameworks.Models.BattleScene.Services;
+using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
-using GameOfFrameworks.ViewModels.Base;
-using System;
-using System.Windows;
-using System.Windows.Input;
 using GameOfFrameworks.Models.UISkillsCollection.Player;
 using GameOfFrameworks.Models.UISkillsCollection.Player.Interfaces;
-using GameEngine.CombatEngine.Interfaces;
-using GameEngine.CombatEngine.Actions;
-using GameOfFrameworks.Models.Services;
-using GameEngine.LootMaster;
-using System.Collections.ObjectModel;
-using GameOfFrameworks.Models.Armory.EquipmentControl;
+using GameOfFrameworks.ViewModels.Base;
+using System;
 using System.Collections.Generic;
-using GameEngine.Player;
-using GalaSoft.MvvmLight.Command;
-using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
-using GameEngine.Experience;
-using GameEngine.SpecializationMechanics.Services;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace GameOfFrameworks.ViewModels
 {
@@ -34,7 +34,6 @@ namespace GameOfFrameworks.ViewModels
         private Visibility _LootItemBarVisibility;
         private Visibility _LootBarVisibility;
         private ISkillView _SelectedSkill;
-        private ISkillEffectView _SelectedSkillEffect;
         private PlayerBarModel _NPCBar;
         private PlayerBarModel _PlayerBar;
         private ObservableCollection<EquipmentUserInterfaceViewTemplate> _LootList;
@@ -53,20 +52,20 @@ namespace GameOfFrameworks.ViewModels
         public PlayerBarModel NPCBar { get => _NPCBar; set { _NPCBar = value; OnPropertyChanged(); } }
         public PlayerBarModel PlayerBar { get => _PlayerBar; set { _PlayerBar = value; OnPropertyChanged(); } }
         public ISkillView SelectedSkill { get => _SelectedSkill; set { _SelectedSkill = value; OnPropertyChanged(); } }
-        public ISkillEffectView SelectedSkillEffect { get => _SelectedSkillEffect; set { _SelectedSkillEffect = value; OnPropertyChanged(); } }
         public CombatTextListBox CombatText { get; set; } = new();
         public ShortcutsListModel SkillShortcuts { get; set; }
         public EffectsListModel Effects { get; set; } = new();
         public BattleMaster Master { get; set; }
         public CharacterPreviewBarModel PlayerPreviewBar { get; set; }
         public CharacterPreviewBarModel NPCPreviewBar { get; set; }
-        public string BackgroundImagePath { get; set; }
+        public string BackgroundImagePath { get; set; } = BattleSceneBackgroundSelector.GetPath();
         public CharacterPreviewBarAnimationManager PlayerPreviewBarAnimationManager { get; set; }
         public CharacterPreviewBarAnimationManager NPCPreviewBarAnimationManager { get; set; }
         public ObservableCollection<EquipmentUserInterfaceViewTemplate> LootList { get => _LootList; set { _LootList = value; OnPropertyChanged(); } }
         public EquipmentUserInterfaceViewTemplate SelectedItem { get => _SelectedItem; set { _SelectedItem = value; CreateItemDescription(); ChangeItemDescriptionVisibility(); OnPropertyChanged(); } }
         public Dictionary<string, string> ItemDescription { get => _ItemDescription; set => Set(ref _ItemDescription, value); }
         public PlayerConsumablesData MoneyReward { get => _MoneyReward; set { _MoneyReward = value; OnPropertyChanged(); } }
+        public KeyboardBindingsModel Bindings { get; set; }
         public int SelectedItemIndex { get; set; }
         public ICommand BackToArmoryCommand { get; private set; }
         public ICommand UseSkillCommand { get; private set; }
@@ -81,55 +80,35 @@ namespace GameOfFrameworks.ViewModels
         public ICommand PickUpItemCommand { get; private set; }
         public BattleWindowViewModel()
         {
-            BackgroundImagePath = BattleSceneBackgroundSelector.GetPath();
-            var saveData = ArmoryTemporaryData.SaveData;
-            var skills = ArmoryTemporaryData.PlayerSkills.Skills;
-
-            CooldownEraser.Clean(skills);
+            CooldownEraser.Clean(ArmoryTemporaryData.PlayerSkills.Skills);
 
             SkillShortcuts = ArmoryTemporaryData.SkillsShortcuts;
             Effects.Initialize(SkillShortcuts.SkillViewList);
 
-            Master = new BattleMaster(saveData);
+            Master = new BattleMaster(ArmoryTemporaryData.SaveData);
 
-            var player = Master.PlayerCombatManager.Dealer;
-            var enemy = Master.PlayerCombatManager.Target;
-            var playerLevel = Master.Observers[0].Player1Level;
-            var playerName = Master.Observers[0].DealerName;
-            var playerAvatar = ArmoryTemporaryData.SaveData.AvatarPath;
-            var enemyLevel = Master.Observers[0].Player2Level;
-            var enemyName = Master.Observers[0].TargetName.ToString().Replace("_", " ");
-            var enemyAvatar = Master.GetNPCModel().Avatar;
+            EffectsObserver = new SkillEffectObserver(ArmoryTemporaryData.SaveData);
+            AbilitiesObserverService = new SpecialAbilitiesObserverService(Master.PlayerCombatManager.Dealer, ArmoryTemporaryData.PlayerSkills.Skills);
 
-            EffectsObserver = new SkillEffectObserver(saveData);
-            AbilitiesObserverService = new SpecialAbilitiesObserverService(player, skills);
+            PlayerBar = new PlayerBarModel(Master.PlayerCombatManager.Dealer, Master.Observers[0].Player1Level, Master.Observers[0].DealerName, ArmoryTemporaryData.SaveData.AvatarPath.Path, ArmoryTemporaryData.SaveData.AvatarPath.MiniaturePath);
+            NPCBar = new PlayerBarModel(Master.PlayerCombatManager.Target, Master.Observers[0].Player2Level, Master.Observers[0].TargetName.ToString().Replace("_", " "), Master.GetNPCModel().Avatar.Path, Master.GetNPCModel().Avatar.MiniaturePath);
 
-            PlayerBar = new PlayerBarModel(player, playerLevel, playerName, playerAvatar.Path, playerAvatar.MiniaturePath);
-            NPCBar = new PlayerBarModel(enemy, enemyLevel, enemyName, enemyAvatar.Path, enemyAvatar.MiniaturePath);
-
-            PlayerPreviewBar = new CharacterPreviewBarModel(player, ArmoryTemporaryData.PlayerAttributes, ArmoryTemporaryData.PlayerModel);
-            NPCPreviewBar = new CharacterPreviewBarModel(enemy, Master.GetNPCEntity(), Master.GetNPCModel());
-
+            PlayerPreviewBar = new CharacterPreviewBarModel(Master.PlayerCombatManager.Dealer, ArmoryTemporaryData.PlayerAttributes, ArmoryTemporaryData.PlayerModel);
+            NPCPreviewBar = new CharacterPreviewBarModel(Master.PlayerCombatManager.Target, Master.GetNPCEntity(), Master.GetNPCModel());
             Experience = new();
 
             Observer = new ValuesObserver(PlayerBar, NPCBar);
 
-            //Master.StartFight();
-
-            Observer.Start();
-
             foreach (var item in Master.Observers)
-            {
                 item.Log += Notification;
-            }
+
             InitializeCommands();
 
             SkillDescriptionVisibility = Visibility.Hidden;
 
             // do not forget to change 14th line in BackToArmoryCommand
-            // cooldowns didn't dissapear after game exit
 
-            MessageCreator = new(enemyAvatar.MiniaturePath);
+            MessageCreator = new(Master.GetNPCModel().Avatar.MiniaturePath);
 
             PlayerPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(PlayerPreviewBar, SERVICE_OWNER.Player);
             NPCPreviewBarAnimationManager = new CharacterPreviewBarAnimationManager(NPCPreviewBar, SERVICE_OWNER.Enemy);
@@ -142,6 +121,10 @@ namespace GameOfFrameworks.ViewModels
             ArmoryTemporaryData.PlayerModel.NewLevelGainded += LevelUp;
             Master.BattleFinished += PrepareLoot;
 
+            Bindings = new(this);
+
+            BattleWindowTemporaryData.ViewModel = this;
+            BattleWindowTemporaryData.IsActive = true;
         }
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill = null)
         {
@@ -181,7 +164,6 @@ namespace GameOfFrameworks.ViewModels
             HideAttributesControlCommand = new HideAttributesControlCommand(this);
             ShowAttributesControlCommand = new ShowAttributesControlCommand(this);
             HideLootItemBarVisibilityCommand = new HideLootItemBarVisibilityCommand(this);
-
             CloseLootBarCommand = new RelayCommand(() => LootBarVisibility = Visibility.Hidden);
             PickUpItemCommand = new RelayCommand(PickUpItem);
         }

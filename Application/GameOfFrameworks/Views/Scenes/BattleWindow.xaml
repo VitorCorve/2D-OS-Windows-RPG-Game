@@ -7,6 +7,7 @@
       xmlns:local="clr-namespace:GameOfFrameworks.Scenes"
       xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels"
       xmlns:services="clr-namespace:GameOfFrameworks.Models.Services"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="BattleWindow"
@@ -168,7 +169,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="2">
-                <Viewbox VerticalAlignment="Bottom">
+                <Viewbox VerticalAlignment="Bottom" x:Name="Shortcuts">
                     <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130"/>
                 </Viewbox>
             </Grid>
