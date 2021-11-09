@@ -1,5 +1,4 @@
-﻿using GameOfFrameworks.Infrastructure.Commands.BattleScene;
-using GameOfFrameworks.ApplicationData.Interfaces;
+﻿using GameOfFrameworks.ApplicationData.Interfaces;
 using GameOfFrameworks.ViewModels;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -8,11 +7,9 @@ namespace GameOfFrameworks.ApplicationData
 {
     public class KeyboardBindingsModel
     {
-        private readonly BattleWindowViewModel ViewModel;
         public List<IButtonBinding> Bindings { get; set; }
-        public KeyboardBindingsModel(BattleWindowViewModel battleWindowViewModel)
+        public KeyboardBindingsModel()
         {
-            ViewModel = battleWindowViewModel;
             InitializeDefault();
         }
         public void InitializeDefault()
@@ -41,8 +38,7 @@ namespace GameOfFrameworks.ApplicationData
             {
                 if (item.Key == key)
                 {
-                    var useSkillCommand = new UseSkillCommand(ViewModel);
-                    useSkillCommand.Execute(item.ShortcutIndex);
+                    BattleWindowViewModel.UseSkillCommand.Execute(item.ShortcutIndex);
                 }
             }
         }

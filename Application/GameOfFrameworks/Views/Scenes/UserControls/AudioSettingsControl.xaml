@@ -131,7 +131,7 @@
                     </Grid.ColumnDefinitions>
                     <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
                     </Slider>
-                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                    <Border Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
@@ -158,7 +158,7 @@
                     </Grid.ColumnDefinitions>
                     <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
                     </Slider>
-                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                    <Border Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
@@ -185,7 +185,7 @@
                     </Grid.ColumnDefinitions>
                     <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
                     </Slider>
-                    <Border CornerRadius="15" Grid.Column="1" Margin="0,4,10,4">
+                    <Border Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>

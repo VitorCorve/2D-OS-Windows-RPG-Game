@@ -4,18 +4,163 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:uc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="UserControl" x:Key="UserControlTemplate">
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="00:00:00.25"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <ListBox>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="ShortCut"/>
-                        <TextBlock Text="Button"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel Margin="20">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Quicksave" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click">
+                    <TextBlock Text="F5" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Quickload" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_1">
+                    <TextBlock Text="F9" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_2">
+                    <TextBlock Text="Q" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_3">
+                    <TextBlock Text="W" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_4">
+                    <TextBlock Text="E" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border  Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_5">
+                    <TextBlock Text="R" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_6">
+                    <TextBlock Text="T" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_7">
+                    <TextBlock Text="A" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_8">
+                    <TextBlock Text="S" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 8" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_9">
+                    <TextBlock Text="D" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_10">
+                    <TextBlock Text="F" Foreground="White"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Border Opacity="0.9" Width="100" Height="30">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
+                    </Border.Background>
+                    <TextBlock Text="Shortcut 10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </Border>
+                <Button Background="Black" Opacity="0.9" Margin="10,0,0,0" Width="100" Height="30" Click="Button_Click_11">
+                    <TextBlock Text="X" Foreground="White"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <uc:SetButtonControl Width="400" Height="150" x:Name="SetButtonControl"/>
     </Grid>
 </UserControl>

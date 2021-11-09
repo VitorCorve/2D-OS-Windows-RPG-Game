@@ -21,6 +21,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.MainWindow
             {
                 ViewModel.ConsoleVisibility = System.Windows.Visibility.Hidden;
                 ViewModel.IsConsoleTextBoxFocused = false;
+                ViewModel.DisengageConsole();
             }
         }
     }

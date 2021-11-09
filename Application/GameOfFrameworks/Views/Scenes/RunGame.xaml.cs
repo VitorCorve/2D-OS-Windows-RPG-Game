@@ -9,7 +9,10 @@ namespace GameOfFrameworks.Scenes
     /// </summary>
     public partial class RunGame : Page
     {
-        public RunGame() => InitializeComponent();
+        public RunGame()
+        {
+            InitializeComponent();
+        }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
@@ -23,16 +26,8 @@ namespace GameOfFrameworks.Scenes
             NavigationService.Navigate(loadGame);
         }
 
-        private void ArmoryButton_Click(object sender, RoutedEventArgs e)
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
         {
-            Armory armory = new Armory();
-            NavigationService.Navigate(armory);
-        }
-
-        private void BattleScene_Click(object sender, RoutedEventArgs e)
-        {
-            BattleWindow battleWindow = new BattleWindow();
-            NavigationService.Navigate(battleWindow);
         }
 
         private void OptionsButton_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using System.Windows.Controls;
 
 namespace GameOfFrameworks.Scenes
@@ -12,6 +13,9 @@ namespace GameOfFrameworks.Scenes
         {
             InitializeComponent();
             BattleWindowTemporaryData.Instance = this;
+            ShortcutsControlElement.Focusable = true;
+            ShortcutsControlElement.Focus();
+            MainWindowViewModel.ConsoleDisengaged += ShortcutsControlElement.Focus;
         }
     }
 }

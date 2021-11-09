@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="GameOfFrameworks.Scenes.UserControls.SetButtonControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.6"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="MaxWidth" Value="210"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Grid.Row="0" >
+            <Border.Background>
+                <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
+            </Border.Background>
+            <TextBox BorderThickness="0" Background="Transparent" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,15,15,15"/>
+        </Border>
+        <Grid>
+            <TextBlock Text="Press button to bind" VerticalAlignment="Center" TextAlignment="Center">
+            </TextBlock>
+            <TextBox x:Name="IncomingDataTextBox" KeyDown="IncomingDataTextBox_KeyDown" Opacity="0"/>
+        </Grid>
+    </Grid>
+</UserControl>

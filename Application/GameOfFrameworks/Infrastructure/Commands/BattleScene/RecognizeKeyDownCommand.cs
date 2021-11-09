@@ -2,7 +2,6 @@
 using GameOfFrameworks.Models.Services;
 using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels;
-using System;
 using System.Windows.Input;
 
 namespace GameOfFrameworks.Infrastructure.Commands.BattleScene

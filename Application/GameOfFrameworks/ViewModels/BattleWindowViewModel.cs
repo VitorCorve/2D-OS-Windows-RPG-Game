@@ -68,7 +68,7 @@ namespace GameOfFrameworks.ViewModels
         public KeyboardBindingsModel Bindings { get; set; }
         public int SelectedItemIndex { get; set; }
         public ICommand BackToArmoryCommand { get; private set; }
-        public ICommand UseSkillCommand { get; private set; }
+        public static ICommand UseSkillCommand { get; private set; }
         public ICommand SelectSkillByIndexCommand { get; private set; }
         public ICommand SetSelectedSkillCommand { get; private set; }
         public ICommand HideSkillDescriptionCommand { get; private set; }
@@ -78,6 +78,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand HideLootItemBarVisibilityCommand { get; private set; }
         public ICommand CloseLootBarCommand { get; private set; }
         public ICommand PickUpItemCommand { get; private set; }
+        public ICommand RecognizeKeyDownCommand { get; private set; }
         public BattleWindowViewModel()
         {
             CooldownEraser.Clean(ArmoryTemporaryData.PlayerSkills.Skills);
@@ -121,7 +122,7 @@ namespace GameOfFrameworks.ViewModels
             ArmoryTemporaryData.PlayerModel.NewLevelGainded += LevelUp;
             Master.BattleFinished += PrepareLoot;
 
-            Bindings = new(this);
+            Bindings = new();
 
             BattleWindowTemporaryData.ViewModel = this;
             BattleWindowTemporaryData.IsActive = true;
@@ -164,6 +165,7 @@ namespace GameOfFrameworks.ViewModels
             HideAttributesControlCommand = new HideAttributesControlCommand(this);
             ShowAttributesControlCommand = new ShowAttributesControlCommand(this);
             HideLootItemBarVisibilityCommand = new HideLootItemBarVisibilityCommand(this);
+            RecognizeKeyDownCommand = new RecognizeKeyDownCommand();
             CloseLootBarCommand = new RelayCommand(() => LootBarVisibility = Visibility.Hidden);
             PickUpItemCommand = new RelayCommand(PickUpItem);
         }

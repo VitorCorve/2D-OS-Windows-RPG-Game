@@ -85,7 +85,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.35*"/>
-            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.15*" />
             <RowDefinition Height="0.35*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="The Game of Frameworks" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Franklin Gothic Book"/>
@@ -96,24 +96,12 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
-
-            <Button Style="{StaticResource ButtonTemplate}" Content="New Game" Click="NewGameButton_Click" Grid.Row="0">
-            </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Load" Click="LoadButton_Click" Grid.Row="1">
-            </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Exit" Command="{Binding ExitGameCommand}" Grid.Row="2">
-            </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Armory" Click="ArmoryButton_Click" Grid.Row="3">
-            </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Options" Click="OptionsButton_Click" Grid.Row="4">
-            </Button>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Battle Scene" Click="BattleScene_Click" Grid.Row="5">
-            </Button>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Continue" Click="ContinueButton_Click" Grid.Row="0"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="New Game" Click="NewGameButton_Click" Grid.Row="1"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Load" Click="LoadButton_Click" Grid.Row="2"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Options" Click="OptionsButton_Click" Grid.Row="3"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Exit" Command="{Binding ExitGameCommand}" Grid.Row="4"/>
         </Grid>
-
-
-
     </Grid>
 </Page>

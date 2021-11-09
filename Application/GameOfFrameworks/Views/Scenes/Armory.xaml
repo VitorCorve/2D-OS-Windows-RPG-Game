@@ -246,11 +246,8 @@
             <Button x:Name="EquippmentButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Equipment" Grid.Row="1" Grid.Column="1" Click="EquippmentButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Merchant" Grid.Row="2" Grid.Column="1" Click="MerchantButton_Click"/>
             <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Map" Grid.Row="3" Grid.Column="1" Click="MapButton_Click"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Territories" Grid.Row="4" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quests" Grid.Row="5" Grid.Column="1"/>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Notes" Grid.Row="6" Grid.Column="1"/>
-            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Character" Grid.Row="7" Grid.Column="1" Click="AttributesButton_Click"/>
-            <Button x:Name="OptionsButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Options" Grid.Row="8" Grid.Column="1" Click="OptionsButton_Click"/>
+            <Button x:Name="AttributesButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Character" Grid.Row="4" Grid.Column="1" Click="AttributesButton_Click"/>
+            <Button x:Name="OptionsButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Options" Grid.Row="5" Grid.Column="1" Click="OptionsButton_Click"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="5">
             <Grid.ColumnDefinitions>

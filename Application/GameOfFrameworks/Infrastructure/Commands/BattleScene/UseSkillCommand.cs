@@ -1,6 +1,7 @@
 ﻿using GameEngine.CombatEngine;
 using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.ViewModels;
+using System;
 
 namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
 {
@@ -11,20 +12,27 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         public override bool CanExecute(object parameter)
         {
             if (parameter is null) return false;
-            if (ViewModel.SkillShortcuts.SkillViewList[int.Parse((string)parameter)].Skill is null) return false;
+            if (ViewModel.SkillShortcuts.SkillViewList[ConvertValue(parameter)].Skill is null) return false;
             return true;
         }
         public override void Execute(object parameter)
         {
-            if (IsSkillReadyToUse(GetSkillID(int.Parse((string)parameter))))
+            if (IsSkillReadyToUse(GetSkillID(ConvertValue(parameter))))
             {
-                ViewModel.Effects.SkillEffectViewList[int.Parse((string)parameter)].Activate();
+                int skillId = ViewModel.Effects.SkillEffectViewList[ConvertValue(parameter)].ID;
+                foreach (var item in ViewModel.Effects.SkillEffectViewList)
+                {
+                    if (item.ID == skillId)
+                    {
+                        item.Activate();
+                    }
+                }
             }
-            ViewModel.UseSkillByIndex(GetSkillIndex(GetSkillID(int.Parse((string)parameter))));
+            ViewModel.UseSkillByIndex(GetSkillIndex(GetSkillID(ConvertValue(parameter))));
         }
         public void Execute(int parameter)
         {
-            if (IsExists(parameter))
+            if (IsExists(ConvertValue(parameter)))
             {
                 if (IsSkillReadyToUse(GetSkillID(parameter)))
                 {
@@ -64,5 +72,13 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
             return count;
         }
         private bool IsExists(int index) => ViewModel.SkillShortcuts.SkillViewList[index].Skill != null;
+        private int ConvertValue(object value)
+        {
+            if (value is int)
+            {
+                return (int)value;
+            }
+            return int.Parse(value.ToString());
+        }
     }
 }

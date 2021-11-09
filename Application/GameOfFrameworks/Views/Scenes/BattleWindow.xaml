@@ -12,6 +12,32 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="BattleWindow"
       Name="BattleWindowControlElement">
+    <Page.InputBindings>
+        <KeyBinding Key="Q" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="Q"/>
+        <KeyBinding Key="W" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="W"/>
+        <KeyBinding Key="E" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="E"/>
+        <KeyBinding Key="R" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="R"/>
+        <KeyBinding Key="T" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="T"/>
+        <KeyBinding Key="A" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="A"/>
+        <KeyBinding Key="S" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="S"/>
+        <KeyBinding Key="D" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="D"/>
+        <KeyBinding Key="F" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="F"/>
+        <KeyBinding Key="X" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="X"/>
+        <KeyBinding Key="Tab" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="Tab"/>
+        <KeyBinding Key="Esc" Command="{Binding RecognizeKeyDownCommand}"
+                    CommandParameter="Esc"/>
+    </Page.InputBindings>
     <Page.DataContext>
         <vm:BattleWindowViewModel/>
     </Page.DataContext>
@@ -116,7 +142,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}">
+    <Grid Width="{Binding ElementName=ParentGrid, Path=Width}" Height="{Binding ElementName=ParentGrid, Path=Height}" x:Name="MainGrid">
         <Grid.Background>
             <ImageBrush ImageSource="{Binding BackgroundImagePath}"/>
         </Grid.Background>
@@ -170,7 +196,7 @@
             </Grid>
             <Grid Grid.Row="3" Grid.Column="2">
                 <Viewbox VerticalAlignment="Bottom" x:Name="Shortcuts">
-                    <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130"/>
+                    <USR:ShortcutsBar Grid.Column="1" Width="685" Height="130" x:Name="ShortcutsControlElement"/>
                 </Viewbox>
             </Grid>
             <!--<USR:CombatTextBar Grid.Row="2" Grid.Column="1"/>-->

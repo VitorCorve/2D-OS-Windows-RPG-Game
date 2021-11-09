@@ -1,6 +1,7 @@
 ﻿using GameEngine.CombatEngine;
 using GameEngine.EquipmentManagement;
 using GameEngine.Player;
+using GameOfFrameworks.ApplicationData;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameOfFrameworks.Infrastructure.Commands.Armory.Attributes;
 using GameOfFrameworks.Infrastructure.Commands.Armory.LevelUp;
@@ -32,6 +33,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
         public ISkillView MouseCapturedSkill { get => _MouseCapturedSkill; set => Set(ref _MouseCapturedSkill, value); }
         public int MouseCapturedShortCutIndex { get => _MouseCapturedShortcutIndex; set => Set(ref _MouseCapturedShortcutIndex, value); }
         public ShortcutsListModel Shortcuts { get => _Shortcuts; set => Set(ref _Shortcuts, value); }
+        public KeyboardBindingsModel Bindings { get; set; }
         public bool PopupShortcutIsOpen { get => _PopupShortcutIsOpen; set => Set(ref _PopupShortcutIsOpen, value); }
         public Visibility DescriptionBarVisibility { get => _DescriptionBarVisibility; set => Set(ref _DescriptionBarVisibility, value); }
         public static ICommand UpdateAttributesViewModelCommand { get; private set; }
@@ -67,6 +69,8 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
 
             InitializeCommands();
+
+            Bindings = new ();
         }
         private void InitializeCommands()
         {
