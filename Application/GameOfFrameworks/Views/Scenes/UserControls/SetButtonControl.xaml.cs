@@ -1,4 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using GameOfFrameworks.ApplicationData.Services;
+using GameOfFrameworks.ViewModels;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace GameOfFrameworks.Scenes.UserControls
 {
@@ -14,10 +19,13 @@ namespace GameOfFrameworks.Scenes.UserControls
             IncomingDataTextBox.Focus();
         }
 
-        private void IncomingDataTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void IncomingDataTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            var result = e.Key;
             this.Visibility = System.Windows.Visibility.Hidden;
+            UpdateKeyboardBindings(e.Key);
+            ControlsControlViewModel.UpdateBindings.Execute(null);
+            AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
         }
+        private void UpdateKeyboardBindings(Key buttonKey) => MainWindowViewModel.Settings.Bindings.ChangeButtonBinding(ButtonBindingHandler.KeyboardBindingIndex, buttonKey);
     }
 }

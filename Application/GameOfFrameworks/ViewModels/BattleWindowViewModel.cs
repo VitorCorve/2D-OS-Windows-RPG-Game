@@ -122,7 +122,7 @@ namespace GameOfFrameworks.ViewModels
             ArmoryTemporaryData.PlayerModel.NewLevelGainded += LevelUp;
             Master.BattleFinished += PrepareLoot;
 
-            Bindings = new();
+            Bindings = MainWindowViewModel.Settings.Bindings;
 
             BattleWindowTemporaryData.ViewModel = this;
             BattleWindowTemporaryData.IsActive = true;

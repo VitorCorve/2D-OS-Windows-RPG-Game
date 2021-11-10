@@ -1,36 +1,26 @@
 ﻿using GameOfFrameworks.ApplicationData.Interfaces;
 using GameOfFrameworks.ViewModels;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace GameOfFrameworks.ApplicationData
 {
-    public class KeyboardBindingsModel
+    public class KeyboardBindingsModel : INotifyPropertyChanged
     {
-        public List<IButtonBinding> Bindings { get; set; }
-        public KeyboardBindingsModel()
-        {
-            InitializeDefault();
-        }
-        public void InitializeDefault()
-        {
-            Bindings = new List<IButtonBinding>();
+        private List<IButtonBinding> _Bindings;
 
-            for (int i = 0; i < 10; i++)
-            {
-                Bindings.Add(new ButtonBinding());
-            }
-
-            Bindings[0] = new ButtonBinding(Key.Q, 0);
-            Bindings[1] = new ButtonBinding(Key.W, 1);
-            Bindings[2] = new ButtonBinding(Key.E, 2);
-            Bindings[3] = new ButtonBinding(Key.R, 3);
-            Bindings[4] = new ButtonBinding(Key.T, 4);
-            Bindings[5] = new ButtonBinding(Key.A, 5);
-            Bindings[6] = new ButtonBinding(Key.S, 6);
-            Bindings[7] = new ButtonBinding(Key.D, 7);
-            Bindings[8] = new ButtonBinding(Key.F, 8);
-            Bindings[9] = new ButtonBinding(Key.X, 9);
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyChanged = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyChanged));
+        public List<IButtonBinding> Bindings { get => _Bindings; set { _Bindings = value; OnPropertyChanged(); } }
+        public void ChangeButtonBinding(int index, Key buttonKey)
+        {
+            var bindings = Bindings;
+            Bindings = null;
+            bindings[index].Key = buttonKey;
+            bindings[index].Name = buttonKey.ToString();
+            Bindings = bindings;
         }
         public void SkillUse(Key key)
         {
@@ -39,9 +29,9 @@ namespace GameOfFrameworks.ApplicationData
                 if (item.Key == key)
                 {
                     BattleWindowViewModel.UseSkillCommand.Execute(item.ShortcutIndex);
+                    return;
                 }
             }
         }
-
     }
 }

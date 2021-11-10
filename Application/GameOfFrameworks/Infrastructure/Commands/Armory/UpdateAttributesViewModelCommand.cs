@@ -3,6 +3,7 @@ using GameEngine.EquipmentManagement;
 using GameOfFrameworks.Infrastructure.Commands.Base;
 using GameOfFrameworks.Models.Armory.AttributesControl;
 using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 
 namespace GameOfFrameworks.Infrastructure.Commands.Armory
@@ -21,6 +22,7 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory
             ViewModel.Attributes = new AttributesModel(playerEntity, ArmoryTemporaryData.PlayerAttributes, equippmentValues);
 
             ArmoryTemporaryData.CharacterEntity = playerEntity;
+            ViewModel.Bindings = MainWindowViewModel.Settings.Bindings;
         }
     }
 }

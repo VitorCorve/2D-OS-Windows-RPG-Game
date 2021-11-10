@@ -16,6 +16,8 @@ namespace GameOfFrameworks.Scenes
         {
             InitializeComponent();
             ArmoryTemporaryData.Instance = this;
+            this.Focusable = true;
+            this.Focus();
         }
 
         private void EquippmentButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(EquipmentControlElement);
@@ -50,6 +52,37 @@ namespace GameOfFrameworks.Scenes
             ArmoryViewModel.SaveGameCommand.Execute(true);
             BattleWindow battleWindow = new BattleWindow();
             NavigationService.Navigate(battleWindow);
+        }
+
+        private void Page_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            foreach (var item in MainWindowViewModel.Settings.Bindings.Bindings)
+            {
+                if (e.Key == item.Key)
+                {
+                    if (item.ShortcutIndex == 10)
+                    {
+                        QuickGameSave();
+                        return;
+                    }
+                    if (item.ShortcutIndex == 11)
+                    {
+                        QuickGameLoad();
+                        return;
+                    }
+                }
+            }
+        }
+        private void QuickGameSave()
+        {
+            ArmoryViewModel.SaveGameCommand.Execute(true);
+            MainWindowViewModel.ShowNotificationCommand.Execute("Quicksave...");
+        }
+        private void QuickGameLoad()
+        {
+            ArmoryTemporaryData.Instance.NavigationService.Navigate(new GameOfFrameworks.Scenes.Armory());
+            MainWindowViewModel.ShowNotificationCommand.Execute("Quickload...");
+            ArmoryViewModel.LoadAutoSaveDataCommand.Execute(null);
         }
     }
 }

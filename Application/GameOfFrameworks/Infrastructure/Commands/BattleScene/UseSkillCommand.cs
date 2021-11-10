@@ -17,6 +17,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         }
         public override void Execute(object parameter)
         {
+            if (ConvertValue(parameter) > 9) return;
+
             if (IsSkillReadyToUse(GetSkillID(ConvertValue(parameter))))
             {
                 int skillId = ViewModel.Effects.SkillEffectViewList[ConvertValue(parameter)].ID;
@@ -32,6 +34,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         }
         public void Execute(int parameter)
         {
+            if (ConvertValue(parameter) > 9) return;
+
             if (IsExists(ConvertValue(parameter)))
             {
                 if (IsSkillReadyToUse(GetSkillID(parameter)))

@@ -9,7 +9,7 @@
       xmlns:usc="clr-namespace:GameOfFrameworks.Scenes.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="Armory">
+      Title="Armory" KeyDown="Page_KeyDown">
     <Page.DataContext>
         <vm:ArmoryViewModel/>
     </Page.DataContext>

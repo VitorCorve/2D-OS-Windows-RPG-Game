@@ -17,5 +17,10 @@ namespace GameOfFrameworks.Scenes
             ShortcutsControlElement.Focus();
             MainWindowViewModel.ConsoleDisengaged += ShortcutsControlElement.Focus;
         }
+
+        private void BattleWindowControlElement_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            BattleWindowTemporaryData.ViewModel.Bindings.SkillUse(e.Key);
+        }
     }
 }

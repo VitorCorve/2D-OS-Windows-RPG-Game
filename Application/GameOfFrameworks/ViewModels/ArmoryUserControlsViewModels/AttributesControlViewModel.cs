@@ -70,7 +70,7 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 
             InitializeCommands();
 
-            Bindings = new ();
+            Bindings = MainWindowViewModel.Settings.Bindings;
         }
         private void InitializeCommands()
         {
