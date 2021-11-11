@@ -207,7 +207,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[0]}"/>
@@ -250,7 +250,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_3">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[3]}"/>
@@ -293,7 +293,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_6">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[6]}"/>
@@ -336,7 +336,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_9">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[9]}"/>
@@ -379,7 +379,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_12">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[12]}"/>
@@ -422,7 +422,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_1">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[1]}"/>
@@ -465,7 +465,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_4">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[4]}"/>
@@ -508,7 +508,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_7">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[7]}"/>
@@ -551,7 +551,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_10">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[10]}"/>
@@ -594,7 +594,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_13">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[13]}"/>
@@ -637,7 +637,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_2">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[2]}"/>
@@ -680,7 +680,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_5">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[5]}"/>
@@ -723,7 +723,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_8">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[8]}"/>
@@ -766,7 +766,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_11">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[11]}"/>
@@ -809,7 +809,7 @@
                         </TextBlock>
                     </Border>
                     <Grid Grid.Row="3" Grid.Column="1" >
-                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0">
+                        <Button Style="{StaticResource ButtonTemplate}" Grid.Row="3" Grid.Column="1" Panel.ZIndex="1" BorderThickness="0" Click="Button_Click_14">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseEnter">
                                     <i:InvokeCommandAction Command="{Binding SelectItemFromEquippmentCommand}" CommandParameter="{Binding EquipmentView.EquipmentSlotsList[14]}"/>

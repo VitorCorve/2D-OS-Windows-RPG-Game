@@ -1,4 +1,5 @@
-﻿using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
+﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,9 +16,12 @@ namespace GameOfFrameworks.Scenes.UserControls
         }
         public void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
         }
         public void SetActiveUserControl(UserControl control)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
             if (control.Visibility == Visibility.Visible) return;
             AudioSettingsControlElement.Visibility = Visibility.Collapsed;
             VideoSettingsControlElement.Visibility = Visibility.Collapsed;
@@ -31,5 +35,9 @@ namespace GameOfFrameworks.Scenes.UserControls
         {
             OptionsControlViewModel.ShowOptionsControlCommand.Execute(null);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
     }
 }

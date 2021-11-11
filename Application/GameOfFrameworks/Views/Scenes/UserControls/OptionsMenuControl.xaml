@@ -130,11 +130,11 @@
                     <RowDefinition Height="0.05*"/>
                     <RowDefinition Height="0.15*"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Save" Grid.Row="1" Command="{Binding ShowSaveGameControlCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Load" Grid.Row="3" Command="{Binding ShowLoadGameControlCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Settings" Grid.Row="5" Command="{Binding ShowGameplayOptionsControlCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Grid.Row="7" Command="{Binding ShowConfirmMoveToMainMenuControlCommand}"/>
-                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quit game" Grid.Row="9" Command="{Binding ShowExitGameControlCommand}"/>
+                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Save" Grid.Row="1" Command="{Binding ShowSaveGameControlCommand}" Click="Button_Click"/>
+                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Load" Grid.Row="3" Command="{Binding ShowLoadGameControlCommand}" Click="Button_Click_1"/>
+                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Settings" Grid.Row="5" Command="{Binding ShowGameplayOptionsControlCommand}" Click="Button_Click_2"/>
+                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Main menu" Grid.Row="7" Command="{Binding ShowConfirmMoveToMainMenuControlCommand}" Click="Button_Click_3"/>
+                <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Quit game" Grid.Row="9" Command="{Binding ShowExitGameControlCommand}" Click="Button_Click_4"/>
             </Grid>
         </Grid>
     </Grid>

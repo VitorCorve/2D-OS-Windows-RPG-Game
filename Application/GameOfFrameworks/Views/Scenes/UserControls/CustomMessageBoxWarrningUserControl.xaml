@@ -74,7 +74,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="WarningText" Text="Warning" VerticalAlignment="Center" TextAlignment="Center" Margin="15,10,14,0">
             </TextBlock>
-            <Button x:Name="OkButton" Style="{StaticResource ButtonTemplate}" Content="Ok" VerticalAlignment="Center" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}" Width="130"  Grid.Row="1" HorizontalAlignment="Center"/>
+            <Button x:Name="OkButton" Style="{StaticResource ButtonTemplate}" Content="Ok" VerticalAlignment="Center" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}" Width="130"  Grid.Row="1" HorizontalAlignment="Center" Click="OkButton_Click"/>
         </Grid>
     </Grid>
 </UserControl>

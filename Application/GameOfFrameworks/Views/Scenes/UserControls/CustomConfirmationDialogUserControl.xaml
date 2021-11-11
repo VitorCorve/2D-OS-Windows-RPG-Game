@@ -93,8 +93,8 @@
             <TextBlock Text="{Binding Model.SaveData.Name, StringFormat={}Delete {0} character?}" VerticalAlignment="Center" TextAlignment="Center" Margin="15,10,14,0">
             </TextBlock>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="150" Margin="5" Command="{Binding DeleteGameSaveCommand}"/>
-                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="150" Margin="5"/>
+                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="150" Margin="5" Command="{Binding DeleteGameSaveCommand}" Click="YesButton_Click"/>
+                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="150" Margin="5" Click="NoButton_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

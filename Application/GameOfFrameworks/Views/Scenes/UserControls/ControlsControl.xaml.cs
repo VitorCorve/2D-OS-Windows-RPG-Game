@@ -1,4 +1,5 @@
 ﻿using GameOfFrameworks.ApplicationData.Services;
+using GameOfFrameworks.Models.Temporary;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -79,6 +80,8 @@ namespace GameOfFrameworks.Scenes.UserControls
         }
         private async void ShowSetButtonControl()
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
             SetButtonControl.Opacity = 0.0;
             SetButtonControl.Visibility = Visibility.Visible;
             SetButtonControl.Focusable = true;

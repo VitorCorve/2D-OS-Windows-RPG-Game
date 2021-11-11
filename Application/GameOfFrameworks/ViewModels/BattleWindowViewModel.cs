@@ -126,9 +126,12 @@ namespace GameOfFrameworks.ViewModels
 
             BattleWindowTemporaryData.ViewModel = this;
             BattleWindowTemporaryData.IsActive = true;
+            Master.StartFight();
         }
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill = null)
         {
+            BattleSceneSoundHandler.Handle(actionType, owner);
+
             Application.Current.Dispatcher.BeginInvoke(
                 System.Windows.Threading.DispatcherPriority.Background,
                 new Action(() =>

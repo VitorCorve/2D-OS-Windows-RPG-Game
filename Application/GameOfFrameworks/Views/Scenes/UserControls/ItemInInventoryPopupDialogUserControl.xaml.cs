@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfFrameworks.Models.Temporary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace GameOfFrameworks.Scenes.UserControls
         public ItemInInventoryPopupDialogUserControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
         }
     }
 }

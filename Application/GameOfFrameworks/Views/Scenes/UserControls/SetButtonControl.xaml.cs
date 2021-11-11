@@ -26,6 +26,10 @@ namespace GameOfFrameworks.Scenes.UserControls
             ControlsControlViewModel.UpdateBindings.Execute(null);
             AttributesControlViewModel.UpdateAttributesViewModelCommand.Execute(null);
         }
-        private void UpdateKeyboardBindings(Key buttonKey) => MainWindowViewModel.Settings.Bindings.ChangeButtonBinding(ButtonBindingHandler.KeyboardBindingIndex, buttonKey);
+        private void UpdateKeyboardBindings(Key buttonKey)
+        {
+            if (buttonKey == Key.Escape) return;
+            MainWindowViewModel.Settings.Bindings.ChangeButtonBinding(ButtonBindingHandler.KeyboardBindingIndex, buttonKey);
+        }
     }
 }

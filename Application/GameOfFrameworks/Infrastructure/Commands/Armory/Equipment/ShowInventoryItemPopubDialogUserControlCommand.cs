@@ -1,4 +1,5 @@
-﻿using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
+﻿using GameOfFrameworks.Models.Temporary;
+using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels;
 using System;
 using System.Windows.Input;
 
@@ -15,6 +16,10 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
                 return false;
             return true;
         }
-        public void Execute(object parameter) => ViewModel.IsOpenInventoryItemPopupDialogUserControl = true;
+        public void Execute(object parameter)
+        {
+            ViewModel.IsOpenInventoryItemPopupDialogUserControl = true;
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        }
     }
 }

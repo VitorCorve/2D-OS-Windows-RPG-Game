@@ -152,7 +152,7 @@
                  Margin="0,15,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                                 <i:InvokeCommandAction Command="{Binding ElementName=LootBarControlElement, Path=DataContext.PickUpItemCommand}"/>
@@ -183,6 +183,6 @@
                 <TextBlock Text="{Binding MoneyReward.CopperValue.Value}" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="0" Margin="1"/>
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Close" Grid.Row="7" Grid.Column="1" FontSize="14" Height="35" Command="{Binding CloseLootBarCommand}"/>
+        <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Close" Grid.Row="7" Grid.Column="1" FontSize="14" Height="35" Command="{Binding CloseLootBarCommand}" Click="Button_Click"/>
     </Grid>
 </UserControl>

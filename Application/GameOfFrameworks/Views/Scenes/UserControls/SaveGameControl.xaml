@@ -189,13 +189,18 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
-                            <TextBlock Text=" Lvl: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
-                            <TextBlock Text="{Binding SaveData.Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
-                            <TextBlock Text=" Date: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
-                            <TextBlock Text="{Binding SaveData.DateShort}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.Background>
+                                <SolidColorBrush Color="Red" Opacity="0.0"/>
+                            </Grid.Background>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown">
+                                <TextBlock Text="{Binding Name}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                                <TextBlock Text=" Lvl: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                                <TextBlock Text="{Binding SaveData.Level}" Foreground="white" FontFamily="Franklin Gothic Book" FontSize="16" Margin="1"/>
+                                <TextBlock Text=" Date: " FontFamily="Franklin Gothic Book" FontSize="12" Margin="2" VerticalAlignment="Center" Foreground="#FF00A2A2"/>
+                                <TextBlock Text="{Binding SaveData.DateShort}" FontFamily="Franklin Gothic Book" FontSize="12" Margin="1" Foreground="#FF00A2A2" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -276,18 +281,17 @@
                 </Border>
             </StackPanel>
         </Grid>
-        <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Margin="30,0,30,0" Command="{Binding ShowOptionsControlCommand}"/>
+        <Button x:Name="BackButton" Style="{StaticResource ButtonTemplate}" Content="Back" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Margin="30,0,30,0" Command="{Binding ShowOptionsControlCommand}" Click="BackButton_Click"/>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="OverwriteButton" Style="{StaticResource ButtonTemplate}" Content="Overwrite" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Command="{Binding GameplayOverwriteSaveGameCommand}" Margin="6"/>
-            <Button x:Name="SaveButton" Style="{StaticResource ButtonTemplate}" Content="New" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="6" Command="{Binding SaveGameCommand}"/>
+            <Button x:Name="OverwriteButton" Style="{StaticResource ButtonTemplate}" Content="Overwrite" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Command="{Binding GameplayOverwriteSaveGameCommand}" Margin="6" Click="OverwriteButton_Click"/>
+            <Button x:Name="SaveButton" Style="{StaticResource ButtonTemplate}" Content="New" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="6" Command="{Binding SaveGameCommand}" Click="SaveButton_Click"/>
         </Grid>
-        
         <Grid Grid.Row="2" Grid.Column="3">
-            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding ConfirmSaveGameDeletingCommand}"/>
+            <Button x:Name="DeleteButton" Style="{StaticResource ButtonTemplate}" Content="Delete" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding ConfirmSaveGameDeletingCommand}" Click="DeleteButton_Click"/>
         </Grid>
     </Grid>
 </UserControl>

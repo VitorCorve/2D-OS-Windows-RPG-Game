@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfFrameworks.Models.Temporary;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -21,15 +22,15 @@ namespace GameOfFrameworks.Scenes
             WarningDialog.OkButton.Click += HideWarningDialog;
             NameTextBox.Focus();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
         }
-
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             if (NameTextBox.Text.Length < 3 )
             {
                 WarningDialog.WarningText.Text = "Character name must contains 3 or more symbols";
@@ -82,8 +83,22 @@ namespace GameOfFrameworks.Scenes
         private void HideWarningDialog(object sender, RoutedEventArgs e) => WarningDialog.Visibility = Visibility.Hidden;
         private void ConfirmCharacterCreation(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             ApplyCharacterCreation apply = new ApplyCharacterCreation();
             NavigationService.Navigate(apply);
         }
+        private void WarriorButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void RogueButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void MageButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void MaleButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void FemaleButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void PreviousAvatarButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void NextAvatarButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void StrengthDescriptionButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void StaminaDescriptionButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void EnduranceDescriptionButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void IntellectDescriptionButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void AgilityDescriptionButton_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+        private void BackButton_Click_1(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
     }
 }

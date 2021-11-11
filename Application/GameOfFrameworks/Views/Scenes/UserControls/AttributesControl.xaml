@@ -428,7 +428,7 @@
                     Grid.Column="1"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[0].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[0].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -436,7 +436,7 @@
                     Grid.Column="2"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[1].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[1].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -444,7 +444,7 @@
                     Grid.Column="3"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[2].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[2].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -452,7 +452,7 @@
                     Grid.Column="4"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[3].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[3].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -460,7 +460,7 @@
                     Grid.Column="5"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[4].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[4].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -468,7 +468,7 @@
                     Grid.Column="6"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[5].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[5].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -476,7 +476,7 @@
                     Grid.Column="7"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[6].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[6].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -484,7 +484,7 @@
                     Grid.Column="8"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[7].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[7].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -492,7 +492,7 @@
                     Grid.Column="9"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[8].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[8].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Button Style="{StaticResource HotkeyElement}" 
@@ -500,7 +500,7 @@
                     Grid.Column="10"
                     Height="18" Grid.RowSpan="2" Panel.ZIndex="1" VerticalAlignment="Top">
                         <Button.Content>
-                            <TextBlock Text="{Binding Bindings.Bindings[9].Name}" FontSize="12"/>
+                            <TextBlock Text="{Binding Bindings.Bindings[9].Name}" FontSize="11"/>
                         </Button.Content>
                     </Button>
                     <Grid Grid.Column="1" Grid.Row="1">

@@ -92,8 +92,8 @@
                 <TextBlock Text="Load game?" VerticalAlignment="Center" TextAlignment="Center" Margin="3"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding LoadGameCommand}"/>
-                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideLoadingGameConfirmationControlCommand}"/>
+                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding LoadGameCommand}" Click="YesButton_Click"/>
+                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideLoadingGameConfirmationControlCommand}" Click="NoButton_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

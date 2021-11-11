@@ -96,8 +96,8 @@
                 <TextBlock Text="Unsaved progress will be lost" VerticalAlignment="Center" TextAlignment="Center" Margin="3"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding ExecuteTemporaryCommand}"/>
-                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideLeaveGameConfirmationControlCommand}"/>
+                <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Width="120" Margin="5" Command="{Binding ExecuteTemporaryCommand}" Click="YesButton_Click"/>
+                <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Width="120" Margin="5" Command="{Binding HideLeaveGameConfirmationControlCommand}" Click="NoButton_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

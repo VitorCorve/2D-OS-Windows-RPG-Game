@@ -190,7 +190,7 @@
                     Command="{Binding UpdatePlayerAttributeCommand}" 
                     CommandParameter="Stamina" 
                     IsEnabled="{Binding IsAttributeLevelUpAvailable}"
-                    Opacity="{Binding AttributesLevelUpButtonsOpacity}"/>
+                    Opacity="{Binding AttributesLevelUpButtonsOpacity}" Click="Button_Click"/>
 
             <TextBlock Text="Strength" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
             <TextBlock Text="{Binding Attributes.Strength}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="1" Grid.Column="2"/>
@@ -198,7 +198,7 @@
                     Command="{Binding UpdatePlayerAttributeCommand}" 
                     CommandParameter="Strength" 
                     IsEnabled="{Binding IsAttributeLevelUpAvailable}"
-                    Opacity="{Binding AttributesLevelUpButtonsOpacity}"/>
+                    Opacity="{Binding AttributesLevelUpButtonsOpacity}" Click="Button_Click_2"/>
 
             <TextBlock Text="Endurance" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="2" Grid.Column="1"/>
             <TextBlock Text="{Binding Attributes.Endurance}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2" Grid.Column="2"/>
@@ -206,7 +206,7 @@
                     Command="{Binding UpdatePlayerAttributeCommand}" 
                     CommandParameter="Endurance" 
                     IsEnabled="{Binding IsAttributeLevelUpAvailable}"
-                    Opacity="{Binding AttributesLevelUpButtonsOpacity}"/>
+                    Opacity="{Binding AttributesLevelUpButtonsOpacity}" Click="Button_Click_3"/>
 
             <TextBlock Text="Intellect" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="3" Grid.Column="1"/>
             <TextBlock Text="{Binding Attributes.Intellect}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="3" Grid.Column="2"/>
@@ -214,7 +214,7 @@
                     Command="{Binding UpdatePlayerAttributeCommand}" 
                     CommandParameter="Intellect"
                     IsEnabled="{Binding IsAttributeLevelUpAvailable}"
-                    Opacity="{Binding AttributesLevelUpButtonsOpacity}"/>
+                    Opacity="{Binding AttributesLevelUpButtonsOpacity}" Click="Button_Click_4"/>
 
             <TextBlock Text="Agility" VerticalAlignment="Center" TextAlignment="Center" Grid.Row="4" Grid.Column="1"/>
             <TextBlock Text="{Binding Attributes.Agility}" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="4" Grid.Column="2"/>
@@ -222,7 +222,7 @@
                     Command="{Binding UpdatePlayerAttributeCommand}" 
                     CommandParameter="Agility" 
                     IsEnabled="{Binding IsAttributeLevelUpAvailable}" 
-                    Opacity="{Binding AttributesLevelUpButtonsOpacity}"/>
+                    Opacity="{Binding AttributesLevelUpButtonsOpacity}" Click="Button_Click_5"/>
         </Grid>
         <Border Grid.Row="3" Grid.Column="1">
             <Border.Background>
@@ -271,7 +271,7 @@
                                 Opacity="{Binding Opacity}" 
                                 IsEnabled="{Binding LevelUpReady}"
                                 Command="{Binding ElementName=LevelUpControlElement, Path=DataContext.UpdatePlayerSkillCommand}" 
-                                CommandParameter="{Binding ElementName=LevelUpControlElement, Path=DataContext.SelectedSkill}">
+                                CommandParameter="{Binding ElementName=LevelUpControlElement, Path=DataContext.SelectedSkill}" Click="Button_Click_1">
                             <Button.Background>
                                 <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                             </Button.Background>

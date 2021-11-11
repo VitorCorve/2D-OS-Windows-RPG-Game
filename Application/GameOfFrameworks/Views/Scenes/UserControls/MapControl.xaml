@@ -155,7 +155,7 @@
                 <RowDefinition Height="1.1*"/>
             </Grid.RowDefinitions>
             <Grid>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Right" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Frozencore">
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Right" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Frozencore" Click="Button_Click_2">
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -175,7 +175,7 @@
                         <RowDefinition Height="2*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                        <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Roughwark">
+                        <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Roughwark" Click="Button_Click_1">
                         <Button.Content>
                             <StackPanel>
                                 <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -184,7 +184,7 @@
                         </Button.Content>
                     </Button>
                 </Grid>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Ironhide" >
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Ironhide" Click="Button_Click" >
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -204,7 +204,7 @@
                     <RowDefinition Height="1.5*"/>
                     <RowDefinition Height="0.5*"/>
                 </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Grid.Column="2" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Anvilrest">
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Grid.Column="2" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Anvilrest" Click="Button_Click_4">
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -212,7 +212,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Elfinel">
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Elfinel" Click="Button_Click_3">
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -230,7 +230,7 @@
                     <RowDefinition Height="1.4*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Chartringfall">
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Chartringfall" Click="Button_Click_6">
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -238,7 +238,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Dark_Fortress">
+                    <Button Style="{StaticResource ButtonTemplate}" Background="Transparent" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding SelectLocationToTravelCommand}" CommandParameter="Dark_Fortress" Click="Button_Click_5">
                     <Button.Content>
                         <StackPanel>
                             <Image Source="/Views/Scenes/Images/WorldMap/Castle.png" Stretch="Uniform" Width="40"/>
@@ -272,7 +272,7 @@
                     <TextBlock Text="{Binding SelectedLocation.Town, Converter={StaticResource townNamesConverter}}" HorizontalAlignment="Center" FontSize="22" FontFamily="Viner Hand ITC" Foreground="White" VerticalAlignment="Center"/>
                 <Image Style="{StaticResource LocationImagePresenter}" Source="{Binding SelectedLocation.LocationImagePresenterPath}" Grid.Row="1" Margin="10"/>
                 <TextBlock Text="{Binding SelectedLocation.LocationDescription}" Grid.Row="2" HorizontalAlignment="Center" FontSize="14" Foreground="White" TextWrapping="Wrap" Margin="16"/>
-                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Travel" Grid.Row="3" Height="50" Margin="10,0,10,0" Visibility="{Binding TravelingButtonElementVisibility}" Command="{Binding ShowCharacterTravelingControlCommand}"/>
+                    <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Travel" Grid.Row="3" Height="50" Margin="10,0,10,0" Visibility="{Binding TravelingButtonElementVisibility}" Command="{Binding ShowCharacterTravelingControlCommand}" Click="Button_Click_7"/>
             </Grid>
         </Grid>
         </Grid>

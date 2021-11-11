@@ -19,6 +19,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         {
             if (ConvertValue(parameter) > 9) return;
 
+            if (!IsExists(ConvertValue(parameter))) return;
+
             if (IsSkillReadyToUse(GetSkillID(ConvertValue(parameter))))
             {
                 int skillId = ViewModel.Effects.SkillEffectViewList[ConvertValue(parameter)].ID;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GameOfFrameworks.Models.Temporary;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -21,14 +22,20 @@ namespace GameOfFrameworks.Scenes
             LoadingConfirmationDialog.NoButton.Click += HideLoadConfirmationDialog;
             LoadingConfirmationDialog.NoButton.Click += EnableDialogBehindUI;
         }
-        public void LoadArmoryButtonClick(object sender, RoutedEventArgs e) => LoadingConfirmationDialog.Visibility = Visibility.Visible;
+        public void LoadArmoryButtonClick(object sender, RoutedEventArgs e)
+        {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+            LoadingConfirmationDialog.Visibility = Visibility.Visible;
+        }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
         }
         public void DeleteButtonClick(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             DeletingConfirmationDialog.Visibility = Visibility.Visible;
             DisableDialogBehindUI(sender, e);
         }
@@ -55,5 +62,6 @@ namespace GameOfFrameworks.Scenes
             Armory armory = new Armory();
             NavigationService.Navigate(armory);
         }
+        private void StackPanel_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
     }
 }

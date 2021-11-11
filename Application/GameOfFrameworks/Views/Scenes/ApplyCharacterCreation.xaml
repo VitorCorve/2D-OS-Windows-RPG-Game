@@ -313,27 +313,27 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
                     </Border.Background>
                 </Border>
-                <Button Style="{StaticResource SkillShortCut}" Grid.Column="1" Grid.Row="1" Command="{Binding SelectSkill1Command}">
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="1" Grid.Row="1" Command="{Binding SelectSkill1Command}" Click="Button_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillViewList[0].ImagePath}"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource SkillShortCut}" Grid.Column="2" Grid.Row="1" Command="{Binding SelectSkill2Command}">
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="2" Grid.Row="1" Command="{Binding SelectSkill2Command}" Click="Button_Click_4">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillViewList[1].ImagePath}"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource SkillShortCut}" Grid.Column="3" Grid.Row="1" Command="{Binding SelectSkill3Command}">
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="3" Grid.Row="1" Command="{Binding SelectSkill3Command}" Click="Button_Click_3">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillViewList[2].ImagePath}"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource SkillShortCut}" Grid.Column="4" Grid.Row="1" Command="{Binding SelectSkill4Command}">
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="4" Grid.Row="1" Command="{Binding SelectSkill4Command}" Click="Button_Click_2">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillViewList[3].ImagePath}"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource SkillShortCut}" Grid.Column="5" Grid.Row="1" Command="{Binding SelectSkill5Command}">
+                <Button Style="{StaticResource SkillShortCut}" Grid.Column="5" Grid.Row="1" Command="{Binding SelectSkill5Command}" Click="Button_Click_1">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding SkillViewList[4].ImagePath}"/>
                     </Button.Background>

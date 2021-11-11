@@ -1,4 +1,5 @@
-﻿using GameOfFrameworks.Models.Temporary;
+﻿using GameOfFrameworks.ApplicationData;
+using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels;
 using GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace GameOfFrameworks.Scenes
             ArmoryTemporaryData.Instance = this;
             this.Focusable = true;
             this.Focus();
+            ApplicationTemporaryData.Sound.SceneBackgroundSoundTrackPlay(SCENE.Armory);
         }
 
         private void EquippmentButton_Click(object sender, RoutedEventArgs e) => SetActiveUserControl(EquipmentControlElement);
@@ -32,6 +34,8 @@ namespace GameOfFrameworks.Scenes
         }
         public void SetActiveUserControl(UserControl control)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
             if (control.Visibility == Visibility.Visible) return;
             EquipmentControlElement.Visibility = Visibility.Collapsed;
             MerchantControlElement.Visibility = Visibility.Collapsed;
@@ -43,12 +47,13 @@ namespace GameOfFrameworks.Scenes
         }
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             RunGame runGame = new RunGame();
             NavigationService.Navigate(runGame);
-
         }
         private void HuntButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             ArmoryViewModel.SaveGameCommand.Execute(true);
             BattleWindow battleWindow = new BattleWindow();
             NavigationService.Navigate(battleWindow);

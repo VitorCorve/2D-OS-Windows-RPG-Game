@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfFrameworks.Models.Temporary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,14 +28,26 @@ namespace GameOfFrameworks.Scenes
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             NewGame newGame = new NewGame();
             NavigationService.Navigate(newGame);
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
             NewGame newGame = new NewGame();
             NavigationService.Navigate(newGame);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
+        private void Button_Click_3(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
+
+        private void Button_Click_4(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
     }
 }

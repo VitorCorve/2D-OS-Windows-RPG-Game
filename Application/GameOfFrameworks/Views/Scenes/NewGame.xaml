@@ -169,8 +169,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:Name="MaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Male" Grid.Row="0" Command="{Binding SelectMaleGenderCommand}" Margin="15,0,10,0"/>
-                <Button x:Name="FemaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="1" VerticalAlignment="Center" Content="Female" Grid.Row="1" Command="{Binding SelectFemaleGenderCommand}" Margin="15,0,10,0"/>
+                <Button x:Name="MaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Male" Grid.Row="0" Command="{Binding SelectMaleGenderCommand}" Margin="15,0,10,0" Click="MaleButton_Click"/>
+                <Button x:Name="FemaleButton" Style="{StaticResource ButtonTemplate}" Grid.Column="1" VerticalAlignment="Center" Content="Female" Grid.Row="1" Command="{Binding SelectFemaleGenderCommand}" Margin="15,0,10,0" Click="FemaleButton_Click"/>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -178,9 +178,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:Name="WarriorButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Warrior" Grid.Row="0" Command="{Binding SelectWarriorClassCommand}"/>
-                <Button x:Name="RogueButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Mage" Grid.Row="1" Command="{Binding SelectMageClassCommand}"/>
-                <Button x:Name="MageButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Rogue" Grid.Row="2" Command="{Binding SelectRogueClassCommand}"/>
+                <Button x:Name="WarriorButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Warrior" Grid.Row="0" Command="{Binding SelectWarriorClassCommand}" Click="WarriorButton_Click"/>
+                <Button x:Name="RogueButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Mage" Grid.Row="1" Command="{Binding SelectMageClassCommand}" Click="RogueButton_Click"/>
+                <Button x:Name="MageButton" Style="{StaticResource ButtonTemplate}" Grid.Column="2" VerticalAlignment="Center" Content="Rogue" Grid.Row="2" Command="{Binding SelectRogueClassCommand}" Click="MageButton_Click"/>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -248,7 +248,7 @@
                         <ColumnDefinition Width="0.05*"/>
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="NextAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Next" Command="{Binding SelectNextAvatarCommand}" />
+                    <Button x:Name="NextAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="4" VerticalAlignment="Center" Content="Next" Command="{Binding SelectNextAvatarCommand}" Click="NextAvatarButton_Click"/>
                     <Border Grid.Column="2">
                         <Border.Background>
                             <SolidColorBrush Color="Black"/>
@@ -259,7 +259,7 @@
                     </Border>
                     <Image Grid.Column="2" Style="{StaticResource AvatarImage}" Stretch="Fill" Source="{Binding CharacterData.AvatarPath.Path}">
                     </Image>
-                    <Button x:Name="PreviousAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}"/>
+                    <Button x:Name="PreviousAvatarButton" Style="{StaticResource ButtonTemplate}" Grid.Column="0" VerticalAlignment="Center" Content="Previous" Command="{Binding SelectPreviousAvatarCommand}" Click="PreviousAvatarButton_Click"/>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -313,7 +313,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="StrengthDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White" Command="{Binding SelectStrengthDescriptionCommand}"/>
+                    <Button x:Name="StrengthDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center"  Content="Strength" Foreground="White" Command="{Binding SelectStrengthDescriptionCommand}" Click="StrengthDescriptionButton_Click"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center"  Text="{Binding CharacterData.CharacterAttributes.Strength}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -322,7 +322,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="StaminaDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White" Command="{Binding SelectStaminaDescriptionCommand}"/>
+                    <Button x:Name="StaminaDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Stamina" Foreground="White" Command="{Binding SelectStaminaDescriptionCommand}" Click="StaminaDescriptionButton_Click"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Stamina}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -331,7 +331,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="EnduranceDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White" Command="{Binding SelectEnduranceDescriptionCommand}"/>
+                    <Button x:Name="EnduranceDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Endurance" Foreground="White" Command="{Binding SelectEnduranceDescriptionCommand}" Click="EnduranceDescriptionButton_Click"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Endurance}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
 
@@ -340,7 +340,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="IntellectDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect" Command="{Binding SelectIntellectDescriptionCommand}"/>
+                    <Button x:Name="IntellectDescriptionButton" Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Foreground="White" Content="Intellect" Command="{Binding SelectIntellectDescriptionCommand}" Click="IntellectDescriptionButton_Click"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Intellect}" Foreground="White" HorizontalAlignment="Center" Grid.Row="1"/>
                 </Grid>
 
@@ -349,7 +349,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="AgilityDescriptionButton" Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}"/>
+                    <Button x:Name="AgilityDescriptionButton" Style="{StaticResource ButtonTemplate}"  VerticalAlignment="Center" Content="Agility" Foreground="White" Command="{Binding SelectAgilityDescriptionCommand}" Click="AgilityDescriptionButton_Click"/>
                     <TextBlock Width="180" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CharacterData.CharacterAttributes.Agility}" HorizontalAlignment="Center" Foreground="White" Grid.Row="1"/>
                 </Grid>
                 

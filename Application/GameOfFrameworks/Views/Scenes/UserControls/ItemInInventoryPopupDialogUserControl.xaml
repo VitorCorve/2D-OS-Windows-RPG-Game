@@ -65,7 +65,7 @@
             <TextBlock Text="{Binding SelectedItem.ItemName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,15">
-            <Button Content="Delete" Style="{StaticResource ButtonTemplate}" Width="120" Height="22" Command="{Binding ShowInventoryItemDeletingDialogCommand}"/>
+            <Button Content="Delete" Style="{StaticResource ButtonTemplate}" Width="120" Height="22" Command="{Binding ShowInventoryItemDeletingDialogCommand}" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

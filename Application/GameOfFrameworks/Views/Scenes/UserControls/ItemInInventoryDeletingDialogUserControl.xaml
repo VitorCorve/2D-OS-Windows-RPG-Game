@@ -90,8 +90,8 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Delete item?" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
-            <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Command="{Binding DeleteInventoryItemCommand}" CommandParameter="{Binding SelectedItem}" Width="120" Margin="5,0,5,0"/>
-            <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Command="{Binding HideInventoryItemDeletingDialogUserControl}" Width="120" Margin="5,0,5,0"/>
+            <Button x:Name="YesButton" Style="{StaticResource ButtonTemplate}" Content="Yes" Foreground="White" Command="{Binding DeleteInventoryItemCommand}" CommandParameter="{Binding SelectedItem}" Width="120" Margin="5,0,5,0" Click="YesButton_Click"/>
+            <Button x:Name="NoButton" Style="{StaticResource ButtonTemplate}" Content="No" Foreground="White" Command="{Binding HideInventoryItemDeletingDialogUserControl}" Width="120" Margin="5,0,5,0" Click="NoButton_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

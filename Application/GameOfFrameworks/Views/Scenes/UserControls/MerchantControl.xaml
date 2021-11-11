@@ -221,7 +221,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding RepairItemCommand}" CommandParameter="{Binding PlayerInventorySelect}" Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding RepairItemCommand}" CommandParameter="{Binding PlayerInventorySelect}" Height="Auto" Click="Button_Click">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding CalculateItemRepairCostValueCommand}" CommandParameter="{Binding PlayerInventorySelect}"/>
@@ -258,7 +258,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding RepairAllItemsCommand}"  Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding RepairAllItemsCommand}"  Height="Auto" Click="Button_Click_1">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding CalculateTotalRepairCostValueCommand}"/>
@@ -378,17 +378,17 @@
                     <ColumnDefinition Width="0.6*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Weapons" BorderThickness="0">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Weapons" BorderThickness="0" Click="Button_Click_2">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Misc" BorderThickness="0" Grid.Column="1">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Misc" BorderThickness="0" Grid.Column="1" Click="Button_Click_3">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Armor" BorderThickness="0" Grid.Column="2">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Armor" BorderThickness="0" Grid.Column="2" Click="Button_Click_4">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
@@ -402,7 +402,7 @@
                          ItemContainerStyle="{StaticResource MechantListBoxItemTemplate}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Height="40">
+                            <StackPanel Orientation="Horizontal" Height="40" PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown">
                                 <StackPanel.Background>
                                     <SolidColorBrush Color="Transparent"/>
                                 </StackPanel.Background>
@@ -457,7 +457,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Column="1" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Column="1" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Click="Button_Click_5">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Buy" Margin="0,0,5,0"/>
@@ -551,7 +551,7 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Items" BorderThickness="0" Command="{Binding ShowItemsInInventoryCommand}">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Items" BorderThickness="0" Command="{Binding ShowItemsInInventoryCommand}" Click="Button_Click_6">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
@@ -567,7 +567,7 @@
                     <TextBlock Text="{Binding PlayerItems.Count, StringFormat={}{0}/}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="15"/>
                     <TextBlock Text="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15"/>
                 </Grid>
-                <Button Style="{StaticResource ButtonTemplate}" Content="Weared" BorderThickness="0" Grid.Column="2" Command="{Binding ShowWearedEquipmentCommand}">
+                <Button Style="{StaticResource ButtonTemplate}" Content="Weared" BorderThickness="0" Grid.Column="2" Command="{Binding ShowWearedEquipmentCommand}" Click="Button_Click_7">
                     <Button.Background>
                         <ImageBrush ImageSource="/Data/Images/source/smallButton.png"/>
                     </Button.Background>
@@ -581,7 +581,7 @@
                          ItemContainerStyle="{StaticResource MechantListBoxItemTemplate}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Height="40">
+                            <StackPanel Orientation="Horizontal" Height="40" PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown_1">
                                 <StackPanel.Background>
                                     <SolidColorBrush Color="Transparent"/>
                                 </StackPanel.Background>
@@ -637,7 +637,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Column="1" Command="{Binding SellItemCommand}" CommandParameter="{Binding PlayerInventorySelect}">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Column="1" Command="{Binding SellItemCommand}" CommandParameter="{Binding PlayerInventorySelect}" Click="Button_Click_8">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Sell" Margin="0,0,5,0"/>
@@ -701,7 +701,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto" Click="Button_Click_9">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="I need heal" Margin="0,0,5,0"/>
@@ -712,7 +712,7 @@
                         <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/buttonTexture.png"/>
                     </Button.Background>
                 </Button>
-                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto">
+                <Button Style="{StaticResource ButtonTemplate}" BorderThickness="0" Grid.Row="1" Command="{Binding BuyItemCommand}" CommandParameter="{Binding MerchantInventorySelect}" Height="Auto" Click="Button_Click_10">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Recover my mana" Margin="0,0,5,0"/>
