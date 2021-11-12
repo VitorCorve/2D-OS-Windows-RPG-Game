@@ -130,6 +130,8 @@ namespace GameOfFrameworks.ViewModels
         }
         private void Notification(ACTION_TYPE actionType, string message, SERVICE_OWNER owner, ISkill skill = null)
         {
+            if (owner is SERVICE_OWNER.Enemy && actionType == ACTION_TYPE.Out_Of_Control) return;
+
             BattleSceneSoundHandler.Handle(actionType, owner);
 
             Application.Current.Dispatcher.BeginInvoke(

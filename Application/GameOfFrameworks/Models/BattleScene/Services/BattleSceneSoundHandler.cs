@@ -33,6 +33,7 @@ namespace GameOfFrameworks.Models.BattleScene.Services
                 case ACTION_TYPE.Death:
                     return;
                 case ACTION_TYPE.Damage:
+                    Execute(actionType);
                     return;
                 case ACTION_TYPE.Buff:
                     return;
@@ -64,14 +65,13 @@ namespace GameOfFrameworks.Models.BattleScene.Services
         }
         private static void Execute(string uri, SERVICE_OWNER owner)
         {
-            double balance;
-
-            if (owner is SERVICE_OWNER.Player)
-                balance = 0.0;
-            else
-                balance = 70.0;
-
-            ApplicationTemporaryData.Sound.PlayEvent(uri, balance);
+            ApplicationTemporaryData.Sound.PlayEvent(uri);
+        }
+        private static void Execute(ACTION_TYPE actionType)
+        {
+            var rand = new Random();
+            int result = rand.Next(1, 8);
+            ApplicationTemporaryData.Sound.PlayEvent(Environment.CurrentDirectory + $"\\Data\\Sound\\FX\\SwordImpact{result}.wav"); 
         }
     }
 }

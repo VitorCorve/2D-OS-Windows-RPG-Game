@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfFrameworks.ApplicationData;
+using System;
 using System.Windows;
 using System.Windows.Media;
 
@@ -27,7 +28,7 @@ namespace GameOfFrameworks.Models.Services
             ArmorySoundtrack.MediaEnded += PlayRandomizedArmorySoundtrack;
             BattleSceneSoundtrack.MediaEnded += PlayRandomizedBattleSceneSoundtrack;
 
-            SetSoundtrackVolume(0.2);
+            SetSoundtrackVolume(0.0);
         }
         public void PlayCustomFXEvent(string uri)
         {
@@ -93,11 +94,13 @@ namespace GameOfFrameworks.Models.Services
             ArmorySoundtrack.Stop();
             BattleSceneSoundtrack.Stop();
         }
-        public void PlayEvent(string URI, double balance)
+        public void PlayEvent(string URI)
         {
-            CombatFX.Open(new Uri(URI));
-            CombatFX.Balance = balance;
-            CombatFX.Play();
+            Action(() =>
+            {
+                CombatFX.Open(new Uri(URI));
+                CombatFX.Play();
+            });
         }
         public void SetSoundtrackVolume(double value)
         {
