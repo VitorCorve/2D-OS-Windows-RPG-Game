@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GameOfFrameworks.Scenes.UserControls"
+             xmlns:vm="clr-namespace:GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels.Options"
              mc:Ignorable="d" 
              d:DesignHeight="585" d:DesignWidth="1040">
+    <UserControl.DataContext>
+        <vm:AudioSettingsControlViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
             <Setter Property="Template">
@@ -120,7 +124,7 @@
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="General sound volume" VerticalAlignment="Center" TextAlignment="Center">
+                        <TextBlock Text="Effects volume" VerticalAlignment="Center" TextAlignment="Center">
                         </TextBlock>
                     </Border>
                 </Grid>
@@ -129,13 +133,13 @@
                         <ColumnDefinition Width="0.7*"/>
                         <ColumnDefinition Width="0.3*"/>
                     </Grid.ColumnDefinitions>
-                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
+                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2" Minimum="0" Maximum="100" Value="{Binding FXSliderValue, UpdateSourceTrigger=PropertyChanged}" TickFrequency="1.0">
                     </Slider>
                     <Border Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding FXSliderValue}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                 </Grid>
                 <Grid Height="40" Margin="5,2,0,2">
@@ -156,40 +160,13 @@
                         <ColumnDefinition Width="0.7*"/>
                         <ColumnDefinition Width="0.3*"/>
                     </Grid.ColumnDefinitions>
-                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
+                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2" Minimum="0" Maximum="100" Value="{Binding SoundtrackSliderValue, UpdateSourceTrigger=PropertyChanged}">
                     </Slider>
                     <Border Grid.Column="1" Margin="0,4,10,4">
                         <Border.Background>
                             <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
                         </Border.Background>
-                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    </Border>
-                </Grid>
-                <Grid Height="40" Margin="5,2,0,2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.7*"/>
-                        <ColumnDefinition Width="0.3*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border>
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
-                        </Border.Background>
-                        <TextBlock Text="Sound effects volume" VerticalAlignment="Center" TextAlignment="Center">
-                        </TextBlock>
-                    </Border>
-                </Grid>
-                <Grid Height="40">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.7*"/>
-                        <ColumnDefinition Width="0.3*"/>
-                    </Grid.ColumnDefinitions>
-                    <Slider Style="{StaticResource SliderStyle}" Margin="10,2,5,2">
-                    </Slider>
-                    <Border Grid.Column="1" Margin="0,4,10,4">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
-                        </Border.Background>
-                        <TextBlock Text="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding SoundtrackSliderValue}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                 </Grid>
             </StackPanel>

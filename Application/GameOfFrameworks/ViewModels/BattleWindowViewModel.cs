@@ -139,8 +139,8 @@ namespace GameOfFrameworks.ViewModels
                 new Action(() =>
                 {
                     if (actionType == ACTION_TYPE.Experience)
-                        CombatText.AddMessage(MessageCreator.Create(actionType, message, owner, skill), delayed: true, 50);
-                    if (actionType == ACTION_TYPE.LevelUp)
+                        CombatText.AddMessage(MessageCreator.Create(actionType, message, owner, skill), delayed: true, 80);
+                    else if (actionType == ACTION_TYPE.LevelUp)
                         CombatText.AddMessage(MessageCreator.Create(actionType, message, owner, skill), delayed: true, 100);
                     else
                         CombatText.AddMessage(MessageCreator.Create(actionType, message, owner, skill));
@@ -181,6 +181,7 @@ namespace GameOfFrameworks.ViewModels
             MoneyReward = new PlayerConsumablesData(Loot.MoneyReward);
             var itemEntityConverter = new ItemEntityConverter();
             LootList = itemEntityConverter.ConvertRangeToObservableCollection(Loot.Loot);
+            SelectedItem = null;
         }
         private void PickUpItem()
         {
@@ -193,6 +194,7 @@ namespace GameOfFrameworks.ViewModels
             var itemEntityConverter = new ItemEntityConverter();
             LootList = itemEntityConverter.ConvertRangeToObservableCollection(Loot.Loot);
             LootItemBarVisibility = Visibility.Hidden;
+            if (Loot.Loot.Count == 0) LootBarVisibility = Visibility.Hidden;
         }
         private void ExperienceGain()
         {
@@ -204,5 +206,6 @@ namespace GameOfFrameworks.ViewModels
             Notification(ACTION_TYPE.LevelUp, "New level gained", SERVICE_OWNER.Player);
             PlayerBar.Level++;
         }
+        public void StopFight() => Master.StopFight();
     }
 }

@@ -2,6 +2,7 @@
 using GameOfFrameworks.ApplicationData.Services;
 using GameOfFrameworks.Infrastructure.Commands.MainWindow;
 using GameOfFrameworks.Models.Services;
+using GameOfFrameworks.Models.Temporary;
 using GameOfFrameworks.ViewModels.Base;
 using System.Windows;
 using System.Windows.Input;
@@ -70,6 +71,8 @@ namespace GameOfFrameworks.ViewModels
 
             ConsoleNotificationsList = new ConsoleCommandsList();
             CommandsList = new ConsoleCommandsList();
+
+            ApplicationTemporaryData.Sound = Settings.Sound;
         }
         public void DisengageConsole() => ConsoleDisengaged?.Invoke();
     }

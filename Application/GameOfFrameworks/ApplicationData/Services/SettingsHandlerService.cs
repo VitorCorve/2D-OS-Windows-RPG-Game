@@ -37,6 +37,8 @@ namespace GameOfFrameworks.ApplicationData.Services
                 var applicationSettings = new ApplicationSettings();
                 applicationSettings.WindowStyle.SetDefault();
                 applicationSettings.Bindings.Bindings = SetDefaultButtonsBindings();
+                applicationSettings.Sound = new Models.Services.SoundMaster();
+                applicationSettings.Sound.SetDefault();
                 return applicationSettings;
             }
         }

@@ -14,7 +14,6 @@ namespace GameOfFrameworks.Scenes
         public RunGame()
         {
             InitializeComponent();
-            ApplicationTemporaryData.Sound = new Models.Services.SoundMaster();
             ApplicationTemporaryData.Sound.SceneBackgroundSoundTrackPlay(SCENE.RunGame);
         }
 

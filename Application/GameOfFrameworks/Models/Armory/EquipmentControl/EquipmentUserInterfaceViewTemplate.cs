@@ -48,7 +48,7 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
             switch (itemQuality)
             {
                 case "Poor":
-                    ItemQualityColor = "#FF000000";
+                    ItemQualityColor = "White";
                     return;
                 case "Good":
                     ItemQualityColor = "#FF20DA8E";

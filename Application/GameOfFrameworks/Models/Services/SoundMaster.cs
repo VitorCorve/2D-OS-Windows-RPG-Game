@@ -8,10 +8,11 @@ namespace GameOfFrameworks.Models.Services
     public class SoundMaster
     {
         private delegate void Function();
+        private bool Enabled;
         private double _FXVolume;
         private double _SoundTrackVolume;
-        public double FXVolume { get => _FXVolume; set { _FXVolume = value; } }
-        public double SoundTrackVolume { get => _SoundTrackVolume; set { _SoundTrackVolume = value; } }
+        public double FXVolume { get => _FXVolume; set { _FXVolume = value; SetFXVolume(value); } }
+        public double SoundTrackVolume { get => _SoundTrackVolume; set { _SoundTrackVolume = value; SetSoundtrackVolume(value); } }
         private MediaPlayer FX;
         private MediaPlayer CombatFX;
         private MediaPlayer RunGameSoundtrack;
@@ -28,7 +29,7 @@ namespace GameOfFrameworks.Models.Services
             ArmorySoundtrack.MediaEnded += PlayRandomizedArmorySoundtrack;
             BattleSceneSoundtrack.MediaEnded += PlayRandomizedBattleSceneSoundtrack;
 
-            SetSoundtrackVolume(0.0);
+            Enabled = true;
         }
         public void PlayCustomFXEvent(string uri)
         {
@@ -104,14 +105,23 @@ namespace GameOfFrameworks.Models.Services
         }
         public void SetSoundtrackVolume(double value)
         {
+            if (Enabled == false) return;
+
             RunGameSoundtrack.Volume = value;
             ArmorySoundtrack.Volume = value;
             BattleSceneSoundtrack.Volume = value;
         }
         public void SetFXVolume(double value)
         {
+            if (Enabled == false) return;
+
             CombatFX.Volume = value;
             FX.Volume = value;
+        }
+        public void SetDefault()
+        {
+            SoundTrackVolume = 0.33;
+            FXVolume = 1.0;
         }
     }
 }
