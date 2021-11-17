@@ -23,7 +23,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.Armory.Equipment
             var itemDescriptionBuilder = new ItemDescriptionBuilder();
             var itemToWear = (EquipmentUserInterfaceViewTemplate)parameter;
             ViewModel.EquipmentHandler.SelectItemFromEquipment(itemToWear.EquipmentType);
-            ViewModel.ItemDescription = itemDescriptionBuilder.Build(ViewModel.SelectedItem?.Source);
+            ViewModel.ItemDescription = itemDescriptionBuilder.Build(itemToWear.Source);
+            ViewModel.SelectedItem = itemToWear;
             ViewModel.DescriptionToolTipVisibility = System.Windows.Visibility.Visible;
         }
     }

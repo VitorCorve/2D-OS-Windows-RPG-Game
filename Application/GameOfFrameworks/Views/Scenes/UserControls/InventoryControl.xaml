@@ -45,7 +45,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="6.8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -107,7 +107,7 @@
         <Popup x:Name="InventoryTooltipPopup" Placement="Mouse" IsOpen="{Binding IsOpenInventoryItemPopupDialogUserControl}" StaysOpen="False" Panel.ZIndex="2" Width="240" Height="85">
             <local:ItemInInventoryPopupDialogUserControl Visibility="Visible" Background="Transparent"/>
         </Popup>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="22,0,22,0">
                 <Grid.Background>
                     <ImageBrush ImageSource="/Views/Scenes/UserControls/Images/inventoryBackground.png"/>
                 </Grid.Background>
@@ -172,7 +172,8 @@
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding ShowInventoryItemPopubDialogUserControlCommand}" CommandParameter="{Binding InventoryView.InventorySlotsList[1]}"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers><Button.Background>
+                    </i:Interaction.Triggers>
+                    <Button.Background>
                         <ImageBrush ImageSource="{Binding InventoryView.InventorySlotsList[1].ImagePath}" Stretch="Fill"/>
                     </Button.Background>
                 </Button>

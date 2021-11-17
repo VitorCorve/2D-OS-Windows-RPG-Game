@@ -13,6 +13,10 @@ using GameOfFrameworks.Infrastructure.Commands.Armory.Merchant;
 using GameEngine.Inventory;
 using GameOfFrameworks.Infrastructure.Commands.Armory;
 using GameEngine.Locations.Interfaces;
+using System;
+using System.Collections.Generic;
+using GameEngine.Equipment.Db.Items;
+using GameEngine.LootMaster;
 
 namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
 {
@@ -64,13 +68,32 @@ namespace GameOfFrameworks.ViewModels.ArmoryUserControlsViewModels
             PlayerModel = ArmoryTemporaryData.PlayerModel;
             Merchant = merchantViewBuilder.Build(CurrentLocation.Town);
 
-            MerchantInventory = new MerchantInventoryItemsList(0, 0, 0, 0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2);
+            var random = new Random();
+            int itemscount = random.Next(1, 7);
+
+            var db = new ItemsMetaData();
+            var itemsQuality = LootMaster.GetItemsQuality(ArmoryTemporaryData.PlayerModel.PlayerGrade);
+
+            var probablyItemsList = new List<ItemEntity>();
+
+            int count = 0;
+            foreach (var item in db.ItemsTotal)
+            {
+                if (count == itemscount)
+                    break;
+                if (item.Model.Quality == itemsQuality)
+                {
+                    probablyItemsList.Add(item);
+                    count++;
+                }
+            }
+            MerchantInventory = new MerchantInventoryItemsList(probablyItemsList);
 
             RefreshEquipmentView();
 
             PlayerItemsInInventoryCount = PlayerInventory.ItemsInInventory.Count;
 
-            MerchantConsumables = new PlayerConsumablesData(38717271);
+            MerchantConsumables = new PlayerConsumablesData(121382);
             PlayerConsumables = ArmoryTemporaryData.PlayerModel.PlayerConsumables;
 
             PlayerItemToTradeDescriptionGridVisibility = Visibility.Hidden;

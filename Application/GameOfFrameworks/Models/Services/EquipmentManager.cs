@@ -10,6 +10,7 @@ namespace GameOfFrameworks.Models.Services
 {
     public class EquipmentManager : IEquipmentManager
     {
+        private PlayerMainStatsModel Player;
         public EquipmentControlViewModel ViewModel { get; private set; }
         public PlayerEntityConstructor EntityConstructor { get; } = new();
         private ItemEntityConverter Converter { get; } = new ();
@@ -18,9 +19,11 @@ namespace GameOfFrameworks.Models.Services
             ViewModel = viewModel;
             InitializeInventoryView();
             InitializeEquipmentView();
+            Player = new PlayerMainStatsModel();
         }
         public void WearItemFromInventory(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
+            Player.SetupModelValues(ArmoryTemporaryData.CharacterEntity);
             ViewModel.InventoryView.InventorySlotsList.Remove(viewTemplate);
             ViewModel.InventoryModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             WearItemDirectly(viewTemplate);
@@ -29,6 +32,7 @@ namespace GameOfFrameworks.Models.Services
         }
         public void TakeOffEquippedItem(EquipmentUserInterfaceViewTemplate viewTemplate)
         {
+            Player.SetupModelValues(ArmoryTemporaryData.CharacterEntity);
             ViewModel.EquipmentView.EquipmentSlotsList.Remove(viewTemplate);
             ViewModel.EquipmentModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(viewTemplate));
             AddItemToInventory(viewTemplate);
@@ -70,10 +74,10 @@ namespace GameOfFrameworks.Models.Services
 
             sortedEquipmentList.EquipmentSlotsList[0] = GetItemFromEquipment(EQUIPMENT_TYPE.Helmet) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[1] = GetItemFromEquipment(EQUIPMENT_TYPE.Gloves) ?? new EquipmentUserInterfaceViewTemplate();
-            sortedEquipmentList.EquipmentSlotsList[2] = GetItemFromEquipment(EQUIPMENT_TYPE.MainWeapon) ?? new EquipmentUserInterfaceViewTemplate();
+            sortedEquipmentList.EquipmentSlotsList[2] = GetItemFromEquipment(EQUIPMENT_TYPE.Right) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[3] = GetItemFromEquipment(EQUIPMENT_TYPE.Shoulder) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[4] = GetItemFromEquipment(EQUIPMENT_TYPE.Bracers) ?? new EquipmentUserInterfaceViewTemplate();
-            sortedEquipmentList.EquipmentSlotsList[5] = GetItemFromEquipment(EQUIPMENT_TYPE.OffHandWeapon) ?? new EquipmentUserInterfaceViewTemplate();
+            sortedEquipmentList.EquipmentSlotsList[5] = GetItemFromEquipment(EQUIPMENT_TYPE.Left) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[6] = GetItemFromEquipment(EQUIPMENT_TYPE.Necklace) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[7] = GetItemFromEquipment(EQUIPMENT_TYPE.Waist) ?? new EquipmentUserInterfaceViewTemplate();
             sortedEquipmentList.EquipmentSlotsList[8] = GetItemFromEquipment(EQUIPMENT_TYPE.Artefact) ?? new EquipmentUserInterfaceViewTemplate();
@@ -106,12 +110,13 @@ namespace GameOfFrameworks.Models.Services
         public void DeleteInventoryItem(EquipmentUserInterfaceViewTemplate itemToWear)
         {
             ViewModel.InventoryView.InventorySlotsList.Remove(itemToWear);
-            ViewModel.InventoryModel.ItemsInInventory.Remove(ItemEntityConverter.ConvertToItemEntity(itemToWear));
+            ViewModel.InventoryModel.RemoveItem(ItemEntityConverter.ConvertToItemEntity(itemToWear));
         }
         private void UpdatePlayerEntity()
         {
             var equipment = new EquipmentValue(ViewModel.EquipmentModel);
             ArmoryTemporaryData.CharacterEntity = EntityConstructor.CreatePlayer(ArmoryTemporaryData.PlayerModel, ArmoryTemporaryData.PlayerAttributes, equipment);
+            Player.SetupPlayerEntityValues(ArmoryTemporaryData.CharacterEntity);
         }
         public void Refresh()
         {

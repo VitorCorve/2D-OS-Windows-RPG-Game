@@ -25,7 +25,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-        
+
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
@@ -76,7 +76,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF2C2C2C" Duration="0:0:0.3"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -91,111 +91,69 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Viewbox Grid.Column="3" Grid.Row="1" >
-        <Grid Height="400" Width="200">
-            <Grid.Background>
-                <ImageBrush ImageSource="/Views/Scenes/Images/VisualElements/ElementCover.png"/>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.05*"/>
-                <RowDefinition Height="0.08*"/>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.67*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Column="0" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.9*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="1">
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Views/Scenes/Images/Buttons/infoTexture.png"/>
-                    </Border.Background>
-                    <TextBlock Text="{Binding SelectedItem.ItemName}" VerticalAlignment="Center" TextAlignment="Center">
-                    </TextBlock>
-                </Border>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.25*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                    <Image Source="{Binding SelectedItem.ImagePath}"/>
-                    <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributes}" Text="Level: " VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14"/>
-                    <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributesValue}" Text="{Binding SelectedItem.Itemlevel}" VerticalAlignment="Center" FontSize="14"/>
-                </StackPanel>
-
-            </Grid>
-            <ItemsControl ItemsSource="{Binding ItemDescription}" Grid.Row="3">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Key, StringFormat={}{0}: }" Grid.Column="0" Style="{StaticResource TextBlockAttributes}" FontSize="14"/>
-                            <TextBlock Text="{Binding Value}" Grid.Column="1" Style="{StaticResource TextBlockAttributesValue}" FontSize="14"/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <!--<Grid Grid.Row="3">
+    <Grid Height="400" Width="200" Grid.Column="3" Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.08*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.67*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.RowSpan="4" BorderThickness="5" BorderBrush="Black" Opacity="0.8">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-141.34" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF0F0F0F"/>
+                    <GradientStop Color="#FF1B1B1B" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Grid Grid.Column="0" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.45*"/>
-                <ColumnDefinition Width="0.35*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.9*"/>
                 <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Damage" Grid.Row="0" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="0" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Attack power" Grid.Row="1" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="1" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Attack speed" Grid.Row="2" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="1/s." Grid.Row="2" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Armor" Grid.Row="3" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="3" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Agility" Grid.Row="4" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="4" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Intellect" Grid.Row="5" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="5" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Strength" Grid.Row="6" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="6" Grid.Column="2"/>
-            
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Stamina" Grid.Row="7" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="7" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Endurance" Grid.Row="8" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="10" Grid.Row="8" Grid.Column="2"/>
-
-            <TextBlock Style="{StaticResource TextBlockAttributes}" Text="Durability" Grid.Row="9" Grid.Column="1" />
-            <TextBlock Style="{StaticResource TextBlockAttributesValue}" Text="100/100" Grid.Row="9" Grid.Column="2"/>
-
-        </Grid>-->
+            <Border Grid.Column="1" CornerRadius="8">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.8"/>
+                </Border.Background>
+                <TextBlock Text="{Binding SelectedItem.ItemName}" VerticalAlignment="Center" TextAlignment="Center" Foreground="{Binding SelectedItem.ItemQualityColor}">
+                </TextBlock>
+            </Border>
         </Grid>
-    </Viewbox>
-    
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                <Image Source="{Binding SelectedItem.ImagePath}"/>
+                <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributes}" Text="Level: " VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14" />
+                <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributesValue}" Text="{Binding SelectedItem.Itemlevel}" VerticalAlignment="Center" FontSize="14" Foreground="{Binding SelectedItem.ItemQualityColor}"/>
+            </StackPanel>
+
+        </Grid>
+        <ItemsControl ItemsSource="{Binding ItemDescription}" Grid.Row="3" Margin="5">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Key, StringFormat={}{0}: }" Grid.Column="0" Style="{StaticResource TextBlockAttributes}" FontSize="14" Foreground="#FF3E8285"/>
+                        <TextBlock Text="{Binding Value}" Grid.Column="1" Style="{StaticResource TextBlockAttributesValue}" FontSize="14" Foreground="White"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 </UserControl>

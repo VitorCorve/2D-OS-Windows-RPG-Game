@@ -21,15 +21,6 @@
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF0B6068"/>
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF804600"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="ListBoxItemBorder" Property="Background" Value="#FF0B6068"/>
-                            </Trigger>
                             <EventTrigger RoutedEvent="MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -152,15 +143,22 @@
                  Margin="0,15,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown">
+                    <Border PreviewMouseLeftButtonDown="StackPanel_PreviewMouseLeftButtonDown" 
+                            Margin="10" 
+                            CornerRadius="8">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                                 <i:InvokeCommandAction Command="{Binding ElementName=LootBarControlElement, Path=DataContext.PickUpItemCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Image Source="{Binding ImagePath}" Width="50"/>
-                        <TextBlock Text="{Binding ItemName}" FontSize="14" Foreground="{Binding ItemQualityColor}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    </StackPanel>
+                        <Border.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                        </Border.Background>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Image Source="{Binding ImagePath}" Width="50"/>
+                            <TextBlock Text="{Binding ItemName}" FontSize="14" Foreground="{Binding ItemQualityColor}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

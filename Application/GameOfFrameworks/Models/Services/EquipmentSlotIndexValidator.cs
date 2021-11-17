@@ -12,13 +12,13 @@ namespace GameOfFrameworks.Models.Services
                     return 0;
                 case EQUIPMENT_TYPE.Gloves:
                     return 1;
-                case EQUIPMENT_TYPE.MainWeapon:
+                case EQUIPMENT_TYPE.Right:
                     return 2;
                 case EQUIPMENT_TYPE.Shoulder:
                     return 3;
                 case EQUIPMENT_TYPE.Bracers:
                     return 4;
-                case EQUIPMENT_TYPE.OffHandWeapon:
+                case EQUIPMENT_TYPE.Left:
                     return 5;
                 case EQUIPMENT_TYPE.Necklace:
                     return 6;

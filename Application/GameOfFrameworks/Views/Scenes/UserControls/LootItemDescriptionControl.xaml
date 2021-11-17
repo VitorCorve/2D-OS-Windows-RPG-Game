@@ -74,7 +74,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF0693B2" Duration="0:0:0.3"/>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#FF2C2C2C" Duration="0:0:0.3"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -138,7 +138,6 @@
                 <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributes}" Text="Level: " VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14"/>
                 <TextBlock Style="{StaticResource ResourceKey=TextBlockAttributesValue}" Text="{Binding SelectedItem.Itemlevel}" VerticalAlignment="Center" FontSize="14" Foreground="{Binding SelectedItem.ItemQualityColor}"/>
             </StackPanel>
-
         </Grid>
         <ItemsControl ItemsSource="{Binding ItemDescription}" Grid.Row="3">
             <ItemsControl.ItemTemplate>

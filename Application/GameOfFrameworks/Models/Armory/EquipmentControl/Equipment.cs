@@ -73,10 +73,10 @@ namespace GameOfFrameworks.Models.Armory.EquipmentControl
                     case EQUIPMENT_TYPE.Cloak:
                         Cloak = item;
                         break;
-                    case EQUIPMENT_TYPE.MainWeapon:
+                    case EQUIPMENT_TYPE.Right:
                         MainWeapon = item;
                         break;
-                    case EQUIPMENT_TYPE.OffHandWeapon:
+                    case EQUIPMENT_TYPE.Left:
                         SecondWeapon = item;
                         break;
                     case EQUIPMENT_TYPE.Artefact:

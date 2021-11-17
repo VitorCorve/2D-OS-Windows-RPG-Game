@@ -20,6 +20,8 @@ namespace GameOfFrameworks.Models.BattleScene
         }
         public void AddMessage(CombatTextMessageView message)
         {
+            string text = message.Message.Replace("_", "");
+            message.Message = text;
             CombatTextMessagesCollection.Add(message);
         }
         public async void AddMessage(CombatTextMessageView message, bool delayed, int value)
