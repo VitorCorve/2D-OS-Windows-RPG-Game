@@ -17,6 +17,8 @@ namespace GameOfFrameworks.Infrastructure.Commands.BattleScene
         }
         public override void Execute(object parameter)
         {
+            if (ViewModel.BattleIsOver) return;
+
             if (ConvertValue(parameter) > 9) return;
 
             if (!IsExists(ConvertValue(parameter))) return;

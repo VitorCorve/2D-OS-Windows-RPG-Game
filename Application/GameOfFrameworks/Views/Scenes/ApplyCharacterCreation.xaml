@@ -586,7 +586,7 @@
                 <RowDefinition Height="0.08*"/>
                 <RowDefinition Height="0.88*"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Confirm"  Grid.Row="1" Width="130" Click="ConfirmButton_Click" Command="{Binding SaveCharacterCommand}"/>
+            <Button Style="{StaticResource ButtonTemplate}" VerticalAlignment="Center" Content="Confirm"  Grid.Row="1" Width="130" Click="ConfirmButton_Click"/>
         </Grid>
 
     </Grid>

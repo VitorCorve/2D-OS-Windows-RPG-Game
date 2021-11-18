@@ -45,8 +45,8 @@ namespace GameOfFrameworks.Models.BattleScene
         public CharacterPreviewBarModel(PlayerEntity playerEntity, IEntityAttributes characterAttributes, INPC_ModelData npcModel) : this(playerEntity, characterAttributes)
         {
             AvatarPath = npcModel.Avatar.Path;
-            Name = npcModel.Name.ToString().Replace("_", "");
-            Specialization = npcModel.NPC_Type.ToString().Replace("_", "");
+            Name = npcModel.Name.ToString().Replace("_", " ");
+            Specialization = npcModel.NPC_Type.ToString().Replace("_", " ");
         }
         public CharacterPreviewBarModel(PlayerEntity playerEntity, IEntityAttributes characterAttributes, PlayerModelData playerModel) : this(playerEntity, characterAttributes)
         {

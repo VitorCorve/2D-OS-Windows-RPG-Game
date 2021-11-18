@@ -46,6 +46,7 @@ namespace GameOfFrameworks.ViewModels
         private readonly CombatTextMessageCreator MessageCreator;
         private LootMaster Loot;
         private ExperienceMaster Experience;
+        public bool BattleIsOver;
         public Visibility SkillDescriptionVisibility { get => _SkillDescriptionVisibility; set { _SkillDescriptionVisibility = value; OnPropertyChanged(); } }
         public Visibility LootItemBarVisibility { get => _LootItemBarVisibility; set { _LootItemBarVisibility = value; OnPropertyChanged(); } }
         public Visibility LootBarVisibility { get => _LootBarVisibility; set { _LootBarVisibility = value; OnPropertyChanged(); } }
@@ -119,6 +120,8 @@ namespace GameOfFrameworks.ViewModels
             LootItemBarVisibility = Visibility.Hidden;
             LootBarVisibility = Visibility.Hidden;
             Master.BattleFinished += ExperienceGain;
+            Master.BattleFinished += UpdateEquipment;
+            Master.BattleFinished += UpdateBattleStatus;
             ArmoryTemporaryData.PlayerModel.NewLevelGainded += LevelUp;
             Master.BattleFinished += PrepareLoot;
 
@@ -201,6 +204,8 @@ namespace GameOfFrameworks.ViewModels
             ArmoryTemporaryData.PlayerModel = Experience.AddExperience(ArmoryTemporaryData.PlayerModel, Master.GetNPCModel());
             Notification(ACTION_TYPE.Experience, $"{ Experience.Value} experience gained", SERVICE_OWNER.Player);
         }
+        private void UpdateEquipment() => ArmoryTemporaryData.PlayerEquipment = Master.PlayerEquipment;
+        private void UpdateBattleStatus() => BattleIsOver = true;
         private void LevelUp()
         {
             Notification(ACTION_TYPE.LevelUp, "New level gained", SERVICE_OWNER.Player);

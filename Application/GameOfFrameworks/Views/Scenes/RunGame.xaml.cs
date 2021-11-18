@@ -15,6 +15,7 @@ namespace GameOfFrameworks.Scenes
         {
             InitializeComponent();
             ApplicationTemporaryData.Sound.SceneBackgroundSoundTrackPlay(SCENE.RunGame);
+            ArmoryTemporaryData.Instance = this;
         }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)

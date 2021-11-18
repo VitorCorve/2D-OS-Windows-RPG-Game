@@ -30,6 +30,13 @@ namespace GameOfFrameworks.ViewModels
         public static ICommand LoadAutoSaveDataCommand { get; private set; }
         public ArmoryViewModel()
         {
+            if (ArmoryTemporaryData.SaveData is null)
+            {
+                ApplyCharacterCreationViewModel.SaveCharacterCommand.Execute(null);
+                LoadAutoSaveDataCommand = new LoadAutoSaveDataCommand();
+                LoadAutoSaveDataCommand.Execute(null);
+                MainWindowViewModel.ShowNotificationCommand.Execute("Loaded...");
+            }
             var locationBuilder = new LocationBuilder();
             PlayerModel = ArmoryTemporaryData.PlayerModel;
 

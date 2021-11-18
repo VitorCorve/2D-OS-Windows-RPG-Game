@@ -57,7 +57,7 @@ namespace GameOfFrameworks.ViewModels
         public ICommand SelectSkill3Command { get; set; }
         public ICommand SelectSkill4Command { get; set; }
         public ICommand SelectSkill5Command { get; set; }
-        public ICommand SaveCharacterCommand { get; set; }
+        public static ICommand SaveCharacterCommand { get; set; }
         public ApplyCharacterCreationViewModel()
         {
             InitializeData();

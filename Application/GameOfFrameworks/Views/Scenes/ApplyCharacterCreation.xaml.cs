@@ -36,8 +36,8 @@ namespace GameOfFrameworks.Scenes
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             ApplicationTemporaryData.Sound.ButtonPressSoundPlay();
-            NewGame newGame = new NewGame();
-            NavigationService.Navigate(newGame);
+            Armory armory = new Armory();
+            NavigationService.Navigate(armory);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) => ApplicationTemporaryData.Sound.ButtonPressSoundPlay();

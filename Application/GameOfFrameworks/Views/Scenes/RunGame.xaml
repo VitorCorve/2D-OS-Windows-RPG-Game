@@ -97,7 +97,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource ButtonTemplate}" Content="Continue" Click="ContinueButton_Click" Grid.Row="0"/>
+            <Button Style="{StaticResource ButtonTemplate}" Content="Continue" Click="ContinueButton_Click" Grid.Row="0" Command="{Binding ContinueGameCommand}"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="New Game" Click="NewGameButton_Click" Grid.Row="1"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Load" Click="LoadButton_Click" Grid.Row="2"/>
             <Button Style="{StaticResource ButtonTemplate}" Content="Options" Click="OptionsButton_Click" Grid.Row="3"/>

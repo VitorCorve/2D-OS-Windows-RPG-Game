@@ -64,6 +64,17 @@ namespace GameOfFrameworks.Infrastructure.Commands.LoadGame
 
             return playerEntity;
         }
-        private EquipmentValue BuildEquipmentValue(WearedEquipment wearedEquipment) => new EquipmentValue(wearedEquipment);
+        private EquipmentValue BuildEquipmentValue(WearedEquipment wearedEquipment)
+        {
+            if (wearedEquipment is null)
+            {
+                var newWearedEquipment = new WearedEquipment();
+                return new EquipmentValue(newWearedEquipment);
+            }
+            else
+            {
+                return new EquipmentValue(wearedEquipment);
+            }
+        }
     }
 }
